@@ -96,9 +96,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
 .tbbtn svg{width:12px;height:12px;stroke:white;fill:none;stroke-width:2.5;stroke-linecap:round}
 
 /* CONTENT */
-.content{flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:14px;scrollbar-width:thin;scrollbar-color:var(--n200) transparent}
-.view{display:none !important;flex-direction:column;gap:14px}
-.view.on{display:flex !important;flex-direction:column;gap:14px}
+.content{flex:1;overflow-y:auto;padding:18px 20px;scrollbar-width:thin;scrollbar-color:var(--n200) transparent;position:relative}
+.view{display:none;flex-direction:column;gap:14px;width:100%}
+.view.on{display:flex}
 
 /* STATS */
 .stats{display:grid;gap:10px}
@@ -380,7 +380,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
     <div class="content">
 
       <!-- ════ VIEW NUTRICIONISTA ════ -->
-      <div class="view on" id="v-nutri">
+      <div class="view on" id="v-nutri" style="display:flex">
         <div class="stats c4">
           <div class="sc"><div class="sc-lbl">Pacientes ativos<div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/></svg></div></div><div class="sc-val">18</div><div class="sc-sub up">+3 este mês</div></div>
           <div class="sc"><div class="sc-lbl">Fotos aguardando<div class="sc-ico" style="background:var(--oral)"><svg style="stroke:var(--ora)" viewBox="0 0 18 18"><rect x="2" y="4" width="14" height="12" rx="2"/><circle cx="9" cy="10" r="2.5"/><path d="M6 4l1-2h4l1 2"/></svg></div></div><div class="sc-val" style="color:var(--ora)">4</div><div class="sc-sub warn">Revisar hoje</div></div>
@@ -463,7 +463,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       </div>
 
       <!-- ════ VIEW EDUCADOR FÍSICO ════ -->
-      <div class="view" id="v-edfi">
+      <div class="view" id="v-edfi" style="display:none">
         <div class="stats c4">
           <div class="sc"><div class="sc-lbl">Pacientes ativos</div><div class="sc-val">18</div><div class="sc-sub">Acompanhamento ativo</div></div>
           <div class="sc"><div class="sc-lbl">Aderência atividade</div><div class="sc-val" style="color:var(--md)">68%</div><div class="sc-sub up">+3% esta semana</div></div>
@@ -506,7 +506,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       </div>
 
       <!-- ════ VIEW PSICÓLOGO ════ -->
-      <div class="view" id="v-psico">
+      <div class="view" id="v-psico" style="display:none">
         <div class="stats c4">
           <div class="sc"><div class="sc-lbl">Pacientes acompanhados</div><div class="sc-val">14</div><div class="sc-sub">Suporte ativo</div></div>
           <div class="sc"><div class="sc-lbl">Sessões este mês</div><div class="sc-val">28</div><div class="sc-sub up">+4 vs anterior</div></div>
@@ -538,7 +538,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       </div>
 
       <!-- ════ VIEW MÉDICO ════ -->
-      <div class="view" id="v-medico">
+      <div class="view" id="v-medico" style="display:none">
         <div class="alert-box"><svg viewBox="0 0 20 20"><path d="M10 2L2 18h16L10 2z"/><line x1="10" y1="10" x2="10" y2="13"/><line x1="10" y1="16" x2="10.01" y2="16"/></svg>3 pacientes com glicemia elevada. Ana Beatriz (113 mg/dL) e Roberto Santos (131 mg/dL) requerem atenção.</div>
         <div class="stats c4">
           <div class="sc"><div class="sc-lbl">Pacientes monitorados</div><div class="sc-val">18</div><div class="sc-sub">Todos com exames</div></div>
@@ -584,7 +584,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       </div>
 
       <!-- ════ VIEW WHATSAPP ════ -->
-      <div class="view" id="v-whats">
+      <div class="view" id="v-whats" style="display:none">
         <div class="stats c4">
           <div class="sc"><div class="sc-lbl">Msgs enviadas hoje</div><div class="sc-val" style="color:#25d366">34</div><div class="sc-sub up">Automáticas + manuais</div></div>
           <div class="sc"><div class="sc-lbl">Fotos recebidas</div><div class="sc-val" style="color:var(--ora)">7</div><div class="sc-sub warn">4 aguardando feedback</div></div>
@@ -635,7 +635,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       </div>
 
       <!-- ════ VIEW RECOMPENSAS ════ -->
-      <div class="view" id="v-rewards">
+      <div class="view" id="v-rewards" style="display:none">
         <div class="stats c4">
           <div class="sc"><div class="sc-lbl">Recompensas ativas</div><div class="sc-val" style="color:var(--yel)">5</div><div class="sc-sub">Tipos configurados</div></div>
           <div class="sc"><div class="sc-lbl">Elegíveis agora</div><div class="sc-val" style="color:var(--ora)">3</div><div class="sc-sub warn">Pacientes aguardando</div></div>
@@ -908,17 +908,12 @@ function openHistorico(){toast('Histórico de conversas em preparação.');}
 function openMetas(){openModal('m-metas');}
 function openRelatorioEng(){toast('Relatório de engajamento em preparação.');}
 function showView(vi){
-  // Hide ALL views first
   document.querySelectorAll('.view').forEach(v=>{
     v.classList.remove('on');
     v.style.display='none';
   });
-  // Show only the target
-  const target = document.getElementById('v-'+vi);
-  if(target){
-    target.classList.add('on');
-    target.style.display='flex';
-  }
+  const t=document.getElementById('v-'+vi);
+  if(t){t.classList.add('on');t.style.display='flex';}
 }
 
 function switchView(vi,el){
