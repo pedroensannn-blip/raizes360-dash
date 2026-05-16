@@ -79,14 +79,16 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
 
 /* MAIN */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.topbar{background:var(--wh);border-bottom:1px solid var(--n100);padding:0 16px;height:52px;display:flex;align-items:center;gap:10px;flex-shrink:0;box-shadow:0 1px 0 var(--n100)}
+.topbar{background:var(--wh);border-bottom:1px solid var(--n100);padding:0 12px;min-height:52px;display:flex;align-items:center;gap:8px;flex-shrink:0;box-shadow:0 1px 0 var(--n100);flex-wrap:wrap}
 .tbtitle{font-size:14px;font-weight:800;color:var(--n800);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* Role switcher tabs */
-.role-tabs{display:flex;gap:4px;background:var(--n50);border-radius:10px;padding:3px;flex-shrink:0}
-.rtab{padding:5px 11px;border-radius:7px;font-size:11px;font-weight:600;color:var(--n400);cursor:pointer;transition:all .15s;white-space:nowrap;border:none;background:none;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:4px}
-.rtab:hover{color:var(--n700);background:rgba(255,255,255,.7)}
-.rtab.on{background:var(--wh);color:var(--n800);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.08)}
-.rtab svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.tabbar{background:var(--wh);border-bottom:2px solid var(--n100);padding:0 16px;display:flex;align-items:center;gap:0;flex-shrink:0;overflow-x:auto;scrollbar-width:none}
+.tabbar::-webkit-scrollbar{display:none}
+.rtab{padding:13px 16px;font-size:12px;font-weight:600;color:var(--n500);cursor:pointer;transition:all .15s;white-space:nowrap;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:5px;margin-bottom:-2px}
+.rtab:hover{color:var(--n700);background:var(--n50)}
+.rtab.on{color:var(--mint-d);border-bottom-color:var(--mint);font-weight:700;background:none}
+.rtab.wa{color:#25d366}
+.rtab svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
 .tbsearch{display:flex;align-items:center;gap:6px;background:var(--n50);border:1px solid var(--n100);border-radius:var(--rp);padding:6px 12px;width:180px;flex-shrink:0}
 .tbsearch svg{width:12px;height:12px;stroke:var(--n400);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
 .tbsearch input{background:none;border:none;outline:none;font-size:12px;color:var(--n700);font-family:'Inter',sans-serif;width:100%}
@@ -344,36 +346,35 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
   <div class="main">
     <div class="topbar">
       <div class="tbtitle" id="tbtitle">Dashboard</div>
-      <!-- Role switcher tabs -->
-      <div class="role-tabs" id="role-tabs">
-        <button class="rtab on" id="rtab-nutri" onclick="switchRole('nutri',this)">
-          <svg viewBox="0 0 14 14"><path d="M7 2C5 5 4 6.5 4 8a3 3 0 0 0 6 0c0-1.5-1-3-3-6z"/></svg>
-          Nutricionista
-        </button>
-        <button class="rtab" id="rtab-edfi" onclick="switchRole('edfi',this)">
-          <svg viewBox="0 0 14 14"><path d="M2 7h10M7 2l3 5-3 5"/></svg>
-          Ed. Físico
-        </button>
-        <button class="rtab" id="rtab-psico" onclick="switchRole('psico',this)">
-          <svg viewBox="0 0 14 14"><circle cx="7" cy="5" r="3"/><path d="M2 13v-1a5 5 0 0 1 10 0v1"/></svg>
-          Psicólogo(a)
-        </button>
-        <button class="rtab" id="rtab-medico" onclick="switchRole('medico',this)">
-          <svg viewBox="0 0 14 14"><path d="M7 2v10M2 7h10"/></svg>
-          Médico(a)
-        </button>
-        <button class="rtab" id="rtab-whats" onclick="switchRole('whats',this)" style="color:#25d366">
-          <svg viewBox="0 0 14 14"><path d="M7 1C3.7 1 1 3.7 1 7c0 1.1.3 2.1.8 3L1 13l3.1-.8C5 12.7 6 13 7 13c3.3 0 6-2.7 6-6S10.3 1 7 1z"/></svg>
-          WhatsApp
-        </button>
-        <button class="rtab" id="rtab-rewards" onclick="switchRole('rewards',this)">
-          <svg viewBox="0 0 14 14"><path d="M7 1l1.5 4H13l-3.5 2.5 1.3 4L7 9 3.2 11.5l1.3-4L1 5h4.5z"/></svg>
-          Recompensas
-        </button>
-      </div>
       <button class="tbbtn pri" id="tbadd" onclick="openNewPatient()">
         <svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg>
         <span id="tbadd-lbl">Novo paciente</span>
+      </button>
+    <!-- Persistent tab bar - always visible -->
+    <div class="tabbar" id="role-tabs">
+      <button class="rtab on" id="rtab-nutri" onclick="switchRole('nutri',this)">
+        <svg viewBox="0 0 14 14"><path d="M7 2C5 5 4 6.5 4 8a3 3 0 0 0 6 0c0-1.5-1-3-3-6z"/></svg>
+        Nutricionista
+      </button>
+      <button class="rtab" id="rtab-edfi" onclick="switchRole('edfi',this)">
+        <svg viewBox="0 0 14 14"><path d="M2 7h10M7 2l3 5-3 5"/></svg>
+        Ed. Físico
+      </button>
+      <button class="rtab" id="rtab-psico" onclick="switchRole('psico',this)">
+        <svg viewBox="0 0 14 14"><circle cx="7" cy="5" r="3"/><path d="M2 13v-1a5 5 0 0 1 10 0v1"/></svg>
+        Psicólogo(a)
+      </button>
+      <button class="rtab" id="rtab-medico" onclick="switchRole('medico',this)">
+        <svg viewBox="0 0 14 14"><path d="M7 2v10M2 7h10"/></svg>
+        Médico(a)
+      </button>
+      <button class="rtab wa" id="rtab-whats" onclick="switchRole('whats',this)">
+        <svg viewBox="0 0 14 14"><path d="M7 1C3.7 1 1 3.7 1 7c0 1.1.3 2.1.8 3L1 13l3.1-.8C5 12.7 6 13 7 13c3.3 0 6-2.7 6-6S10.3 1 7 1z"/></svg>
+        WhatsApp
+      </button>
+      <button class="rtab" id="rtab-rewards" onclick="switchRole('rewards',this)">
+        <svg viewBox="0 0 14 14"><path d="M7 1l1.5 4H13l-3.5 2.5 1.3 4L7 9 3.2 11.5l1.3-4L1 5h4.5z"/></svg>
+        Recompensas
       </button>
     </div>
 
@@ -884,10 +885,16 @@ function buildNav(role){
     const bd=it.bd?'<span class="sbi-b'+(it.bdg?' g':'')+'">'+it.bd+'</span>':'';
     const lockStyle=it.lock?'opacity:.35;pointer-events:none':'';
     const lockIco=it.lock?'<svg style="width:9px;height:9px;stroke:rgba(255,255,255,.25);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;margin-left:auto" viewBox="0 0 12 12"><rect x="2" y="5" width="8" height="6" rx="1"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5"/></svg>':'';
-    const act=it.lock?'':(it.vi
-      ? 'onclick="switchRole(\''+it.vi+'\',document.getElementById(\'rtab-'+it.vi+'\'));document.querySelectorAll(\'.sbi\').forEach(s=>s.classList.remove(\'on\'));this.classList.add(\'on\')"'
-      : (it.fn?'onclick="'+it.fn+'()"':''));
-    const on=me&&it.vi&&it.vi===me.view?' on':'';
+    let act='';
+    if(!it.lock){
+      if(it.vi){
+        // Navigate to view + highlight correct top tab + mark sidebar item
+        act='onclick="switchRole(\''+it.vi+'\',document.getElementById(\'rtab-'+it.vi+'\')||document.querySelector(\'.rtab\'));document.querySelectorAll(\'.sbi\').forEach(s=>s.classList.remove(\'on\'));this.classList.add(\'on\')"';
+      } else if(it.fn){
+        act='onclick="'+it.fn+'();document.querySelectorAll(\'.sbi\').forEach(s=>s.classList.remove(\'on\'));this.classList.add(\'on\')"';
+      }
+    }
+    const on=me&&it.vi&&it.vi===role?' on':'';
     return '<div class="sbi'+on+'" style="'+lockStyle+'" '+act+'><svg class="sbi-ico" viewBox="0 0 18 18"><path d="'+it.ic+'"/></svg><span class="sbi-lbl">'+it.lb+'</span>'+bd+lockIco+'</div>';
   }).join('');
 }
@@ -924,20 +931,25 @@ function switchView(vi,el){
   document.getElementById('tbtitle').textContent=t[vi]||'Dashboard';
   document.querySelectorAll('.rtab').forEach(r=>{r.classList.remove('on');r.style.color='';});
   const rtab=document.getElementById('rtab-'+vi);
-  if(rtab){rtab.classList.add('on');if(vi==='whats')rtab.style.color='#25d366';}
+  if(rtab){rtab.classList.add('on');}
 }
 
 function switchRole(role,btn){
   showView(role);
-  document.querySelectorAll('.rtab').forEach(r=>{r.classList.remove('on');r.style.color='';});
-  if(btn){btn.classList.add('on');if(role==='whats')btn.style.color='#25d366';}
+  // Update tab highlight
+  document.querySelectorAll('.rtab').forEach(r=>r.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  // Update topbar title
   const t={nutri:'Dashboard · Nutricionista',edfi:'Dashboard · Ed. Físico',psico:'Dashboard · Psicólogo(a)',medico:'Dashboard · Médico',whats:'WhatsApp · Integrações',rewards:'Gestão de Recompensas'};
   document.getElementById('tbtitle').textContent=t[role]||'Dashboard';
-  const navRole=NAVS[role]?role:(me?.view||'nutri');
-  buildNav(navRole);
+  // Only rebuild sidebar for actual professional views, not whats/rewards
+  if(['nutri','edfi','psico','medico'].includes(role)){
+    buildNav(role);
+  }
+  // Update add button
   const addLabels={nutri:'Novo paciente',edfi:'Novo treino',psico:'Nova sessão',medico:'Nova nota',whats:'Nova notificação',rewards:'Nova recompensa'};
   document.getElementById('tbadd-lbl').textContent=addLabels[role]||'Novo';
-  document.getElementById('tbadd').onclick=role==='rewards'?openNewReward:(role==='whats'?()=>toast('Criando notificação...'):openNewPatient);
+  document.getElementById('tbadd').onclick=role==='rewards'?openNewReward:(role==='whats'?()=>toast('Nova notificação automática'):openNewPatient);
 }
 
 function doLogin(){
