@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raízes 360 · Painel Profissional</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --mint:#2dccb4;--mint-light:#e8faf7;--mint-mid:#a8ede5;--mint-dark:#1aab95;
+  --purple:#7b5ea7;--purple-light:#f0ebf8;
+  --white:#fff;--bg:#f4f6f9;
+  --n50:#f2f4f7;--n100:#e8eaee;--n200:#d1d5dd;--n300:#b0b7c3;
+  --n400:#8a94a6;--n500:#5e6b84;--n600:#3d4a63;--n700:#242f47;--n800:#141c2e;
+  --red:#e8453c;--red-light:#fff0ef;
+  --orange:#f0924a;--orange-light:#fff5ee;
+  --blue:#2563eb;--blue-light:#eff6ff;
+  --yellow:#e0a800;--yellow-light:#fef9e7;
+  --green:#16a34a;--green-light:#f0fdf4;
+  --sh:0 1px 4px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --sh-md:0 4px 16px rgba(0,0,0,.08);
+  --r:12px;--r-sm:8px;--r-pill:999px;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);min-height:100vh;color:var(--n700);display:flex}
+
+/* ── ROLE SWITCHER ── */
+.role-switcher{
+  position:fixed;top:14px;right:18px;z-index:200;
+  display:flex;gap:5px;
+  background:var(--white);border:1px solid var(--n100);
+  border-radius:var(--r);padding:5px;
+  box-shadow:var(--sh-md);
+}
+.role-btn{
+  padding:7px 14px;border-radius:var(--r-sm);
+  font-size:12px;font-weight:600;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;color:var(--n400);background:none;transition:all .15s;
+}
+.role-btn.active{background:var(--n700);color:white}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:236px;background:var(--n800);flex-shrink:0;
+  display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;bottom:0;z-index:100;
+}
+.sb-brand{padding:22px 18px 18px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sb-logo{display:flex;align-items:center;gap:10px}
+.sb-mark{width:34px;height:34px;border-radius:10px;background:var(--mint);display:flex;align-items:center;justify-content:center}
+.sb-mark svg{width:18px;height:18px;stroke:white;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sb-name{font-size:16px;font-weight:800;color:white;letter-spacing:-.3px}
+.sb-sub{font-size:10px;color:rgba(255,255,255,.3);margin-top:1px;font-weight:500}
+
+.sb-role{margin:14px 14px 0;padding:10px 12px;border-radius:10px;display:flex;align-items:center;gap:9px}
+.sb-role-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sb-role-name{font-size:12px;font-weight:700;color:white;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-role-tag{font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em;margin-top:1px}
+
+.sb-nav{padding:14px 10px;flex:1;overflow-y:auto}
+.sb-sec{font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);padding:0 8px;margin:14px 0 5px}
+.sb-sec:first-child{margin-top:0}
+.sbi{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:9px;cursor:pointer;margin-bottom:2px;transition:background .12s}
+.sbi:hover{background:rgba(255,255,255,.05)}
+.sbi.on{background:rgba(45,204,180,.14)}
+.sbi-ico{width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sbi-ico svg{width:15px;height:15px;stroke:rgba(255,255,255,.35);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sbi.on .sbi-ico svg{stroke:var(--mint)}
+.sbi-lbl{font-size:12.5px;color:rgba(255,255,255,.45);font-weight:500;white-space:nowrap}
+.sbi.on .sbi-lbl{color:rgba(255,255,255,.92);font-weight:600}
+.sbi.locked{opacity:.3;cursor:not-allowed;pointer-events:none}
+.sbi-badge{margin-left:auto;font-size:10px;font-weight:700;padding:2px 7px;border-radius:var(--r-pill);background:var(--red);color:white;flex-shrink:0}
+.sbi-badge.g{background:var(--mint-dark)}
+
+.sb-user{padding:13px 15px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:10px}
+.sb-ava{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0}
+.sb-uname{font-size:13px;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
+.sb-urole{font-size:10px;color:rgba(255,255,255,.3);margin-top:1px}
+
+/* ── MAIN ── */
+.main{margin-left:236px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+
+/* ── TOPBAR ── */
+.topbar{
+  background:var(--white);border-bottom:1px solid var(--n100);
+  padding:0 26px;height:58px;
+  display:flex;align-items:center;gap:12px;
+  position:sticky;top:0;z-index:10;
+  box-shadow:0 1px 0 var(--n100);
+}
+.tb-title{font-size:18px;font-weight:800;color:var(--n800);flex:1;letter-spacing:-.3px}
+.tb-search{display:flex;align-items:center;gap:8px;background:var(--n50);border:1px solid var(--n100);border-radius:var(--r-pill);padding:8px 14px;width:210px}
+.tb-search svg{width:14px;height:14px;stroke:var(--n400);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.tb-search input{background:none;border:none;outline:none;font-size:13px;color:var(--n700);font-family:'Inter',sans-serif;width:100%}
+.tb-search input::placeholder{color:var(--n400)}
+.tb-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--r-pill);font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:opacity .15s}
+.tb-btn:hover{opacity:.88}
+.tb-btn.pri{background:var(--mint);color:white;box-shadow:0 3px 10px rgba(45,204,180,.25)}
+.tb-btn.ghost{background:var(--n50);color:var(--n600);border:1px solid var(--n200)}
+.tb-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.tb-notif{width:36px;height:36px;border-radius:10px;background:var(--n50);border:1px solid var(--n100);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;flex-shrink:0}
+.tb-notif svg{width:16px;height:16px;stroke:var(--n500);fill:none;stroke-width:2;stroke-linecap:round}
+.ndot{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--red);border:2px solid var(--white)}
+
+/* ── CONTENT ── */
+.content{padding:24px 26px;display:flex;flex-direction:column;gap:18px}
+
+/* ── VIEWS ── */
+.view{display:none}
+.view.active{display:contents}
+
+/* ── STAT CARDS ── */
+.stats{display:grid;gap:12px}
+.stats.c5{grid-template-columns:repeat(5,1fr)}
+.stats.c4{grid-template-columns:repeat(4,1fr)}
+.sc{background:var(--white);border-radius:var(--r);padding:18px 16px;border:1px solid var(--n100);box-shadow:var(--sh)}
+.sc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.sc-lbl{font-size:11px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.06em}
+.sc-ico{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sc-ico svg{width:16px;height:16px;fill:none;stroke-width:1.8;stroke-linecap:round}
+.sc-val{font-size:28px;font-weight:800;color:var(--n800);line-height:1;margin-bottom:4px;letter-spacing:-.5px}
+.sc-sub{font-size:11px;color:var(--n400);font-weight:500}
+.sc-sub.up{color:var(--mint-dark);font-weight:600}
+.sc-sub.dn{color:var(--red);font-weight:600}
+.sc-sub.warn{color:var(--orange);font-weight:600}
+
+/* ── GRID ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 360px;gap:16px}
+.g3b{display:grid;grid-template-columns:1fr 360px;gap:16px}
+.gfull{grid-column:1/-1}
+
+/* ── PANEL ── */
+.panel{background:var(--white);border-radius:var(--r);border:1px solid var(--n100);box-shadow:var(--sh);display:flex;flex-direction:column;overflow:hidden}
+.ph{display:flex;align-items:center;justify-content:space-between;padding:15px 18px 13px;border-bottom:1px solid var(--n100);flex-shrink:0}
+.ph-title{font-size:14px;font-weight:700;color:var(--n800);letter-spacing:-.2px}
+.ph-act{font-size:12px;font-weight:600;color:var(--mint-dark);cursor:pointer}
+.ph-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:var(--r-pill)}
+.ph-badge.r{background:var(--red-light);color:var(--red)}
+.ph-badge.o{background:var(--orange-light);color:var(--orange)}
+.ph-badge.g{background:var(--mint-light);color:var(--mint-dark)}
+.pb{flex:1;overflow-y:auto}
+
+/* ── INPUT (editable) ── */
+.edit-field{
+  background:var(--n50);border:1px solid var(--n100);border-radius:var(--r-sm);
+  padding:8px 12px;font-size:13px;font-family:'Inter',sans-serif;
+  color:var(--n700);width:100%;outline:none;transition:border .15s;
+}
+.edit-field:focus{border-color:var(--mint);background:var(--white)}
+.edit-area{
+  background:var(--n50);border:1px solid var(--n100);border-radius:var(--r-sm);
+  padding:9px 12px;font-size:12px;font-family:'Inter',sans-serif;
+  color:var(--n700);width:100%;outline:none;resize:none;min-height:72px;
+  line-height:1.5;transition:border .15s;
+}
+.edit-area:focus{border-color:var(--mint);background:var(--white)}
+.field-lbl{font-size:11px;font-weight:600;color:var(--n400);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
+
+/* ── PATIENT ROW ── */
+.pr{display:flex;align-items:center;gap:11px;padding:12px 18px;border-bottom:1px solid var(--n100);cursor:pointer;transition:background .1s}
+.pr:last-child{border-bottom:none}
+.pr:hover{background:var(--n50)}
+.pr.on{background:var(--mint-light)}
+.pr-ava{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0}
+.pr-info{flex:1;min-width:0}
+.pr-name{font-size:13px;font-weight:600;color:var(--n800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.pr-meta{font-size:11px;color:var(--n400);white-space:nowrap}
+.pr-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:var(--r-pill);flex-shrink:0;white-space:nowrap}
+.pr-badge.a{background:var(--red-light);color:var(--red)}
+.pr-badge.ok{background:var(--mint-light);color:var(--mint-dark)}
+.pr-badge.w{background:var(--orange-light);color:var(--orange)}
+.pr-badge.s{background:var(--n50);color:var(--n500)}
+
+/* ── MEAL / FOOD ── */
+.mc{border-bottom:1px solid var(--n100)}
+.mc:last-child{border-bottom:none}
+.mc-row{display:flex;align-items:center;gap:9px;padding:12px 18px;cursor:pointer;transition:background .1s}
+.mc-row:hover{background:var(--n50)}
+.mc-ico{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mc-ico svg{width:14px;height:14px;fill:none;stroke-width:1.8;stroke-linecap:round}
+.mc-nm{font-size:13px;font-weight:600;color:var(--n700);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc-tm{font-size:11px;color:var(--n400);white-space:nowrap}
+.mc-st{font-size:10px;font-weight:700;padding:3px 9px;border-radius:var(--r-pill);white-space:nowrap}
+.mc-st.done{background:var(--mint-light);color:var(--mint-dark)}
+.mc-st.photo{background:var(--orange-light);color:var(--orange)}
+.mc-st.pend{background:var(--n100);color:var(--n500)}
+.mc-body{background:var(--n50);padding:12px 18px 14px;border-top:1px solid var(--n100)}
+.fi{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--n100)}
+.fi:last-child{border-bottom:none}
+.fi-bar{width:3px;height:24px;border-radius:var(--r-pill);flex-shrink:0}
+.fi-nm{font-size:12px;font-weight:500;color:var(--n700);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fi-qty{font-size:11px;color:var(--n400);white-space:nowrap}
+.fi-kcal{font-size:11px;font-weight:600;color:var(--n500);white-space:nowrap}
+.fi-sub{font-size:10px;font-weight:600;color:var(--mint-dark);background:var(--mint-light);padding:2px 8px;border-radius:var(--r-pill);white-space:nowrap}
+.mc-add{display:flex;gap:6px;margin-top:10px}
+.add-btn{padding:6px 12px;border-radius:var(--r-pill);font-size:11px;font-weight:600;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .12s}
+.add-btn:hover{opacity:.85}
+.add-btn.f{background:var(--mint-light);color:var(--mint-dark)}
+.add-btn.s{background:var(--orange-light);color:var(--orange)}
+.add-btn.o{background:var(--n100);color:var(--n600)}
+
+/* ── PHOTO REVIEW ── */
+.photo-img{width:100%;height:180px;background:linear-gradient(135deg,#c8f0eb,#7dddd3);position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.photo-img svg{width:40px;height:40px;stroke:rgba(255,255,255,.5);fill:none;stroke-width:1.5;stroke-linecap:round}
+.photo-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.28))}
+.photo-inf{position:absolute;bottom:12px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-end}
+.photo-pname{font-size:13px;font-weight:700;color:white}
+.photo-pmeta{font-size:11px;color:rgba(255,255,255,.7);margin-top:1px}
+.photo-ptm{font-size:11px;color:rgba(255,255,255,.65)}
+.photo-body{padding:16px 18px;flex:1;overflow-y:auto}
+.p-slbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--n400);margin-bottom:9px}
+.qtags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+.qt{font-size:11px;font-weight:600;padding:5px 11px;border-radius:9px;cursor:pointer;border:1.5px solid transparent;transition:all .12s}
+.qt.sg{background:var(--mint-light);color:var(--mint-dark);border-color:var(--mint)}
+.qt.so{background:var(--orange-light);color:var(--orange);border-color:var(--orange)}
+.qt.un{background:var(--n50);color:var(--n500);border-color:var(--n200)}
+.qt:hover{opacity:.85}
+.send-btn{width:100%;padding:11px;border-radius:var(--r-pill);background:var(--mint);color:white;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;margin-bottom:14px;box-shadow:0 3px 10px rgba(45,204,180,.25);transition:opacity .12s}
+.send-btn:hover{opacity:.88}
+.hist-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--n400);margin-bottom:9px;padding-top:12px;border-top:1px solid var(--n100)}
+.hi{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid var(--n100)}
+.hi:last-child{border-bottom:none}
+.hi-th{width:46px;height:46px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.hi-th svg{width:22px;height:22px;stroke:rgba(255,255,255,.5);fill:none;stroke-width:1.5;stroke-linecap:round}
+.hi-body{flex:1;min-width:0}
+.hi-meal{font-size:12px;font-weight:600;color:var(--n700);margin-bottom:1px}
+.hi-cmt{font-size:11px;color:var(--n400);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hi-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;flex-shrink:0}
+.hi-badge.ok{background:var(--mint-light);color:var(--mint-dark)}
+.hi-badge.w{background:var(--orange-light);color:var(--orange)}
+.hi-badge.n{background:var(--n100);color:var(--n400)}
+
+/* ── EDITOR ── */
+.editor-head{display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid var(--n100);flex-wrap:wrap;gap:8px}
+.ep-ava{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0}
+.ep-name{font-size:14px;font-weight:700;color:var(--n800);white-space:nowrap}
+.ep-meta{font-size:11px;color:var(--n400);margin-top:1px}
+.week-days{display:flex;gap:4px;margin-left:auto}
+.wd{padding:6px 10px;border-radius:9px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--n200);color:var(--n500);transition:all .12s}
+.wd.on{background:var(--mint);color:white;border-color:var(--mint)}
+.wd.has{border-color:var(--mint-mid);color:var(--mint-dark)}
+.save-btn{padding:8px 18px;border-radius:var(--r-pill);background:var(--mint);color:white;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 3px 10px rgba(45,204,180,.2);transition:opacity .12s;flex-shrink:0}
+.save-btn:hover{opacity:.88}
+.meals-grid{display:grid;grid-template-columns:1fr 1fr}
+.em{border-right:1px solid var(--n100);border-bottom:1px solid var(--n100)}
+.em:nth-child(even){border-right:none}
+.em:nth-last-child(-n+2){border-bottom:none}
+.em-h{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid var(--n100)}
+.em-ico{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.em-ico svg{width:13px;height:13px;fill:none;stroke-width:1.8;stroke-linecap:round}
+.em-nm{font-size:12px;font-weight:700;color:var(--n700);flex:1;white-space:nowrap}
+.em-tm{font-size:10px;color:var(--n400)}
+.em-edit{font-size:11px;font-weight:600;color:var(--mint-dark);cursor:pointer}
+.em-body{padding:8px 14px}
+.ef{display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid var(--n100)}
+.ef:last-child{border-bottom:none}
+.ef-bar{width:3px;height:22px;border-radius:var(--r-pill);flex-shrink:0}
+.ef-nm{font-size:11px;font-weight:500;color:var(--n700);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ef-qty-input{width:50px;background:var(--n50);border:1px solid var(--n100);border-radius:6px;padding:2px 6px;font-size:10px;font-family:'Inter',sans-serif;color:var(--n700);outline:none;text-align:center}
+.ef-qty-input:focus{border-color:var(--mint)}
+.ef-kcal{font-size:10px;font-weight:600;color:var(--n500);white-space:nowrap}
+.ef-del{font-size:11px;color:var(--n300);cursor:pointer;padding:0 2px;transition:color .1s}
+.ef-del:hover{color:var(--red)}
+.em-foot{display:flex;gap:4px;padding:8px 14px;background:var(--n50);border-top:1px solid var(--n100)}
+.em-add{flex:1;padding:5px;border-radius:var(--r-pill);font-size:10px;font-weight:600;border:none;cursor:pointer;font-family:'Inter',sans-serif;text-align:center;transition:opacity .1s}
+.em-add:hover{opacity:.85}
+.em-add.f{background:var(--mint-light);color:var(--mint-dark)}
+.em-add.s{background:var(--orange-light);color:var(--orange)}
+.em-add.o{background:var(--n100);color:var(--n600)}
+.em-kcal-row{display:flex;justify-content:space-between;align-items:center;padding:7px 14px 10px}
+.em-kval{font-size:12px;font-weight:700;color:var(--n700)}
+.em-klbl{font-size:10px;color:var(--n400)}
+.em-kobs{font-size:10px;color:var(--mint-dark);font-style:italic;margin-left:auto}
+.sum-row{display:flex;border-top:1px solid var(--n100);background:var(--n50);flex-shrink:0}
+.sum-item{flex:1;padding:13px 14px;text-align:center;border-right:1px solid var(--n100)}
+.sum-item:last-child{border-right:none}
+.sum-val{font-size:20px;font-weight:800;color:var(--n800);line-height:1;margin-bottom:2px;letter-spacing:-.3px}
+.sum-lbl{font-size:9px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em}
+
+/* ── EXAM / MAPA ── */
+.exam-row{display:flex;align-items:center;gap:10px;padding:10px 18px;border-bottom:1px solid var(--n100)}
+.exam-row:last-child{border-bottom:none}
+.exam-ico{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.exam-ico svg{width:15px;height:15px;fill:none;stroke-width:1.8;stroke-linecap:round}
+.exam-body{flex:1;min-width:0}
+.exam-nm{font-size:12px;font-weight:600;color:var(--n800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.exam-desc{font-size:10px;color:var(--n400);margin-top:1px;white-space:nowrap}
+.exam-val-input{font-size:13px;font-weight:700;padding:5px 10px;border-radius:9px;min-width:72px;text-align:center;border:1.5px solid transparent;font-family:'Inter',sans-serif;cursor:text;outline:none;transition:all .15s}
+.exam-val-input:focus{outline:none}
+.exam-val-input.r{background:var(--red-light);color:var(--red);border-color:transparent}
+.exam-val-input.r:focus{border-color:var(--red)}
+.exam-val-input.o{background:var(--orange-light);color:var(--orange)}
+.exam-val-input.o:focus{border-color:var(--orange)}
+.exam-val-input.g{background:var(--mint-light);color:var(--mint-dark)}
+.exam-val-input.g:focus{border-color:var(--mint)}
+.exam-val-input.b{background:var(--blue-light);color:var(--blue)}
+.exam-val-input.b:focus{border-color:var(--blue)}
+.exam-sec{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--n400);padding:12px 18px 6px;border-bottom:1px solid var(--n100);background:var(--n50)}
+
+/* Risk cards */
+.risk-row{display:flex;gap:12px}
+.rcard{flex:1;background:var(--white);border-radius:var(--r);padding:14px;box-shadow:var(--sh);border:1px solid var(--n100)}
+.rcard-l{font-size:10px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.rcard-v{font-size:26px;font-weight:800;color:var(--n800);line-height:1;margin-bottom:8px;letter-spacing:-.5px}
+.rcard-v.hi{color:var(--red)}
+.rcard-bar{height:6px;border-radius:var(--r-pill);background:linear-gradient(90deg,var(--mint),var(--orange),var(--red));margin-bottom:6px;position:relative}
+.rneedle{position:absolute;top:-4px;width:14px;height:14px;border-radius:50%;background:white;border:2.5px solid var(--n700);transform:translateX(-50%)}
+.rcard-s{font-size:11px;color:var(--n400)}
+
+/* Notes */
+.note-row{display:flex;align-items:flex-start;gap:11px;padding:13px 18px;border-bottom:1px solid var(--n100)}
+.note-row:last-child{border-bottom:none}
+.note-ico{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.note-ico svg{width:15px;height:15px;fill:none;stroke-width:1.8;stroke-linecap:round}
+.note-body{flex:1;min-width:0}
+.note-title{font-size:13px;font-weight:600;color:var(--n800);margin-bottom:4px}
+.note-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:var(--r-pill);flex-shrink:0}
+.note-badge.new{background:var(--blue-light);color:var(--blue)}
+.note-badge.ok{background:var(--mint-light);color:var(--mint-dark)}
+
+/* Habit rows */
+.hab-row{display:flex;align-items:center;gap:11px;padding:11px 18px;border-bottom:1px solid var(--n100)}
+.hab-row:last-child{border-bottom:none}
+.hab-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.hab-body{flex:1;min-width:0}
+.hab-name{font-size:13px;font-weight:600;color:var(--n700);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.hab-meta{font-size:11px;color:var(--n400)}
+.hab-days{display:flex;gap:3px;flex-shrink:0}
+.hd2{width:10px;height:10px;border-radius:50%;background:var(--n100)}
+.hd2.d{background:var(--mint)}.hd2.t{background:var(--orange);transform:scale(1.15)}
+
+/* Chat */
+.chat-msg{padding:13px 18px;border-bottom:1px solid var(--n100)}
+.chat-header{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.chat-ava{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0}
+.chat-from{font-size:12px;font-weight:600;color:var(--n700)}
+.chat-time{font-size:11px;color:var(--n400);margin-left:auto}
+.chat-text{font-size:12px;color:var(--n600);line-height:1.55;background:var(--n50);border-radius:9px;padding:9px 12px}
+.chat-input-row{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--n100);background:var(--n50);flex-shrink:0}
+.chat-input{flex:1;background:var(--white);border:1px solid var(--n200);border-radius:var(--r-pill);padding:9px 14px;font-size:13px;font-family:'Inter',sans-serif;color:var(--n700);outline:none}
+.chat-input:focus{border-color:var(--mint)}
+.chat-send{padding:9px 18px;border-radius:var(--r-pill);background:var(--mint);color:white;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif}
+
+/* Session */
+.session-row{display:flex;align-items:flex-start;gap:11px;padding:13px 18px;border-bottom:1px solid var(--n100)}
+.session-row:last-child{border-bottom:none}
+.session-ava{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0}
+.session-body{flex:1;min-width:0}
+.session-name{font-size:13px;font-weight:600;color:var(--n800);margin-bottom:3px}
+.session-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:var(--r-pill);flex-shrink:0}
+.session-badge.a{background:var(--purple-light);color:var(--purple)}
+.session-badge.ok{background:var(--mint-light);color:var(--mint-dark)}
+.session-badge.r{background:var(--red-light);color:var(--red)}
+
+/* Treino row */
+.treino-row{display:flex;align-items:center;gap:11px;padding:12px 18px;border-bottom:1px solid var(--n100)}
+.treino-row:last-child{border-bottom:none}
+.treino-thumb{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.treino-thumb svg{width:17px;height:17px;fill:none;stroke-width:1.8;stroke-linecap:round}
+.treino-body{flex:1;min-width:0}
+.treino-name{font-size:13px;font-weight:600;color:var(--n800);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.treino-meta{font-size:11px;color:var(--n400)}
+.treino-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:var(--r-pill);white-space:nowrap}
+
+/* Alert */
+.alert-banner{background:var(--orange-light);border:1px solid rgba(240,146,74,.2);border-radius:var(--r);padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--orange);font-weight:500}
+.alert-banner svg{width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+</style>
+</head>
+<body>
+
+<!-- Role switcher -->
+<div class="role-switcher">
+  <button class="role-btn active" id="rb-nutri">Nutricionista</button>
+  <button class="role-btn" id="rb-edfi">Ed. Físico</button>
+  <button class="role-btn" id="rb-psico">Psicólogo(a)</button>
+  <button class="role-btn" id="rb-medico">Médico(a)</button>
+  <button class="role-btn" id="rb-whats" style="background:#25d366;color:white;display:flex;align-items:center;gap:5px"><svg viewBox="0 0 20 20" style="width:13px;height:13px;fill:white"><path d="M10 1C5 1 1 5 1 10c0 1.6.4 3.1 1.2 4.5L1 19l4.6-1.2C7 18.6 8.5 19 10 19c5 0 9-4 9-9s-4-9-9-9zm4.5 12.3c-.2.5-1 1-1.4 1-.4.1-.8.1-2.5-.5-2.1-.8-3.4-2.9-3.5-3-.1-.2-.9-1.2-.9-2.2 0-1 .5-1.5.7-1.7.2-.2.4-.3.6-.3h.4c.1 0 .3 0 .5.4.2.4.7 1.6.8 1.7.1.1.1.3 0 .4-.1.1-.2.3-.3.4-.1.1-.2.2-.1.4.5.8 1.1 1.4 1.7 1.8.2.1.4.1.5-.1.2-.2.5-.6.7-.8.1-.2.3-.1.5 0l1.5.7c.2.1.3.2.3.3.1.3-.1.9-.3 1.4z"/></svg>WhatsApp</button>
+  <button class="role-btn" id="rb-rewards" style="display:flex;align-items:center;gap:5px"><svg viewBox="0 0 20 20" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z"/></svg>Recompensas</button>
+</div>
+
+<!-- ══ SIDEBAR ══ -->
+<div class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-logo">
+      <div class="sb-mark"><svg viewBox="0 0 20 20"><path d="M10 2C7 6 5 8.5 5 11a5 5 0 0 0 10 0c0-2.5-2-5-5-9z"/></svg></div>
+      <div><div class="sb-name">Raízes 360</div><div class="sb-sub">Painel Profissional</div></div>
+    </div>
+  </div>
+  <div class="sb-role" id="sb-role-badge" style="background:rgba(45,204,180,.12)">
+    <div class="sb-role-dot" id="sb-dot" style="background:var(--mint)"></div>
+    <div><div class="sb-role-name" id="sb-role-name">Juan Carlos</div><div class="sb-role-tag" id="sb-role-tag">Nutricionista · Gestor</div></div>
+  </div>
+  <div class="sb-nav" id="sb-nav"></div>
+  <div class="sb-user">
+    <div class="sb-ava" id="sb-user-ava" style="background:linear-gradient(135deg,var(--mint),var(--mint-dark))">JC</div>
+    <div><div class="sb-uname" id="sb-uname">Juan Carlos</div><div class="sb-urole" id="sb-urole">Nutricionista</div></div>
+  </div>
+</div>
+
+<!-- ══ MAIN ══ -->
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title" id="tb-title">Dashboard · Nutricionista</div>
+    <div class="tb-search"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4.5"/><line x1="10" y1="10" x2="14" y2="14"/></svg><input placeholder="Buscar paciente..." value="Ana Beatriz"></div>
+    <button class="tb-btn ghost">Hoje</button>
+    <button class="tb-btn pri" id="tb-pri"><svg viewBox="0 0 16 16"><line x1="8" y1="2" x2="8" y2="14"/><line x1="2" y1="8" x2="14" y2="8"/></svg><span id="tb-pri-txt">Nova consulta</span></button>
+    <div class="tb-notif"><svg viewBox="0 0 20 20"><path d="M10 2a6 6 0 0 0-6 6v3l-2 3h16l-2-3V8a6 6 0 0 0-6-6z"/><path d="M10 18a2 2 0 0 0 2-2H8a2 2 0 0 0 2 2z"/></svg><div class="ndot"></div></div>
+  </div>
+
+  <div class="content">
+
+    <!-- ════ VIEW: NUTRICIONISTA ════ -->
+    <div class="view active" id="view-nutri">
+      <div class="stats c5">
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes ativos</div><div class="sc-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 20 20"><circle cx="8" cy="7" r="4"/><path d="M2 19v-2a6 6 0 0 1 12 0v2"/></svg></div></div><div class="sc-val">18</div><div class="sc-sub up">+3 este mês</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Fotos aguardando</div><div class="sc-ico" style="background:var(--orange-light)"><svg style="stroke:var(--orange)" viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="14" rx="2"/><circle cx="10" cy="11" r="3"/><path d="M7 4l1-2h4l1 2"/></svg></div></div><div class="sc-val" style="color:var(--orange)">4</div><div class="sc-sub warn">Revisar hoje</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Aderência média</div><div class="sc-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 20 20"><polyline points="3,14 7,9 11,12 15,6 18,9"/></svg></div></div><div class="sc-val" style="color:var(--mint-dark)">76%</div><div class="sc-sub up">+4% esta semana</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Consultas semana</div><div class="sc-ico" style="background:var(--blue-light)"><svg style="stroke:var(--blue)" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="14" rx="2"/><line x1="3" y1="9" x2="17" y2="9"/><line x1="7" y1="2" x2="7" y2="6"/><line x1="13" y1="2" x2="13" y2="6"/></svg></div></div><div class="sc-val">6</div><div class="sc-sub">Próxima: amanhã 10h</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Árvores plantadas</div><div class="sc-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 20 20"><path d="M10 2L7 7H9L5 13H9L7 19H13L11 13H15L11 7H13L10 2Z"/></svg></div></div><div class="sc-val" style="color:var(--mint-dark)">290</div><div class="sc-sub up">Meta: 500</div></div>
+      </div>
+
+      <div class="g3">
+        <!-- Pacientes -->
+        <div class="panel">
+          <div class="ph"><div class="ph-title">Pacientes</div><div class="ph-act">Ver todos</div></div>
+          <div class="pb">
+            <div class="pr on"><div class="pr-ava" style="background:linear-gradient(135deg,#e5632a,#c94e1a)">AB</div><div class="pr-info"><div class="pr-name">Ana Beatriz Silva</div><div class="pr-meta">Mês 4 · Fase Crescimento</div></div><div class="pr-badge a">Foto aguardando</div></div>
+            <div class="pr"><div class="pr-ava" style="background:linear-gradient(135deg,var(--blue),#1740a8)">MF</div><div class="pr-info"><div class="pr-name">Marcos Ferreira</div><div class="pr-meta">Mês 2 · Fase Raízes</div></div><div class="pr-badge s">18 dias streak</div></div>
+            <div class="pr"><div class="pr-ava" style="background:linear-gradient(135deg,#ec4899,#be185d)">CM</div><div class="pr-info"><div class="pr-name">Carla Mendonça</div><div class="pr-meta">Mês 7 · Fase Consolidação</div></div><div class="pr-badge ok">Em dia</div></div>
+            <div class="pr"><div class="pr-ava" style="background:linear-gradient(135deg,var(--yellow),#b88200)">RS</div><div class="pr-info"><div class="pr-name">Roberto Santos</div><div class="pr-meta">Mês 1 · Fase Raízes</div></div><div class="pr-badge a">Baixa aderência</div></div>
+            <div class="pr"><div class="pr-ava" style="background:linear-gradient(135deg,var(--purple),#5a3e8a)">FL</div><div class="pr-info"><div class="pr-name">Fernanda Lima</div><div class="pr-meta">Mês 11 · Fase Expansão</div></div><div class="pr-badge s">34 dias streak</div></div>
+            <div class="pr"><div class="pr-ava" style="background:linear-gradient(135deg,var(--mint),var(--mint-dark))">PA</div><div class="pr-info"><div class="pr-name">Patrícia Alves</div><div class="pr-meta">Mês 3 · Fase Crescimento</div></div><div class="pr-badge a">Foto aguardando</div></div>
+            <div class="pr"><div class="pr-ava" style="background:linear-gradient(135deg,var(--orange),#c2410c)">LO</div><div class="pr-info"><div class="pr-name">Lucas Oliveira</div><div class="pr-meta">Mês 6 · Fase Consolidação</div></div><div class="pr-badge ok">Em dia</div></div>
+          </div>
+        </div>
+
+        <!-- Cardápio Ana Beatriz -->
+        <div class="panel">
+          <div class="ph">
+            <div>
+              <div class="ph-title">Cardápio · Ana Beatriz Silva</div>
+              <div style="font-size:11px;color:var(--n400);margin-top:2px">Terça, 6 de maio · Meta: 1.500 kcal</div>
+            </div>
+            <div class="ph-act">Editar</div>
+          </div>
+          <div class="pb">
+            <div class="mc">
+              <div class="mc-row"><div class="mc-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7"/><path d="M6 9h6M9 6v6"/></svg></div><div class="mc-nm">Café da manhã</div><div class="mc-tm">7h00</div><div class="mc-st photo">📷 Foto enviada</div></div>
+            </div>
+            <div class="mc">
+              <div class="mc-row" style="background:var(--n50)"><div class="mc-ico" style="background:var(--n100)"><svg style="stroke:var(--n500)" viewBox="0 0 18 18"><path d="M4 2v14M14 2v5a4 4 0 0 1-4 4H4"/></svg></div><div class="mc-nm">Almoço</div><div class="mc-tm">12h00</div><div class="mc-st pend">Pendente</div></div>
+              <div class="mc-body">
+                <div class="fi"><div class="fi-bar" style="background:var(--orange)"></div><div class="fi-nm">Frango grelhado</div><div class="fi-qty">150g</div><div class="fi-kcal">165 kcal</div></div>
+                <div class="fi"><div class="fi-bar" style="background:var(--orange)"></div><div class="fi-nm">Arroz integral</div><div class="fi-qty">4 col.</div><div class="fi-sub">Sub ativa</div></div>
+                <div class="fi"><div class="fi-bar" style="background:var(--mint)"></div><div class="fi-nm">Folhas verdes escuras</div><div class="fi-qty">2 xíc.</div><div class="fi-kcal">20 kcal</div></div>
+                <div class="fi"><div class="fi-bar" style="background:var(--mint-mid)"></div><div class="fi-nm">Azeite extra virgem</div><div class="fi-qty">10ml</div><div class="fi-kcal">90 kcal</div></div>
+                <div class="mc-add"><button class="add-btn f">+ Alimento</button><button class="add-btn s">+ Substituição</button><button class="add-btn o">+ Observação</button></div>
+              </div>
+            </div>
+            <div class="mc"><div class="mc-row"><div class="mc-ico" style="background:var(--orange-light)"><svg style="stroke:var(--orange)" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7"/><path d="M6 9h6"/></svg></div><div class="mc-nm">Lanche da tarde</div><div class="mc-tm">15h30</div><div class="mc-st pend">Pendente</div></div></div>
+            <div class="mc"><div class="mc-row"><div class="mc-ico" style="background:var(--blue-light)"><svg style="stroke:var(--blue)" viewBox="0 0 18 18"><path d="M4 2v14M14 2v5a4 4 0 0 1-4 4H4"/></svg></div><div class="mc-nm">Jantar</div><div class="mc-tm">19h30</div><div class="mc-st pend">Pendente</div></div></div>
+          </div>
+        </div>
+
+        <!-- Revisão de foto -->
+        <div class="panel" style="display:flex;flex-direction:column">
+          <div class="ph" style="flex-shrink:0"><div class="ph-title">Revisar foto</div><div class="ph-badge r">Aguardando feedback</div></div>
+          <div class="photo-img">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+            <div class="photo-ov"></div>
+            <div class="photo-inf"><div><div class="photo-pname">Ana Beatriz Silva</div><div class="photo-pmeta">Almoço · hoje</div></div><div class="photo-ptm">12:35</div></div>
+          </div>
+          <div class="photo-body">
+            <div class="p-slbl">Avaliação rápida</div>
+            <div class="qtags">
+              <div class="qt sg">Proteína ok</div>
+              <div class="qt sg">Vegetais presentes</div>
+              <div class="qt so">Porção ideal</div>
+              <div class="qt un">Carboidrato ok</div>
+              <div class="qt un">Porção grande</div>
+            </div>
+            <div class="p-slbl">Comentário</div>
+            <div style="margin-bottom:12px">
+              <textarea class="edit-area" placeholder="Escreva o feedback para Ana Beatriz...">Prato muito bem montado, Ana! Proteína + folhas verdes na proporção certa. Exatamente o que combinamos. Continue assim!</textarea>
+            </div>
+            <button class="send-btn">Enviar feedback agora</button>
+            <div class="hist-lbl">Histórico de fotos</div>
+            <div class="hi"><div class="hi-th" style="background:linear-gradient(135deg,#c8f0eb,#7dddd3)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div><div class="hi-body"><div class="hi-meal">Café da manhã · 07h23</div><div class="hi-cmt">"Prato excelente! Proteína no café é fundamental..."</div></div><div class="hi-badge ok">Ótimo</div></div>
+            <div class="hi"><div class="hi-th" style="background:linear-gradient(135deg,#ffe0b2,#ffb74d)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div><div class="hi-body"><div class="hi-meal">Almoço ontem · 13h10</div><div class="hi-cmt">"Porção de arroz um pouco grande, tente reduzir..."</div></div><div class="hi-badge w">Atenção</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editor completo de cardápio -->
+      <div class="panel gfull">
+        <div class="editor-head">
+          <div class="ep-ava" style="background:linear-gradient(135deg,#e5632a,#c94e1a)">AB</div>
+          <div><div class="ep-name">Editor de Cardápio · Ana Beatriz Silva</div><div class="ep-meta">Mês 4 · Fase Crescimento · Meta: 1.500 kcal · Pré-diabetes em acompanhamento</div></div>
+          <div class="week-days">
+            <div class="wd has">Seg</div><div class="wd on">Ter</div><div class="wd has">Qua</div>
+            <div class="wd">Qui</div><div class="wd">Sex</div><div class="wd">Sáb</div><div class="wd">Dom</div>
+          </div>
+          <button class="save-btn">Salvar cardápio</button>
+        </div>
+        <div class="meals-grid">
+          <!-- Café da manhã -->
+          <div class="em">
+            <div class="em-h"><div class="em-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7"/><path d="M6 9h6M9 6v6"/></svg></div><div class="em-nm">Café da manhã</div><div class="em-tm">7h00</div><div class="em-edit">editar</div></div>
+            <div class="em-body">
+              <div class="ef"><div class="ef-bar" style="background:var(--mint)"></div><div class="ef-nm">Omelete de ovos</div><input class="ef-qty-input" value="3 unid."><div class="ef-kcal">210 kcal</div><div class="ef-del">✕</div></div>
+              <div class="ef"><div class="ef-bar" style="background:var(--mint-mid)"></div><div class="ef-nm">Pão integral</div><input class="ef-qty-input" value="2 fatias"><div class="ef-kcal">140 kcal</div><div class="ef-del">✕</div></div>
+              <div class="ef"><div class="ef-bar" style="background:var(--mint-light)"></div><div class="ef-nm">Frutas vermelhas</div><input class="ef-qty-input" value="1 xíc."><div class="ef-kcal">60 kcal</div><div class="ef-del">✕</div></div>
+            </div>
+            <div class="em-foot"><button class="em-add f">+ Alimento</button><button class="em-add s">+ Sub</button><button class="em-add o">+ Obs</button></div>
+            <div class="em-kcal-row"><div><div class="em-kval">~410 kcal</div><div class="em-klbl">total</div></div><div class="em-kobs">Comer sentado, sem pressa</div></div>
+          </div>
+          <!-- Almoço -->
+          <div class="em">
+            <div class="em-h"><div class="em-ico" style="background:var(--n100)"><svg style="stroke:var(--n500)" viewBox="0 0 18 18"><path d="M4 2v14M14 2v5a4 4 0 0 1-4 4H4"/></svg></div><div class="em-nm">Almoço</div><div class="em-tm">12h00</div><div class="em-edit">editar</div></div>
+            <div class="em-body">
+              <div class="ef"><div class="ef-bar" style="background:var(--orange)"></div><div class="ef-nm">Frango grelhado</div><input class="ef-qty-input" value="150g"><div class="ef-kcal">165 kcal</div><div class="ef-del">✕</div></div>
+              <div class="ef"><div class="ef-bar" style="background:var(--orange)"></div><div class="ef-nm">Arroz integral</div><input class="ef-qty-input" value="4 col."><div class="ef-kcal">140 kcal</div><div class="ef-del">✕</div></div>
+              <div class="ef"><div class="ef-bar" style="background:var(--mint)"></div><div class="ef-nm">Folhas verdes escuras</div><input class="ef-qty-input" value="2 xíc."><div class="ef-kcal">20 kcal</div><div class="ef-del">✕</div></div>
+              <div class="ef"><div class="ef-bar" style="background:var(--mint-mid)"></div><div class="ef-nm">Azeite extra virgem</div><input class="ef-qty-input" value="10ml"><div class="ef-kcal">90 kcal</div><div class="ef-del">✕</div></div>
+            </div>
+            <div class="em-foot"><button class="em-add f">+ Alimento</button><button class="em-add s">+ Sub</button><button class="em-add o">+ Obs</button></div>
+            <div class="em-kcal-row"><div><div class="em-kval">~415 kcal</div><div class="em-klbl">total</div></div><div class="em-kobs">Comer devagar, sem telas</div></div>
+          </div>
+          <!-- Lanche -->
+          <div class="em">
+            <div class="em-h"><div class="em-ico" style="background:var(--orange-light)"><svg style="stroke:var(--orange)" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7"/><path d="M6 9h6"/></svg></div><div class="em-nm">Lanche da tarde</div><div class="em-tm">15h30</div><div class="em-edit">editar</div></div>
+            <div class="em-body">
+              <div class="ef"><div class="ef-bar" style="background:var(--blue)"></div><div class="ef-nm">Iogurte natural integral</div><input class="ef-qty-input" value="170g"><div class="ef-kcal">100 kcal</div><div class="ef-del">✕</div></div>
+              <div class="ef"><div class="ef-bar" style="background:var(--blue)"></div><div class="ef-nm">Castanha-do-pará</div><input class="ef-qty-input" value="2 unid."><div class="ef-kcal">65 kcal</div><div class="ef-del">✕</div></div>
+              <div class="ef"><div class="ef-bar" style="background:var(--mint)"></div><div class="ef-nm">Banana</div><input class="ef-qty-input" value="1 unid."><div class="ef-kcal">90 kcal</div><div class="ef-del">✕</div></div>
+            </div>
+            <div class="em-foot"><button class="em-add f">+ Alimento</button><button class="em-add s">+ Sub</button><button class="em-add o">+ Obs</button></div>
+            <div class="em-kcal-row"><div><div class="em-kval">~255 kcal</div><div class="em-klbl">total</div></div></div>
+          </div>
+          <!-- Jantar -->
+          <div class="em">
+            <div class="em-h"><div class="em-ico" style="background:var(--blue-light)"><svg style="stroke:var(--blue)" viewBox="0 0 18 18"><path d="M4 2v14M14 2v5a4 4 0 0 1-4 4H4"/></svg></div><div class="em-nm">Jantar</div><div class="em-tm">19h30</div><div class="em-edit">editar</div></div>
+            <div class="em-body">
+              <div class="ef"><div class="ef-bar" style="background:var(--purple)"></div><div class="ef-nm">Sopa de legumes com frango</div><input class="ef-qty-input" value="300ml"><div class="ef-kcal">180 kcal</div><div class="ef-del">✕</div></div>
+              <div class="ef"><div class="ef-bar" style="background:var(--mint-mid)"></div><div class="ef-nm">Pão integral</div><input class="ef-qty-input" value="1 fatia"><div class="ef-kcal">70 kcal</div><div class="ef-del">✕</div></div>
+            </div>
+            <div class="em-foot"><button class="em-add f">+ Alimento</button><button class="em-add s">+ Sub</button><button class="em-add o">+ Obs</button></div>
+            <div class="em-kcal-row"><div><div class="em-kval">~250 kcal</div><div class="em-klbl">total</div></div><div class="em-kobs">Jantar leve — até 19h30</div></div>
+          </div>
+        </div>
+        <div class="sum-row">
+          <div class="sum-item"><div class="sum-val">1.330</div><div class="sum-lbl">Calorias (kcal)</div></div>
+          <div class="sum-item"><div class="sum-val" style="color:var(--red)">118g</div><div class="sum-lbl">Proteínas</div></div>
+          <div class="sum-item"><div class="sum-val" style="color:var(--orange)">142g</div><div class="sum-lbl">Carboidratos</div></div>
+          <div class="sum-item"><div class="sum-val" style="color:var(--blue)">38g</div><div class="sum-lbl">Gorduras</div></div>
+          <div class="sum-item"><div class="sum-val" style="color:var(--mint-dark)">28g</div><div class="sum-lbl">Fibras</div></div>
+          <div class="sum-item"><div class="sum-val" style="color:var(--blue)">2.500ml</div><div class="sum-lbl">Meta água</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ VIEW: EDUCADOR FÍSICO ════ -->
+    <div class="view" id="view-edfi">
+      <div class="stats c4">
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes ativos</div><div class="sc-ico" style="background:var(--purple-light)"><svg style="stroke:var(--purple)" viewBox="0 0 20 20"><circle cx="8" cy="7" r="4"/><path d="M2 19v-2a6 6 0 0 1 12 0v2"/></svg></div></div><div class="sc-val">18</div><div class="sc-sub">Acompanhamento ativo</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Aderência exercício</div><div class="sc-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 20 20"><polyline points="3,14 7,9 11,12 15,6 18,9"/></svg></div></div><div class="sc-val" style="color:var(--mint-dark)">68%</div><div class="sc-sub up">+3% esta semana</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Sem atividade hoje</div><div class="sc-ico" style="background:var(--red-light)"><svg style="stroke:var(--red)" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><line x1="10" y1="6" x2="10" y2="10"/><line x1="10" y1="14" x2="10" y2="14"/></svg></div></div><div class="sc-val" style="color:var(--red)">5</div><div class="sc-sub dn">Alertar hoje</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Min. ativos hoje</div><div class="sc-ico" style="background:var(--orange-light)"><svg style="stroke:var(--orange)" viewBox="0 0 20 20"><path d="M3 10h3l2-6 4 12 2-6h3"/></svg></div></div><div class="sc-val" style="color:var(--orange)">1.240</div><div class="sc-sub">Média do grupo</div></div>
+      </div>
+      <div class="g2">
+        <div class="panel">
+          <div class="ph"><div class="ph-title">Hábitos de Atividade Física · Ana Beatriz</div><div class="ph-act">Prescrever novo</div></div>
+          <div class="pb">
+            <div class="hab-row"><div class="hab-dot" style="background:var(--orange)"></div><div class="hab-body"><div class="hab-name">Caminhada zona 2 · 30min/dia</div><div class="hab-meta">5x por semana</div></div><div class="hab-days"><div class="hd2 d"></div><div class="hd2"></div><div class="hd2 d"></div><div class="hd2 t"></div><div class="hd2"></div><div class="hd2"></div><div class="hd2"></div></div></div>
+            <div class="hab-row"><div class="hab-dot" style="background:var(--mint)"></div><div class="hab-body"><div class="hab-name">Treino de força</div><div class="hab-meta">3x por semana · sem equipamento</div></div><div class="hab-days"><div class="hd2 d"></div><div class="hd2"></div><div class="hd2 d"></div><div class="hd2 t"></div><div class="hd2"></div><div class="hd2"></div><div class="hd2"></div></div></div>
+            <div class="hab-row"><div class="hab-dot" style="background:var(--purple)"></div><div class="hab-body"><div class="hab-name">Alongamento matinal</div><div class="hab-meta">10 minutos ao acordar</div></div><div class="hab-days"><div class="hd2 d"></div><div class="hd2 d"></div><div class="hd2 d"></div><div class="hd2 t"></div><div class="hd2"></div><div class="hd2"></div><div class="hd2"></div></div></div>
+            <div class="hab-row"><div class="hab-dot" style="background:var(--red)"></div><div class="hab-body"><div class="hab-name">HIIT · 20 min</div><div class="hab-meta">2x por semana</div></div><div class="hab-days"><div class="hd2 d"></div><div class="hd2"></div><div class="hd2"></div><div class="hd2 t"></div><div class="hd2"></div><div class="hd2"></div><div class="hd2"></div></div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="ph-title">Biblioteca de Treinos Prescritos</div><div class="ph-act">Adicionar treino</div></div>
+          <div class="pb">
+            <div class="treino-row"><div class="treino-thumb" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M3 12h18M3 6h3M18 6h3M3 18h3M18 18h3"/></svg></div><div class="treino-body"><div class="treino-name">Treino de força · Iniciante A</div><div class="treino-meta">30 min · Casa · 8 pacientes</div></div><div class="treino-badge" style="background:var(--mint-light);color:var(--mint-dark)">Ativo</div></div>
+            <div class="treino-row"><div class="treino-thumb" style="background:var(--orange-light)"><svg style="stroke:var(--orange)" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg></div><div class="treino-body"><div class="treino-name">HIIT · Nível Intermediário</div><div class="treino-meta">20 min · Casa · 5 pacientes</div></div><div class="treino-badge" style="background:var(--mint-light);color:var(--mint-dark)">Ativo</div></div>
+            <div class="treino-row"><div class="treino-thumb" style="background:var(--n100)"><svg style="stroke:var(--n500)" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="treino-body"><div class="treino-name">Caminhada Guiada Zona 2</div><div class="treino-meta">30 min · Áudio guiado · 12 pacientes</div></div><div class="treino-badge" style="background:var(--mint-light);color:var(--mint-dark)">Ativo</div></div>
+            <div class="treino-row"><div class="treino-thumb" style="background:var(--purple-light)"><svg style="stroke:var(--purple)" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg></div><div class="treino-body"><div class="treino-name">Mobilidade e Alongamento</div><div class="treino-meta">15 min · Manhã ou noite · 15 pacientes</div></div><div class="treino-badge" style="background:var(--mint-light);color:var(--mint-dark)">Ativo</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel gfull" style="max-height:280px">
+        <div class="ph"><div class="ph-title">Comunicação com equipe · Nutricionista</div></div>
+        <div class="pb">
+          <div class="chat-msg"><div class="chat-header"><div class="chat-ava" style="background:linear-gradient(135deg,var(--mint),var(--mint-dark))">JC</div><div class="chat-from">Juan Carlos · Nutricionista</div><div class="chat-time">Hoje 09:15</div></div><div class="chat-text">Roberto Santos está com baixa aderência alimentar. Pode ajustar o treino para estimular mais o apetite? Sugiro reduzir HIIT e aumentar força.</div></div>
+          <div class="chat-msg"><div class="chat-header"><div class="chat-ava" style="background:linear-gradient(135deg,var(--purple),#5a3e8a)">CS</div><div class="chat-from">Carlos Silva · Educador Físico</div><div class="chat-time">Hoje 09:42</div></div><div class="chat-text">Perfeito, vou ajustar o plano do Roberto. Substituirei HIIT de terça por treino de força com maior volume.</div></div>
+        </div>
+        <div class="chat-input-row"><input class="chat-input" placeholder="Mensagem para o nutricionista..."><button class="chat-send">Enviar</button></div>
+      </div>
+    </div>
+
+    <!-- ════ VIEW: PSICÓLOGO ════ -->
+    <div class="view" id="view-psico">
+      <div class="stats c4">
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes em acomp.</div><div class="sc-ico" style="background:var(--purple-light)"><svg style="stroke:var(--purple)" viewBox="0 0 20 20"><circle cx="8" cy="7" r="4"/><path d="M2 19v-2a6 6 0 0 1 12 0v2"/></svg></div></div><div class="sc-val">14</div><div class="sc-sub">Suporte ativo</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Sessões este mês</div><div class="sc-ico" style="background:var(--blue-light)"><svg style="stroke:var(--blue)" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="14" rx="2"/><line x1="3" y1="9" x2="17" y2="9"/></svg></div></div><div class="sc-val">28</div><div class="sc-sub up">+4 vs mês anterior</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Score DASS-21 médio</div><div class="sc-ico" style="background:var(--orange-light)"><svg style="stroke:var(--orange)" viewBox="0 0 20 20"><polyline points="3,14 7,9 11,12 15,6 18,9"/></svg></div></div><div class="sc-val" style="color:var(--orange)">14</div><div class="sc-sub warn">Estresse moderado</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Alertas emocionais</div><div class="sc-ico" style="background:var(--red-light)"><svg style="stroke:var(--red)" viewBox="0 0 20 20"><path d="M10 2L2 18h16L10 2z"/><line x1="10" y1="10" x2="10" y2="13"/></svg></div></div><div class="sc-val" style="color:var(--red)">3</div><div class="sc-sub dn">Ação necessária</div></div>
+      </div>
+      <div class="g3b">
+        <div class="panel">
+          <div class="ph"><div class="ph-title">Notas de Sessão · Ana Beatriz Silva</div><div class="ph-act">Nova nota</div></div>
+          <div class="pb">
+            <div class="session-row">
+              <div class="session-ava" style="background:linear-gradient(135deg,#e5632a,#c94e1a)">AB</div>
+              <div class="session-body">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                  <div class="session-name">Ana Beatriz Silva</div>
+                  <div class="session-badge a">Próxima: 13/mai</div>
+                </div>
+                <div class="field-lbl">Notas da última sessão — Ter, 6 mai · 14h00</div>
+                <textarea class="edit-area" style="min-height:90px">Sessão: Identificação de gatilhos de compulsão alimentar. Trabalhou-se regulação emocional e técnica de pausa entre impulso e ação. Progresso satisfatório.</textarea>
+                <div style="height:10px"></div>
+                <div class="field-lbl">DASS-21 · Última aplicação</div>
+                <div style="display:flex;gap:8px;margin-bottom:10px">
+                  <div style="flex:1"><div style="font-size:10px;color:var(--n400);margin-bottom:4px">Depressão</div><input class="edit-field" value="8" style="font-weight:700;color:var(--orange)"></div>
+                  <div style="flex:1"><div style="font-size:10px;color:var(--n400);margin-bottom:4px">Ansiedade</div><input class="edit-field" value="10" style="font-weight:700;color:var(--orange)"></div>
+                  <div style="flex:1"><div style="font-size:10px;color:var(--n400);margin-bottom:4px">Estresse</div><input class="edit-field" value="14" style="font-weight:700;color:var(--red)"></div>
+                </div>
+                <div class="field-lbl">PHQ-9</div>
+                <input class="edit-field" value="8 — Sintomas depressivos leves" style="margin-bottom:10px">
+                <div class="field-lbl">PSS-10</div>
+                <input class="edit-field" value="18 — Estresse moderado">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="panel">
+            <div class="ph"><div class="ph-title">Próximas sessões</div><div class="ph-act">Agendar</div></div>
+            <div class="pb">
+              <div style="display:flex;align-items:center;gap:11px;padding:12px 18px;border-bottom:1px solid var(--n100)"><div style="width:40px;height:40px;border-radius:11px;background:var(--purple-light);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0"><div style="font-size:17px;font-weight:800;color:var(--purple);line-height:1">13</div><div style="font-size:9px;font-weight:600;color:var(--purple-light);background:var(--purple);padding:1px 4px;border-radius:3px;margin-top:1px">Mai</div></div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:2px">Ana Beatriz Silva</div><div style="font-size:11px;color:var(--n400)">14h00 · Individual · Online</div></div><div style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:var(--r-pill);background:var(--mint-light);color:var(--mint-dark)">Em 7 dias</div></div>
+              <div style="display:flex;align-items:center;gap:11px;padding:12px 18px"><div style="width:40px;height:40px;border-radius:11px;background:var(--red-light);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0"><div style="font-size:17px;font-weight:800;color:var(--red);line-height:1">6</div><div style="font-size:9px;font-weight:600;color:white;background:var(--red);padding:1px 4px;border-radius:3px;margin-top:1px">Mai</div></div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:2px">Roberto Santos</div><div style="font-size:11px;color:var(--n400)">15h00 · Emergência · Online</div></div><div style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:var(--r-pill);background:var(--blue-light);color:var(--blue)">Hoje</div></div>
+            </div>
+          </div>
+          <div class="panel" style="flex:1">
+            <div class="ph"><div class="ph-title">Comunicação com equipe</div></div>
+            <div class="pb" style="max-height:180px;overflow-y:auto">
+              <div class="chat-msg"><div class="chat-header"><div class="chat-ava" style="background:linear-gradient(135deg,var(--mint),var(--mint-dark))">JC</div><div class="chat-from">Juan Carlos · Nutricionista</div><div class="chat-time">Hoje 08:30</div></div><div class="chat-text">Roberto Santos apresentou compulsão severa ontem. PHQ-9 elevado. Pode antecipar a sessão?</div></div>
+              <div class="chat-msg"><div class="chat-header"><div class="chat-ava" style="background:linear-gradient(135deg,var(--purple),#5a3e8a)">PS</div><div class="chat-from">Dra. Lúcia · Psicóloga</div><div class="chat-time">Hoje 09:00</div></div><div class="chat-text">Já agendei para hoje às 15h. Vou trabalhar regulação emocional e gatilhos alimentares.</div></div>
+            </div>
+            <div class="chat-input-row"><input class="chat-input" placeholder="Mensagem para a equipe..."><button class="chat-send">Enviar</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ VIEW: MÉDICO ════ -->
+    <div class="view" id="view-medico">
+      <div class="stats c4">
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes monitorados</div><div class="sc-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 20 20"><path d="M3 10h3l2-6 4 12 2-6h3"/></svg></div></div><div class="sc-val">18</div><div class="sc-sub">Todos com exames</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Exames em alerta</div><div class="sc-ico" style="background:var(--red-light)"><svg style="stroke:var(--red)" viewBox="0 0 20 20"><path d="M10 2L2 18h16L10 2z"/><line x1="10" y1="10" x2="10" y2="13"/></svg></div></div><div class="sc-val" style="color:var(--red)">7</div><div class="sc-sub dn">Revisão necessária</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Risco cardio elevado</div><div class="sc-ico" style="background:var(--orange-light)"><svg style="stroke:var(--orange)" viewBox="0 0 20 20"><path d="M3 8l7 9 7-9H3z"/></svg></div></div><div class="sc-val" style="color:var(--orange)">4</div><div class="sc-sub warn">Acompanhar</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Nota saúde média</div><div class="sc-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 20 20"><path d="M10 2C7 6 5 8.5 5 11a5 5 0 0 0 10 0c0-2.5-2-5-5-9z"/></svg></div></div><div class="sc-val" style="color:var(--mint-dark)">71</div><div class="sc-sub up">+3 vs mês anterior</div></div>
+      </div>
+
+      <div class="alert-banner"><svg viewBox="0 0 20 20"><path d="M10 2L2 18h16L10 2z"/><line x1="10" y1="10" x2="10" y2="13"/><line x1="10" y1="16" x2="10" y2="16"/></svg><span><strong>3 pacientes</strong> com glicemia acima de 100 mg/dL. Ana Beatriz (113 mg/dL) — protocolo de pré-diabetes ativo. Roberto Santos (131 mg/dL) requer avaliação urgente.</span></div>
+
+      <div class="g2">
+        <div class="panel">
+          <div class="ph"><div class="ph-title">Mapa da Saúde · Ana Beatriz Silva</div><div class="ph-act">Atualizar exames</div></div>
+          <div class="pb">
+            <div class="exam-sec">Metabolismo</div>
+            <div class="exam-row"><div class="exam-ico" style="background:var(--red-light)"><svg style="stroke:var(--red)" viewBox="0 0 20 20"><path d="M10 2C7 6 5 8.5 5 11a5 5 0 0 0 10 0c0-2.5-2-5-5-9z"/></svg></div><div class="exam-body"><div class="exam-nm">Glicemia em jejum</div><div class="exam-desc">Pré-diabetes acima de 100 mg/dL</div></div><input class="exam-val-input r" value="113"></div>
+            <div class="exam-row"><div class="exam-ico" style="background:var(--orange-light)"><svg style="stroke:var(--orange)" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><line x1="10" y1="6" x2="10" y2="10"/></svg></div><div class="exam-body"><div class="exam-nm">Vitamina D</div><div class="exam-desc">ng/mL · ideal acima de 40</div></div><input class="exam-val-input o" value="23"></div>
+            <div class="exam-row"><div class="exam-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 20 20"><path d="M3 10h3l2-6 4 12 2-6h3"/></svg></div><div class="exam-body"><div class="exam-nm">TSH · Tireoide</div><div class="exam-desc">mUI/L · referência 0.4–4.0</div></div><input class="exam-val-input g" value="1.36"></div>
+            <div class="exam-row"><div class="exam-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><path d="M7 10l2 2 4-4"/></svg></div><div class="exam-body"><div class="exam-nm">Vitamina B12</div><div class="exam-desc">pg/mL · ideal acima de 300</div></div><input class="exam-val-input g" value="380"></div>
+            <div class="exam-sec">Cardiovascular</div>
+            <div class="exam-row"><div class="exam-ico" style="background:var(--orange-light)"><svg style="stroke:var(--orange)" viewBox="0 0 20 20"><path d="M3 8l7 9 7-9H3z"/></svg></div><div class="exam-body"><div class="exam-nm">Pressão arterial</div><div class="exam-desc">mmHg · ideal abaixo de 130/80</div></div><input class="exam-val-input o" value="141/102"></div>
+            <div class="exam-row"><div class="exam-ico" style="background:var(--red-light)"><svg style="stroke:var(--red)" viewBox="0 0 20 20"><path d="M3 8l7 9 7-9H3z"/></svg></div><div class="exam-body"><div class="exam-nm">Colesterol HDL</div><div class="exam-desc">mg/dL · quanto maior melhor</div></div><input class="exam-val-input r" value="38"></div>
+            <div class="exam-row"><div class="exam-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 20 20"><path d="M3 8l7 9 7-9H3z"/></svg></div><div class="exam-body"><div class="exam-nm">Colesterol LDL</div><div class="exam-desc">mg/dL</div></div><input class="exam-val-input g" value="92"></div>
+            <div class="exam-row"><div class="exam-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 20 20"><path d="M3 8l7 9 7-9H3z"/></svg></div><div class="exam-body"><div class="exam-nm">Triglicerídeos</div><div class="exam-desc">mg/dL · ideal abaixo de 150</div></div><input class="exam-val-input g" value="120"></div>
+            <div class="exam-sec">Fígado</div>
+            <div class="exam-row"><div class="exam-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 20 20"><path d="M5 3h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg></div><div class="exam-body"><div class="exam-nm">TGO / AST</div><div class="exam-desc">U/L · referência abaixo de 40</div></div><input class="exam-val-input g" value="28"></div>
+            <div class="exam-row"><div class="exam-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark)" viewBox="0 0 20 20"><path d="M5 3h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg></div><div class="exam-body"><div class="exam-nm">TGP / ALT</div><div class="exam-desc">U/L · referência abaixo de 41</div></div><input class="exam-val-input g" value="24"></div>
+            <div class="exam-sec">Força Física</div>
+            <div class="exam-row"><div class="exam-ico" style="background:var(--blue-light)"><svg style="stroke:var(--blue)" viewBox="0 0 20 20"><path d="M6 4v12M14 4v12M3 10h14"/></svg></div><div class="exam-body"><div class="exam-nm">Dinamometria</div><div class="exam-desc">kgf · preditor de longevidade</div></div><input class="exam-val-input b" value="30.5"></div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <!-- Riscos -->
+          <div class="risk-row">
+            <div class="rcard"><div class="rcard-l">Risco Cardio · 10 anos</div><div class="rcard-v">5.3%</div><div class="rcard-bar"><div class="rneedle" style="left:18%"></div></div><div class="rcard-s">Ideal abaixo de 1%</div></div>
+            <div class="rcard"><div class="rcard-l">Risco Diabetes · 5 anos</div><div class="rcard-v hi">32%</div><div class="rcard-bar"><div class="rneedle" style="left:82%"></div></div><div class="rcard-s">Alto risco — acompanhar</div></div>
+          </div>
+          <!-- Notas clínicas -->
+          <div class="panel" style="flex:1">
+            <div class="ph"><div class="ph-title">Notas Clínicas · Ana Beatriz</div><div class="ph-act">Nova nota</div></div>
+            <div class="pb">
+              <div class="note-row">
+                <div class="note-ico" style="background:var(--red-light)"><svg style="stroke:var(--red)" viewBox="0 0 20 20"><path d="M10 2L2 18h16L10 2z"/><line x1="10" y1="10" x2="10" y2="13"/></svg></div>
+                <div class="note-body">
+                  <div style="display:flex;justify-content:space-between;margin-bottom:6px"><div class="note-title">Protocolo pré-diabetes</div><div class="note-badge new">Ativo</div></div>
+                  <textarea class="edit-area" style="min-height:64px">Glicemia 113 mg/dL. Iniciar protocolo MEV intensivo. Reavaliar em 90 dias. Evitar medicamentos por ora — foco em alimentação e exercício.</textarea>
+                </div>
+              </div>
+              <div class="note-row">
+                <div class="note-ico" style="background:var(--orange-light)"><svg style="stroke:var(--orange)" viewBox="0 0 20 20"><path d="M3 8l7 9 7-9H3z"/></svg></div>
+                <div class="note-body">
+                  <div style="display:flex;justify-content:space-between;margin-bottom:6px"><div class="note-title">Hipertensão arterial</div><div class="note-badge ok">Monitorando</div></div>
+                  <textarea class="edit-area" style="min-height:64px">PA 141/102. Acompanhar mensalmente. Orientar redução de sódio e estresse. Se não houver melhora em 60 dias, considerar medicação.</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Chat médico -->
+          <div class="panel" style="max-height:220px">
+            <div class="ph"><div class="ph-title">Comunicação com equipe</div></div>
+            <div class="pb" style="max-height:130px;overflow-y:auto">
+              <div class="chat-msg"><div class="chat-header"><div class="chat-ava" style="background:linear-gradient(135deg,var(--mint),var(--mint-dark))">JC</div><div class="chat-from">Juan Carlos · Nutricionista</div><div class="chat-time">Hoje 07:45</div></div><div class="chat-text">Dr(a), Ana Beatriz enviou novos exames. Glicemia 113, HDL 38. Pode revisar e orientar protocolo?</div></div>
+              <div class="chat-msg"><div class="chat-header"><div class="chat-ava" style="background:linear-gradient(135deg,var(--mint-dark),#0e7a68)">MD</div><div class="chat-from">Médico(a) · Dr(a). Pedro</div><div class="chat-time">Hoje 08:20</div></div><div class="chat-text">Revisado. Protocolo MEV intensivo iniciado. Prioridade: redução glicêmica e aumento HDL via exercício aeróbico. Reavaliar em 90 dias.</div></div>
+            </div>
+            <div class="chat-input-row"><input class="chat-input" placeholder="Mensagem para a equipe..."><button class="chat-send">Enviar</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ VIEW: WHATSAPP ════ -->
+    <div class="view" id="view-whats">
+
+      <!-- Stats -->
+      <div class="stats c4">
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Mensagens enviadas hoje</div><div class="sc-ico" style="background:#e8fdf4"><svg style="stroke:#25d366;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><path d="M10 1C5 1 1 5 1 10c0 1.6.4 3.1 1.2 4.4L1 19l4.6-1.2C7 18.6 8.5 19 10 19c5 0 9-4 9-9s-4-9-9-9z"/></svg></div></div><div class="sc-val" style="color:#25d366">34</div><div class="sc-sub up">Automáticas + manuais</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Fotos recebidas</div><div class="sc-ico" style="background:var(--orange-light)"><svg style="stroke:var(--orange);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="14" rx="2"/><circle cx="10" cy="11" r="3"/><path d="M7 4l1-2h4l1 2"/></svg></div></div><div class="sc-val" style="color:var(--orange)">7</div><div class="sc-sub warn">4 aguardando feedback</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Notificações agendadas</div><div class="sc-ico" style="background:var(--blue-light)"><svg style="stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="14" rx="2"/><line x1="3" y1="9" x2="17" y2="9"/><line x1="7" y1="2" x2="7" y2="6"/><line x1="13" y1="2" x2="13" y2="6"/></svg></div></div><div class="sc-val" style="color:var(--blue)">12</div><div class="sc-sub">Para esta tarde</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Taxa de resposta</div><div class="sc-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><polyline points="3,14 7,9 11,12 15,6 18,9"/></svg></div></div><div class="sc-val" style="color:var(--mint-dark)">91%</div><div class="sc-sub up">Pacientes ativos</div></div>
+      </div>
+
+      <div class="g2">
+
+        <!-- Coluna esquerda -->
+        <div style="display:flex;flex-direction:column;gap:16px">
+
+          <!-- 1. Fotos recebidas via WhatsApp -->
+          <div class="panel">
+            <div class="ph">
+              <div>
+                <div class="ph-title">Fotos recebidas via WhatsApp</div>
+                <div style="font-size:11px;color:var(--n400);margin-top:2px">Encaminhadas automaticamente para revisão</div>
+              </div>
+              <div class="ph-badge r">4 novas</div>
+            </div>
+            <div class="pb">
+              <!-- Foto item -->
+              <div style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--n100);cursor:pointer;transition:background .1s" onmouseover="this.style.background='#f8f9fb'" onmouseout="this.style.background=''">
+                <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#c8f0eb,#7dddd3);flex-shrink:0;display:flex;align-items:center;justify-content:center"><svg style="width:20px;height:20px;stroke:rgba(255,255,255,.7);fill:none;stroke-width:1.5;stroke-linecap:round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:2px">Ana Beatriz Silva</div>
+                  <div style="font-size:11px;color:var(--n400);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Almoço · hoje 12:35 via WhatsApp</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0">
+                  <div style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:#fff0ef;color:#e8453c">Aguardando</div>
+                  <div style="font-size:10px;color:var(--n400)">há 8 min</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--n100);cursor:pointer;transition:background .1s" onmouseover="this.style.background='#f8f9fb'" onmouseout="this.style.background=''">
+                <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#fde68a,#f59e0b);flex-shrink:0;display:flex;align-items:center;justify-content:center"><svg style="width:20px;height:20px;stroke:rgba(255,255,255,.7);fill:none;stroke-width:1.5;stroke-linecap:round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:2px">Patrícia Alves</div>
+                  <div style="font-size:11px;color:var(--n400)">Café da manhã · hoje 07:58 via WhatsApp</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0">
+                  <div style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:#fff0ef;color:#e8453c">Aguardando</div>
+                  <div style="font-size:10px;color:var(--n400)">há 4h</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--n100)">
+                <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#c4b5fd,#7c3aed);flex-shrink:0;display:flex;align-items:center;justify-content:center"><svg style="width:20px;height:20px;stroke:rgba(255,255,255,.7);fill:none;stroke-width:1.5;stroke-linecap:round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:2px">Carla Mendonça</div>
+                  <div style="font-size:11px;color:var(--n400)">Jantar · ontem 19:45 via WhatsApp</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0">
+                  <div style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:#e8faf7;color:#1aab95">Respondida</div>
+                  <div style="font-size:10px;color:var(--n400)">ontem 20:02</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:12px 18px">
+                <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#fca5a5,#ef4444);flex-shrink:0;display:flex;align-items:center;justify-content:center"><svg style="width:20px;height:20px;stroke:rgba(255,255,255,.7);fill:none;stroke-width:1.5;stroke-linecap:round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:2px">Fernanda Lima</div>
+                  <div style="font-size:11px;color:var(--n400)">Almoço · ontem 13:10 via WhatsApp</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0">
+                  <div style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:#e8faf7;color:#1aab95">Respondida</div>
+                  <div style="font-size:10px;color:var(--n400)">ontem 13:28</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Resposta rápida de foto -->
+          <div class="panel">
+            <div class="ph">
+              <div>
+                <div class="ph-title">Resposta rápida · Ana Beatriz Silva</div>
+                <div style="font-size:11px;color:var(--n400);margin-top:2px">Feedback será enviado via WhatsApp automaticamente</div>
+              </div>
+              <div class="ph-badge r">Aguardando</div>
+            </div>
+            <div style="width:100%;height:140px;background:linear-gradient(135deg,#c8f0eb,#7dddd3);position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg style="width:36px;height:36px;stroke:rgba(255,255,255,.5);fill:none;stroke-width:1.5;stroke-linecap:round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+              <div style="position:absolute;bottom:10px;left:14px;background:rgba(0,0,0,.3);backdrop-filter:blur(4px);border-radius:999px;padding:3px 10px;font-size:10px;font-weight:700;color:white">Almoço · hoje 12:35</div>
+              <div style="position:absolute;top:10px;right:10px;background:#25d366;border-radius:999px;padding:3px 10px;font-size:10px;font-weight:700;color:white;display:flex;align-items:center;gap:4px"><svg viewBox="0 0 12 12" style="width:10px;height:10px;fill:white"><path d="M6 1C3.2 1 1 3.2 1 6c0 .9.3 1.8.7 2.5L1 11l2.6-.7C4.2 10.7 5.1 11 6 11c2.8 0 5-2.2 5-5S8.8 1 6 1z"/></svg>Via WhatsApp</div>
+            </div>
+            <div style="padding:14px 18px">
+              <!-- Tags rápidas -->
+              <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--n400);margin-bottom:8px">Avaliação rápida</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
+                <div class="qt sg" onclick="toggleTag(this)">Proteína ok</div>
+                <div class="qt sg" onclick="toggleTag(this)">Vegetais presentes</div>
+                <div class="qt so" onclick="toggleTag(this)">Porção grande</div>
+                <div class="qt un" onclick="toggleTag(this)">Carboidrato ok</div>
+                <div class="qt un" onclick="toggleTag(this)">Prato colorido</div>
+                <div class="qt un" onclick="toggleTag(this)">Falta proteína</div>
+              </div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--n400);margin-bottom:8px">Mensagem WhatsApp</div>
+              <textarea style="width:100%;background:var(--n50);border:1px solid var(--n100);border-radius:10px;padding:10px 13px;font-size:13px;font-family:'Inter',sans-serif;color:var(--n700);outline:none;resize:none;min-height:72px;line-height:1.5;margin-bottom:12px" onfocus="this.style.borderColor='#25d366'" onblur="this.style.borderColor='var(--n100)'">Prato muito bem montado, Ana! Proteína + folhas verdes na proporção certa. Exatamente o que combinamos. Continue assim!</textarea>
+              <button style="width:100%;padding:11px;border-radius:999px;background:#25d366;color:white;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 3px 12px rgba(37,211,102,.3)">
+                <svg viewBox="0 0 16 16" style="width:15px;height:15px;fill:white"><path d="M8 1C4.1 1 1 4.1 1 8c0 1.3.4 2.5 1 3.6L1 15l3.5-.9C5.5 14.7 6.7 15 8 15c3.9 0 7-3.1 7-7S11.9 1 8 1zm3.6 9.8c-.2.4-.8.8-1.1.8-.3 0-.7.1-2-.4-1.7-.7-2.8-2.4-2.9-2.5-.1-.1-.7-1-.7-1.8 0-.8.4-1.2.6-1.4.2-.2.4-.2.5-.2h.3c.1 0 .3 0 .4.3.2.4.6 1.3.7 1.4 0 .1.1.2 0 .4-.1.1-.2.2-.3.3-.1.1-.2.2-.1.3.4.7.9 1.2 1.4 1.5.2.1.3.1.4-.1.1-.2.4-.5.6-.7.1-.1.2-.1.4 0l1.2.6c.1.1.3.1.3.2 0 .4-.1.8-.3 1.1z"/></svg>
+                Enviar feedback via WhatsApp
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Coluna direita -->
+        <div style="display:flex;flex-direction:column;gap:16px">
+
+          <!-- 3. Notificações automáticas agendadas -->
+          <div class="panel">
+            <div class="ph">
+              <div>
+                <div class="ph-title">Notificações automáticas</div>
+                <div style="font-size:11px;color:var(--n400);margin-top:2px">Disparadas via WhatsApp Business API</div>
+              </div>
+              <button style="padding:7px 14px;border-radius:999px;background:#25d366;color:white;font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif">+ Nova</button>
+            </div>
+            <div class="pb">
+              <!-- Notif item -->
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:13px 18px;border-bottom:1px solid var(--n100)">
+                <div style="width:36px;height:36px;border-radius:11px;background:#e8fdf4;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg style="width:16px;height:16px;stroke:#25d366;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><polyline points="10,6 10,10 13,12"/></svg></div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+                    <div style="font-size:13px;font-weight:600;color:var(--n800)">Lembrete de café da manhã</div>
+                    <div style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:#e8fdf4;color:#25d366;flex-shrink:0;margin-left:8px">Ativo</div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n500);margin-bottom:5px">"Bom dia, [nome]! Hora do café da manhã proteico. Não esqueça de fotografar o prato!"</div>
+                  <div style="display:flex;gap:8px;font-size:10px;color:var(--n400)"><span>Todos os dias · 07h00</span><span>·</span><span>18 pacientes</span></div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:13px 18px;border-bottom:1px solid var(--n100)">
+                <div style="width:36px;height:36px;border-radius:11px;background:#e8fdf4;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg style="width:16px;height:16px;stroke:#25d366;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><polyline points="10,6 10,10 13,12"/></svg></div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+                    <div style="font-size:13px;font-weight:600;color:var(--n800)">Lembrete de atividade física</div>
+                    <div style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:#e8fdf4;color:#25d366;flex-shrink:0;margin-left:8px">Ativo</div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n500);margin-bottom:5px">"[nome], sua caminhada de hoje está te esperando! 30 minutos zona 2. Você consegue!"</div>
+                  <div style="display:flex;gap:8px;font-size:10px;color:var(--n400)"><span>Seg, Qua, Sex · 16h30</span><span>·</span><span>18 pacientes</span></div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:13px 18px;border-bottom:1px solid var(--n100)">
+                <div style="width:36px;height:36px;border-radius:11px;background:#e8fdf4;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg style="width:16px;height:16px;stroke:#25d366;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><polyline points="10,6 10,10 13,12"/></svg></div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+                    <div style="font-size:13px;font-weight:600;color:var(--n800)">Blue light off · sono</div>
+                    <div style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:#e8fdf4;color:#25d366;flex-shrink:0;margin-left:8px">Ativo</div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n500);margin-bottom:5px">"[nome], daqui a 1 hora é hora de dormir. Coloque o celular de lado e inicie sua rotina noturna."</div>
+                  <div style="display:flex;gap:8px;font-size:10px;color:var(--n400)"><span>Todos os dias · 21h30</span><span>·</span><span>18 pacientes</span></div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:13px 18px">
+                <div style="width:36px;height:36px;border-radius:11px;background:#eff6ff;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg style="width:16px;height:16px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="14" rx="2"/><line x1="3" y1="9" x2="17" y2="9"/><line x1="7" y1="2" x2="7" y2="6"/><line x1="13" y1="2" x2="13" y2="6"/></svg></div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+                    <div style="font-size:13px;font-weight:600;color:var(--n800)">Confirmação de consulta</div>
+                    <div style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:#e8fdf4;color:#25d366;flex-shrink:0;margin-left:8px">Ativo</div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n500);margin-bottom:5px">"[nome], sua consulta com Juan Carlos é amanhã às [hora]. Confirme com 1 para Sim ou 2 para reagendar."</div>
+                  <div style="display:flex;gap:8px;font-size:10px;color:var(--n400)"><span>24h antes da consulta</span><span>·</span><span>Automático</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Grupos de Parceiros de Jornada -->
+          <div class="panel">
+            <div class="ph">
+              <div>
+                <div class="ph-title">Grupos de Parceiros de Jornada</div>
+                <div style="font-size:11px;color:var(--n400);margin-top:2px">Criados automaticamente pelo sistema</div>
+              </div>
+              <button style="padding:7px 14px;border-radius:999px;background:var(--n50);color:var(--n600);font-size:12px;font-weight:700;border:1px solid var(--n200);cursor:pointer;font-family:'Inter',sans-serif">Ver todos</button>
+            </div>
+            <div class="pb">
+              <div style="display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid var(--n100)">
+                <div style="position:relative;width:42px;height:42px;flex-shrink:0">
+                  <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#e5632a,#c94e1a);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;position:absolute;top:0;left:0">AB</div>
+                  <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,var(--mint),var(--mint-dark));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;position:absolute;bottom:0;right:0">CM</div>
+                </div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:2px">Ana Beatriz + Carla Mendonça</div>
+                  <div style="font-size:11px;color:var(--n400)">Streak conjunto: 22 dias · Ativo</div>
+                </div>
+                <div style="width:9px;height:9px;border-radius:50%;background:#25d366;flex-shrink:0"></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid var(--n100)">
+                <div style="position:relative;width:42px;height:42px;flex-shrink:0">
+                  <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,var(--blue),#1740a8);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;position:absolute;top:0;left:0">MF</div>
+                  <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,var(--orange),#c2410c);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;position:absolute;bottom:0;right:0">LO</div>
+                </div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:2px">Marcos Ferreira + Lucas Oliveira</div>
+                  <div style="font-size:11px;color:var(--n400)">Streak conjunto: 14 dias · Ativo</div>
+                </div>
+                <div style="width:9px;height:9px;border-radius:50%;background:#25d366;flex-shrink:0"></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:13px 18px">
+                <div style="position:relative;width:42px;height:42px;flex-shrink:0">
+                  <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,var(--yellow),#b88200);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;position:absolute;top:0;left:0">RS</div>
+                  <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,var(--purple),#5a3e8a);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;position:absolute;bottom:0;right:0">FL</div>
+                </div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:2px">Roberto Santos + Fernanda Lima</div>
+                  <div style="font-size:11px;color:var(--n400)">Streak conjunto: 5 dias · Alerta</div>
+                </div>
+                <div style="width:9px;height:9px;border-radius:50%;background:var(--orange);flex-shrink:0"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Link Zoom mensal automático -->
+          <div class="panel">
+            <div class="ph">
+              <div>
+                <div class="ph-title">Zoom mensal · Disparo automático</div>
+                <div style="font-size:11px;color:var(--n400);margin-top:2px">Link enviado via WhatsApp 24h antes</div>
+              </div>
+              <div class="ph-badge" style="background:#e8fdf4;color:#25d366">Agendado</div>
+            </div>
+            <div style="padding:16px 18px;border-bottom:1px solid var(--n100)">
+              <div style="display:flex;gap:12px;margin-bottom:14px">
+                <div style="flex:1"><div style="font-size:10px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px">Data e hora</div><input style="width:100%;background:var(--n50);border:1px solid var(--n100);border-radius:10px;padding:9px 12px;font-size:13px;font-family:'Inter',sans-serif;color:var(--n700);outline:none" value="15/05/2026 · 19h00" onfocus="this.style.borderColor='#25d366'" onblur="this.style.borderColor='var(--n100)'"></div>
+                <div style="flex:1"><div style="font-size:10px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px">Tema da sessão</div><input style="width:100%;background:var(--n50);border:1px solid var(--n100);border-radius:10px;padding:9px 12px;font-size:13px;font-family:'Inter',sans-serif;color:var(--n700);outline:none" value="Crononutrição" onfocus="this.style.borderColor='#25d366'" onblur="this.style.borderColor='var(--n100)'"></div>
+              </div>
+              <div style="font-size:10px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px">Link do Zoom</div>
+              <input style="width:100%;background:var(--n50);border:1px solid var(--n100);border-radius:10px;padding:9px 12px;font-size:12px;font-family:'Inter',sans-serif;color:var(--mint-dark);outline:none;margin-bottom:14px" value="https://zoom.us/j/98765432100" onfocus="this.style.borderColor='#25d366'" onblur="this.style.borderColor='var(--n100)'">
+              <div style="background:#e8fdf4;border-radius:12px;padding:12px 14px;font-size:12px;color:#1aab95;line-height:1.55;margin-bottom:14px">
+                <strong>Prévia da mensagem:</strong><br>
+                "Olá [nome]! Amanhã temos nosso Zoom mensal do Raízes 360 às 19h00. O tema será Crononutrição. Acesse: https://zoom.us/j/98765 · Qualquer dúvida, responda aqui."
+              </div>
+              <button style="width:100%;padding:11px;border-radius:999px;background:#25d366;color:white;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 3px 12px rgba(37,211,102,.3)">
+                <svg viewBox="0 0 16 16" style="width:14px;height:14px;fill:white"><path d="M8 1C4.1 1 1 4.1 1 8c0 1.3.4 2.5 1 3.6L1 15l3.5-.9C5.5 14.7 6.7 15 8 15c3.9 0 7-3.1 7-7S11.9 1 8 1zm3.6 9.8c-.2.4-.8.8-1.1.8-.3 0-.7.1-2-.4-1.7-.7-2.8-2.4-2.9-2.5-.1-.1-.7-1-.7-1.8 0-.8.4-1.2.6-1.4.2-.2.4-.2.5-.2h.3c.1 0 .3 0 .4.3.2.4.6 1.3.7 1.4 0 .1.1.2 0 .4-.1.1-.2.2-.3.3-.1.1-.2.2-.1.3.4.7.9 1.2 1.4 1.5.2.1.3.1.4-.1.1-.2.4-.5.6-.7.1-.1.2-.1.4 0l1.2.6c.1.1.3.1.3.2 0 .4-.1.8-.3 1.1z"/></svg>
+                Enviar para todos os 18 pacientes
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ VIEW: RECOMPENSAS ════ -->
+    <div class="view" id="view-rewards">
+
+      <!-- Stats -->
+      <div class="stats c4">
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Recompensas ativas</div><div class="sc-ico" style="background:#fef9e7"><svg style="stroke:#b88200;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z"/></svg></div></div><div class="sc-val" style="color:#b88200">8</div><div class="sc-sub">Tipos configurados</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Aguardando resgate</div><div class="sc-ico" style="background:var(--orange-light)"><svg style="stroke:var(--orange);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><polyline points="10,6 10,10 13,12"/></svg></div></div><div class="sc-val" style="color:var(--orange)">3</div><div class="sc-sub warn">Pacientes elegíveis</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Resgates este mês</div><div class="sc-ico" style="background:var(--mint-light)"><svg style="stroke:var(--mint-dark);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><path d="M9 11l3 3 8-8"/><rect x="2" y="3" width="16" height="14" rx="2"/></svg></div></div><div class="sc-val" style="color:var(--mint-dark)">5</div><div class="sc-sub up">+2 vs mês anterior</div></div>
+        <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes no nível Prata+</div><div class="sc-ico" style="background:var(--purple-light)"><svg style="stroke:var(--purple);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><circle cx="8" cy="7" r="4"/><path d="M2 19v-2a6 6 0 0 1 12 0v2"/></svg></div></div><div class="sc-val" style="color:var(--purple)">4</div><div class="sc-sub">De 18 ativos</div></div>
+      </div>
+
+      <div class="g2">
+
+        <!-- COLUNA ESQUERDA — Configurar recompensas -->
+        <div style="display:flex;flex-direction:column;gap:16px">
+
+          <!-- Catálogo de recompensas -->
+          <div class="panel">
+            <div class="ph">
+              <div><div class="ph-title">Catálogo de Recompensas</div><div style="font-size:11px;color:var(--n400);margin-top:2px">Defina o que cada nível desbloqueia</div></div>
+              <button onclick="openNewReward()" style="padding:7px 14px;border-radius:999px;background:var(--mint);color:white;font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 2px 8px rgba(45,204,180,.25)">+ Nova recompensa</button>
+            </div>
+            <div class="pb">
+
+              <!-- Recompensa 1 — Bronze -->
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-bottom:1px solid var(--n100)">
+                <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#cd7f32,#8b4513);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg style="width:20px;height:20px;stroke:white;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z"/></svg></div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                    <div style="font-size:13px;font-weight:700;color:var(--n800)">Consulta de retorno grátis</div>
+                    <div style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:linear-gradient(135deg,#cd7f32,#8b4513);color:white">Bronze</div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n500);margin-bottom:8px">Desbloqueada ao atingir 500 pontos. Consulta extra com o nutricionista.</div>
+                  <div style="display:flex;gap:8px;align-items:center">
+                    <div style="font-size:11px;font-weight:600;color:var(--n400)">Gatilho:</div>
+                    <div style="font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--n50);color:var(--n600)">500 pts</div>
+                    <div style="font-size:11px;font-weight:600;color:var(--n400);margin-left:4px">Resgatados:</div>
+                    <div style="font-size:11px;font-weight:700;color:var(--mint-dark)">12 vezes</div>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
+                  <button onclick="editReward(this)" style="padding:5px 12px;border-radius:999px;background:var(--n50);color:var(--n600);font-size:11px;font-weight:600;border:1px solid var(--n200);cursor:pointer;font-family:'Inter',sans-serif">Editar</button>
+                  <div style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--mint-light);color:var(--mint-dark);text-align:center">Ativa</div>
+                </div>
+              </div>
+
+              <!-- Recompensa 2 — Bronze -->
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-bottom:1px solid var(--n100)">
+                <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#cd7f32,#8b4513);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg style="width:20px;height:20px;stroke:white;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><rect x="4" y="3" width="12" height="14" rx="2"/><line x1="7" y1="8" x2="13" y2="8"/><line x1="7" y1="11" x2="11" y2="11"/></svg></div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                    <div style="font-size:13px;font-weight:700;color:var(--n800)">E-book: Guia de Crononutrição</div>
+                    <div style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:linear-gradient(135deg,#cd7f32,#8b4513);color:white">Bronze</div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n500);margin-bottom:8px">PDF exclusivo ao atingir 1.500 pts. Enviado automaticamente por WhatsApp.</div>
+                  <div style="display:flex;gap:8px;align-items:center">
+                    <div style="font-size:11px;font-weight:600;color:var(--n400)">Gatilho:</div>
+                    <div style="font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--n50);color:var(--n600)">1.500 pts</div>
+                    <div style="font-size:11px;font-weight:600;color:var(--n400);margin-left:4px">Resgatados:</div>
+                    <div style="font-size:11px;font-weight:700;color:var(--mint-dark)">3 vezes</div>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
+                  <button onclick="editReward(this)" style="padding:5px 12px;border-radius:999px;background:var(--n50);color:var(--n600);font-size:11px;font-weight:600;border:1px solid var(--n200);cursor:pointer;font-family:'Inter',sans-serif">Editar</button>
+                  <div style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--mint-light);color:var(--mint-dark);text-align:center">Ativa</div>
+                </div>
+              </div>
+
+              <!-- Recompensa 3 — Prata -->
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-bottom:1px solid var(--n100)">
+                <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#9e9e9e,#616161);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg style="width:20px;height:20px;stroke:white;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z"/></svg></div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                    <div style="font-size:13px;font-weight:700;color:var(--n800)">Sessão extra com psicólogo</div>
+                    <div style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:linear-gradient(135deg,#9e9e9e,#616161);color:white">Prata</div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n500);margin-bottom:8px">Nível Prata (2.000 pts). Sessão individual com a psicóloga do programa.</div>
+                  <div style="display:flex;gap:8px;align-items:center">
+                    <div style="font-size:11px;font-weight:600;color:var(--n400)">Gatilho:</div>
+                    <div style="font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--n50);color:var(--n600)">Nível Prata</div>
+                    <div style="font-size:11px;font-weight:600;color:var(--n400);margin-left:4px">Resgatados:</div>
+                    <div style="font-size:11px;font-weight:700;color:var(--mint-dark)">1 vez</div>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
+                  <button onclick="editReward(this)" style="padding:5px 12px;border-radius:999px;background:var(--n50);color:var(--n600);font-size:11px;font-weight:600;border:1px solid var(--n200);cursor:pointer;font-family:'Inter',sans-serif">Editar</button>
+                  <div style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--mint-light);color:var(--mint-dark);text-align:center">Ativa</div>
+                </div>
+              </div>
+
+              <!-- Recompensa 4 — Ouro -->
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-bottom:1px solid var(--n100)">
+                <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#d4a017,#b8860b);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg style="width:20px;height:20px;stroke:white;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z"/></svg></div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                    <div style="font-size:13px;font-weight:700;color:var(--n800)">Desconto 20% na renovação</div>
+                    <div style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:linear-gradient(135deg,#d4a017,#b8860b);color:white">Ouro</div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n500);margin-bottom:8px">Nível Ouro (6.000 pts). Cupom de desconto aplicável na renovação do programa.</div>
+                  <div style="display:flex;gap:8px;align-items:center">
+                    <div style="font-size:11px;font-weight:600;color:var(--n400)">Gatilho:</div>
+                    <div style="font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--n50);color:var(--n600)">Nível Ouro</div>
+                    <div style="font-size:11px;font-weight:600;color:var(--n400);margin-left:4px">Resgatados:</div>
+                    <div style="font-size:11px;font-weight:700;color:var(--n400)">0 vezes</div>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
+                  <button onclick="editReward(this)" style="padding:5px 12px;border-radius:999px;background:var(--n50);color:var(--n600);font-size:11px;font-weight:600;border:1px solid var(--n200);cursor:pointer;font-family:'Inter',sans-serif">Editar</button>
+                  <div style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--mint-light);color:var(--mint-dark);text-align:center">Ativa</div>
+                </div>
+              </div>
+
+              <!-- Recompensa 5 — Diamante -->
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 18px">
+                <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#a78bfa,#6d28d9);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg style="width:20px;height:20px;stroke:white;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><path d="M10 2l3 4H7z M4 6h12l-6 11z"/></svg></div>
+                <div style="flex:1;min-width:0">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                    <div style="font-size:13px;font-weight:700;color:var(--n800)">Kit Raízes 360 exclusivo</div>
+                    <div style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:linear-gradient(135deg,#a78bfa,#6d28d9);color:white">Diamante</div>
+                  </div>
+                  <div style="font-size:11px;color:var(--n500);margin-bottom:8px">Nível Diamante (15.000 pts). Kit físico enviado pelos Correios: caderno, caneta e brinde.</div>
+                  <div style="display:flex;gap:8px;align-items:center">
+                    <div style="font-size:11px;font-weight:600;color:var(--n400)">Gatilho:</div>
+                    <div style="font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--n50);color:var(--n600)">Nível Diamante</div>
+                    <div style="font-size:11px;font-weight:600;color:var(--n400);margin-left:4px">Resgatados:</div>
+                    <div style="font-size:11px;font-weight:700;color:var(--n400)">0 vezes</div>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
+                  <button onclick="editReward(this)" style="padding:5px 12px;border-radius:999px;background:var(--n50);color:var(--n600);font-size:11px;font-weight:600;border:1px solid var(--n200);cursor:pointer;font-family:'Inter',sans-serif">Editar</button>
+                  <div style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--mint-light);color:var(--mint-dark);text-align:center">Ativa</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Modal nova recompensa (oculto por padrão) -->
+          <div id="new-reward-form" style="display:none;background:var(--white);border-radius:var(--r);border:1px solid var(--n100);box-shadow:var(--sh-md);padding:20px">
+            <div style="font-size:15px;font-weight:800;color:var(--n800);margin-bottom:16px">Nova recompensa</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+              <div><div style="font-size:11px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px">Nome da recompensa</div><input class="edit-field" placeholder="Ex: Consulta grátis"></div>
+              <div><div style="font-size:11px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px">Nível / Gatilho</div>
+                <select class="edit-field" style="cursor:pointer">
+                  <option>Bronze · 500 pts</option>
+                  <option>Bronze · 1.000 pts</option>
+                  <option>Bronze · 1.500 pts</option>
+                  <option>Nível Prata · 2.000 pts</option>
+                  <option>Nível Ouro · 6.000 pts</option>
+                  <option>Nível Diamante · 15.000 pts</option>
+                  <option>Personalizado</option>
+                </select>
+              </div>
+            </div>
+            <div style="margin-bottom:12px"><div style="font-size:11px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px">Descrição</div><textarea class="edit-area" placeholder="Descreva o que o paciente recebe..." style="min-height:60px"></textarea></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+              <div><div style="font-size:11px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px">Tipo de entrega</div>
+                <select class="edit-field" style="cursor:pointer">
+                  <option>Automático · WhatsApp</option>
+                  <option>Manual · agendamento</option>
+                  <option>Físico · Correios</option>
+                  <option>Cupom de desconto</option>
+                </select>
+              </div>
+              <div><div style="font-size:11px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px">Limite por paciente</div><input class="edit-field" placeholder="Ex: 1 vez" value="1 vez"></div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button onclick="saveReward()" style="flex:2;padding:11px;border-radius:999px;background:var(--mint);color:white;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 3px 10px rgba(45,204,180,.25)">Salvar recompensa</button>
+              <button onclick="closeNewReward()" style="flex:1;padding:11px;border-radius:999px;background:var(--n50);color:var(--n600);font-size:13px;font-weight:700;border:1px solid var(--n200);cursor:pointer;font-family:'Inter',sans-serif">Cancelar</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- COLUNA DIREITA -->
+        <div style="display:flex;flex-direction:column;gap:16px">
+
+          <!-- Pacientes elegíveis para resgate -->
+          <div class="panel">
+            <div class="ph">
+              <div><div class="ph-title">Pacientes elegíveis agora</div><div style="font-size:11px;color:var(--n400);margin-top:2px">Atingiram o gatilho e ainda não resgataram</div></div>
+              <div class="ph-badge r">3 pendentes</div>
+            </div>
+            <div class="pb">
+
+              <!-- Paciente elegível 1 -->
+              <div style="padding:14px 18px;border-bottom:1px solid var(--n100)">
+                <div style="display:flex;align-items:center;gap:11px;margin-bottom:10px">
+                  <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#e5632a,#c94e1a);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0">AB</div>
+                  <div style="flex:1;min-width:0">
+                    <div style="font-size:13px;font-weight:700;color:var(--n800);margin-bottom:2px">Ana Beatriz Silva</div>
+                    <div style="font-size:11px;color:var(--n400)">1.840 pts · Bronze · Mês 4</div>
+                  </div>
+                  <div style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px;background:#fef9e7;color:#b88200">1.500 pts ✓</div>
+                </div>
+                <div style="background:var(--mint-light);border-radius:12px;padding:10px 14px;margin-bottom:10px">
+                  <div style="font-size:11px;font-weight:700;color:var(--mint-dark);margin-bottom:2px">Recompensa desbloqueada:</div>
+                  <div style="font-size:12px;color:var(--n700)">E-book: Guia de Crononutrição</div>
+                </div>
+                <div style="display:flex;gap:8px">
+                  <button onclick="approveReward(this,'Ana Beatriz')" style="flex:2;padding:9px;border-radius:999px;background:var(--mint);color:white;font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 2px 8px rgba(45,204,180,.25)">Liberar e enviar via WhatsApp</button>
+                  <button style="flex:1;padding:9px;border-radius:999px;background:var(--n50);color:var(--n600);font-size:12px;font-weight:700;border:1px solid var(--n200);cursor:pointer;font-family:'Inter',sans-serif">Adiar</button>
+                </div>
+              </div>
+
+              <!-- Paciente elegível 2 -->
+              <div style="padding:14px 18px;border-bottom:1px solid var(--n100)">
+                <div style="display:flex;align-items:center;gap:11px;margin-bottom:10px">
+                  <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--purple),#5a3e8a);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0">FL</div>
+                  <div style="flex:1;min-width:0">
+                    <div style="font-size:13px;font-weight:700;color:var(--n800);margin-bottom:2px">Fernanda Lima</div>
+                    <div style="font-size:11px;color:var(--n400)">2.340 pts · Prata · Mês 11</div>
+                  </div>
+                  <div style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px;background:#f0ebf8;color:var(--purple)">Nível Prata ✓</div>
+                </div>
+                <div style="background:var(--purple-light);border-radius:12px;padding:10px 14px;margin-bottom:10px">
+                  <div style="font-size:11px;font-weight:700;color:var(--purple);margin-bottom:2px">Recompensa desbloqueada:</div>
+                  <div style="font-size:12px;color:var(--n700)">Sessão extra com psicóloga</div>
+                </div>
+                <div style="display:flex;gap:8px">
+                  <button onclick="approveReward(this,'Fernanda')" style="flex:2;padding:9px;border-radius:999px;background:var(--purple);color:white;font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif">Agendar sessão e notificar</button>
+                  <button style="flex:1;padding:9px;border-radius:999px;background:var(--n50);color:var(--n600);font-size:12px;font-weight:700;border:1px solid var(--n200);cursor:pointer;font-family:'Inter',sans-serif">Adiar</button>
+                </div>
+              </div>
+
+              <!-- Paciente elegível 3 -->
+              <div style="padding:14px 18px">
+                <div style="display:flex;align-items:center;gap:11px;margin-bottom:10px">
+                  <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--mint),var(--mint-dark));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0">CM</div>
+                  <div style="flex:1;min-width:0">
+                    <div style="font-size:13px;font-weight:700;color:var(--n800);margin-bottom:2px">Carla Mendonça</div>
+                    <div style="font-size:11px;color:var(--n400)">2.110 pts · Prata · Mês 7</div>
+                  </div>
+                  <div style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px;background:#fef9e7;color:#b88200">500 pts ✓</div>
+                </div>
+                <div style="background:var(--mint-light);border-radius:12px;padding:10px 14px;margin-bottom:10px">
+                  <div style="font-size:11px;font-weight:700;color:var(--mint-dark);margin-bottom:2px">Recompensa desbloqueada:</div>
+                  <div style="font-size:12px;color:var(--n700)">Consulta de retorno grátis</div>
+                </div>
+                <div style="display:flex;gap:8px">
+                  <button onclick="approveReward(this,'Carla')" style="flex:2;padding:9px;border-radius:999px;background:var(--mint);color:white;font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 2px 8px rgba(45,204,180,.25)">Liberar e enviar via WhatsApp</button>
+                  <button style="flex:1;padding:9px;border-radius:999px;background:var(--n50);color:var(--n600);font-size:12px;font-weight:700;border:1px solid var(--n200);cursor:pointer;font-family:'Inter',sans-serif">Adiar</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Histórico de resgates -->
+          <div class="panel">
+            <div class="ph"><div class="ph-title">Histórico de resgates</div><div class="ph-act">Ver todos</div></div>
+            <div class="pb">
+              <div style="display:flex;align-items:center;gap:11px;padding:12px 18px;border-bottom:1px solid var(--n100)">
+                <div style="width:36px;height:36px;border-radius:11px;background:var(--mint-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg style="width:16px;height:16px;stroke:var(--mint-dark);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><path d="M9 11l3 3 8-8"/><rect x="2" y="3" width="16" height="14" rx="2"/></svg></div>
+                <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:1px">Marcos Ferreira</div><div style="font-size:11px;color:var(--n400)">Consulta de retorno grátis · 02/05/2026</div></div>
+                <div style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--mint-light);color:var(--mint-dark)">Entregue</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:11px;padding:12px 18px;border-bottom:1px solid var(--n100)">
+                <div style="width:36px;height:36px;border-radius:11px;background:var(--mint-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg style="width:16px;height:16px;stroke:var(--mint-dark);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><path d="M9 11l3 3 8-8"/><rect x="2" y="3" width="16" height="14" rx="2"/></svg></div>
+                <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:1px">Lucas Oliveira</div><div style="font-size:11px;color:var(--n400)">E-book Crononutrição · 28/04/2026</div></div>
+                <div style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--mint-light);color:var(--mint-dark)">Enviado</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:11px;padding:12px 18px">
+                <div style="width:36px;height:36px;border-radius:11px;background:var(--orange-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg style="width:16px;height:16px;stroke:var(--orange);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><polyline points="10,6 10,10 13,12"/></svg></div>
+                <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:1px">Patrícia Alves</div><div style="font-size:11px;color:var(--n400)">Consulta de retorno grátis · 25/04/2026</div></div>
+                <div style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--orange-light);color:var(--orange)">Agendando</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<script>
+const roles = {
+  nutri:  {name:'Juan Carlos',role:'Nutricionista · Gestor',roleColor:'rgba(45,204,180,.12)',dot:'#2dccb4',ava:'JC',avaGrad:'linear-gradient(135deg,#2dccb4,#1aab95)',title:'Dashboard · Nutricionista',btn:'Nova consulta',
+    nav:[{sec:'Principal'},{ico:'grid',lbl:'Dashboard',on:true},{ico:'users',lbl:'Pacientes'},{ico:'cal',lbl:'Consultas'},{ico:'cam',lbl:'Fotos dos pratos',badge:'4'},{ico:'msg',lbl:'Mensagens',badge:'7',bg:'g'},{sec:'Gestão Clínica'},{ico:'file',lbl:'Cardápios'},{ico:'leaf',lbl:'Prescrição hábitos'},{ico:'chart',lbl:'Mapa da Saúde'},{ico:'check',lbl:'Anamneses'},{ico:'trend',lbl:'Relatórios'},{sec:'Equipe'},{ico:'run',lbl:'Educador Físico'},{ico:'brain',lbl:'Psicólogo(a)'},{ico:'heart',lbl:'Médico(a)'}]},
+  edfi:   {name:'Carlos Silva',role:'Educador Físico',roleColor:'rgba(123,94,167,.12)',dot:'#7b5ea7',ava:'CS',avaGrad:'linear-gradient(135deg,#7b5ea7,#5a3e8a)',title:'Dashboard · Educador Físico',btn:'Prescrever treino',
+    nav:[{sec:'Minha área'},{ico:'grid',lbl:'Dashboard',on:true},{ico:'run',lbl:'Hábitos de atividade'},{ico:'file',lbl:'Biblioteca de treinos'},{ico:'users',lbl:'Meus pacientes'},{ico:'cal',lbl:'Agenda'},{ico:'msg',lbl:'Chat com equipe',badge:'3',bg:'g'},{sec:'Acesso restrito'},{ico:'leaf',lbl:'Cardápios',lock:true},{ico:'brain',lbl:'Notas psicológicas',lock:true},{ico:'heart',lbl:'Exames clínicos',lock:true}]},
+  psico:  {name:'Dra. Lúcia',role:'Psicóloga',roleColor:'rgba(37,99,235,.12)',dot:'#2563eb',ava:'PS',avaGrad:'linear-gradient(135deg,#2563eb,#1740a8)',title:'Dashboard · Psicóloga',btn:'Nova sessão',
+    nav:[{sec:'Minha área'},{ico:'grid',lbl:'Dashboard',on:true},{ico:'users',lbl:'Pacientes em acomp.'},{ico:'cal',lbl:'Agenda de sessões'},{ico:'file',lbl:'Notas clínicas'},{ico:'trend',lbl:'Scores DASS-21/PHQ-9'},{ico:'msg',lbl:'Chat com equipe',badge:'2',bg:'g'},{sec:'Acesso restrito'},{ico:'leaf',lbl:'Cardápios',lock:true},{ico:'run',lbl:'Treinos',lock:true},{ico:'heart',lbl:'Exames clínicos',lock:true}]},
+  medico: {name:'Dr. Pedro',role:'Médico(a) Parceiro(a)',roleColor:'rgba(22,163,74,.12)',dot:'#16a34a',ava:'DP',avaGrad:'linear-gradient(135deg,#2dccb4,#0e7a68)',title:'Dashboard · Médico(a)',btn:'Nova nota clínica',
+    nav:[{sec:'Minha área'},{ico:'grid',lbl:'Dashboard',on:true},{ico:'users',lbl:'Pacientes monitorados'},{ico:'chart',lbl:'Mapa da Saúde'},{ico:'file',lbl:'Exames laboratoriais'},{ico:'trend',lbl:'Riscos calculados'},{ico:'msg',lbl:'Chat com equipe',badge:'1',bg:'g'},{sec:'Acesso restrito'},{ico:'leaf',lbl:'Cardápios',lock:true},{ico:'run',lbl:'Treinos',lock:true},{ico:'brain',lbl:'Notas psicológicas',lock:true}]},
+  whats: {name:'Juan Carlos',role:'WhatsApp · Integrações',roleColor:'rgba(37,211,102,.12)',dot:'#25d366',ava:'WA',avaGrad:'linear-gradient(135deg,#25d366,#128c7e)',title:'WhatsApp · Central de Integrações',btn:'Nova notificação',
+    nav:[{sec:'WhatsApp'},{ico:'cam',lbl:'Fotos recebidas',badge:'4'},{ico:'msg',lbl:'Notificações automáticas'},{ico:'users',lbl:'Grupos de Parceiros'},{ico:'cal',lbl:'Zoom mensal · Disparo'},{sec:'Configurações'},{ico:'check',lbl:'Templates de mensagem'},{ico:'trend',lbl:'Relatório de entregas'},{ico:'file',lbl:'Histórico de conversas'}]},
+  rewards:{name:'Juan Carlos',role:'Gestão de Recompensas',roleColor:'rgba(184,134,11,.12)',dot:'#b88200',ava:'JC',avaGrad:'linear-gradient(135deg,#d4a017,#b8860b)',title:'Recompensas · Gestão e Liberação',btn:'Nova recompensa',
+    nav:[{sec:'Recompensas'},{ico:'check',lbl:'Catálogo de recompensas',on:true},{ico:'users',lbl:'Elegíveis agora',badge:'3'},{ico:'file',lbl:'Histórico de resgates'},{sec:'Configurações'},{ico:'trend',lbl:'Metas e gatilhos'},{ico:'chart',lbl:'Relatório de engajamento'}]},
+};
+
+const svgs = {
+  grid:'<rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="11" y="3" width="6" height="6" rx="1.5"/><rect x="3" y="11" width="6" height="6" rx="1.5"/><rect x="11" y="11" width="6" height="6" rx="1.5"/>',
+  users:'<circle cx="8" cy="7" r="4"/><path d="M2 19v-2a6 6 0 0 1 12 0v2"/><path d="M16 3a4 4 0 0 1 0 8"/><path d="M19 19v-2a4 4 0 0 0-3-3.87"/>',
+  cal:'<rect x="3" y="4" width="14" height="14" rx="2"/><line x1="3" y1="9" x2="17" y2="9"/><line x1="7" y1="2" x2="7" y2="6"/><line x1="13" y1="2" x2="13" y2="6"/>',
+  cam:'<rect x="2" y="4" width="16" height="14" rx="2"/><circle cx="10" cy="11" r="3"/><path d="M7 4l1-2h4l1 2"/>',
+  msg:'<path d="M2 4h16v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4z"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="10" y2="13"/>',
+  file:'<path d="M4 4h12v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4z"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="13" x2="11" y2="13"/>',
+  leaf:'<path d="M10 2C7 6 5 8.5 5 11a5 5 0 0 0 10 0c0-2.5-2-5-5-9z"/>',
+  chart:'<rect x="3" y="4" width="14" height="14" rx="2"/><path d="M7 14V10"/><path d="M10 14V8"/><path d="M13 14V12"/>',
+  check:'<path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
+  trend:'<polyline points="3,14 7,9 11,12 15,6 18,9"/>',
+  run:'<path d="M3 10h3l2-6 4 12 2-6h3"/>',
+  brain:'<path d="M9.5 2C7 2 5 4 5 6.5c0 .5.1 1 .2 1.5C3.9 8.8 3 10.3 3 12c0 2.2 1.5 4 3.5 4.5V18a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-1.5c2-.5 3.5-2.3 3.5-4.5 0-1.7-.9-3.2-2.2-4 .1-.5.2-1 .2-1.5C19 4 17 2 14.5 2c-1.2 0-2.3.5-3 1.3C10.8 2.5 9.7 2 9.5 2z"/>',
+  heart:'<path d="M3 8l7 9 7-9H3z"/>',
+};
+
+function buildNav(items) {
+  return items.map(i => {
+    if(i.sec) return `<div class="sb-sec">${i.sec}</div>`;
+    const on = i.on ? 'on' : '';
+    const lock = i.lock ? 'locked' : '';
+    const badge = i.badge ? `<div class="sbi-badge ${i.bg||''}">${i.badge}</div>` : '';
+    const sc = i.on ? 'var(--mint)' : 'rgba(255,255,255,.35)';
+    return `<div class="sbi ${on} ${lock}">
+      <div class="sbi-ico"><svg viewBox="0 0 20 20" style="width:15px;height:15px;stroke:${sc};fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round">${svgs[i.ico]||''}</svg></div>
+      <div class="sbi-lbl">${i.lbl}</div>${badge}
+    </div>`;
+  }).join('');
+}
+
+function setRole(role, btn) {
+  const r = roles[role];
+  document.getElementById('sb-role-badge').style.background = r.roleColor;
+  document.getElementById('sb-dot').style.background = r.dot;
+  document.getElementById('sb-role-name').textContent = r.name;
+  document.getElementById('sb-role-tag').textContent = r.role;
+  document.getElementById('sb-nav').innerHTML = buildNav(r.nav);
+  document.getElementById('sb-user-ava').style.background = r.avaGrad;
+  document.getElementById('sb-user-ava').textContent = r.ava;
+  document.getElementById('sb-uname').textContent = r.name;
+  document.getElementById('sb-urole').textContent = r.role.split(' · ')[0];
+  document.getElementById('tb-title').textContent = r.title;
+  document.getElementById('tb-pri-txt').textContent = r.btn;
+  // WhatsApp button color for topbar
+  const priBtn = document.getElementById('tb-pri');
+  if(role === 'whats') { priBtn.style.background='#25d366'; priBtn.style.boxShadow='0 3px 10px rgba(37,211,102,.3)'; }
+  else { priBtn.style.background='var(--mint)'; priBtn.style.boxShadow='0 3px 10px rgba(45,204,180,.25)'; }
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + role).classList.add('active');
+  document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+  if(btn) { btn.classList.add('active'); if(role==='whats') btn.style.cssText='background:#25d366;color:white;display:flex;align-items:center;gap:5px'; }
+  // Reset other role buttons style
+  Object.entries(btns).forEach(([r2, b]) => { if(r2!=='whats'&&r2!==role) b.style.cssText=''; });
+}
+
+// Init
+const btns = {
+  nutri:   document.getElementById('rb-nutri'),
+  edfi:    document.getElementById('rb-edfi'),
+  psico:   document.getElementById('rb-psico'),
+  medico:  document.getElementById('rb-medico'),
+  whats:   document.getElementById('rb-whats'),
+  rewards: document.getElementById('rb-rewards'),
+};
+Object.entries(btns).forEach(([role, btn]) => {
+  btn.addEventListener('click', () => setRole(role, btn));
+});
+setRole('nutri', btns.nutri);
+
+// ── RECOMPENSAS ──────────────────────────────────────────────────
+function openNewReward() {
+  const form = document.getElementById('new-reward-form');
+  form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+function closeNewReward() {
+  document.getElementById('new-reward-form').style.display = 'none';
+}
+function saveReward() {
+  closeNewReward();
+  // aqui chamaria a API: POST /rewards
+  showDashToast('Recompensa criada e ativada!');
+}
+function editReward(btn) {
+  showDashToast('Modo de edição — conecte à API para persistir.');
+}
+function approveReward(btn, name) {
+  const card = btn.closest('[style*="padding:14px 18px"]');
+  const badge = card.querySelector('[style*="border-radius:12px;padding:10px"]');
+  btn.textContent = 'Enviado!';
+  btn.style.background = 'var(--mint-dark)';
+  btn.disabled = true;
+  showDashToast(`Recompensa liberada para ${name} via WhatsApp!`);
+}
+function showDashToast(msg) {
+  const t = document.createElement('div');
+  t.style.cssText = 'position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:var(--n700);color:white;padding:12px 22px;border-radius:14px;font-size:13px;font-weight:600;z-index:9999;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.25);white-space:nowrap;font-family:Inter,sans-serif';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3000);
+}
+
+function toggleTag(el) {
+  if(el.classList.contains('sg')) { el.classList.remove('sg'); el.classList.add('un'); }
+  else if(el.classList.contains('so')) { el.classList.remove('so'); el.classList.add('un'); }
+  else { el.classList.remove('un'); el.classList.add('sg'); }
+}
+
+// Delete food item
+document.querySelectorAll('.ef-del').forEach(d => {
+  d.addEventListener('click', () => d.closest('.ef').remove());
+});
+</script>
+</body>
+</html>
