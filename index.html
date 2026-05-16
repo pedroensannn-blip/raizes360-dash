@@ -23,7 +23,7 @@
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-height:100vh;overflow:hidden}
 
-/* LOGIN */
+/* ══ LOGIN ══ */
 #login-page{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px}
 .lcard{background:var(--wh);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.14);width:100%;max-width:400px;overflow:hidden}
 .lhero{background:linear-gradient(145deg,#1d3461,var(--pur) 60%,var(--md));padding:28px;text-align:center}
@@ -46,7 +46,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
 .lbtn:disabled{opacity:.5;cursor:not-allowed}
 .lfooter{font-size:11px;color:var(--n400);text-align:center;margin-top:14px}
 
-/* LAYOUT */
+/* ══ LAYOUT ══ */
 #dash{display:none;height:100vh;overflow:hidden}
 #dash.on{display:flex}
 .sb{width:224px;background:var(--n800);flex-shrink:0;display:flex;flex-direction:column;height:100vh;overflow:hidden}
@@ -63,208 +63,214 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
 .sb-nav{padding:10px 6px;flex:1;overflow-y:auto;scrollbar-width:none}
 .sb-nav::-webkit-scrollbar{display:none}
 .sbsec{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.18);padding:0 8px;margin:10px 0 3px}
-.sbi{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:8px;cursor:pointer;margin-bottom:1px;transition:background .12s;user-select:none}
-.sbi:hover{background:rgba(255,255,255,.05)}
-.sbi.on{background:rgba(45,204,180,.13)}
+.sbi{display:flex;align-items:center;gap:8px;padding:8px 9px;border-radius:8px;cursor:pointer;margin-bottom:1px;transition:background .12s;user-select:none;border:none;background:none;width:100%;text-align:left;font-family:'Inter',sans-serif}
+.sbi:hover{background:rgba(255,255,255,.06)}
+.sbi.on{background:rgba(45,204,180,.14)}
 .sbi-ico{width:15px;height:15px;stroke:rgba(255,255,255,.3);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 .sbi.on .sbi-ico{stroke:var(--mint)}
 .sbi-lbl{font-size:11px;color:rgba(255,255,255,.4);font-weight:500;flex:1}
 .sbi.on .sbi-lbl{color:rgba(255,255,255,.9);font-weight:600}
-.sbi-b{font-size:9px;font-weight:700;padding:2px 6px;border-radius:var(--rp);background:var(--red);color:white}
+.sbi-b{font-size:9px;font-weight:700;padding:2px 6px;border-radius:var(--rp);background:var(--red);color:white;flex-shrink:0}
 .sbi-b.g{background:var(--mint)}
+.sbi-lock{width:9px;height:9px;stroke:rgba(255,255,255,.2);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;margin-left:auto}
 .sb-bot{padding:10px 12px;border-top:1px solid rgba(255,255,255,.06)}
 .logout{display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:8px;cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;color:rgba(255,255,255,.35);font-size:11px;font-weight:500;width:100%;transition:all .15s}
 .logout:hover{background:rgba(232,69,60,.1);color:var(--red)}
 .logout svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
 
-/* MAIN */
+/* ══ MAIN ══ */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.topbar{background:var(--wh);border-bottom:1px solid var(--n100);padding:0 12px;min-height:52px;display:flex;align-items:center;gap:8px;flex-shrink:0;box-shadow:0 1px 0 var(--n100);flex-wrap:wrap}
-.tbtitle{font-size:14px;font-weight:800;color:var(--n800);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-/* Role switcher tabs */
-.tabbar{background:var(--wh);border-bottom:2px solid var(--n100);padding:0 16px;display:flex;align-items:center;gap:0;flex-shrink:0;overflow-x:auto;scrollbar-width:none}
-.tabbar::-webkit-scrollbar{display:none}
-.rtab{padding:13px 16px;font-size:12px;font-weight:600;color:var(--n500);cursor:pointer;transition:all .15s;white-space:nowrap;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:5px;margin-bottom:-2px}
-.rtab:hover{color:var(--n700);background:var(--n50)}
-.rtab.on{color:var(--mint-d);border-bottom-color:var(--mint);font-weight:700;background:none}
-.rtab.wa{color:#25d366}
-.rtab svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
-.tbsearch{display:flex;align-items:center;gap:6px;background:var(--n50);border:1px solid var(--n100);border-radius:var(--rp);padding:6px 12px;width:180px;flex-shrink:0}
-.tbsearch svg{width:12px;height:12px;stroke:var(--n400);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
-.tbsearch input{background:none;border:none;outline:none;font-size:12px;color:var(--n700);font-family:'Inter',sans-serif;width:100%}
-.tbbtn{display:flex;align-items:center;gap:5px;padding:7px 14px;border-radius:var(--rp);font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:opacity .15s;white-space:nowrap}
+.topbar{background:var(--wh);border-bottom:1px solid var(--n100);padding:0 20px;height:52px;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.tbtitle{font-size:15px;font-weight:800;color:var(--n800);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbbtn{display:flex;align-items:center;gap:5px;padding:8px 15px;border-radius:var(--rp);font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:opacity .15s;white-space:nowrap}
 .tbbtn:hover{opacity:.88}
 .tbbtn.pri{background:var(--mint);color:white;box-shadow:0 2px 8px rgba(45,204,180,.25)}
 .tbbtn svg{width:12px;height:12px;stroke:white;fill:none;stroke-width:2.5;stroke-linecap:round}
 
-/* CONTENT */
-.content{flex:1;overflow-y:auto;padding:18px 20px;scrollbar-width:thin;scrollbar-color:var(--n200) transparent;position:relative}
-.view{display:none;flex-direction:column;gap:14px;width:100%}
+/* ══ ABAS DE PROFISSIONAIS ══ */
+.tabbar{background:var(--wh);border-bottom:2px solid var(--n100);padding:0 16px;display:flex;align-items:center;flex-shrink:0;overflow-x:auto;scrollbar-width:none}
+.tabbar::-webkit-scrollbar{display:none}
+.rtab{padding:12px 15px;font-size:12px;font-weight:600;color:var(--n400);cursor:pointer;white-space:nowrap;border:none;border-bottom:2.5px solid transparent;background:none;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:5px;margin-bottom:-2px;transition:color .15s}
+.rtab:hover{color:var(--n600)}
+.rtab.on{color:var(--md);border-bottom-color:var(--mint);font-weight:700}
+.rtab.wa.on{color:#25d366;border-bottom-color:#25d366}
+.rtab svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+
+/* ══ CONTENT ══ */
+.content{flex:1;overflow-y:auto;padding:18px 20px;scrollbar-width:thin;scrollbar-color:var(--n200) transparent}
+.view{display:none;flex-direction:column;gap:14px}
 .view.on{display:flex}
 
-/* STATS */
-.stats{display:grid;gap:10px}
+/* ══ STATS ══ */
+.stats{display:grid;gap:10px;margin-bottom:0}
 .c4{grid-template-columns:repeat(4,1fr)}
-.c3{grid-template-columns:repeat(3,1fr)}
-.sc{background:var(--wh);border-radius:var(--r);padding:14px;border:1px solid var(--n100);box-shadow:var(--sh)}
-.sc-lbl{font-size:9px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
-.sc-ico{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center}
-.sc-ico svg{width:13px;height:13px;fill:none;stroke-width:1.8;stroke-linecap:round}
-.sc-val{font-size:24px;font-weight:800;color:var(--n800);line-height:1;margin-bottom:3px;letter-spacing:-.3px}
-.sc-sub{font-size:10px;color:var(--n400)}
+.sc{background:var(--wh);border-radius:var(--r);padding:14px 16px;border:1px solid var(--n100);box-shadow:var(--sh)}
+.sc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.sc-lbl{font-size:10px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.06em}
+.sc-ico{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sc-ico svg{width:14px;height:14px;fill:none;stroke-width:1.8;stroke-linecap:round}
+.sc-val{font-size:26px;font-weight:800;color:var(--n800);line-height:1;margin-bottom:4px;letter-spacing:-.3px}
+.sc-sub{font-size:11px;color:var(--n400)}
 .sc-sub.up{color:var(--md);font-weight:600}
 .sc-sub.warn{color:var(--ora);font-weight:600}
 .sc-sub.dn{color:var(--red);font-weight:600}
 
-/* GRID */
+/* ══ GRID ══ */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .g3l{display:grid;grid-template-columns:240px 1fr 280px;gap:14px}
 
-/* PANEL */
+/* ══ PANEL ══ */
 .panel{background:var(--wh);border-radius:var(--r);border:1px solid var(--n100);box-shadow:var(--sh);display:flex;flex-direction:column;overflow:hidden}
-.ph{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--n100);flex-shrink:0;gap:8px}
-.ph-title{font-size:12px;font-weight:700;color:var(--n800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ph-sub{font-size:10px;color:var(--n400);margin-top:1px}
-.ph-act{font-size:11px;font-weight:600;color:var(--md);cursor:pointer;white-space:nowrap;flex-shrink:0;padding:4px 8px;border-radius:6px;transition:background .1s}
-.ph-act:hover{background:var(--ml)}
-.ph-b{font-size:9px;font-weight:700;padding:3px 8px;border-radius:var(--rp);flex-shrink:0}
+.ph{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--n100);flex-shrink:0;gap:8px}
+.ph-t{font-size:13px;font-weight:700;color:var(--n800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ph-s{font-size:11px;color:var(--n400);margin-top:2px}
+.ph-a{font-size:11px;font-weight:600;color:var(--md);cursor:pointer;white-space:nowrap;flex-shrink:0;padding:5px 9px;border-radius:7px;border:none;background:none;font-family:'Inter',sans-serif;transition:background .1s}
+.ph-a:hover{background:var(--ml)}
+.ph-b{font-size:9px;font-weight:700;padding:3px 9px;border-radius:var(--rp);flex-shrink:0}
 .ph-b.r{background:var(--redl);color:var(--red)}
 .ph-b.g{background:var(--ml);color:var(--md)}
 .ph-b.o{background:var(--oral);color:var(--ora)}
-.pb{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--n100) transparent}
+.pb{flex:1;overflow-y:auto;scrollbar-width:thin}
 
-/* PATIENT ROWS */
-.pr{display:flex;align-items:center;gap:9px;padding:9px 14px;border-bottom:1px solid var(--n100);cursor:pointer;transition:background .1s;user-select:none}
+/* ══ PATIENT ROW ══ */
+.pr{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--n100);cursor:pointer;transition:background .1s;user-select:none}
 .pr:last-child{border-bottom:none}
 .pr:hover{background:var(--n50)}
 .pr.sel{background:var(--ml)}
-.pr-ava{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;flex-shrink:0}
-.pr-nm{font-size:12px;font-weight:600;color:var(--n800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:1px}
+.pr-ava{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0}
+.pr-nm{font-size:12px;font-weight:600;color:var(--n800);margin-bottom:1px}
 .pr-mt{font-size:10px;color:var(--n400)}
-.pr-b{font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);flex-shrink:0}
+.pr-b{font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);flex-shrink:0}
 .pr-b.a{background:var(--redl);color:var(--red)}
 .pr-b.ok{background:var(--ml);color:var(--md)}
 .pr-b.w{background:var(--oral);color:var(--ora)}
 .pr-b.n{background:var(--blul);color:var(--blu)}
 
-/* MENU */
-.meal-head{display:flex;align-items:center;gap:8px;padding:9px 14px;border-bottom:1px solid var(--n100);background:var(--n50)}
-.meal-ico{width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+/* ══ FOOD ══ */
+.meal-hd{display:flex;align-items:center;gap:8px;padding:9px 16px;border-bottom:1px solid var(--n100);background:var(--n50)}
+.meal-ico{width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center}
 .meal-ico svg{width:12px;height:12px;fill:none;stroke-width:1.8;stroke-linecap:round}
-.meal-name{font-size:12px;font-weight:700;color:var(--n700);flex:1}
-.meal-time{font-size:10px;color:var(--n400)}
-.meal-kcal{font-size:10px;font-weight:700;color:var(--md)}
-.fi{display:flex;align-items:center;gap:7px;padding:6px 14px;border-bottom:1px solid var(--n50)}
+.meal-nm{font-size:12px;font-weight:700;color:var(--n700);flex:1}
+.meal-tm{font-size:10px;color:var(--n400)}
+.meal-kc{font-size:10px;font-weight:700;color:var(--md)}
+.fi{display:flex;align-items:center;gap:7px;padding:6px 16px;border-bottom:1px solid var(--n50)}
 .fi:last-child{border-bottom:none}
 .fi-bar{width:3px;height:20px;border-radius:2px;flex-shrink:0}
 .fi-nm{font-size:12px;color:var(--n700);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .fi-qty input{width:60px;background:var(--n50);border:1px solid var(--n100);border-radius:6px;padding:3px 6px;font-size:11px;font-family:'Inter',sans-serif;color:var(--n700);outline:none;text-align:center}
 .fi-qty input:focus{border-color:var(--mint)}
-.fi-kcal{font-size:10px;color:var(--n400);width:44px;text-align:right;flex-shrink:0}
-.fi-del{font-size:12px;color:var(--n300);cursor:pointer;padding:0 2px;transition:color .1s;flex-shrink:0}
+.fi-kc{font-size:10px;color:var(--n400);width:44px;text-align:right;flex-shrink:0}
+.fi-del{font-size:12px;color:var(--n300);cursor:pointer;padding:0 2px;transition:color .1s}
 .fi-del:hover{color:var(--red)}
-.meal-foot{display:flex;gap:5px;padding:7px 14px;border-top:1px solid var(--n100)}
-.addbtn{padding:4px 10px;border-radius:var(--rp);font-size:11px;font-weight:600;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .1s}
-.addbtn:hover{opacity:.85}
+.meal-ft{display:flex;gap:5px;padding:7px 16px;border-top:1px solid var(--n100)}
+.addbtn{padding:4px 10px;border-radius:var(--rp);font-size:11px;font-weight:600;border:none;cursor:pointer;font-family:'Inter',sans-serif}
 .addbtn.f{background:var(--ml);color:var(--md)}
 .addbtn.s{background:var(--oral);color:var(--ora)}
 
-/* EXAMS */
-.ex-sec{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--n400);padding:8px 14px 5px;background:var(--n50);border-bottom:1px solid var(--n100)}
-.ex-row{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--n100)}
+/* ══ EXAMS ══ */
+.ex-sec{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--n400);padding:8px 16px 5px;background:var(--n50);border-bottom:1px solid var(--n100)}
+.ex-row{display:flex;align-items:center;gap:8px;padding:9px 16px;border-bottom:1px solid var(--n100)}
 .ex-row:last-child{border-bottom:none}
-.ex-nm{font-size:11px;font-weight:600;color:var(--n700);flex:1;min-width:0}
-.ex-ref{font-size:9px;color:var(--n400);margin-top:1px}
-.ex-in{width:72px;padding:5px 7px;border-radius:7px;font-size:11px;font-weight:700;font-family:'Inter',sans-serif;outline:none;text-align:center;border:1.5px solid transparent;transition:all .15s}
+.ex-nm{font-size:11px;font-weight:600;color:var(--n700)}
+.ex-rf{font-size:10px;color:var(--n400);margin-top:1px}
+.ex-in{width:74px;padding:5px 8px;border-radius:7px;font-size:12px;font-weight:700;font-family:'Inter',sans-serif;outline:none;text-align:center;border:1.5px solid transparent;transition:all .15s}
 .ex-in.r{background:var(--redl);color:var(--red)}.ex-in.r:focus{border-color:var(--red)}
 .ex-in.o{background:var(--oral);color:var(--ora)}.ex-in.o:focus{border-color:var(--ora)}
 .ex-in.g{background:var(--ml);color:var(--md)}.ex-in.g:focus{border-color:var(--mint)}
 .ex-in.n{background:var(--n50);color:var(--n600)}.ex-in.n:focus{border-color:var(--n300)}
 
-/* NOTES */
+/* ══ NOTES / FIELDS ══ */
 .ntarea{width:100%;background:var(--n50);border:1.5px solid var(--n100);border-radius:9px;padding:9px 12px;font-size:12px;font-family:'Inter',sans-serif;color:var(--n700);outline:none;resize:none;line-height:1.5;transition:border .15s}
 .ntarea:focus{border-color:var(--mint);background:var(--wh)}
 .finput{width:100%;background:var(--n50);border:1.5px solid var(--n100);border-radius:8px;padding:8px 11px;font-size:12px;font-family:'Inter',sans-serif;color:var(--n700);outline:none;transition:border .15s}
 .finput:focus{border-color:var(--mint);background:var(--wh)}
-.fselect{width:100%;background:var(--n50);border:1.5px solid var(--n100);border-radius:8px;padding:8px 11px;font-size:12px;font-family:'Inter',sans-serif;color:var(--n700);outline:none;cursor:pointer}
-.flabel{font-size:9px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
-.savebtn{padding:8px 18px;border-radius:var(--rp);background:var(--mint);color:white;font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 2px 8px rgba(45,204,180,.22);transition:opacity .15s}
+.fsel{width:100%;background:var(--n50);border:1.5px solid var(--n100);border-radius:8px;padding:8px 11px;font-size:12px;font-family:'Inter',sans-serif;color:var(--n700);outline:none;cursor:pointer}
+.flabel{font-size:10px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.savebtn{padding:8px 18px;border-radius:var(--rp);background:var(--mint);color:white;font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 2px 8px rgba(45,204,180,.22);transition:opacity .15s;white-space:nowrap}
 .savebtn:hover{opacity:.88}
 .savebtn.full{width:100%;padding:11px}
 
-/* CHAT */
+/* ══ CHAT ══ */
 .chat-msg{padding:10px 14px;border-bottom:1px solid var(--n100)}
 .chat-hdr{display:flex;align-items:center;gap:6px;margin-bottom:5px}
-.chat-av{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:white;flex-shrink:0}
+.chat-av{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:white}
 .chat-from{font-size:11px;font-weight:600;color:var(--n700);flex:1}
 .chat-time{font-size:9px;color:var(--n400)}
 .chat-txt{font-size:11px;color:var(--n600);line-height:1.45;background:var(--n50);border-radius:7px;padding:7px 10px}
-.chat-inp-row{display:flex;gap:6px;padding:9px 14px;border-top:1px solid var(--n100);background:var(--n50);flex-shrink:0}
+.chat-ir{display:flex;gap:6px;padding:9px 14px;border-top:1px solid var(--n100);background:var(--n50);flex-shrink:0}
 .chat-inp{flex:1;background:var(--wh);border:1px solid var(--n200);border-radius:var(--rp);padding:7px 12px;font-size:12px;font-family:'Inter',sans-serif;color:var(--n700);outline:none}
 .chat-inp:focus{border-color:var(--mint)}
-.chat-send{padding:7px 14px;border-radius:var(--rp);background:var(--mint);color:white;font-size:11px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif}
+.chat-snd{padding:7px 14px;border-radius:var(--rp);background:var(--mint);color:white;font-size:11px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif}
 
-/* REWARDS */
-.rwd-row{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border-bottom:1px solid var(--n100)}
+/* ══ PHOTO TAGS ══ */
+.ptag{font-size:10px;font-weight:600;padding:4px 10px;border-radius:8px;cursor:pointer;border:1.5px solid transparent;transition:all .12s;user-select:none}
+
+/* ══ REWARD ROWS ══ */
+.rwd-row{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;border-bottom:1px solid var(--n100)}
 .rwd-row:last-child{border-bottom:none}
 .rwd-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .rwd-ico svg{width:17px;height:17px;fill:none;stroke-width:1.8;stroke-linecap:round}
 .rwd-title{font-size:12px;font-weight:700;color:var(--n800);margin-bottom:2px}
 .rwd-sub{font-size:10px;color:var(--n500);line-height:1.4}
-.rwd-tag{font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);margin-top:4px;display:inline-block}
-.rwd-actions{display:flex;flex-direction:column;gap:5px;flex-shrink:0}
+.rwd-acts{display:flex;flex-direction:column;gap:5px;flex-shrink:0}
 .rwd-edit{padding:4px 10px;border-radius:6px;background:var(--n50);border:1px solid var(--n200);font-size:10px;font-weight:600;color:var(--n600);cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap}
 .rwd-edit:hover{background:var(--n100)}
-.rwd-active{font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);background:var(--ml);color:var(--md);text-align:center}
+.rwd-on{font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);background:var(--ml);color:var(--md);text-align:center}
 
-/* ELIGIBLE */
-.eli-row{padding:12px 14px;border-bottom:1px solid var(--n100)}
+/* ══ ELIGIBLE ══ */
+.eli-row{padding:12px 16px;border-bottom:1px solid var(--n100)}
 .eli-row:last-child{border-bottom:none}
 .eli-top{display:flex;align-items:center;gap:9px;margin-bottom:8px}
 .eli-ava{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0}
-.eli-reward{border-radius:9px;padding:8px 12px;margin-bottom:8px;font-size:11px}
+.eli-rwd{border-radius:9px;padding:8px 12px;margin-bottom:8px;font-size:11px}
 .eli-btns{display:flex;gap:7px}
 .eli-btn{flex:2;padding:8px;border-radius:var(--rp);font-size:11px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .15s}
 .eli-btn:hover{opacity:.88}
 .eli-btn.pri{background:var(--mint);color:white;box-shadow:0 2px 6px rgba(45,204,180,.25)}
 .eli-btn.ghost{flex:1;background:var(--n50);color:var(--n600);border:1px solid var(--n200)}
 
-/* HIST */
-.hist-row{display:flex;align-items:center;gap:9px;padding:10px 14px;border-bottom:1px solid var(--n100)}
+/* ══ HIST ══ */
+.hist-row{display:flex;align-items:center;gap:9px;padding:10px 16px;border-bottom:1px solid var(--n100)}
 .hist-row:last-child{border-bottom:none}
 .hist-ico{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .hist-ico svg{width:14px;height:14px;fill:none;stroke-width:1.8;stroke-linecap:round}
 
-/* WA */
-.wa-foto{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--n100);cursor:pointer;transition:background .1s}
+/* ══ ALERT ══ */
+.alert-box{display:flex;align-items:flex-start;gap:8px;background:var(--oral);border:1px solid rgba(240,146,74,.2);border-radius:var(--r);padding:10px 14px;font-size:11px;color:var(--ora);font-weight:500}
+.alert-box svg{width:14px;height:14px;stroke:var(--ora);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;margin-top:1px}
+
+/* ══ WA ITEMS ══ */
+.wa-foto{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--n100);cursor:pointer;transition:background .1s}
 .wa-foto:hover{background:var(--n50)}
-.wa-foto-thumb{width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.wa-photo-txt{font-size:12px;font-weight:600;color:var(--n800);margin-bottom:2px}
-.wa-photo-sub{font-size:10px;color:var(--n400)}
-.wa-st{font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);flex-shrink:0}
+.wa-thumb{width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.wa-st{font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp)}
 .wa-st.ag{background:var(--redl);color:var(--red)}
 .wa-st.ok{background:var(--ml);color:var(--md)}
-.wa-notif{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border-bottom:1px solid var(--n100)}
+.wa-notif{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--n100)}
 .wa-notif:last-child{border-bottom:none}
 .wa-notif-ico{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .wa-notif-ico svg{width:14px;height:14px;fill:none;stroke-width:1.8;stroke-linecap:round}
-.wa-tag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp)}
-.wa-tag.on{background:var(--ml);color:var(--md)}
-.wa-tag.off{background:var(--n100);color:var(--n500)}
 
-/* ALERT */
-.alert-box{display:flex;align-items:flex-start;gap:8px;background:var(--oral);border:1px solid rgba(240,146,74,.2);border-radius:var(--r);padding:10px 13px;font-size:11px;color:var(--ora);font-weight:500}
-.alert-box svg{width:14px;height:14px;stroke:var(--ora);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;margin-top:1px}
+/* ══ SWITCH ══ */
+.sw{width:38px;height:22px;border-radius:var(--rp);position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+.sw.on{background:var(--mint)}.sw.off{background:var(--n200)}
+.sw-th{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:white;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s}
+.sw.on .sw-th{transform:translateX(16px)}
 
-/* MODAL */
-.moverlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(3px);z-index:999;display:none;align-items:center;justify-content:center;padding:20px}
-.moverlay.open{display:flex}
-.modal{background:var(--wh);border-radius:16px;width:100%;max-width:440px;box-shadow:0 20px 60px rgba(0,0,0,.2);overflow:hidden}
-.mhdr{background:linear-gradient(135deg,#1d3461,var(--pur));padding:18px 20px;display:flex;align-items:center;justify-content:space-between}
+/* ══ RISK ══ */
+.risk-c{background:var(--wh);border-radius:var(--r);padding:12px;border:1px solid var(--n100);box-shadow:var(--sh);flex:1}
+.rbar{height:5px;border-radius:var(--rp);background:linear-gradient(90deg,var(--mint),var(--ora),var(--red));margin-bottom:5px;position:relative}
+.rbar-n{position:absolute;top:-5px;width:13px;height:13px;border-radius:50%;background:white;border:2.5px solid var(--n700);transform:translateX(-50%)}
+
+/* ══ MODAL ══ */
+.mov{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(3px);z-index:999;display:none;align-items:center;justify-content:center;padding:20px}
+.mov.open{display:flex}
+.modal{background:var(--wh);border-radius:16px;width:100%;max-width:440px;box-shadow:0 20px 60px rgba(0,0,0,.2);overflow:hidden;max-height:90vh;display:flex;flex-direction:column}
+.mhdr{background:linear-gradient(135deg,#1d3461,var(--pur));padding:18px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .mtitle{font-size:15px;font-weight:800;color:white}
 .mclose{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.15);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .mclose svg{width:13px;height:13px;stroke:white;fill:none;stroke-width:2.5;stroke-linecap:round}
-.mbody{padding:18px 20px;display:flex;flex-direction:column;gap:12px;max-height:60vh;overflow-y:auto}
+.mbody{padding:18px 20px;display:flex;flex-direction:column;gap:12px;overflow-y:auto}
 .mrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .mf{display:flex;flex-direction:column;gap:4px}
 .mf label{font-size:9px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em}
@@ -273,27 +279,13 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
 .mf select{cursor:pointer}
 .mf textarea{resize:none;min-height:55px;line-height:1.5}
 .msec{font-size:9px;font-weight:700;color:var(--n400);text-transform:uppercase;letter-spacing:.07em;padding-bottom:3px;border-bottom:1px solid var(--n100)}
-.mfooter{padding:13px 20px;border-top:1px solid var(--n100);display:flex;gap:8px}
+.mfooter{padding:13px 20px;border-top:1px solid var(--n100);display:flex;gap:8px;flex-shrink:0}
 .mbtn{flex:1;padding:10px;border-radius:var(--rp);font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .15s}
 .mbtn:hover{opacity:.88}
 .mbtn.pri{background:var(--mint);color:white;flex:2;box-shadow:0 2px 10px rgba(45,204,180,.25)}
 .mbtn.ghost{background:var(--n50);color:var(--n600);border:1px solid var(--n200)}
 
-/* SWITCH */
-.sw{width:38px;height:22px;border-radius:var(--rp);position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
-.sw.on{background:var(--mint)}.sw.off{background:var(--n200)}
-.sw-th{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:white;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s}
-.sw.on .sw-th{transform:translateX(16px)}
-
-/* RISK */
-.risk-c{background:var(--wh);border-radius:var(--r);padding:12px;border:1px solid var(--n100);box-shadow:var(--sh);flex:1}
-.rbar{height:5px;border-radius:var(--rp);background:linear-gradient(90deg,var(--mint),var(--ora),var(--red));margin-bottom:5px;position:relative}
-.rbar-n{position:absolute;top:-4.5px;width:13px;height:13px;border-radius:50%;background:white;border:2.5px solid var(--n700);transform:translateX(-50%)}
-
-/* PHOTO TAGS */
-.ptag{font-size:10px;font-weight:600;padding:4px 10px;border-radius:8px;cursor:pointer;border:1.5px solid transparent;transition:all .12s;user-select:none}
-
-/* TOAST */
+/* ══ TOAST ══ */
 #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--n700);color:white;padding:10px 18px;border-radius:10px;font-size:12px;font-weight:600;z-index:9999;opacity:0;transition:all .28s;pointer-events:none;white-space:nowrap;box-shadow:var(--shm)}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
@@ -301,7 +293,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
 <body>
 <div id="toast"></div>
 
-<!-- ══════════ LOGIN ══════════ -->
+<!-- ══ LOGIN ══ -->
 <div id="login-page">
   <div class="lcard">
     <div class="lhero">
@@ -321,8 +313,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
   </div>
 </div>
 
-<!-- ══════════ DASHBOARD ══════════ -->
+<!-- ══ DASHBOARD ══ -->
 <div id="dash">
+  <!-- SIDEBAR -->
   <div class="sb">
     <div class="sb-brand">
       <div class="sb-row">
@@ -330,9 +323,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
         <div><div class="sb-n">Raízes 360</div><div class="sb-s">Painel Profissional</div></div>
       </div>
     </div>
-    <div class="sb-user" id="sb-user">
+    <div class="sb-user">
       <div class="sb-ava" id="sb-ava">JC</div>
-      <div><div class="sb-un" id="sb-un">Juan Carlos</div><div class="sb-ur" id="sb-ur">Nutricionista</div></div>
+      <div><div class="sb-un" id="sb-un">Juan Carlos</div><div class="sb-ur" id="sb-ur">Administrador</div></div>
     </div>
     <div class="sb-nav" id="sb-nav"></div>
     <div class="sb-bot">
@@ -343,348 +336,320 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
     </div>
   </div>
 
+  <!-- MAIN -->
   <div class="main">
+    <!-- TOPBAR -->
     <div class="topbar">
-      <div class="tbtitle" id="tbtitle">Dashboard</div>
+      <div class="tbtitle" id="tbtitle">Dashboard · Juan Carlos</div>
       <button class="tbbtn pri" id="tbadd" onclick="openNewPatient()">
         <svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg>
         <span id="tbadd-lbl">Novo paciente</span>
       </button>
     </div>
 
-    <!-- Barra de abas fixa - sempre visível -->
-    <div class="tabbar" id="role-tabs">
-      <button class="rtab on" id="rtab-nutri" onclick="switchRole('nutri',this)">
+    <!-- ABAS FIXAS -->
+    <div class="tabbar">
+      <button class="rtab on" id="tab-nutri" onclick="setTab('nutri',this)">
         <svg viewBox="0 0 14 14"><path d="M7 2C5 5 4 6.5 4 8a3 3 0 0 0 6 0c0-1.5-1-3-3-6z"/></svg>
         Nutricionista
       </button>
-      <button class="rtab" id="rtab-edfi" onclick="switchRole('edfi',this)">
+      <button class="rtab" id="tab-edfi" onclick="setTab('edfi',this)">
         <svg viewBox="0 0 14 14"><path d="M2 7h10M7 2l3 5-3 5"/></svg>
         Ed. Físico
       </button>
-      <button class="rtab" id="rtab-psico" onclick="switchRole('psico',this)">
+      <button class="rtab" id="tab-psico" onclick="setTab('psico',this)">
         <svg viewBox="0 0 14 14"><circle cx="7" cy="5" r="3"/><path d="M2 13v-1a5 5 0 0 1 10 0v1"/></svg>
         Psicólogo(a)
       </button>
-      <button class="rtab" id="rtab-medico" onclick="switchRole('medico',this)">
+      <button class="rtab" id="tab-medico" onclick="setTab('medico',this)">
         <svg viewBox="0 0 14 14"><path d="M7 2v10M2 7h10"/></svg>
         Médico(a)
       </button>
-      <button class="rtab wa" id="rtab-whats" onclick="switchRole('whats',this)">
+      <button class="rtab wa" id="tab-whats" onclick="setTab('whats',this)">
         <svg viewBox="0 0 14 14"><path d="M7 1C3.7 1 1 3.7 1 7c0 1.1.3 2.1.8 3L1 13l3.1-.8C5 12.7 6 13 7 13c3.3 0 6-2.7 6-6S10.3 1 7 1z"/></svg>
         WhatsApp
       </button>
-      <button class="rtab" id="rtab-rewards" onclick="switchRole('rewards',this)">
+      <button class="rtab" id="tab-rewards" onclick="setTab('rewards',this)">
         <svg viewBox="0 0 14 14"><path d="M7 1l1.5 4H13l-3.5 2.5 1.3 4L7 9 3.2 11.5l1.3-4L1 5h4.5z"/></svg>
         Recompensas
       </button>
     </div>
 
+    <!-- CONTENT -->
     <div class="content">
 
-      <!-- ════ VIEW NUTRICIONISTA ════ -->
-      <div class="view on" id="v-nutri" style="display:flex">
+      <!-- ════ NUTRICIONISTA ════ -->
+      <div class="view on" id="v-nutri">
         <div class="stats c4">
-          <div class="sc"><div class="sc-lbl">Pacientes ativos<div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/></svg></div></div><div class="sc-val">18</div><div class="sc-sub up">+3 este mês</div></div>
-          <div class="sc"><div class="sc-lbl">Fotos aguardando<div class="sc-ico" style="background:var(--oral)"><svg style="stroke:var(--ora)" viewBox="0 0 18 18"><rect x="2" y="4" width="14" height="12" rx="2"/><circle cx="9" cy="10" r="2.5"/><path d="M6 4l1-2h4l1 2"/></svg></div></div><div class="sc-val" style="color:var(--ora)">4</div><div class="sc-sub warn">Revisar hoje</div></div>
-          <div class="sc"><div class="sc-lbl">Aderência média<div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><polyline points="2,13 6,8 10,11 14,5 17,8"/></svg></div></div><div class="sc-val" style="color:var(--md)">76%</div><div class="sc-sub up">+4% esta semana</div></div>
-          <div class="sc"><div class="sc-lbl">Próxima consulta<div class="sc-ico" style="background:var(--blul)"><svg style="stroke:var(--blu)" viewBox="0 0 18 18"><rect x="2" y="3" width="14" height="13" rx="2"/><line x1="2" y1="8" x2="16" y2="8"/><line x1="6" y1="1" x2="6" y2="5"/><line x1="12" y1="1" x2="12" y2="5"/></svg></div></div><div class="sc-val">6</div><div class="sc-sub">Amanhã 10h</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes ativos</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/></svg></div></div><div class="sc-val">0</div><div class="sc-sub">Cadastre o primeiro</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Fotos aguardando</div><div class="sc-ico" style="background:var(--oral)"><svg style="stroke:var(--ora)" viewBox="0 0 18 18"><rect x="2" y="4" width="14" height="12" rx="2"/><circle cx="9" cy="10" r="2.5"/><path d="M6 4l1-2h4l1 2"/></svg></div></div><div class="sc-val" style="color:var(--ora)">0</div><div class="sc-sub">Nenhuma aguardando</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Aderência média</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><polyline points="2,13 6,8 10,11 14,5 17,8"/></svg></div></div><div class="sc-val" style="color:var(--md)">—</div><div class="sc-sub">Sem dados ainda</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Próxima consulta</div><div class="sc-ico" style="background:var(--blul)"><svg style="stroke:var(--blu)" viewBox="0 0 18 18"><rect x="2" y="3" width="14" height="13" rx="2"/><line x1="2" y1="8" x2="16" y2="8"/><line x1="6" y1="1" x2="6" y2="5"/><line x1="12" y1="1" x2="12" y2="5"/></svg></div></div><div class="sc-val">—</div><div class="sc-sub">Agende a primeira</div></div>
         </div>
         <div class="g3l">
           <!-- Lista pacientes -->
-          <div class="panel" style="max-height:500px">
-            <div class="ph"><div><div class="ph-title">Pacientes</div><div class="ph-sub">Clique para abrir</div></div><div class="ph-act" onclick="openNewPatient()">+ Novo</div></div>
-            <div class="pb" id="plist"><div style="padding:24px 16px;text-align:center;color:var(--n400)"><svg style="width:32px;height:32px;stroke:var(--n300);fill:none;stroke-width:1.5;stroke-linecap:round;margin-bottom:8px;display:block;margin-left:auto;margin-right:auto" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg><div style="font-size:13px;font-weight:600;color:var(--n400);margin-bottom:4px">Nenhum paciente cadastrado</div><div style="font-size:12px;color:var(--n300)">Clique em "+ Novo" para começar</div></div></div><div style="flex:1;min-width:0"><div class="pr-nm">Ana Beatriz Silva</div><div class="pr-mt">Mês 4 · Fase Crescimento</div></div><div class="pr-b a">Foto aguardando</div></div>
-              <div class="pr" onclick="selPat(this,'Marcos Ferreira','MF','#2563eb','Mês 2 · Raízes','Em dia','ok')"><div class="pr-ava" style="background:linear-gradient(135deg,#2563eb,#1740a8)">MF</div><div style="flex:1;min-width:0"><div class="pr-nm">Marcos Ferreira</div><div class="pr-mt">Mês 2 · Fase Raízes</div></div><div class="pr-b ok">Em dia</div></div>
-              <div class="pr" onclick="selPat(this,'Carla Mendonça','CM','#2dccb4','Mês 7 · Consolidação','Em dia','ok')"><div class="pr-ava" style="background:linear-gradient(135deg,#2dccb4,#1aab95)">CM</div><div style="flex:1;min-width:0"><div class="pr-nm">Carla Mendonça</div><div class="pr-mt">Mês 7 · Fase Consolidação</div></div><div class="pr-b ok">Em dia</div></div>
-              <div class="pr" onclick="selPat(this,'Roberto Santos','RS','#e0a800','Mês 1 · Raízes','Baixa aderência','a')"><div class="pr-ava" style="background:linear-gradient(135deg,#e0a800,#b88200)">RS</div><div style="flex:1;min-width:0"><div class="pr-nm">Roberto Santos</div><div class="pr-mt">Mês 1 · Fase Raízes</div></div><div class="pr-b a">Baixa aderência</div></div>
-              <div class="pr" onclick="selPat(this,'Fernanda Lima','FL','#7b5ea7','Mês 11 · Expansão','Em dia','ok')"><div class="pr-ava" style="background:linear-gradient(135deg,#7b5ea7,#5a3e8a)">FL</div><div style="flex:1;min-width:0"><div class="pr-nm">Fernanda Lima</div><div class="pr-mt">Mês 11 · Fase Expansão</div></div><div class="pr-b ok">Em dia</div></div>
-              <div class="pr" onclick="selPat(this,'Patrícia Alves','PA','#d63384','Mês 5 · Crescimento','Em dia','ok')"><div class="pr-ava" style="background:linear-gradient(135deg,#d63384,#a0235e)">PA</div><div style="flex:1;min-width:0"><div class="pr-nm">Patrícia Alves</div><div class="pr-mt">Mês 5 · Fase Crescimento</div></div><div class="pr-b ok">Em dia</div></div>
+          <div class="panel">
+            <div class="ph"><div><div class="ph-t">Pacientes</div><div class="ph-s">Clique para abrir</div></div><button class="ph-a" onclick="openNewPatient()">+ Novo</button></div>
+            <div class="pb" id="plist">
+              <div id="empty-plist" style="padding:28px 16px;text-align:center">
+                <svg style="width:32px;height:32px;stroke:var(--n300);fill:none;stroke-width:1.5;stroke-linecap:round;display:block;margin:0 auto 10px" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg>
+                <div style="font-size:12px;font-weight:600;color:var(--n400);margin-bottom:3px">Nenhum paciente cadastrado</div>
+                <div style="font-size:11px;color:var(--n300)">Clique em "+ Novo" para começar</div>
+              </div>
             </div>
           </div>
+
           <!-- Cardápio -->
-          <div class="panel" style="max-height:500px">
-            <div class="ph"><div><div class="ph-title" id="menu-title">Cardápio · Ana Beatriz Silva</div><div class="ph-sub" id="menu-sub">Meta: 1.500 kcal · hoje</div></div><button class="savebtn" onclick="toast('Cardápio salvo com sucesso!')">Salvar</button></div>
-            <div class="pb" id="menu-body">
-              <div class="meal-head"><div class="meal-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M5 8h6M8 5v6"/></svg></div><div class="meal-name">Café da manhã</div><div class="meal-time">7h00</div><div class="meal-kcal">~410 kcal</div></div>
-              <div class="fi"><div class="fi-bar" style="background:var(--mint)"></div><div class="fi-nm">Omelete de ovos (3un)</div><div class="fi-qty"><input value="3 un."></div><div class="fi-kcal">210 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
-              <div class="fi"><div class="fi-bar" style="background:var(--md)"></div><div class="fi-nm">Pão integral</div><div class="fi-qty"><input value="2 fatias"></div><div class="fi-kcal">140 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
-              <div class="fi"><div class="fi-bar" style="background:var(--ml)"></div><div class="fi-nm">Frutas vermelhas</div><div class="fi-qty"><input value="1 xíc."></div><div class="fi-kcal">60 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
-              <div class="meal-foot"><button class="addbtn f" onclick="addFood(this)">+ Alimento</button><button class="addbtn s" onclick="toast('Substituição adicionada!')">+ Substituição</button></div>
-              <div class="meal-head"><div class="meal-ico" style="background:var(--oral)"><svg style="stroke:var(--ora)" viewBox="0 0 16 16"><path d="M3 2v12M13 2v4a4 4 0 0 1-4 4H3"/></svg></div><div class="meal-name">Almoço</div><div class="meal-time">12h00</div><div class="meal-kcal">~415 kcal</div></div>
-              <div class="fi"><div class="fi-bar" style="background:var(--ora)"></div><div class="fi-nm">Frango grelhado</div><div class="fi-qty"><input value="150g"></div><div class="fi-kcal">165 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
-              <div class="fi"><div class="fi-bar" style="background:var(--ora)"></div><div class="fi-nm">Arroz integral</div><div class="fi-qty"><input value="4 col."></div><div class="fi-kcal">140 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
-              <div class="fi"><div class="fi-bar" style="background:var(--mint)"></div><div class="fi-nm">Salada de folhas</div><div class="fi-qty"><input value="2 xíc."></div><div class="fi-kcal">20 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
-              <div class="meal-foot"><button class="addbtn f" onclick="addFood(this)">+ Alimento</button><button class="addbtn s" onclick="toast('Substituição adicionada!')">+ Substituição</button></div>
-              <div class="meal-head"><div class="meal-ico" style="background:var(--blul)"><svg style="stroke:var(--blu)" viewBox="0 0 16 16"><path d="M3 2v12M13 2v4a4 4 0 0 1-4 4H3"/></svg></div><div class="meal-name">Jantar</div><div class="meal-time">19h30</div><div class="meal-kcal">~250 kcal</div></div>
-              <div class="fi"><div class="fi-bar" style="background:var(--pur)"></div><div class="fi-nm">Sopa de legumes</div><div class="fi-qty"><input value="300ml"></div><div class="fi-kcal">180 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
-              <div class="fi"><div class="fi-bar" style="background:var(--pur)"></div><div class="fi-nm">Pão integral</div><div class="fi-qty"><input value="1 fatia"></div><div class="fi-kcal">70 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
-              <div class="meal-foot"><button class="addbtn f" onclick="addFood(this)">+ Alimento</button><button class="addbtn s" onclick="toast('Substituição adicionada!')">+ Substituição</button></div>
+          <div class="panel">
+            <div class="ph"><div><div class="ph-t" id="menu-title">Cardápio · selecione um paciente</div><div class="ph-s">Meta: 1.500 kcal · hoje</div></div><button class="savebtn" onclick="toast('Cardápio salvo!')">Salvar</button></div>
+            <div class="pb">
+              <div class="meal-hd"><div class="meal-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M5 8h6M8 5v6"/></svg></div><div class="meal-nm">Café da manhã</div><div class="meal-tm">7h00</div><div class="meal-kc">~410 kcal</div></div>
+              <div class="fi"><div class="fi-bar" style="background:var(--mint)"></div><div class="fi-nm">Omelete de ovos</div><div class="fi-qty"><input value="3 un."></div><div class="fi-kc">210 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
+              <div class="fi"><div class="fi-bar" style="background:var(--md)"></div><div class="fi-nm">Pão integral</div><div class="fi-qty"><input value="2 fatias"></div><div class="fi-kc">140 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
+              <div class="fi"><div class="fi-bar" style="background:var(--ml)"></div><div class="fi-nm">Frutas vermelhas</div><div class="fi-qty"><input value="1 xíc."></div><div class="fi-kc">60 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
+              <div class="meal-ft"><button class="addbtn f" onclick="addFood(this)">+ Alimento</button><button class="addbtn s" onclick="toast('Substituição adicionada!')">+ Substituição</button></div>
+              <div class="meal-hd"><div class="meal-ico" style="background:var(--oral)"><svg style="stroke:var(--ora)" viewBox="0 0 16 16"><path d="M3 2v12M13 2v4a4 4 0 0 1-4 4H3"/></svg></div><div class="meal-nm">Almoço</div><div class="meal-tm">12h00</div><div class="meal-kc">~415 kcal</div></div>
+              <div class="fi"><div class="fi-bar" style="background:var(--ora)"></div><div class="fi-nm">Frango grelhado</div><div class="fi-qty"><input value="150g"></div><div class="fi-kc">165 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
+              <div class="fi"><div class="fi-bar" style="background:var(--ora)"></div><div class="fi-nm">Arroz integral</div><div class="fi-qty"><input value="4 col."></div><div class="fi-kc">140 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
+              <div class="fi"><div class="fi-bar" style="background:var(--mint)"></div><div class="fi-nm">Salada de folhas</div><div class="fi-qty"><input value="2 xíc."></div><div class="fi-kc">20 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
+              <div class="meal-ft"><button class="addbtn f" onclick="addFood(this)">+ Alimento</button><button class="addbtn s" onclick="toast('Substituição adicionada!')">+ Substituição</button></div>
+              <div class="meal-hd"><div class="meal-ico" style="background:var(--blul)"><svg style="stroke:var(--blu)" viewBox="0 0 16 16"><path d="M3 2v12M13 2v4a4 4 0 0 1-4 4H3"/></svg></div><div class="meal-nm">Jantar</div><div class="meal-tm">19h30</div><div class="meal-kc">~250 kcal</div></div>
+              <div class="fi"><div class="fi-bar" style="background:var(--pur)"></div><div class="fi-nm">Sopa de legumes</div><div class="fi-qty"><input value="300ml"></div><div class="fi-kc">180 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
+              <div class="meal-ft"><button class="addbtn f" onclick="addFood(this)">+ Alimento</button><button class="addbtn s" onclick="toast('Substituição adicionada!')">+ Substituição</button></div>
             </div>
           </div>
+
           <!-- Foto + Notas -->
           <div style="display:flex;flex-direction:column;gap:12px">
             <div class="panel">
-              <div class="ph"><div class="ph-title">Foto do prato · <span id="foto-pat">Ana Beatriz</span></div><div class="ph-b r">Aguardando</div></div>
-              <div style="width:100%;height:110px;background:linear-gradient(135deg,#c8f0eb,#7dddd3);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0">
+              <div class="ph"><div class="ph-t">Foto do prato</div><div class="ph-b r">Aguardando</div></div>
+              <div style="width:100%;height:100px;background:linear-gradient(135deg,#c8f0eb,#7dddd3);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative">
                 <svg style="width:28px;height:28px;stroke:rgba(255,255,255,.4);fill:none;stroke-width:1.5;stroke-linecap:round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
                 <div style="position:absolute;bottom:7px;left:10px;background:rgba(0,0,0,.3);border-radius:var(--rp);padding:2px 8px;font-size:9px;font-weight:700;color:white">Almoço · 12:35</div>
               </div>
               <div style="padding:10px 14px;display:flex;flex-direction:column;gap:8px">
                 <div style="display:flex;gap:5px;flex-wrap:wrap">
-                  <div class="ptag" style="background:var(--ml);color:var(--md);border-color:var(--mint)" onclick="togglePtag(this)">Proteína ok</div>
-                  <div class="ptag" style="background:var(--ml);color:var(--md);border-color:var(--mint)" onclick="togglePtag(this)">Vegetais presentes</div>
-                  <div class="ptag" style="background:var(--oral);color:var(--ora);border-color:var(--ora)" onclick="togglePtag(this)">Porção grande</div>
-                  <div class="ptag" style="background:var(--n50);color:var(--n500);border-color:var(--n200)" onclick="togglePtag(this)">Falta proteína</div>
-                  <div class="ptag" style="background:var(--n50);color:var(--n500);border-color:var(--n200)" onclick="togglePtag(this)">Prato colorido</div>
+                  <div class="ptag" style="background:var(--ml);color:var(--md);border-color:var(--mint)" onclick="toggleTag(this)">Proteína ok</div>
+                  <div class="ptag" style="background:var(--ml);color:var(--md);border-color:var(--mint)" onclick="toggleTag(this)">Vegetais presentes</div>
+                  <div class="ptag" style="background:var(--oral);color:var(--ora);border-color:var(--ora)" onclick="toggleTag(this)">Porção grande</div>
+                  <div class="ptag" style="background:var(--n50);color:var(--n500);border-color:var(--n200)" onclick="toggleTag(this)">Falta proteína</div>
                 </div>
-                <textarea class="ntarea" id="foto-fb" style="min-height:58px" placeholder="Feedback para a paciente...">Prato muito bem montado! Proteína + vegetais na proporção certa. Continue assim!</textarea>
+                <textarea class="ntarea" id="foto-fb" style="min-height:55px" placeholder="Feedback para o paciente..."></textarea>
                 <button class="savebtn full" onclick="sendFeedback()">Enviar via WhatsApp</button>
               </div>
             </div>
             <div class="panel">
-              <div class="ph"><div class="ph-title">Notas · <span id="nota-pat">Ana Beatriz</span></div><button class="savebtn" onclick="toast('Nota salva!')">Salvar</button></div>
+              <div class="ph"><div class="ph-t">Notas clínicas</div><button class="savebtn" onclick="toast('Nota salva!')">Salvar</button></div>
               <div style="padding:10px 14px;display:flex;flex-direction:column;gap:8px">
-                <div><div class="flabel">Observações</div><textarea class="ntarea" style="min-height:60px">Glicemia em queda. Manter protocolo MEV. Reavaliar em 30 dias.</textarea></div>
+                <div><div class="flabel">Observações</div><textarea class="ntarea" style="min-height:60px" placeholder="Observações da consulta..."></textarea></div>
                 <div class="mrow">
-                  <div><div class="flabel">Próxima consulta</div><input class="finput" type="date" value="2026-06-06"></div>
-                  <div><div class="flabel">Fase</div><select class="fselect"><option>Fase Crescimento</option><option>Fase Raízes</option><option>Fase Consolidação</option><option>Fase Expansão</option></select></div>
+                  <div><div class="flabel">Próxima consulta</div><input class="finput" type="date"></div>
+                  <div><div class="flabel">Fase</div><select class="fsel"><option>Fase Raízes</option><option>Fase Crescimento</option><option>Fase Consolidação</option><option>Fase Expansão</option></select></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Chat equipe -->
-        <div class="panel" style="max-height:200px">
-          <div class="ph"><div class="ph-title">Chat com a equipe</div></div>
-          <div class="pb" id="chat-body">
-            <div class="chat-msg"><div class="chat-hdr"><div class="chat-av" style="background:linear-gradient(135deg,#7b5ea7,#5a3e8a)">CS</div><div class="chat-from">Carlos Silva · Ed. Físico</div><div class="chat-time">09:42</div></div><div class="chat-txt">Ajustei o treino do Roberto. HIIT substituído por força com maior volume.</div></div>
-            <div class="chat-msg"><div class="chat-hdr"><div class="chat-av" style="background:linear-gradient(135deg,#2dccb4,#1aab95)">JC</div><div class="chat-from">Você · Nutricionista</div><div class="chat-time">09:15</div></div><div class="chat-txt">Roberto com baixa aderência alimentar. Pode ajustar o treino?</div></div>
+        <!-- Chat -->
+        <div class="panel">
+          <div class="ph"><div class="ph-t">Chat com a equipe</div></div>
+          <div class="pb" id="chat-body" style="max-height:160px">
+            <div class="chat-msg"><div class="chat-hdr"><div class="chat-av" style="background:linear-gradient(135deg,#7b5ea7,#5a3e8a)">CS</div><div class="chat-from">Carlos Silva · Ed. Físico</div><div class="chat-time">09:42</div></div><div class="chat-txt">Olá equipe! Disponível para iniciar os atendimentos.</div></div>
           </div>
-          <div class="chat-inp-row"><input class="chat-inp" id="chat-inp" placeholder="Mensagem para a equipe..."><button class="chat-send" onclick="sendChat()">Enviar</button></div>
+          <div class="chat-ir"><input class="chat-inp" id="chat-inp" placeholder="Mensagem para a equipe..."><button class="chat-snd" onclick="sendChat()">Enviar</button></div>
         </div>
       </div>
 
-      <!-- ════ VIEW EDUCADOR FÍSICO ════ -->
-      <div class="view" id="v-edfi" style="display:none">
+      <!-- ════ ED. FÍSICO ════ -->
+      <div class="view" id="v-edfi">
         <div class="stats c4">
-          <div class="sc"><div class="sc-lbl">Pacientes ativos</div><div class="sc-val">18</div><div class="sc-sub">Acompanhamento ativo</div></div>
-          <div class="sc"><div class="sc-lbl">Aderência atividade</div><div class="sc-val" style="color:var(--md)">68%</div><div class="sc-sub up">+3% esta semana</div></div>
-          <div class="sc"><div class="sc-lbl">Sem atividade hoje</div><div class="sc-val" style="color:var(--red)">5</div><div class="sc-sub dn">Enviar lembrete</div></div>
-          <div class="sc"><div class="sc-lbl">Min. ativos/dia (média)</div><div class="sc-val" style="color:var(--ora)">145</div><div class="sc-sub">Por paciente</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes ativos</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/></svg></div></div><div class="sc-val">0</div><div class="sc-sub">Acompanhamento ativo</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Aderência atividade</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><polyline points="2,13 6,8 10,11 14,5 17,8"/></svg></div></div><div class="sc-val" style="color:var(--md)">—</div><div class="sc-sub">Sem dados ainda</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Sem atividade hoje</div><div class="sc-ico" style="background:var(--redl)"><svg style="stroke:var(--red)" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l3 2"/></svg></div></div><div class="sc-val" style="color:var(--red)">0</div><div class="sc-sub">Nenhum alerta</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Min. ativos/dia</div><div class="sc-ico" style="background:var(--oral)"><svg style="stroke:var(--ora)" viewBox="0 0 18 18"><polyline points="2,13 6,8 10,11 14,5 17,8"/></svg></div></div><div class="sc-val" style="color:var(--ora)">—</div><div class="sc-sub">Média por paciente</div></div>
         </div>
         <div class="g2">
           <div class="panel">
-            <div class="ph"><div><div class="ph-title">Hábitos de atividade · <span id="edfi-pat">Ana Beatriz</span></div><div class="ph-sub">Edite e salve</div></div><button class="savebtn" onclick="toast('Hábitos salvos!')">Salvar</button></div>
+            <div class="ph"><div><div class="ph-t">Hábitos de atividade</div><div class="ph-s">Edite e salve</div></div><button class="savebtn" onclick="toast('Hábitos salvos!')">Salvar</button></div>
             <div class="pb" style="padding:12px 14px;display:flex;flex-direction:column;gap:8px">
               <div id="habits-list">
-                <div style="display:flex;align-items:center;gap:9px;padding:9px;background:var(--n50);border-radius:9px;margin-bottom:7px">
-                  <div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--n800)">Caminhada zona 2</div><div style="font-size:10px;color:var(--n400)">30 min</div></div>
-                  <input class="finput" style="width:70px" value="5x/sem">
-                  <div style="cursor:pointer;color:var(--n300);font-size:13px;transition:color .1s" onmouseover="this.style.color='#e8453c'" onmouseout="this.style.color='var(--n300)'" onclick="this.closest('div[style]').remove()">✕</div>
-                </div>
-                <div style="display:flex;align-items:center;gap:9px;padding:9px;background:var(--n50);border-radius:9px;margin-bottom:7px">
-                  <div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--n800)">Treino de força</div><div style="font-size:10px;color:var(--n400)">Casa · sem equipamento</div></div>
-                  <input class="finput" style="width:70px" value="3x/sem">
-                  <div style="cursor:pointer;color:var(--n300);font-size:13px;transition:color .1s" onmouseover="this.style.color='#e8453c'" onmouseout="this.style.color='var(--n300)'" onclick="this.closest('div[style]').remove()">✕</div>
-                </div>
-                <div style="display:flex;align-items:center;gap:9px;padding:9px;background:var(--n50);border-radius:9px;margin-bottom:7px">
-                  <div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--n800)">Alongamento matinal</div><div style="font-size:10px;color:var(--n400)">10 min ao acordar</div></div>
-                  <input class="finput" style="width:70px" value="Diário">
-                  <div style="cursor:pointer;color:var(--n300);font-size:13px;transition:color .1s" onmouseover="this.style.color='#e8453c'" onmouseout="this.style.color='var(--n300)'" onclick="this.closest('div[style]').remove()">✕</div>
-                </div>
+                <div style="display:flex;align-items:center;gap:9px;padding:9px;background:var(--n50);border-radius:9px;margin-bottom:7px"><div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--n800)">Caminhada zona 2</div><div style="font-size:10px;color:var(--n400)">30 min</div></div><input class="finput" style="width:70px" value="5x/sem"><button onclick="this.closest('div').remove()" style="background:none;border:none;color:var(--n300);cursor:pointer;font-size:13px;padding:0 4px">✕</button></div>
+                <div style="display:flex;align-items:center;gap:9px;padding:9px;background:var(--n50);border-radius:9px;margin-bottom:7px"><div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--n800)">Treino de força</div><div style="font-size:10px;color:var(--n400)">Casa · sem equipamento</div></div><input class="finput" style="width:70px" value="3x/sem"><button onclick="this.closest('div').remove()" style="background:none;border:none;color:var(--n300);cursor:pointer;font-size:13px;padding:0 4px">✕</button></div>
+                <div style="display:flex;align-items:center;gap:9px;padding:9px;background:var(--n50);border-radius:9px;margin-bottom:7px"><div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--n800)">Alongamento matinal</div><div style="font-size:10px;color:var(--n400)">10 min ao acordar</div></div><input class="finput" style="width:70px" value="Diário"><button onclick="this.closest('div').remove()" style="background:none;border:none;color:var(--n300);cursor:pointer;font-size:13px;padding:0 4px">✕</button></div>
               </div>
-              <button class="savebtn" onclick="addHabit()" style="background:var(--n50);color:var(--md);box-shadow:none;border:1.5px dashed var(--mint)">+ Adicionar hábito</button>
+              <button class="savebtn full" style="background:var(--n50);color:var(--md);box-shadow:none;border:1.5px dashed var(--mint)" onclick="addHabit()">+ Adicionar hábito</button>
             </div>
           </div>
           <div class="panel">
-            <div class="ph"><div class="ph-title">Pacientes</div></div>
+            <div class="ph"><div class="ph-t">Pacientes</div><button class="ph-a" onclick="openNewPatient()">+ Novo</button></div>
             <div class="pb">
-              <div class="pr sel"><div class="pr-ava" style="background:linear-gradient(135deg,#e5632a,#c94e1a)">AB</div><div style="flex:1;min-width:0"><div class="pr-nm">Ana Beatriz Silva</div><div class="pr-mt">Mês 4 · 68% aderência ativ.</div></div><div class="pr-b ok">Ativo</div></div>
-              <div class="pr"><div class="pr-ava" style="background:linear-gradient(135deg,#2563eb,#1740a8)">MF</div><div style="flex:1;min-width:0"><div class="pr-nm">Marcos Ferreira</div><div class="pr-mt">Mês 2 · 55% aderência ativ.</div></div><div class="pr-b w">Alerta</div></div>
-              <div class="pr"><div class="pr-ava" style="background:linear-gradient(135deg,#e0a800,#b88200)">RS</div><div style="flex:1;min-width:0"><div class="pr-nm">Roberto Santos</div><div class="pr-mt">Mês 1 · 32% aderência ativ.</div></div><div class="pr-b a">Crítico</div></div>
+              <div style="padding:28px 16px;text-align:center;color:var(--n400)">
+                <svg style="width:28px;height:28px;stroke:var(--n300);fill:none;stroke-width:1.5;stroke-linecap:round;display:block;margin:0 auto 8px" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg>
+                <div style="font-size:12px">Nenhum paciente cadastrado</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ════ VIEW PSICÓLOGO ════ -->
-      <div class="view" id="v-psico" style="display:none">
+      <!-- ════ PSICÓLOGO ════ -->
+      <div class="view" id="v-psico">
         <div class="stats c4">
-          <div class="sc"><div class="sc-lbl">Pacientes acompanhados</div><div class="sc-val">14</div><div class="sc-sub">Suporte ativo</div></div>
-          <div class="sc"><div class="sc-lbl">Sessões este mês</div><div class="sc-val">28</div><div class="sc-sub up">+4 vs anterior</div></div>
-          <div class="sc"><div class="sc-lbl">DASS-21 médio</div><div class="sc-val" style="color:var(--ora)">14</div><div class="sc-sub warn">Estresse moderado</div></div>
-          <div class="sc"><div class="sc-lbl">Alertas emocionais</div><div class="sc-val" style="color:var(--red)">3</div><div class="sc-sub dn">Ação necessária</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes acompanhados</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/></svg></div></div><div class="sc-val">0</div><div class="sc-sub">Suporte ativo</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Sessões este mês</div><div class="sc-ico" style="background:var(--blul)"><svg style="stroke:var(--blu)" viewBox="0 0 18 18"><rect x="2" y="3" width="14" height="13" rx="2"/><line x1="2" y1="8" x2="16" y2="8"/></svg></div></div><div class="sc-val">0</div><div class="sc-sub">Sem sessões ainda</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">DASS-21 médio</div><div class="sc-ico" style="background:var(--oral)"><svg style="stroke:var(--ora)" viewBox="0 0 18 18"><polyline points="2,13 6,8 10,11 14,5 17,8"/></svg></div></div><div class="sc-val" style="color:var(--ora)">—</div><div class="sc-sub">Sem dados ainda</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Alertas emocionais</div><div class="sc-ico" style="background:var(--redl)"><svg style="stroke:var(--red)" viewBox="0 0 18 18"><path d="M9 2L1 16h16L9 2z"/><line x1="9" y1="9" x2="9" y2="12"/></svg></div></div><div class="sc-val" style="color:var(--red)">0</div><div class="sc-sub">Nenhum alerta</div></div>
         </div>
         <div class="g2">
           <div class="panel">
-            <div class="ph"><div><div class="ph-title">Notas de sessão · <span id="psico-pat">Ana Beatriz</span></div></div><button class="savebtn" onclick="toast('Nota salva!')">Salvar</button></div>
+            <div class="ph"><div><div class="ph-t">Notas de sessão</div></div><button class="savebtn" onclick="toast('Nota salva!')">Salvar</button></div>
             <div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px">
-              <div><div class="flabel">Notas da sessão</div><textarea class="ntarea" style="min-height:80px">Identificação de gatilhos de compulsão. Técnica de pausa entre impulso e ação. Progresso satisfatório.</textarea></div>
+              <div><div class="flabel">Notas da sessão</div><textarea class="ntarea" style="min-height:80px" placeholder="Anotações da sessão..."></textarea></div>
               <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
-                <div><div class="flabel">DASS-21</div><input class="finput" value="14"></div>
-                <div><div class="flabel">PHQ-9</div><input class="finput" value="8"></div>
-                <div><div class="flabel">PSS-10</div><input class="finput" value="18"></div>
+                <div><div class="flabel">DASS-21</div><input class="finput" placeholder="—"></div>
+                <div><div class="flabel">PHQ-9</div><input class="finput" placeholder="—"></div>
+                <div><div class="flabel">PSS-10</div><input class="finput" placeholder="—"></div>
               </div>
-              <div><div class="flabel">Próxima sessão</div><input class="finput" type="date" value="2026-05-13"></div>
+              <div><div class="flabel">Próxima sessão</div><input class="finput" type="date"></div>
             </div>
           </div>
           <div class="panel">
-            <div class="ph"><div class="ph-title">Pacientes em acompanhamento</div></div>
+            <div class="ph"><div class="ph-t">Pacientes em acompanhamento</div><button class="ph-a" onclick="openNewPatient()">+ Novo</button></div>
             <div class="pb">
-              <div class="pr sel"><div class="pr-ava" style="background:linear-gradient(135deg,#e5632a,#c94e1a)">AB</div><div style="flex:1;min-width:0"><div class="pr-nm">Ana Beatriz Silva</div><div class="pr-mt">PHQ-9: 8 · Moderado</div></div><div class="pr-b w">Moderado</div></div>
-              <div class="pr"><div class="pr-ava" style="background:linear-gradient(135deg,#e0a800,#b88200)">RS</div><div style="flex:1;min-width:0"><div class="pr-nm">Roberto Santos</div><div class="pr-mt">PHQ-9: 16 · Alto</div></div><div class="pr-b a">Urgente</div></div>
-              <div class="pr"><div class="pr-ava" style="background:linear-gradient(135deg,#7b5ea7,#5a3e8a)">FL</div><div style="flex:1;min-width:0"><div class="pr-nm">Fernanda Lima</div><div class="pr-mt">PHQ-9: 4 · Leve</div></div><div class="pr-b ok">Bem</div></div>
+              <div style="padding:28px 16px;text-align:center;color:var(--n400)">
+                <svg style="width:28px;height:28px;stroke:var(--n300);fill:none;stroke-width:1.5;stroke-linecap:round;display:block;margin:0 auto 8px" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg>
+                <div style="font-size:12px">Nenhum paciente cadastrado</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ════ VIEW MÉDICO ════ -->
-      <div class="view" id="v-medico" style="display:none">
-        <div class="alert-box"><svg viewBox="0 0 20 20"><path d="M10 2L2 18h16L10 2z"/><line x1="10" y1="10" x2="10" y2="13"/><line x1="10" y1="16" x2="10.01" y2="16"/></svg>3 pacientes com glicemia elevada. Ana Beatriz (113 mg/dL) e Roberto Santos (131 mg/dL) requerem atenção.</div>
+      <!-- ════ MÉDICO ════ -->
+      <div class="view" id="v-medico">
+        <div class="alert-box"><svg viewBox="0 0 20 20"><path d="M10 2L2 18h16L10 2z"/><line x1="10" y1="10" x2="10" y2="13"/></svg>Nenhum exame cadastrado ainda. Cadastre pacientes e insira os primeiros exames.</div>
         <div class="stats c4">
-          <div class="sc"><div class="sc-lbl">Pacientes monitorados</div><div class="sc-val">18</div><div class="sc-sub">Todos com exames</div></div>
-          <div class="sc"><div class="sc-lbl">Exames em alerta</div><div class="sc-val" style="color:var(--red)">7</div><div class="sc-sub dn">Revisão necessária</div></div>
-          <div class="sc"><div class="sc-lbl">Risco cardio elevado</div><div class="sc-val" style="color:var(--ora)">4</div><div class="sc-sub warn">Acompanhar</div></div>
-          <div class="sc"><div class="sc-lbl">Nota saúde média</div><div class="sc-val" style="color:var(--md)">71</div><div class="sc-sub up">+3 vs anterior</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes monitorados</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/></svg></div></div><div class="sc-val">0</div><div class="sc-sub">Com exames</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Exames em alerta</div><div class="sc-ico" style="background:var(--redl)"><svg style="stroke:var(--red)" viewBox="0 0 18 18"><path d="M9 2L1 16h16L9 2z"/><line x1="9" y1="9" x2="9" y2="12"/></svg></div></div><div class="sc-val" style="color:var(--red)">0</div><div class="sc-sub">Sem alertas</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Risco cardio elevado</div><div class="sc-ico" style="background:var(--oral)"><svg style="stroke:var(--ora)" viewBox="0 0 18 18"><polyline points="2,13 6,8 10,11 14,5 17,8"/></svg></div></div><div class="sc-val" style="color:var(--ora)">0</div><div class="sc-sub">Sem dados</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Nota saúde média</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><polyline points="2,13 6,8 10,11 14,5 17,8"/></svg></div></div><div class="sc-val" style="color:var(--md)">—</div><div class="sc-sub">Sem dados</div></div>
         </div>
         <div class="g2">
           <div class="panel">
-            <div class="ph"><div><div class="ph-title">Exames · <span id="medico-pat">Ana Beatriz Silva</span></div></div><button class="savebtn" onclick="toast('Exames salvos!')">Salvar</button></div>
+            <div class="ph"><div><div class="ph-t">Exames laboratoriais</div></div><button class="savebtn" onclick="toast('Exames salvos!')">Salvar</button></div>
             <div class="pb">
               <div class="ex-sec">Metabólicos</div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Glicemia em jejum</div><div class="ex-ref">mg/dL · pré-diabetes acima de 100</div></div><input class="ex-in r" value="113"></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Vitamina D (25-OH)</div><div class="ex-ref">ng/mL · ideal acima de 40</div></div><input class="ex-in o" value="23"></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">TSH · Tireoide</div><div class="ex-ref">mUI/L · ref: 0.4–4.0</div></div><input class="ex-in g" value="1.36"></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Vitamina B12</div><div class="ex-ref">pg/mL · ideal acima de 300</div></div><input class="ex-in g" value="380"></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">HbA1c</div><div class="ex-ref">% · pré-diabetes acima de 5.7</div></div><input class="ex-in o" value="5.9"></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Glicemia em jejum</div><div class="ex-rf">mg/dL · pré-diabetes acima de 100</div></div><input class="ex-in n" placeholder="—"></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Vitamina D (25-OH)</div><div class="ex-rf">ng/mL · ideal acima de 40</div></div><input class="ex-in n" placeholder="—"></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">TSH · Tireoide</div><div class="ex-rf">mUI/L · ref: 0.4–4.0</div></div><input class="ex-in n" placeholder="—"></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">HbA1c</div><div class="ex-rf">% · pré-diabetes acima de 5.7</div></div><input class="ex-in n" placeholder="—"></div>
               <div class="ex-sec">Cardiovascular</div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Pressão arterial</div><div class="ex-ref">mmHg · ideal abaixo de 130/80</div></div><input class="ex-in o" value="141/102" style="width:80px"></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">HDL (colesterol bom)</div><div class="ex-ref">mg/dL · quanto maior melhor</div></div><input class="ex-in r" value="38"></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">LDL</div><div class="ex-ref">mg/dL · ideal abaixo de 100</div></div><input class="ex-in g" value="92"></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Triglicerídeos</div><div class="ex-ref">mg/dL · ideal abaixo de 150</div></div><input class="ex-in g" value="120"></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Pressão arterial</div><div class="ex-rf">mmHg · ideal abaixo de 130/80</div></div><input class="ex-in n" placeholder="—" style="width:80px"></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">HDL (colesterol bom)</div><div class="ex-rf">mg/dL</div></div><input class="ex-in n" placeholder="—"></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">LDL</div><div class="ex-rf">mg/dL · ideal abaixo de 100</div></div><input class="ex-in n" placeholder="—"></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Triglicerídeos</div><div class="ex-rf">mg/dL · ideal abaixo de 150</div></div><input class="ex-in n" placeholder="—"></div>
               <div class="ex-sec">Fígado e força</div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">TGO / AST</div><div class="ex-ref">U/L · ideal abaixo de 40</div></div><input class="ex-in g" value="28"></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">TGP / ALT</div><div class="ex-ref">U/L · ideal abaixo de 41</div></div><input class="ex-in g" value="24"></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Dinamometria</div><div class="ex-ref">kgf · preditor longevidade</div></div><input class="ex-in g" value="30.5"></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">TGO / AST</div><div class="ex-rf">U/L · ideal abaixo de 40</div></div><input class="ex-in n" placeholder="—"></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">TGP / ALT</div><div class="ex-rf">U/L · ideal abaixo de 41</div></div><input class="ex-in n" placeholder="—"></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Dinamometria</div><div class="ex-rf">kgf</div></div><input class="ex-in n" placeholder="—"></div>
             </div>
           </div>
           <div style="display:flex;flex-direction:column;gap:12px">
             <div style="display:flex;gap:10px">
-              <div class="risk-c"><div style="font-size:9px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Risco Cardiovascular · 10 anos</div><div style="font-size:22px;font-weight:800;color:var(--n800);margin-bottom:7px">5.3%</div><div class="rbar"><div class="rbar-n" style="left:18%"></div></div><div style="font-size:9px;color:var(--n400);margin-top:3px">Ideal abaixo de 1%</div></div>
-              <div class="risk-c"><div style="font-size:9px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Risco Diabetes · 5 anos</div><div style="font-size:22px;font-weight:800;color:var(--red);margin-bottom:7px">32%</div><div class="rbar"><div class="rbar-n" style="left:82%"></div></div><div style="font-size:9px;color:var(--n400);margin-top:3px">Alto risco</div></div>
+              <div class="risk-c"><div style="font-size:9px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Risco Cardiovascular · 10 anos</div><div style="font-size:22px;font-weight:800;color:var(--n400);margin-bottom:7px">—</div><div class="rbar"><div class="rbar-n" style="left:0%"></div></div><div style="font-size:9px;color:var(--n400);margin-top:3px">Insira os exames</div></div>
+              <div class="risk-c"><div style="font-size:9px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Risco Diabetes · 5 anos</div><div style="font-size:22px;font-weight:800;color:var(--n400);margin-bottom:7px">—</div><div class="rbar"><div class="rbar-n" style="left:0%"></div></div><div style="font-size:9px;color:var(--n400);margin-top:3px">Insira os exames</div></div>
             </div>
             <div class="panel" style="flex:1">
-              <div class="ph"><div class="ph-title">Notas clínicas</div><button class="savebtn" onclick="toast('Notas salvas!')">Salvar</button></div>
+              <div class="ph"><div class="ph-t">Notas clínicas</div><button class="savebtn" onclick="toast('Notas salvas!')">Salvar</button></div>
               <div style="padding:12px 14px;display:flex;flex-direction:column;gap:9px">
-                <div><div class="flabel">Protocolo pré-diabetes</div><textarea class="ntarea">Glicemia 113 mg/dL. Protocolo MEV intensivo. Reavaliar em 90 dias. Evitar medicamentos por ora.</textarea></div>
-                <div><div class="flabel">Hipertensão arterial</div><textarea class="ntarea">PA 141/102. Redução de sódio e estresse. Se não melhorar em 60 dias, considerar medicação.</textarea></div>
+                <div><div class="flabel">Protocolo atual</div><textarea class="ntarea">Aguardando primeiro paciente e exames.</textarea></div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ════ VIEW WHATSAPP ════ -->
-      <div class="view" id="v-whats" style="display:none">
+      <!-- ════ WHATSAPP ════ -->
+      <div class="view" id="v-whats">
         <div class="stats c4">
-          <div class="sc"><div class="sc-lbl">Msgs enviadas hoje</div><div class="sc-val" style="color:#25d366">34</div><div class="sc-sub up">Automáticas + manuais</div></div>
-          <div class="sc"><div class="sc-lbl">Fotos recebidas</div><div class="sc-val" style="color:var(--ora)">7</div><div class="sc-sub warn">4 aguardando feedback</div></div>
-          <div class="sc"><div class="sc-lbl">Notificações agendadas</div><div class="sc-val" style="color:var(--blu)">12</div><div class="sc-sub">Para esta tarde</div></div>
-          <div class="sc"><div class="sc-lbl">Taxa de resposta</div><div class="sc-val" style="color:var(--md)">91%</div><div class="sc-sub up">Pacientes ativos</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Msgs enviadas hoje</div><div class="sc-ico" style="background:#e8fdf4"><svg style="stroke:#25d366;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 18 18"><path d="M9 1C4.6 1 1 4.6 1 9c0 1.4.4 2.8 1 3.9L1 17l4.1-1.1C6.2 16.6 7.6 17 9 17c4.4 0 8-3.6 8-8S13.4 1 9 1z"/></svg></div></div><div class="sc-val" style="color:#25d366">0</div><div class="sc-sub up">Nenhuma ainda</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Fotos recebidas</div><div class="sc-ico" style="background:var(--oral)"><svg style="stroke:var(--ora);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 18 18"><rect x="2" y="4" width="14" height="12" rx="2"/><circle cx="9" cy="10" r="2.5"/></svg></div></div><div class="sc-val" style="color:var(--ora)">0</div><div class="sc-sub">Aguardando envios</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Notificações agendadas</div><div class="sc-ico" style="background:var(--blul)"><svg style="stroke:var(--blu);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 18 18"><rect x="2" y="3" width="14" height="13" rx="2"/><line x1="2" y1="8" x2="16" y2="8"/></svg></div></div><div class="sc-val" style="color:var(--blu)">4</div><div class="sc-sub">Automáticas ativas</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Taxa de resposta</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 18 18"><polyline points="2,13 6,8 10,11 14,5 17,8"/></svg></div></div><div class="sc-val" style="color:var(--md)">—</div><div class="sc-sub">Sem dados ainda</div></div>
         </div>
         <div class="g2">
           <div style="display:flex;flex-direction:column;gap:12px">
             <div class="panel">
-              <div class="ph"><div><div class="ph-title">Fotos recebidas</div><div class="ph-sub">Encaminhadas automaticamente</div></div><div class="ph-b r">4 novas</div></div>
-              <div class="pb">
-                <div class="wa-foto"><div class="wa-foto-thumb" style="background:linear-gradient(135deg,#c8f0eb,#7dddd3)"><svg style="width:18px;height:18px;stroke:rgba(255,255,255,.6);fill:none;stroke-width:1.5;stroke-linecap:round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div><div style="flex:1;min-width:0"><div class="wa-photo-txt">Ana Beatriz Silva</div><div class="wa-photo-sub">Almoço · hoje 12:35</div></div><div class="wa-st ag">Aguardando</div></div>
-                <div class="wa-foto"><div class="wa-foto-thumb" style="background:linear-gradient(135deg,#fde68a,#f59e0b)"><svg style="width:18px;height:18px;stroke:rgba(255,255,255,.6);fill:none;stroke-width:1.5;stroke-linecap:round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div><div style="flex:1;min-width:0"><div class="wa-photo-txt">Patrícia Alves</div><div class="wa-photo-sub">Café da manhã · hoje 07:58</div></div><div class="wa-st ag">Aguardando</div></div>
-                <div class="wa-foto"><div class="wa-foto-thumb" style="background:linear-gradient(135deg,#c4b5fd,#7c3aed)"><svg style="width:18px;height:18px;stroke:rgba(255,255,255,.6);fill:none;stroke-width:1.5;stroke-linecap:round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div><div style="flex:1;min-width:0"><div class="wa-photo-txt">Carla Mendonça</div><div class="wa-photo-sub">Jantar · ontem 19:45</div></div><div class="wa-st ok">Respondida</div></div>
+              <div class="ph"><div><div class="ph-t">Fotos recebidas via WhatsApp</div><div class="ph-s">Encaminhadas automaticamente para revisão</div></div><div class="ph-b o">0 fotos</div></div>
+              <div style="padding:24px 16px;text-align:center;color:var(--n400)">
+                <svg style="width:28px;height:28px;stroke:var(--n300);fill:none;stroke-width:1.5;stroke-linecap:round;display:block;margin:0 auto 8px" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+                <div style="font-size:12px">Nenhuma foto recebida ainda</div>
               </div>
             </div>
             <div class="panel">
-              <div class="ph"><div><div class="ph-title">Zoom mensal · Disparo</div></div><div class="ph-b g">Agendado</div></div>
+              <div class="ph"><div><div class="ph-t">Zoom mensal · Disparo</div></div><div class="ph-b g">Pronto</div></div>
               <div style="padding:12px 14px;display:flex;flex-direction:column;gap:9px">
                 <div class="mrow">
-                  <div><div class="flabel">Data e hora</div><input class="finput" value="15/05/2026 · 19h00"></div>
-                  <div><div class="flabel">Tema</div><input class="finput" value="Crononutrição"></div>
+                  <div><div class="flabel">Data e hora</div><input class="finput" type="datetime-local"></div>
+                  <div><div class="flabel">Tema</div><input class="finput" placeholder="Ex: Crononutrição"></div>
                 </div>
-                <div><div class="flabel">Link Zoom</div><input class="finput" value="https://zoom.us/j/98765432100"></div>
-                <button class="savebtn full" onclick="toast('Zoom enviado para 18 pacientes via WhatsApp!')" style="background:#25d366;box-shadow:0 2px 8px rgba(37,211,102,.3)">Enviar link para todos via WhatsApp</button>
+                <div><div class="flabel">Link Zoom</div><input class="finput" placeholder="https://zoom.us/j/..."></div>
+                <button class="savebtn full" onclick="toast('Link enviado para todos via WhatsApp!')" style="background:#25d366;box-shadow:0 2px 8px rgba(37,211,102,.3)">Enviar link para todos via WhatsApp</button>
               </div>
             </div>
           </div>
           <div style="display:flex;flex-direction:column;gap:12px">
             <div class="panel">
-              <div class="ph"><div><div class="ph-title">Notificações automáticas</div></div><button class="savebtn" onclick="toast('Notificação criada!')">+ Nova</button></div>
+              <div class="ph"><div><div class="ph-t">Notificações automáticas</div></div><button class="savebtn" onclick="toast('Notificação criada!')">+ Nova</button></div>
               <div class="pb">
-                <div class="wa-notif"><div class="wa-notif-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><polyline points="8,5 8,8 10,9.5"/></svg></div><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600;color:var(--n800);margin-bottom:2px">Lembrete de café da manhã</div><div style="font-size:10px;color:var(--n500)">Todos os dias · 07h00 · 18 pacientes</div></div><div class="sw on" onclick="this.classList.toggle('on');this.classList.toggle('off')"><div class="sw-th"></div></div></div>
-                <div class="wa-notif"><div class="wa-notif-ico" style="background:var(--purl)"><svg style="stroke:var(--pur)" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><polyline points="8,5 8,8 10,9.5"/></svg></div><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600;color:var(--n800);margin-bottom:2px">Lembrete de atividade física</div><div style="font-size:10px;color:var(--n500)">Seg, Qua, Sex · 16h30 · 18 pacientes</div></div><div class="sw on" onclick="this.classList.toggle('on');this.classList.toggle('off')"><div class="sw-th"></div></div></div>
-                <div class="wa-notif"><div class="wa-notif-ico" style="background:var(--blul)"><svg style="stroke:var(--blu)" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><polyline points="8,5 8,8 10,9.5"/></svg></div><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600;color:var(--n800);margin-bottom:2px">Blue light off · sono</div><div style="font-size:10px;color:var(--n500)">Todos os dias · 21h30 · 18 pacientes</div></div><div class="sw on" onclick="this.classList.toggle('on');this.classList.toggle('off')"><div class="sw-th"></div></div></div>
-                <div class="wa-notif"><div class="wa-notif-ico" style="background:var(--yell)"><svg style="stroke:var(--yel)" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><line x1="2" y1="7" x2="14" y2="7"/></svg></div><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600;color:var(--n800);margin-bottom:2px">Confirmação de consulta</div><div style="font-size:10px;color:var(--n500)">24h antes da consulta · automático</div></div><div class="sw on" onclick="this.classList.toggle('on');this.classList.toggle('off')"><div class="sw-th"></div></div></div>
+                <div class="wa-notif"><div class="wa-notif-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><polyline points="8,5 8,8 10,9.5"/></svg></div><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600;color:var(--n800);margin-bottom:2px">Lembrete de café da manhã</div><div style="font-size:10px;color:var(--n500)">Todos os dias · 07h00</div></div><div class="sw on" onclick="this.classList.toggle('on');this.classList.toggle('off')"><div class="sw-th"></div></div></div>
+                <div class="wa-notif"><div class="wa-notif-ico" style="background:var(--purl)"><svg style="stroke:var(--pur)" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><polyline points="8,5 8,8 10,9.5"/></svg></div><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600;color:var(--n800);margin-bottom:2px">Lembrete de atividade física</div><div style="font-size:10px;color:var(--n500)">Seg, Qua, Sex · 16h30</div></div><div class="sw on" onclick="this.classList.toggle('on');this.classList.toggle('off')"><div class="sw-th"></div></div></div>
+                <div class="wa-notif"><div class="wa-notif-ico" style="background:var(--blul)"><svg style="stroke:var(--blu)" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><polyline points="8,5 8,8 10,9.5"/></svg></div><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600;color:var(--n800);margin-bottom:2px">Blue light off · sono</div><div style="font-size:10px;color:var(--n500)">Todos os dias · 21h30</div></div><div class="sw on" onclick="this.classList.toggle('on');this.classList.toggle('off')"><div class="sw-th"></div></div></div>
+                <div class="wa-notif"><div class="wa-notif-ico" style="background:var(--yell)"><svg style="stroke:var(--yel)" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><line x1="2" y1="7" x2="14" y2="7"/></svg></div><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600;color:var(--n800);margin-bottom:2px">Confirmação de consulta</div><div style="font-size:10px;color:var(--n500)">24h antes · automático</div></div><div class="sw on" onclick="this.classList.toggle('on');this.classList.toggle('off')"><div class="sw-th"></div></div></div>
               </div>
             </div>
             <div class="panel">
-              <div class="ph"><div class="ph-title">Grupos Parceiros de Jornada</div><div class="ph-act" onclick="toast('Grupo criado!')">+ Criar grupo</div></div>
-              <div class="pb">
-                <div class="pr"><div style="position:relative;width:38px;height:38px;flex-shrink:0"><div style="width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#e5632a,#c94e1a);position:absolute;top:0;left:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:white">AB</div><div style="width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#2dccb4,#1aab95);position:absolute;bottom:0;right:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:white">CM</div></div><div style="flex:1;min-width:0"><div class="pr-nm">Ana Beatriz + Carla Mendonça</div><div class="pr-mt">22 dias sem falhar · Ativo</div></div><div style="width:8px;height:8px;border-radius:50%;background:#25d366;flex-shrink:0"></div></div>
-                <div class="pr"><div style="position:relative;width:38px;height:38px;flex-shrink:0"><div style="width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#2563eb,#1740a8);position:absolute;top:0;left:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:white">MF</div><div style="width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#e0a800,#b88200);position:absolute;bottom:0;right:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:white">RS</div></div><div style="flex:1;min-width:0"><div class="pr-nm">Marcos Ferreira + Roberto Santos</div><div class="pr-mt">5 dias sem falhar · Alerta</div></div><div style="width:8px;height:8px;border-radius:50%;background:var(--ora);flex-shrink:0"></div></div>
+              <div class="ph"><div class="ph-t">Grupos Parceiros de Jornada</div><button class="ph-a" onclick="toast('Grupo criado!')">+ Criar grupo</button></div>
+              <div style="padding:24px 16px;text-align:center;color:var(--n400)">
+                <div style="font-size:12px">Nenhum grupo criado ainda.<br>Cadastre pacientes primeiro.</div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ════ VIEW RECOMPENSAS ════ -->
-      <div class="view" id="v-rewards" style="display:none">
+      <!-- ════ RECOMPENSAS ════ -->
+      <div class="view" id="v-rewards">
         <div class="stats c4">
-          <div class="sc"><div class="sc-lbl">Recompensas ativas</div><div class="sc-val" style="color:var(--yel)">5</div><div class="sc-sub">Tipos configurados</div></div>
-          <div class="sc"><div class="sc-lbl">Elegíveis agora</div><div class="sc-val" style="color:var(--ora)">3</div><div class="sc-sub warn">Pacientes aguardando</div></div>
-          <div class="sc"><div class="sc-lbl">Resgates este mês</div><div class="sc-val" style="color:var(--md)">5</div><div class="sc-sub up">+2 vs anterior</div></div>
-          <div class="sc"><div class="sc-lbl">Pacientes Prata+</div><div class="sc-val" style="color:var(--pur)">4</div><div class="sc-sub">De 18 ativos</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Recompensas ativas</div><div class="sc-ico" style="background:var(--yell)"><svg style="stroke:var(--yel);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 18 18"><path d="M9 2l1.8 5.5H17l-4.8 3.5 1.8 5.5L9 13.1l-5 3.4 1.8-5.5L1 7.5h6.2z"/></svg></div></div><div class="sc-val" style="color:var(--yel)">5</div><div class="sc-sub">Tipos configurados</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Elegíveis agora</div><div class="sc-ico" style="background:var(--oral)"><svg style="stroke:var(--ora);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/></svg></div></div><div class="sc-val" style="color:var(--ora)">0</div><div class="sc-sub">Nenhum ainda</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Resgates este mês</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 18 18"><path d="M7 9l3 3 6-6"/><rect x="1" y="2" width="16" height="14" rx="2"/></svg></div></div><div class="sc-val" style="color:var(--md)">0</div><div class="sc-sub">Sem resgates ainda</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes Prata+</div><div class="sc-ico" style="background:var(--purl)"><svg style="stroke:var(--pur);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/></svg></div></div><div class="sc-val" style="color:var(--pur)">0</div><div class="sc-sub">Sem dados ainda</div></div>
         </div>
         <div class="g2">
           <div style="display:flex;flex-direction:column;gap:12px">
             <div class="panel">
-              <div class="ph"><div><div class="ph-title">Catálogo de Recompensas</div><div class="ph-sub">Defina o que cada nível desbloqueia</div></div><button class="savebtn" onclick="openNewReward()">+ Nova</button></div>
+              <div class="ph"><div><div class="ph-t">Catálogo de Recompensas</div><div class="ph-s">Defina o que cada nível desbloqueia</div></div><button class="savebtn" onclick="openModal('m-reward')">+ Nova</button></div>
               <div class="pb" id="reward-catalog">
-                <div class="rwd-row"><div class="rwd-ico" style="background:linear-gradient(135deg,#cd7f32,#8b4513)"><svg style="stroke:white" viewBox="0 0 18 18"><path d="M9 2l1.8 5.5H17l-4.8 3.5 1.8 5.5L9 13.1l-5 3.4 1.8-5.5L1 7.5h6.2z"/></svg></div><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:7px;margin-bottom:3px"><div class="rwd-title">Consulta de retorno grátis</div><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:linear-gradient(135deg,#cd7f32,#8b4513);color:white">Bronze</span></div><div class="rwd-sub">500 pts · Consulta extra com o nutricionista · 12 resgates</div></div><div class="rwd-actions"><button class="rwd-edit" onclick="toast('Editando recompensa...')">Editar</button><div class="rwd-active">Ativa</div></div></div>
-                <div class="rwd-row"><div class="rwd-ico" style="background:linear-gradient(135deg,#cd7f32,#8b4513)"><svg style="stroke:white" viewBox="0 0 18 18"><rect x="3" y="3" width="12" height="12" rx="2"/><line x1="6" y1="8" x2="12" y2="8"/><line x1="6" y1="11" x2="10" y2="11"/></svg></div><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:7px;margin-bottom:3px"><div class="rwd-title">E-book Guia de Crononutrição</div><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:linear-gradient(135deg,#cd7f32,#8b4513);color:white">Bronze</span></div><div class="rwd-sub">1.500 pts · PDF via WhatsApp · 3 resgates</div></div><div class="rwd-actions"><button class="rwd-edit" onclick="toast('Editando recompensa...')">Editar</button><div class="rwd-active">Ativa</div></div></div>
-                <div class="rwd-row"><div class="rwd-ico" style="background:linear-gradient(135deg,#9e9e9e,#616161)"><svg style="stroke:white" viewBox="0 0 18 18"><path d="M9 2l1.8 5.5H17l-4.8 3.5 1.8 5.5L9 13.1l-5 3.4 1.8-5.5L1 7.5h6.2z"/></svg></div><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:7px;margin-bottom:3px"><div class="rwd-title">Sessão extra com psicólogo(a)</div><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:linear-gradient(135deg,#9e9e9e,#616161);color:white">Prata</span></div><div class="rwd-sub">Nível Prata (2.000 pts) · Sessão individual · 1 resgate</div></div><div class="rwd-actions"><button class="rwd-edit" onclick="toast('Editando recompensa...')">Editar</button><div class="rwd-active">Ativa</div></div></div>
-                <div class="rwd-row"><div class="rwd-ico" style="background:linear-gradient(135deg,#d4a017,#b8860b)"><svg style="stroke:white" viewBox="0 0 18 18"><path d="M9 2l1.8 5.5H17l-4.8 3.5 1.8 5.5L9 13.1l-5 3.4 1.8-5.5L1 7.5h6.2z"/></svg></div><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:7px;margin-bottom:3px"><div class="rwd-title">Desconto 20% na renovação</div><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:linear-gradient(135deg,#d4a017,#b8860b);color:white">Ouro</span></div><div class="rwd-sub">Nível Ouro (6.000 pts) · Cupom desconto · 0 resgates</div></div><div class="rwd-actions"><button class="rwd-edit" onclick="toast('Editando recompensa...')">Editar</button><div class="rwd-active">Ativa</div></div></div>
-                <div class="rwd-row"><div class="rwd-ico" style="background:linear-gradient(135deg,#a78bfa,#6d28d9)"><svg style="stroke:white" viewBox="0 0 18 18"><path d="M9 2l4 5H5z M3 7h12l-3 8H6z"/></svg></div><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:7px;margin-bottom:3px"><div class="rwd-title">Kit Raízes 360 exclusivo</div><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:linear-gradient(135deg,#a78bfa,#6d28d9);color:white">Diamante</span></div><div class="rwd-sub">Nível Diamante (15.000 pts) · Kit físico pelos Correios · 0 resgates</div></div><div class="rwd-actions"><button class="rwd-edit" onclick="toast('Editando recompensa...')">Editar</button><div class="rwd-active">Ativa</div></div></div>
+                <div class="rwd-row"><div class="rwd-ico" style="background:linear-gradient(135deg,#cd7f32,#8b4513)"><svg style="stroke:white" viewBox="0 0 18 18"><path d="M9 2l1.8 5.5H17l-4.8 3.5 1.8 5.5L9 13.1l-5 3.4 1.8-5.5L1 7.5h6.2z"/></svg></div><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:6px;margin-bottom:3px"><div class="rwd-title">Consulta de retorno grátis</div><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:linear-gradient(135deg,#cd7f32,#8b4513);color:white">Bronze · 500pts</span></div><div class="rwd-sub">Consulta extra com o nutricionista</div></div><div class="rwd-acts"><button class="rwd-edit" onclick="toast('Editando...')">Editar</button><div class="rwd-on">Ativa</div></div></div>
+                <div class="rwd-row"><div class="rwd-ico" style="background:linear-gradient(135deg,#cd7f32,#8b4513)"><svg style="stroke:white" viewBox="0 0 18 18"><rect x="3" y="3" width="12" height="12" rx="2"/><line x1="6" y1="8" x2="12" y2="8"/><line x1="6" y1="11" x2="10" y2="11"/></svg></div><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:6px;margin-bottom:3px"><div class="rwd-title">E-book Guia de Crononutrição</div><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:linear-gradient(135deg,#cd7f32,#8b4513);color:white">Bronze · 1.500pts</span></div><div class="rwd-sub">PDF enviado via WhatsApp</div></div><div class="rwd-acts"><button class="rwd-edit" onclick="toast('Editando...')">Editar</button><div class="rwd-on">Ativa</div></div></div>
+                <div class="rwd-row"><div class="rwd-ico" style="background:linear-gradient(135deg,#9e9e9e,#616161)"><svg style="stroke:white" viewBox="0 0 18 18"><path d="M9 2l1.8 5.5H17l-4.8 3.5 1.8 5.5L9 13.1l-5 3.4 1.8-5.5L1 7.5h6.2z"/></svg></div><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:6px;margin-bottom:3px"><div class="rwd-title">Sessão extra com psicólogo(a)</div><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:linear-gradient(135deg,#9e9e9e,#616161);color:white">Nível Prata</span></div><div class="rwd-sub">Sessão individual agendada</div></div><div class="rwd-acts"><button class="rwd-edit" onclick="toast('Editando...')">Editar</button><div class="rwd-on">Ativa</div></div></div>
+                <div class="rwd-row"><div class="rwd-ico" style="background:linear-gradient(135deg,#d4a017,#b8860b)"><svg style="stroke:white" viewBox="0 0 18 18"><path d="M9 2l1.8 5.5H17l-4.8 3.5 1.8 5.5L9 13.1l-5 3.4 1.8-5.5L1 7.5h6.2z"/></svg></div><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:6px;margin-bottom:3px"><div class="rwd-title">Desconto 20% na renovação</div><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:linear-gradient(135deg,#d4a017,#b8860b);color:white">Nível Ouro</span></div><div class="rwd-sub">Cupom de desconto na renovação</div></div><div class="rwd-acts"><button class="rwd-edit" onclick="toast('Editando...')">Editar</button><div class="rwd-on">Ativa</div></div></div>
+                <div class="rwd-row"><div class="rwd-ico" style="background:linear-gradient(135deg,#a78bfa,#6d28d9)"><svg style="stroke:white" viewBox="0 0 18 18"><path d="M9 2l4 5H5z M3 7h12l-3 8H6z"/></svg></div><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:6px;margin-bottom:3px"><div class="rwd-title">Kit Raízes 360 exclusivo</div><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:linear-gradient(135deg,#a78bfa,#6d28d9);color:white">Nível Diamante</span></div><div class="rwd-sub">Kit físico pelos Correios</div></div><div class="rwd-acts"><button class="rwd-edit" onclick="toast('Editando...')">Editar</button><div class="rwd-on">Ativa</div></div></div>
               </div>
             </div>
           </div>
           <div style="display:flex;flex-direction:column;gap:12px">
             <div class="panel">
-v>
-              <div class="pb">
-                <div class="eli-row">
-                  <div class="eli-top"><div class="eli-ava" style="background:linear-gradient(135deg,#e5632a,#c94e1a)">AB</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--n800)">Ana Beatriz Silva</div><div style="font-size:10px;color:var(--n400)">1.840 pts · Bronze · Mês 4</div></div><span style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);background:var(--yell);color:#7a5e00">1.500 pts ✓</span></div>
-                  <div class="eli-reward" style="background:var(--ml)"><div style="font-size:10px;font-weight:700;color:var(--md);margin-bottom:2px">Recompensa desbloqueada</div><div style="font-size:11px;color:var(--n700)">E-book: Guia de Crononutrição</div></div>
-                  <div class="eli-btns"><button class="eli-btn pri" onclick="approveReward(this,'Ana Beatriz')">Liberar via WhatsApp</button><button class="eli-btn ghost" onclick="toast('Adiado.')">Adiar</button></div>
-                </div>
-                <div class="eli-row">
-                  <div class="eli-top"><div class="eli-ava" style="background:linear-gradient(135deg,#7b5ea7,#5a3e8a)">FL</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--n800)">Fernanda Lima</div><div style="font-size:10px;color:var(--n400)">2.340 pts · Prata · Mês 11</div></div><span style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);background:var(--purl);color:var(--pur)">Prata ✓</span></div>
-                  <div class="eli-reward" style="background:var(--purl)"><div style="font-size:10px;font-weight:700;color:var(--pur);margin-bottom:2px">Recompensa desbloqueada</div><div style="font-size:11px;color:var(--n700)">Sessão extra com psicóloga</div></div>
-                  <div class="eli-btns"><button class="eli-btn pri" style="background:var(--pur)" onclick="approveReward(this,'Fernanda')">Agendar sessão</button><button class="eli-btn ghost" onclick="toast('Adiado.')">Adiar</button></div>
-                </div>
-                <div class="eli-row">
-                  <div class="eli-top"><div class="eli-ava" style="background:linear-gradient(135deg,#2dccb4,#1aab95)">CM</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--n800)">Carla Mendonça</div><div style="font-size:10px;color:var(--n400)">2.110 pts · Prata · Mês 7</div></div><span style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);background:var(--yell);color:#7a5e00">500 pts ✓</span></div>
-                  <div class="eli-reward" style="background:var(--ml)"><div style="font-size:10px;font-weight:700;color:var(--md);margin-bottom:2px">Recompensa desbloqueada</div><div style="font-size:11px;color:var(--n700)">Consulta de retorno grátis</div></div>
-                  <div class="eli-btns"><button class="eli-btn pri" onclick="approveReward(this,'Carla')">Liberar via WhatsApp</button><button class="eli-btn ghost" onclick="toast('Adiado.')">Adiar</button></div>
-                </div>
+              <div class="ph"><div><div class="ph-t">Pacientes elegíveis agora</div><div class="ph-s">Atingiram o gatilho e aguardam</div></div><div class="ph-b o">0 pendentes</div></div>
+              <div style="padding:24px 16px;text-align:center;color:var(--n400)">
+                <div style="font-size:12px">Nenhum paciente elegível ainda.<br>Cadastre pacientes para começar.</div>
               </div>
             </div>
             <div class="panel">
-              <div class="ph"><div class="ph-title">Histórico de resgates</div></div>
-              <div class="pb">
-                <div class="hist-row"><div class="hist-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 16 16"><path d="M7 9l3 3 6-6"/><rect x="1" y="2" width="14" height="12" rx="2"/></svg></div><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600;color:var(--n800)">Marcos Ferreira</div><div style="font-size:10px;color:var(--n400)">Consulta grátis · 02/05/2026</div></div><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:var(--ml);color:var(--md)">Entregue</span></div>
-                <div class="hist-row"><div class="hist-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 16 16"><path d="M7 9l3 3 6-6"/><rect x="1" y="2" width="14" height="12" rx="2"/></svg></div><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600;color:var(--n800)">Patrícia Alves</div><div style="font-size:10px;color:var(--n400)">E-book Crononutrição · 28/04/2026</div></div><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:var(--ml);color:var(--md)">Enviado</span></div>
-                <div class="hist-row"><div class="hist-ico" style="background:var(--oral)"><svg style="stroke:var(--ora)" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><polyline points="8,5 8,8 10,9.5"/></svg></div><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600;color:var(--n800)">Roberto Santos</div><div style="font-size:10px;color:var(--n400)">Consulta grátis · 25/04/2026</div></div><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:var(--oral);color:var(--ora)">Agendando</span></div>
+              <div class="ph"><div class="ph-t">Histórico de resgates</div></div>
+              <div style="padding:24px 16px;text-align:center;color:var(--n400)">
+                <div style="font-size:12px">Nenhum resgate realizado ainda.</div>
               </div>
             </div>
           </div>
@@ -695,297 +660,228 @@ v>
   </div><!-- /main -->
 </div><!-- /dash -->
 
-<!-- MODAL CADASTRAR PROFISSIONAL -->
-<div class="moverlay" id="m-professional">
+<!-- MODAL: NOVO PACIENTE -->
+<div class="mov" id="m-patient">
   <div class="modal">
-    <div class="mhdr">
-      <div><div class="mtitle">Cadastrar profissional</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px">O profissional receberá acesso ao painel</div></div>
-      <button class="mclose" onclick="closeModal('m-professional')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button>
-    </div>
-    <div class="mbody">
-      <div class="msec">Dados do profissional</div>
-      <div class="mrow">
-        <div class="mf"><label>Nome completo</label><input id="pp-name" placeholder="Ex: Carlos Silva"></div>
-        <div class="mf"><label>Especialidade</label>
-          <select id="pp-role">
-            <option value="edfi">Educador Físico</option>
-            <option value="psico">Psicólogo(a)</option>
-            <option value="medico">Médico(a) Parceiro(a)</option>
-            <option value="nutri">Nutricionista</option>
-          </select>
-        </div>
-      </div>
-      <div class="mf"><label>Telefone / WhatsApp</label><input id="pp-phone" placeholder="(11) 99999-9999"></div>
-      <div class="msec" style="margin-top:2px">Acesso ao painel</div>
-      <div class="mf"><label>E-mail de acesso</label><input id="pp-email" type="email" placeholder="profissional@email.com"></div>
-      <div class="mf"><label>Senha de acesso</label>
-        <div style="display:flex;gap:6px">
-          <input id="pp-pass" style="flex:1;background:var(--n50);border:1.5px solid var(--n100);border-radius:8px;padding:8px 11px;font-size:12px;font-family:Inter,sans-serif;color:var(--n700);outline:none" placeholder="Gere automaticamente">
-          <button onclick="genProfPass()" style="padding:7px 11px;border-radius:8px;background:var(--n50);border:1.5px solid var(--n200);font-size:11px;font-weight:600;color:var(--n600);cursor:pointer;font-family:Inter,sans-serif;flex-shrink:0">Gerar</button>
-        </div>
-        <div style="font-size:10px;color:var(--n400);margin-top:2px">Senha salva localmente. Anote e repasse ao profissional.</div>
-      </div>
-    </div>
-    <div class="mfooter">
-      <button class="mbtn ghost" onclick="closeModal('m-professional')">Cancelar</button>
-      <button class="mbtn pri" onclick="createProfessional()">Cadastrar profissional</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL NOVO PACIENTE -->
-<div class="moverlay" id="m-patient">
-  <div class="modal">
-    <div class="mhdr"><div><div class="mtitle">Novo paciente</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px">Acesso enviado por e-mail automaticamente</div></div><button class="mclose" onclick="closeModal('m-patient')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button></div>
+    <div class="mhdr"><div><div class="mtitle">Novo paciente</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px">Anote o e-mail e senha para repassar ao paciente</div></div><button class="mclose" onclick="closeModal('m-patient')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button></div>
     <div class="mbody">
       <div class="msec">Dados pessoais</div>
       <div class="mrow"><div class="mf"><label>Nome completo</label><input id="np-nm" placeholder="Ana Beatriz Silva"></div><div class="mf"><label>Sexo biológico</label><select id="np-sx"><option>Feminino</option><option>Masculino</option></select></div></div>
       <div class="mrow"><div class="mf"><label>Data de nascimento</label><input id="np-dt" type="date"></div><div class="mf"><label>Telefone / WhatsApp</label><input id="np-ph" placeholder="(11) 99999-9999"></div></div>
-      <div class="msec" style="margin-top:2px">Acesso ao app</div>
+      <div class="msec">Acesso ao app</div>
       <div class="mf"><label>E-mail de acesso</label><input id="np-em" type="email" placeholder="ana@email.com"></div>
-      <div class="mf"><label>Senha provisória</label><div style="display:flex;gap:6px"><input id="np-pw" style="flex:1;background:var(--n50);border:1.5px solid var(--n100);border-radius:8px;padding:8px 11px;font-size:12px;font-family:'Inter',sans-serif;color:var(--n700);outline:none" placeholder="Gere automaticamente"><button onclick="genPw()" style="padding:7px 11px;border-radius:8px;background:var(--n50);border:1.5px solid var(--n200);font-size:11px;font-weight:600;color:var(--n600);cursor:pointer;font-family:'Inter',sans-serif;flex-shrink:0">Gerar</button></div><div style="font-size:10px;color:var(--n400);margin-top:2px">Paciente trocará a senha no 1º acesso.</div></div>
-      <div class="msec" style="margin-top:2px">Programa</div>
+      <div class="mf"><label>Senha provisória</label><div style="display:flex;gap:6px"><input id="np-pw" style="flex:1;background:var(--n50);border:1.5px solid var(--n100);border-radius:8px;padding:8px 11px;font-size:12px;font-family:Inter,sans-serif;color:var(--n700);outline:none" placeholder="Gere automaticamente"><button onclick="genPw()" style="padding:7px 11px;border-radius:8px;background:var(--n50);border:1.5px solid var(--n200);font-size:11px;font-weight:600;color:var(--n600);cursor:pointer;font-family:Inter,sans-serif;flex-shrink:0">Gerar</button></div><div style="font-size:10px;color:var(--n400);margin-top:2px">⚠️ Anote e repasse ao paciente. Ele trocará no 1º acesso.</div></div>
+      <div class="msec">Programa</div>
       <div class="mrow"><div class="mf"><label>Fase inicial</label><select id="np-ph2"><option>Fase Raízes · Mês 1</option><option>Fase Crescimento · Mês 3</option><option>Fase Consolidação · Mês 7</option></select></div><div class="mf"><label>Início do programa</label><input id="np-st" type="date"></div></div>
       <div class="mf"><label>Observações iniciais</label><textarea id="np-ob" placeholder="Diagnósticos, restrições, objetivos..."></textarea></div>
     </div>
-    <div class="mfooter"><button class="mbtn ghost" onclick="closeModal('m-patient')">Cancelar</button><button class="mbtn pri" onclick="createPatient()">Criar paciente e enviar acesso</button></div>
+    <div class="mfooter"><button class="mbtn ghost" onclick="closeModal('m-patient')">Cancelar</button><button class="mbtn pri" onclick="createPatient()">Criar paciente</button></div>
   </div>
 </div>
 
-<!-- MODAL NOVA RECOMPENSA -->
-<div class="moverlay" id="m-reward">
+<!-- MODAL: NOVO PROFISSIONAL -->
+<div class="mov" id="m-professional">
+  <div class="modal">
+    <div class="mhdr"><div><div class="mtitle">Cadastrar profissional</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px">Anote as credenciais para repassar ao profissional</div></div><button class="mclose" onclick="closeModal('m-professional')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button></div>
+    <div class="mbody">
+      <div class="msec">Dados do profissional</div>
+      <div class="mrow"><div class="mf"><label>Nome completo</label><input id="pp-nm" placeholder="Carlos Silva"></div><div class="mf"><label>Especialidade</label><select id="pp-role"><option value="edfi">Educador Físico</option><option value="psico">Psicólogo(a)</option><option value="medico">Médico(a) Parceiro(a)</option><option value="nutri">Nutricionista</option></select></div></div>
+      <div class="mf"><label>Telefone / WhatsApp</label><input id="pp-ph" placeholder="(11) 99999-9999"></div>
+      <div class="msec">Acesso ao painel</div>
+      <div class="mf"><label>E-mail de acesso</label><input id="pp-em" type="email" placeholder="profissional@email.com"></div>
+      <div class="mf"><label>Senha de acesso</label><div style="display:flex;gap:6px"><input id="pp-pw" style="flex:1;background:var(--n50);border:1.5px solid var(--n100);border-radius:8px;padding:8px 11px;font-size:12px;font-family:Inter,sans-serif;color:var(--n700);outline:none" placeholder="Gere automaticamente"><button onclick="genProfPw()" style="padding:7px 11px;border-radius:8px;background:var(--n50);border:1.5px solid var(--n200);font-size:11px;font-weight:600;color:var(--n600);cursor:pointer;font-family:Inter,sans-serif;flex-shrink:0">Gerar</button></div><div style="font-size:10px;color:var(--n400);margin-top:2px">⚠️ Anote e repasse ao profissional.</div></div>
+    </div>
+    <div class="mfooter"><button class="mbtn ghost" onclick="closeModal('m-professional')">Cancelar</button><button class="mbtn pri" onclick="createProfessional()">Cadastrar profissional</button></div>
+  </div>
+</div>
+
+<!-- MODAL: NOVA RECOMPENSA -->
+<div class="mov" id="m-reward">
   <div class="modal">
     <div class="mhdr"><div class="mtitle">Nova recompensa</div><button class="mclose" onclick="closeModal('m-reward')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button></div>
     <div class="mbody">
       <div class="mrow"><div class="mf"><label>Nome</label><input id="rw-nm" placeholder="Ex: Consulta grátis"></div><div class="mf"><label>Gatilho</label><select id="rw-gt"><option>Bronze · 500 pts</option><option>Bronze · 1.500 pts</option><option>Nível Prata · 2.000 pts</option><option>Nível Ouro · 6.000 pts</option><option>Nível Diamante · 15.000 pts</option></select></div></div>
       <div class="mf"><label>Descrição</label><textarea id="rw-ds" placeholder="O que o paciente recebe..."></textarea></div>
-      <div class="mrow"><div class="mf"><label>Tipo de entrega</label><select id="rw-tp"><option>Automático · WhatsApp</option><option>Manual · agendamento</option><option>Físico · Correios</option><option>Cupom de desconto</option></select></div><div class="mf"><label>Limite</label><input id="rw-lm" value="1 vez"></div></div>
+      <div class="mrow"><div class="mf"><label>Tipo de entrega</label><select id="rw-tp"><option>Automático · WhatsApp</option><option>Manual · agendamento</option><option>Físico · Correios</option><option>Cupom de desconto</option></select></div><div class="mf"><label>Limite por paciente</label><input id="rw-lm" value="1 vez"></div></div>
     </div>
     <div class="mfooter"><button class="mbtn ghost" onclick="closeModal('m-reward')">Cancelar</button><button class="mbtn pri" onclick="saveReward()">Salvar recompensa</button></div>
   </div>
 </div>
 
+<!-- MODAL: AGENDA -->
+<div class="mov" id="m-agenda">
+  <div class="modal">
+    <div class="mhdr"><div class="mtitle">Agenda · Novo agendamento</div><button class="mclose" onclick="closeModal('m-agenda')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button></div>
+    <div class="mbody">
+      <div class="mf"><label>Paciente</label><input id="ag-pat" placeholder="Nome do paciente"></div>
+      <div class="mrow"><div class="mf"><label>Data</label><input type="date" id="ag-dt"></div><div class="mf"><label>Horário</label><input type="time" id="ag-hr" value="10:00"></div></div>
+      <div class="mf"><label>Tipo</label><select id="ag-tp"><option>Consulta nutricional</option><option>Avaliação física</option><option>Sessão psicológica</option><option>Consulta médica</option><option>Zoom em grupo</option></select></div>
+      <div class="mf"><label>Observações</label><textarea id="ag-ob" placeholder="Informações adicionais..."></textarea></div>
+    </div>
+    <div class="mfooter"><button class="mbtn ghost" onclick="closeModal('m-agenda')">Cancelar</button><button class="mbtn pri" onclick="toast('Agendamento criado!');closeModal('m-agenda')">Agendar e notificar</button></div>
+  </div>
+</div>
+
 <script>
 // ════════════════════════════════════════════
-// USUÁRIOS DO SISTEMA
-// Admin fixo + profissionais cadastrados pelo admin
+// ADMIN + USUÁRIOS DINÂMICOS
 // ════════════════════════════════════════════
 const ADMIN = {
-  email:'juan@raizes360.com',
-  pass:'Raizes@2026',
-  name:'Juan Carlos',
-  role:'Administrador · Raízes 360',
-  init:'JC',
-  color:'linear-gradient(135deg,#2dccb4,#1aab95)',
-  view:'nutri',
-  navRole:'nutri',
-  addLbl:'Novo paciente',
-  isAdmin: true,
+  email:'juan@raizes360.com', pass:'Raizes@2026',
+  name:'Juan Carlos', role:'Administrador · Raízes 360',
+  init:'JC', color:'linear-gradient(135deg,#2dccb4,#1aab95)',
+  isAdmin:true
 };
 
-// Profissionais cadastrados dinamicamente (começa vazio)
-let PROFESSIONALS = JSON.parse(localStorage.getItem('r360_professionals') || '[]');
+let PROFESSIONALS = JSON.parse(localStorage.getItem('r360_profs') || '[]');
+let PATIENTS      = JSON.parse(localStorage.getItem('r360_pats')  || '[]');
 
-// Pacientes cadastrados dinamicamente (começa vazio)
-let PATIENTS = JSON.parse(localStorage.getItem('r360_patients') || '[]');
+function save(){ localStorage.setItem('r360_profs',JSON.stringify(PROFESSIONALS)); localStorage.setItem('r360_pats',JSON.stringify(PATIENTS)); }
+function getUsers(){ return [ADMIN,...PROFESSIONALS]; }
 
-function saveData() {
-  localStorage.setItem('r360_professionals', JSON.stringify(PROFESSIONALS));
-  localStorage.setItem('r360_patients', JSON.stringify(PATIENTS));
-}
+let me = null;
 
-// Todos os usuários = admin + profissionais
-function getAllUsers() {
-  return [ADMIN, ...PROFESSIONALS];
-}
-const USERS = getAllUsers(); // compatibilidade
-
-let me=null;
-
-const NAVS={
+// ════════════════════════════════════════════
+// SIDEBAR NAV
+// ════════════════════════════════════════════
+const NAVS = {
   nutri:[
     {sec:'Principal'},
-    {ic:'M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z',lb:'Dashboard',vi:'nutri'},
-    {ic:'M8 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 19v-2a6 6 0 0 1 12 0v2',lb:'Pacientes',fn:'openNewPatient'},
-    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM7 9h6M7 12h4',lb:'Cardápios',vi:'nutri'},
-    {ic:'M2 3h16v11H2z',lb:'Fotos dos pratos',vi:'whats',bd:'4'},
-    {ic:'M4 4h16v12H4zM4 9l5 3 7-5',lb:'Mensagens',fn:'openChat',bd:'7',bdg:true},
+    {ic:'M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z', lb:'Dashboard',         vi:'nutri'},
+    {ic:'M8 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 17v-2a6 6 0 0 1 12 0v2', lb:'Pacientes', fn:'openNewPatient'},
+    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM7 9h6M7 12h4',   lb:'Cardápios', vi:'nutri'},
+    {ic:'M2 3h16v11H2z',                                                  lb:'Fotos dos pratos', vi:'whats', bd:'0'},
+    {ic:'M4 4h16v12H4zM4 9l5 3 7-5',                                     lb:'Mensagens',   fn:'openChat', bd:'0', bdg:true},
     {sec:'Recompensas'},
-    {ic:'M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z',lb:'Recompensas',vi:'rewards'},
+    {ic:'M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z',             lb:'Recompensas', vi:'rewards'},
     {sec:'WhatsApp'},
-    {ic:'M10 1C5 1 1 5 1 10c0 1.6.4 3.1 1.2 4.4L1 19l4.6-1.2C7 18.6 8.5 19 10 19c5 0 9-4 9-9s-4-9-9-9z',lb:'WhatsApp Hub',vi:'whats'},
+    {ic:'M10 1C5 1 1 5 1 10c0 1.6.4 3.1 1.2 4.4L1 19l4.6-1.2C7 18.6 8.5 19 10 19c5 0 9-4 9-9s-4-9-9-9z', lb:'WhatsApp Hub', vi:'whats'},
     {sec:'Equipe'},
-    {ic:'M3 3h6v6H3zM11 3h6v6h-6z',lb:'Ed. Físico',vi:'edfi'},
-    {ic:'M3 11h6v6H3zM11 11h6v6h-6z',lb:'Psicólogo(a)',vi:'psico'},
-    {ic:'M2 2h16v16H2z',lb:'Médico(a)',vi:'medico'},
+    {ic:'M3 3h6v6H3zM11 3h6v6h-6z', lb:'Ed. Físico',    vi:'edfi'},
+    {ic:'M3 11h6v6H3zM11 11h6v6h-6z',lb:'Psicólogo(a)', vi:'psico'},
+    {ic:'M2 2h16v16H2z',             lb:'Médico(a)',     vi:'medico'},
+    {sec:'Cadastros'},
+    {ic:'M8 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 17v-2a6 6 0 0 1 12 0v2', lb:'Novo paciente',       fn:'openNewPatient'},
+    {ic:'M8 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM14 10l2 2 4-4',             lb:'Novo profissional',   fn:'openNewProfessional'},
   ],
   edfi:[
     {sec:'Minha área'},
-    {ic:'M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z',lb:'Dashboard',vi:'edfi'},
-    {ic:'M3 10h3l2-6 4 12 2-6h3',lb:'Hábitos de atividade',vi:'edfi'},
-    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM7 9h6M7 12h4',lb:'Biblioteca de treinos',fn:'openLibrary'},
-    {ic:'M8 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 19v-2a6 6 0 0 1 12 0v2',lb:'Meus pacientes',fn:'openPatients'},
-    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM3 9h14',lb:'Agenda',fn:'openAgenda'},
-    {ic:'M4 4h16v12H4zM4 9l5 3 7-5',lb:'Chat com equipe',fn:'openChat',bd:'3',bdg:true},
+    {ic:'M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z',              lb:'Dashboard',             vi:'edfi'},
+    {ic:'M3 10h3l2-6 4 12 2-6h3',                                      lb:'Hábitos de atividade',  vi:'edfi'},
+    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM7 9h6M7 12h4',  lb:'Biblioteca de treinos', fn:'openModal("m-agenda")'},
+    {ic:'M8 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 17v-2a6 6 0 0 1 12 0v2',lb:'Meus pacientes',        vi:'edfi'},
+    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM3 9h14',        lb:'Agenda',                fn:'openModal("m-agenda")'},
+    {ic:'M4 4h16v12H4zM4 9l5 3 7-5',                                   lb:'Chat com equipe',       fn:'openChat', bd:'0',bdg:true},
     {sec:'Acesso restrito'},
-    {ic:'M10 2C7 6 5 8.5 5 11a5 5 0 0 0 10 0c0-2.5-2-5-5-9z',lb:'Cardápios',lock:true},
-    {ic:'M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z',lb:'Notas psicológicas',lock:true},
-    {ic:'M3 14l7-7 4 4 7-7',lb:'Exames clínicos',lock:true},
+    {ic:'M10 2C7 6 5 8.5 5 11a5 5 0 0 0 10 0c0-2.5-2-5-5-9z',        lb:'Cardápios',       lock:true},
+    {ic:'M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z',           lb:'Notas psicológicas',lock:true},
+    {ic:'M3 14l7-7 4 4 7-7',                                           lb:'Exames clínicos',  lock:true},
   ],
   psico:[
     {sec:'Minha área'},
-    {ic:'M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z',lb:'Dashboard',vi:'psico'},
-    {ic:'M8 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 19v-2a6 6 0 0 1 12 0v2',lb:'Pacientes em acomp.',vi:'psico'},
-    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM3 9h14',lb:'Agenda de sessões',fn:'openAgenda'},
-    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM7 9h6M7 12h4',lb:'Notas clínicas',vi:'psico'},
-    {ic:'M3 10h3l2-6 4 12 2-6h3',lb:'Scores DASS-21/PHQ-9',vi:'psico'},
-    {ic:'M4 4h16v12H4zM4 9l5 3 7-5',lb:'Chat com equipe',fn:'openChat',bd:'2',bdg:true},
+    {ic:'M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z',              lb:'Dashboard',              vi:'psico'},
+    {ic:'M8 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 17v-2a6 6 0 0 1 12 0v2',lb:'Pacientes em acomp.',   vi:'psico'},
+    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM3 9h14',        lb:'Agenda de sessões',      fn:'openModal("m-agenda")'},
+    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM7 9h6M7 12h4',  lb:'Notas clínicas',        vi:'psico'},
+    {ic:'M3 10h3l2-6 4 12 2-6h3',                                      lb:'Scores DASS-21/PHQ-9',  vi:'psico'},
+    {ic:'M4 4h16v12H4zM4 9l5 3 7-5',                                   lb:'Chat com equipe',        fn:'openChat',bd:'0',bdg:true},
     {sec:'Acesso restrito'},
-    {ic:'M10 2C7 6 5 8.5 5 11a5 5 0 0 0 10 0c0-2.5-2-5-5-9z',lb:'Cardápios',lock:true},
-    {ic:'M3 10h3l2-6 4 12 2-6h3',lb:'Treinos',lock:true},
-    {ic:'M3 14l7-7 4 4 7-7',lb:'Exames clínicos',lock:true},
+    {ic:'M10 2C7 6 5 8.5 5 11a5 5 0 0 0 10 0c0-2.5-2-5-5-9z',        lb:'Cardápios', lock:true},
+    {ic:'M3 10h3l2-6 4 12 2-6h3',                                      lb:'Treinos',   lock:true},
+    {ic:'M3 14l7-7 4 4 7-7',                                           lb:'Exames clínicos', lock:true},
   ],
   medico:[
     {sec:'Minha área'},
-    {ic:'M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z',lb:'Dashboard',vi:'medico'},
-    {ic:'M8 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 19v-2a6 6 0 0 1 12 0v2',lb:'Pacientes monitorados',vi:'medico'},
-    {ic:'M2 2h16v12H2zM6 6h6M6 9h4',lb:'Mapa da Saúde',vi:'medico'},
-    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM7 9h6M7 12h4',lb:'Exames laboratoriais',vi:'medico'},
-    {ic:'M3 10h3l2-6 4 12 2-6h3',lb:'Riscos calculados',vi:'medico'},
-    {ic:'M4 4h16v12H4zM4 9l5 3 7-5',lb:'Chat com equipe',fn:'openChat',bd:'1',bdg:true},
+    {ic:'M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z',              lb:'Dashboard',             vi:'medico'},
+    {ic:'M8 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 17v-2a6 6 0 0 1 12 0v2',lb:'Pacientes monitorados', vi:'medico'},
+    {ic:'M2 2h16v12H2zM6 6h6M6 9h4',                                   lb:'Mapa da Saúde',         vi:'medico'},
+    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM7 9h6M7 12h4',  lb:'Exames laboratoriais',  vi:'medico'},
+    {ic:'M3 10h3l2-6 4 12 2-6h3',                                      lb:'Riscos calculados',     vi:'medico'},
+    {ic:'M4 4h16v12H4zM4 9l5 3 7-5',                                   lb:'Chat com equipe',        fn:'openChat',bd:'0',bdg:true},
     {sec:'Acesso restrito'},
-    {ic:'M10 2C7 6 5 8.5 5 11a5 5 0 0 0 10 0c0-2.5-2-5-5-9z',lb:'Cardápios',lock:true},
-    {ic:'M3 10h3l2-6 4 12 2-6h3',lb:'Treinos',lock:true},
-    {ic:'M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z',lb:'Notas psicológicas',lock:true},
-  ],
-  whats:[
-    {sec:'WhatsApp'},
-    {ic:'M2 3h16v11H2z',lb:'Fotos recebidas',bd:'4',vi:'whats'},
-    {ic:'M4 4h16v12H4zM4 9l5 3 7-5',lb:'Notificações automáticas',vi:'whats'},
-    {ic:'M8 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 19v-2a6 6 0 0 1 12 0v2',lb:'Grupos de Parceiros',vi:'whats'},
-    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM3 9h14',lb:'Zoom mensal · Disparo',vi:'whats'},
-    {sec:'Configurações'},
-    {ic:'M3 9l3 3 8-8',lb:'Templates de mensagem',fn:'openTemplates'},
-    {ic:'M3 10h3l2-6 4 12 2-6h3',lb:'Relatório de entregas',fn:'openRelatorio'},
-    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM7 9h6M7 12h4',lb:'Histórico de conversas',fn:'openHistorico'},
-  ],
-  rewards:[
-    {sec:'Recompensas'},
-    {ic:'M3 9l3 3 8-8',lb:'Catálogo de recompensas',vi:'rewards'},
-    {ic:'M8 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 19v-2a6 6 0 0 1 12 0v2',lb:'Elegíveis agora',bd:'3',vi:'rewards'},
-    {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM7 9h6M7 12h4',lb:'Histórico de resgates',vi:'rewards'},
-    {sec:'Configurações'},
-    {ic:'M3 10h3l2-6 4 12 2-6h3',lb:'Metas e gatilhos',fn:'openMetas'},
-    {ic:'M2 2h16v12H2zM6 6h6M6 9h4',lb:'Relatório de engajamento',fn:'openRelatorioEng'},
+    {ic:'M10 2C7 6 5 8.5 5 11a5 5 0 0 0 10 0c0-2.5-2-5-5-9z',        lb:'Cardápios', lock:true},
+    {ic:'M3 10h3l2-6 4 12 2-6h3',                                      lb:'Treinos',   lock:true},
+    {ic:'M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z',           lb:'Notas psicológicas',lock:true},
   ],
 };
 
 function buildNav(role){
-  const items=NAVS[role]||NAVS.nutri;
-  document.getElementById('sb-nav').innerHTML=items.map(it=>{
-    if(it.sec)return '<div class="sbsec">'+it.sec+'</div>';
-    const bd=it.bd?'<span class="sbi-b'+(it.bdg?' g':'')+'">'+it.bd+'</span>':'';
-    const lockStyle=it.lock?'opacity:.35;pointer-events:none':'';
-    const lockIco=it.lock?'<svg style="width:9px;height:9px;stroke:rgba(255,255,255,.25);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;margin-left:auto" viewBox="0 0 12 12"><rect x="2" y="5" width="8" height="6" rx="1"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5"/></svg>':'';
-    let act='';
+  const items = NAVS[role] || NAVS.nutri;
+  document.getElementById('sb-nav').innerHTML = items.map(it=>{
+    if(it.sec) return `<div class="sbsec">${it.sec}</div>`;
+    const bd = it.bd!=null ? `<span class="sbi-b${it.bdg?' g':''}">${it.bd}</span>` : '';
+    const lock = it.lock
+      ? `<svg class="sbi-lock" viewBox="0 0 12 12"><rect x="2" y="5" width="8" height="6" rx="1"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5"/></svg>` : '';
+    let act = '';
     if(!it.lock){
-      if(it.vi){
-        // Navigate to view + highlight correct top tab + mark sidebar item
-        act='onclick="switchRole(\''+it.vi+'\',document.getElementById(\'rtab-'+it.vi+'\')||document.querySelector(\'.rtab\'));document.querySelectorAll(\'.sbi\').forEach(s=>s.classList.remove(\'on\'));this.classList.add(\'on\')"';
-      } else if(it.fn){
-        act='onclick="'+it.fn+'();document.querySelectorAll(\'.sbi\').forEach(s=>s.classList.remove(\'on\'));this.classList.add(\'on\')"';
-      }
+      if(it.vi)   act = `onclick="setTab('${it.vi}',document.getElementById('tab-${it.vi}'));document.querySelectorAll('.sbi').forEach(s=>s.classList.remove('on'));this.classList.add('on')"`;
+      else if(it.fn) act = `onclick="${it.fn}();document.querySelectorAll('.sbi').forEach(s=>s.classList.remove('on'));this.classList.add('on')"`;
     }
-    const on=me&&it.vi&&it.vi===role?' on':'';
-    return '<div class="sbi'+on+'" style="'+lockStyle+'" '+act+'><svg class="sbi-ico" viewBox="0 0 18 18"><path d="'+it.ic+'"/></svg><span class="sbi-lbl">'+it.lb+'</span>'+bd+lockIco+'</div>';
+    const style = it.lock ? 'opacity:.35;pointer-events:none' : 'cursor:pointer';
+    return `<button class="sbi" style="${style}" ${act}><svg class="sbi-ico" viewBox="0 0 18 18"><path d="${it.ic}"/></svg><span class="sbi-lbl">${it.lb}</span>${bd}${lock}</button>`;
   }).join('');
 }
 
-
-// ── HELPERS NAV ──────────────────────────────
-function openChat(){
-  const inp=document.getElementById('chat-inp');
-  if(inp){inp.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>inp.focus(),400);}
-  toast('Chat da equipe — escreva e pressione Enter');
-}
-function openLibrary(){openModal('m-library');}
-function openPatients(){toast('Pacientes — clique em qualquer nome na lista');}
-function openAgenda(){openModal('m-agenda');}
-function openTemplates(){openModal('m-templates');}
-function openRelatorio(){toast('Relatório de entregas em preparação.');}
-function openHistorico(){toast('Histórico de conversas em preparação.');}
-function openMetas(){openModal('m-metas');}
-function openRelatorioEng(){toast('Relatório de engajamento em preparação.');}
-function showView(vi){
-  document.querySelectorAll('.view').forEach(v=>{
-    v.classList.remove('on');
-    v.style.display='none';
-  });
-  const t=document.getElementById('v-'+vi);
-  if(t){t.classList.add('on');t.style.display='flex';}
-}
-
-function switchView(vi,el){
-  showView(vi);
-  document.querySelectorAll('.sbi').forEach(s=>s.classList.remove('on'));
-  el?.classList.add('on');
-  const t={nutri:'Dashboard · Nutricionista',edfi:'Dashboard · Ed. Físico',psico:'Dashboard · Psicólogo(a)',medico:'Dashboard · Médico',whats:'WhatsApp · Integrações',rewards:'Gestão de Recompensas'};
-  document.getElementById('tbtitle').textContent=t[vi]||'Dashboard';
-  document.querySelectorAll('.rtab').forEach(r=>{r.classList.remove('on');r.style.color='';});
-  const rtab=document.getElementById('rtab-'+vi);
-  if(rtab){rtab.classList.add('on');}
-}
-
-function switchRole(role,btn){
-  showView(role);
-  // Update tab highlight
+// ════════════════════════════════════════════
+// TAB SWITCHING — a função central
+// ════════════════════════════════════════════
+function setTab(role, btn){
+  // 1. Esconde todas as views
+  document.querySelectorAll('.view').forEach(v=>{ v.classList.remove('on'); });
+  // 2. Mostra apenas a view do role
+  const target = document.getElementById('v-'+role);
+  if(target) target.classList.add('on');
+  // 3. Atualiza abas
   document.querySelectorAll('.rtab').forEach(r=>r.classList.remove('on'));
   if(btn) btn.classList.add('on');
-  // Update topbar title
-  const t={nutri:'Dashboard · Nutricionista',edfi:'Dashboard · Ed. Físico',psico:'Dashboard · Psicólogo(a)',medico:'Dashboard · Médico',whats:'WhatsApp · Integrações',rewards:'Gestão de Recompensas'};
-  document.getElementById('tbtitle').textContent=t[role]||'Dashboard';
-  // Only rebuild sidebar for actual professional views, not whats/rewards
-  if(['nutri','edfi','psico','medico'].includes(role)){
-    buildNav(role);
-  }
-  // Update add button
-  const addLabels={nutri:'Novo paciente',edfi:'Novo treino',psico:'Nova sessão',medico:'Nova nota',whats:'Nova notificação',rewards:'Nova recompensa'};
-  document.getElementById('tbadd-lbl').textContent=addLabels[role]||'Novo';
-  document.getElementById('tbadd').onclick=role==='rewards'?openNewReward:(role==='whats'?()=>toast('Nova notificação automática'):openNewPatient);
+  // 4. Atualiza título
+  const titles = {nutri:'Dashboard · Nutricionista',edfi:'Ed. Físico',psico:'Psicólogo(a)',medico:'Médico(a)',whats:'WhatsApp · Integrações',rewards:'Recompensas'};
+  document.getElementById('tbtitle').textContent = titles[role] || 'Dashboard';
+  // 5. Reconstrói sidebar se for profissional
+  if(NAVS[role]) buildNav(role);
+  // 6. Atualiza botão de ação
+  const labels = {nutri:'Novo paciente',edfi:'Novo treino',psico:'Nova sessão',medico:'Nova nota',whats:'Nova notificação',rewards:'Nova recompensa'};
+  document.getElementById('tbadd-lbl').textContent = labels[role]||'Novo';
+  const actions = {rewards:()=>openModal('m-reward'), whats:()=>toast('Use as configurações abaixo'), nutri:openNewPatient, edfi:()=>openModal('m-agenda'), psico:()=>openModal('m-agenda'), medico:()=>toast('Insira exames nos campos')};
+  document.getElementById('tbadd').onclick = actions[role]||openNewPatient;
 }
 
+// ════════════════════════════════════════════
+// LOGIN / LOGOUT
+// ════════════════════════════════════════════
 function doLogin(){
-  const em=document.getElementById('le').value.trim().toLowerCase();
-  const pw=document.getElementById('lp').value;
-  const btn=document.getElementById('lbtn');
-  const err=document.getElementById('lerr');
+  const em = document.getElementById('le').value.trim().toLowerCase();
+  const pw = document.getElementById('lp').value;
+  const btn = document.getElementById('lbtn');
+  const err = document.getElementById('lerr');
   err.classList.remove('show');
   ['le','lp'].forEach(id=>document.getElementById(id).classList.remove('err'));
-  if(!em||!pw){err.textContent='Preencha e-mail e senha.';err.classList.add('show');return;}
-  btn.disabled=true;btn.textContent='Verificando...';
+  if(!em||!pw){ err.textContent='Preencha e-mail e senha.'; err.classList.add('show'); return; }
+  btn.disabled=true; btn.textContent='Verificando...';
   setTimeout(()=>{
-    const u=getAllUsers().find(u=>u.email===em&&u.pass===pw);
-    btn.disabled=false;btn.textContent='Entrar no painel';
+    const u = getUsers().find(u=>u.email===em && u.pass===pw);
+    btn.disabled=false; btn.textContent='Entrar no painel';
     if(!u){
-      err.textContent='E-mail ou senha incorretos.';err.classList.add('show');
+      err.textContent='E-mail ou senha incorretos.'; err.classList.add('show');
       ['le','lp'].forEach(id=>document.getElementById(id).classList.add('err'));
       return;
     }
-    me=u;
+    me = u;
     document.getElementById('login-page').style.display='none';
     document.getElementById('dash').classList.add('on');
-    document.getElementById('sb-ava').textContent=u.init;
-    document.getElementById('sb-ava').style.background=u.color;
-    document.getElementById('sb-un').textContent=u.name;
-    document.getElementById('sb-ur').textContent=u.role;
-    document.getElementById('tbtitle').textContent='Dashboard · '+u.name;
-    document.getElementById('tbadd-lbl').textContent=u.addLbl;
-    buildNav(u.navRole||u.view);
-    showView(u.view);
-    // Sync role tabs to current user's view
-    document.querySelectorAll('.rtab').forEach(r=>{r.classList.remove('on');r.style.color='';});
-    const initialTab=document.getElementById('rtab-'+u.view);
-    if(initialTab)initialTab.classList.add('on');
+    document.getElementById('sb-ava').textContent = u.init;
+    document.getElementById('sb-ava').style.background = u.color;
+    document.getElementById('sb-un').textContent = u.name;
+    document.getElementById('sb-ur').textContent = u.role||u.label||'Profissional';
+    document.getElementById('tbtitle').textContent = 'Dashboard · '+u.name;
+    const startRole = u.isAdmin ? 'nutri' : (u.view||'nutri');
+    buildNav(startRole);
+    // Ativa aba inicial
+    document.querySelectorAll('.rtab').forEach(r=>r.classList.remove('on'));
+    const initTab = document.getElementById('tab-'+startRole);
+    if(initTab) initTab.classList.add('on');
+    // Restaura pacientes salvos
+    PATIENTS.forEach(p=>addToPlist(p.name,p,false));
   },700);
 }
 
@@ -993,335 +889,161 @@ function doLogout(){
   me=null;
   document.getElementById('dash').classList.remove('on');
   document.getElementById('login-page').style.display='flex';
-  ['le','lp'].forEach(id=>{document.getElementById(id).value='';document.getElementById(id).classList.remove('err');});
+  ['le','lp'].forEach(id=>{ document.getElementById(id).value=''; document.getElementById(id).classList.remove('err'); });
   document.getElementById('lerr').classList.remove('show');
+  // Reset views
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  document.getElementById('v-nutri').classList.add('on');
 }
 
-document.getElementById('lp').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
-document.getElementById('le').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('lp').focus();});
+document.getElementById('lp').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
+document.getElementById('le').addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('lp').focus(); });
+
+// ════════════════════════════════════════════
+// PACIENTES
+// ════════════════════════════════════════════
+function openNewPatient(){
+  document.getElementById('np-st').value = new Date().toISOString().split('T')[0];
+  genPw();
+  openModal('m-patient');
+}
+
+function genPw(){
+  const c='ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789@#!';
+  let p='ABCDEFGHJKMNPQRSTUVWXYZ'[Math.floor(Math.random()*23)];
+  p+='23456789'[Math.floor(Math.random()*8)]; p+='@#!'[Math.floor(Math.random()*3)];
+  for(let i=0;i<5;i++) p+=c[Math.floor(Math.random()*c.length)];
+  document.getElementById('np-pw').value = p.split('').sort(()=>Math.random()-.5).join('');
+}
+
+function createPatient(){
+  const nm = document.getElementById('np-nm').value.trim();
+  const em = document.getElementById('np-em').value.trim();
+  const pw = document.getElementById('np-pw').value.trim();
+  const ph = document.getElementById('np-ph2').value;
+  if(!nm||!em||!pw){ toast('Preencha nome, e-mail e senha.'); return; }
+  const btn = document.querySelector('#m-patient .mbtn.pri');
+  btn.textContent='Criando...'; btn.disabled=true;
+  setTimeout(()=>{
+    btn.textContent='Criar paciente'; btn.disabled=false;
+    const pat = {name:nm,email:em,pass:pw,phase:ph,createdAt:new Date().toISOString()};
+    PATIENTS.push(pat); save();
+    closeModal('m-patient');
+    addToPlist(nm,pat,true);
+    ['np-nm','np-em','np-ph','np-ob'].forEach(id=>{ const el=document.getElementById(id); if(el)el.value=''; });
+    toast('✅ '+nm.split(' ')[0]+' cadastrado! Login: '+em+' · Senha: '+pw);
+  },800);
+}
+
+function addToPlist(nm, data, isNew=false){
+  const empty = document.getElementById('empty-plist');
+  if(empty) empty.remove();
+  const init = nm.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  const cols = ['#e5632a','#7b5ea7','#2563eb','#e0a800','#d63384','#2dccb4'];
+  const c = cols[Math.floor(Math.random()*cols.length)];
+  const el = document.createElement('div'); el.className='pr';
+  el.onclick = function(){ selPat(this,nm); };
+  el.innerHTML = `<div class="pr-ava" style="background:linear-gradient(135deg,${c},${c}cc)">${init}</div><div style="flex:1;min-width:0"><div class="pr-nm">${nm}</div><div class="pr-mt">${data?.phase||'Mês 1 · Fase Raízes'}</div></div><div class="pr-b ${isNew?'n':'ok'}">${isNew?'Novo':'Ativo'}</div>`;
+  document.getElementById('plist').prepend(el);
+}
 
 function selPat(el,nm){
   document.querySelectorAll('.pr').forEach(p=>p.classList.remove('sel'));
   el.classList.add('sel');
-  [['menu-title','Cardápio · '+nm],['foto-pat',nm.split(' ')[0]],['nota-pat',nm.split(' ')[0]],['edfi-pat',nm.split(' ')[0]],['psico-pat',nm.split(' ')[0]],['medico-pat',nm]].forEach(([id,val])=>{const e=document.getElementById(id);if(e)e.textContent=val;});
+  ['menu-title'].forEach(id=>{ const e=document.getElementById(id); if(e)e.textContent='Cardápio · '+nm; });
 }
 
+// ════════════════════════════════════════════
+// PROFISSIONAIS
+// ════════════════════════════════════════════
+function openNewProfessional(){ genProfPw(); openModal('m-professional'); }
+
+function genProfPw(){
+  const c='ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789@#!';
+  let p='ABCDEFGHJKMNPQRSTUVWXYZ'[Math.floor(Math.random()*23)];
+  p+='23456789'[Math.floor(Math.random()*8)]; p+='@#!'[Math.floor(Math.random()*3)];
+  for(let i=0;i<5;i++) p+=c[Math.floor(Math.random()*c.length)];
+  document.getElementById('pp-pw').value = p.split('').sort(()=>Math.random()-.5).join('');
+}
+
+function createProfessional(){
+  const nm  = document.getElementById('pp-nm').value.trim();
+  const em  = document.getElementById('pp-em').value.trim();
+  const pw  = document.getElementById('pp-pw').value.trim();
+  const role= document.getElementById('pp-role').value;
+  if(!nm||!em||!pw){ toast('Preencha nome, e-mail e senha.'); return; }
+  const labels={edfi:'Educador Físico',psico:'Psicólogo(a)',medico:'Médico(a) Parceiro(a)',nutri:'Nutricionista'};
+  const colors={edfi:'linear-gradient(135deg,#7b5ea7,#5a3e8a)',psico:'linear-gradient(135deg,#e8453c,#b52820)',medico:'linear-gradient(135deg,#2dccb4,#0e7a68)',nutri:'linear-gradient(135deg,#2dccb4,#1aab95)'};
+  const init = nm.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  const prof = {name:nm,email:em,pass:pw,role:labels[role],label:labels[role],view:role,init,color:colors[role]||'linear-gradient(135deg,#2dccb4,#1aab95)',createdAt:new Date().toISOString()};
+  PROFESSIONALS.push(prof); save();
+  closeModal('m-professional');
+  ['pp-nm','pp-em','pp-ph'].forEach(id=>{ const el=document.getElementById(id); if(el)el.value=''; });
+  toast('✅ '+nm+' cadastrado! Login: '+em+' · Senha: '+pw);
+}
+
+// ════════════════════════════════════════════
+// CARDÁPIO
+// ════════════════════════════════════════════
 function addFood(btn){
-  const foot=btn.closest('.meal-foot');
+  const foot = btn.closest('.meal-ft');
   const cols=['#2dccb4','#f0924a','#7b5ea7','#2563eb','#e0a800'];
   const c=cols[Math.floor(Math.random()*cols.length)];
-  const el=document.createElement('div');el.className='fi';
-  el.innerHTML='<div class="fi-bar" style="background:'+c+'"></div><input style="flex:1;background:var(--n50);border:1px solid var(--n100);border-radius:6px;padding:4px 8px;font-size:12px;font-family:Inter,sans-serif;color:var(--n700);outline:none;min-width:0" placeholder="Nome do alimento"><div class="fi-qty"><input value="100g"></div><div class="fi-kcal">—</div><div class="fi-del" onclick="this.closest(\'.fi\').remove()">✕</div>';
-  foot.parentElement.insertBefore(el,foot);el.querySelector('input').focus();
+  const el=document.createElement('div'); el.className='fi';
+  el.innerHTML=`<div class="fi-bar" style="background:${c}"></div><input style="flex:1;background:var(--n50);border:1px solid var(--n100);border-radius:6px;padding:4px 8px;font-size:12px;font-family:Inter,sans-serif;color:var(--n700);outline:none;min-width:0" placeholder="Nome do alimento"><div class="fi-qty"><input value="100g"></div><div class="fi-kc">—</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div>`;
+  foot.parentElement.insertBefore(el,foot);
+  el.querySelector('input').focus();
 }
 
-function sendFeedback(){
-  const txt=document.getElementById('foto-fb')?.value;
-  if(!txt){toast('Escreva o feedback.');return;}
-  toast('Feedback enviado via WhatsApp!');
-}
-function togglePtag(el){
-  const on=el.style.borderColor&&!el.style.borderColor.includes('176');
-  if(on){el.style.background='var(--n50)';el.style.color='var(--n500)';el.style.borderColor='var(--n200)';}
-  else{el.style.background='var(--ml)';el.style.color='var(--md)';el.style.borderColor='var(--mint)';}
-}
-
-function sendChat(){
-  const inp=document.getElementById('chat-inp');
-  if(!inp?.value.trim())return;
-  const body=document.getElementById('chat-body');
-  const el=document.createElement('div');el.className='chat-msg';
-  el.innerHTML='<div class="chat-hdr"><div class="chat-av" style="background:'+(me?.color||'var(--mint)')+'">'+( me?.init||'?')+'</div><div class="chat-from">Você</div><div class="chat-time">agora</div></div><div class="chat-txt">'+inp.value+'</div>';
-  body.appendChild(el);body.scrollTop=body.scrollHeight;inp.value='';toast('Mensagem enviada!');
-}
-document.getElementById('chat-inp')?.addEventListener('keydown',e=>{if(e.key==='Enter')sendChat();});
-
+// ════════════════════════════════════════════
+// HÁBITOS
+// ════════════════════════════════════════════
 function addHabit(){
   const list=document.getElementById('habits-list');
   const el=document.createElement('div');
   el.style.cssText='display:flex;align-items:center;gap:9px;padding:9px;background:var(--n50);border-radius:9px;margin-bottom:7px';
-  el.innerHTML='<div style="flex:1"><input class="finput" placeholder="Nome do hábito" style="margin-bottom:4px;display:block;width:100%"><input class="finput" placeholder="Descrição" style="font-size:11px;display:block;width:100%"></div><input class="finput" style="width:70px" placeholder="Freq."><div style="cursor:pointer;color:var(--n300);font-size:13px;padding:0 4px" onclick="this.closest(\'div[style]\').remove()">✕</div>';
-  list.appendChild(el);el.querySelector('input').focus();
+  el.innerHTML=`<div style="flex:1"><input class="finput" placeholder="Nome do hábito" style="margin-bottom:4px;display:block;width:100%"><input class="finput" placeholder="Descrição (ex: 20 min)" style="font-size:11px;display:block;width:100%"></div><input class="finput" style="width:70px" placeholder="Freq."><button onclick="this.closest('div').remove()" style="background:none;border:none;color:var(--n300);cursor:pointer;font-size:13px;padding:0 4px">✕</button>`;
+  list.appendChild(el);
+  el.querySelector('input').focus();
 }
 
-function openNewReward(){openModal('m-reward');}
+// ════════════════════════════════════════════
+// FOTO / CHAT / TAGS
+// ════════════════════════════════════════════
+function sendFeedback(){ const t=document.getElementById('foto-fb')?.value; if(!t){toast('Escreva o feedback.');return;} toast('Feedback enviado via WhatsApp!'); }
+function toggleTag(el){ const on=el.style.borderColor&&!el.style.borderColor.includes('176'); if(on){el.style.background='var(--n50)';el.style.color='var(--n500)';el.style.borderColor='var(--n200)';}else{el.style.background='var(--ml)';el.style.color='var(--md)';el.style.borderColor='var(--mint)';} }
+
+function openChat(){ const inp=document.getElementById('chat-inp'); if(inp){inp.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>inp.focus(),300);} toast('Chat da equipe — escreva e pressione Enter'); }
+function sendChat(){ const inp=document.getElementById('chat-inp'); if(!inp?.value.trim())return; const body=document.getElementById('chat-body'); const el=document.createElement('div'); el.className='chat-msg'; el.innerHTML=`<div class="chat-hdr"><div class="chat-av" style="background:${me?.color||'var(--mint)'}">${me?.init||'?'}</div><div class="chat-from">Você</div><div class="chat-time">agora</div></div><div class="chat-txt">${inp.value}</div>`; body.appendChild(el); body.scrollTop=body.scrollHeight; inp.value=''; toast('Mensagem enviada!'); }
+document.getElementById('chat-inp')?.addEventListener('keydown',e=>{if(e.key==='Enter')sendChat();});
+
+// ════════════════════════════════════════════
+// RECOMPENSAS
+// ════════════════════════════════════════════
 function saveReward(){
   const nm=document.getElementById('rw-nm').value.trim();
   const gt=document.getElementById('rw-gt').value;
   const ds=document.getElementById('rw-ds').value.trim();
   if(!nm){toast('Preencha o nome.');return;}
   const cat=document.getElementById('reward-catalog');
-  const el=document.createElement('div');el.className='rwd-row';
-  el.innerHTML='<div class="rwd-ico" style="background:var(--mint)"><svg style="stroke:white" viewBox="0 0 18 18"><path d="M9 2l1.8 5.5H17l-4.8 3.5 1.8 5.5L9 13.1l-5 3.4 1.8-5.5L1 7.5h6.2z"/></svg></div><div style="flex:1;min-width:0"><div class="rwd-title">'+nm+'</div><div class="rwd-sub">'+gt+(ds?' · '+ds:'')+' · 0 resgates</div></div><div class="rwd-actions"><button class="rwd-edit" onclick="toast(\'Editando...\')">Editar</button><div class="rwd-active">Ativa</div></div>';
-  cat.appendChild(el);closeModal('m-reward');
-  document.getElementById('rw-nm').value='';document.getElementById('rw-ds').value='';
+  const el=document.createElement('div'); el.className='rwd-row';
+  el.innerHTML=`<div class="rwd-ico" style="background:var(--mint)"><svg style="stroke:white" viewBox="0 0 18 18"><path d="M9 2l1.8 5.5H17l-4.8 3.5 1.8 5.5L9 13.1l-5 3.4 1.8-5.5L1 7.5h6.2z"/></svg></div><div style="flex:1;min-width:0"><div class="rwd-title">${nm}</div><div class="rwd-sub">${gt}${ds?' · '+ds:''}</div></div><div class="rwd-acts"><button class="rwd-edit" onclick="toast('Editando...')">Editar</button><div class="rwd-on">Ativa</div></div>`;
+  cat.appendChild(el);
+  closeModal('m-reward');
+  document.getElementById('rw-nm').value=''; document.getElementById('rw-ds').value='';
   toast('Recompensa criada!');
 }
-function approveReward(btn,nm){
-  btn.textContent='Enviado!';btn.disabled=true;btn.style.opacity='.6';
-  toast('Recompensa liberada para '+nm+' via WhatsApp!');
-}
 
-// ── GESTÃO DE PROFISSIONAIS ──────────────────
-const ROLE_CONFIG = {
-  edfi:   {label:'Educador Físico',         init2:(n)=>n.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase(), color:'linear-gradient(135deg,#7b5ea7,#5a3e8a)', view:'edfi',   navRole:'edfi',   addLbl:'Novo treino'},
-  psico:  {label:'Psicólogo(a)',            init2:(n)=>n.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase(), color:'linear-gradient(135deg,#e8453c,#b52820)', view:'psico',  navRole:'psico',  addLbl:'Nova sessão'},
-  medico: {label:'Médico(a) Parceiro(a)',   init2:(n)=>n.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase(), color:'linear-gradient(135deg,#2dccb4,#0e7a68)', view:'medico', navRole:'medico', addLbl:'Nova nota'},
-  nutri:  {label:'Nutricionista',           init2:(n)=>n.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase(), color:'linear-gradient(135deg,#2dccb4,#1aab95)', view:'nutri',  navRole:'nutri',  addLbl:'Novo paciente'},
-};
-
-function openNewProfessional(){
-  genProfPass();
-  openModal('m-professional');
-}
-function genProfPass(){
-  const c='ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789@#!';
-  let p='ABCDEFGHJKMNPQRSTUVWXYZ'[Math.floor(Math.random()*23)];
-  p+='23456789'[Math.floor(Math.random()*8)];p+='@#!'[Math.floor(Math.random()*3)];
-  for(let i=0;i<5;i++)p+=c[Math.floor(Math.random()*c.length)];
-  const el=document.getElementById('pp-pass');
-  if(el)el.value=p.split('').sort(()=>Math.random()-.5).join('');
-}
-function createProfessional(){
-  const name  = document.getElementById('pp-name')?.value.trim();
-  const email = document.getElementById('pp-email')?.value.trim();
-  const pass  = document.getElementById('pp-pass')?.value.trim();
-  const roleKey = document.getElementById('pp-role')?.value;
-  if(!name||!email||!pass){toast('Preencha nome, e-mail e senha.');return;}
-  const cfg = ROLE_CONFIG[roleKey]||ROLE_CONFIG.edfi;
-  const init = name.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
-  const prof = {
-    email, pass, name,
-    role: cfg.label,
-    init, color: cfg.color,
-    view: cfg.view, navRole: cfg.navRole,
-    addLbl: cfg.addLbl,
-    isAdmin: false,
-    createdAt: new Date().toISOString(),
-  };
-  PROFESSIONALS.push(prof);
-  saveData();
-  closeModal('m-professional');
-  // Clear fields
-  ['pp-name','pp-email','pp-pass'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  // Show in sidebar professional list if nutri view
-  addProfToList(prof);
-  toast(`${name} cadastrado! Login: ${email} · Senha: ${pass}`);
-}
-function addProfToList(prof){
-  // Add a visual row if there's a professionals panel
-  const container = document.getElementById('prof-list');
-  if(!container) return;
-  const el = document.createElement('div');
-  el.className = 'pr';
-  el.innerHTML = `<div class="pr-ava" style="background:${prof.color}">${prof.init}</div>
-    <div style="flex:1;min-width:0"><div class="pr-nm">${prof.name}</div><div class="pr-mt">${prof.role}</div></div>
-    <div class="pr-b ok">Ativo</div>`;
-  container.appendChild(el);
-}
-
-// Load existing professionals on page load
-function loadProfessionals(){
-  PROFESSIONALS = JSON.parse(localStorage.getItem('r360_professionals') || '[]');
-  PATIENTS = JSON.parse(localStorage.getItem('r360_patients') || '[]');
-  // Restore patients in list
-  PATIENTS.forEach(p => addToPlist(p.name, p));
-}
-
-// ── GESTÃO DE PACIENTES ──────────────────────
-function openNewPatient(){
-  genPw();openModal('m-patient');
-}
-function genPw(){
-  const c='ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789@#!';
-  let p='ABCDEFGHJKMNPQRSTUVWXYZ'[Math.floor(Math.random()*23)];
-  p+='23456789'[Math.floor(Math.random()*8)];p+='@#!'[Math.floor(Math.random()*3)];
-  for(let i=0;i<5;i++)p+=c[Math.floor(Math.random()*c.length)];
-  document.getElementById('np-pw').value=p.split('').sort(()=>Math.random()-.5).join('');
-}
-function createPatient(){
-  const nm=document.getElementById('np-nm').value.trim();
-  const em=document.getElementById('np-em').value.trim();
-  const pw=document.getElementById('np-pw').value.trim();
-  const ph=document.getElementById('np-ph2')?.value||'Fase Raices - Mes 1';
-  if(!nm||!em||!pw){toast('Preencha nome, e-mail e senha.');return;}
-  const btn=document.querySelector('#m-patient .mbtn.pri');
-  btn.textContent='Criando...';btn.disabled=true;
-  setTimeout(()=>{
-    btn.textContent='Criar paciente e enviar acesso';btn.disabled=false;
-    const patient={name:nm,email:em,pass:pw,phase:ph,createdAt:new Date().toISOString()};
-    PATIENTS.push(patient);saveData();
-    closeModal('m-patient');
-    addToPlist(nm,patient);
-    toast('Paciente '+nm.split(' ')[0]+' criado! Login: '+em+' - Senha: '+pw);
-    ['np-nm','np-em','np-ph','np-ob'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  },900);
-}
-function addToPlist(nm,data){
-  const init=nm.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
-  const cols=['#e5632a','#7b5ea7','#2563eb','#e0a800','#d63384','#2dccb4'];
-  const col=cols[Math.floor(Math.random()*cols.length)];
-  const list=document.getElementById('plist');
-  const emptyMsg=list.querySelector('div[style*="text-align:center"]');
-  if(emptyMsg)emptyMsg.remove();
-  const el=document.createElement('div');el.className='pr';
-  el.onclick=function(){selPat(this,nm);};
-  const phase=data&&data.phase?data.phase:'Mes 1 - Fase Raizes';
-  el.innerHTML='<div class="pr-ava" style="background:linear-gradient(135deg,'+col+','+col+'cc)">'+init+'</div><div style="flex:1;min-width:0"><div class="pr-nm">'+nm+'</div><div class="pr-mt">'+phase+'</div></div><div class="pr-b n">Novo</div>';
-  list.prepend(el);
-}
-
-document.addEventListener('DOMContentLoaded', loadProfessionals);
+// ════════════════════════════════════════════
+// MODAL / TOAST
+// ════════════════════════════════════════════
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 
 let tt;
-function toast(msg){
-  const el=document.getElementById('toast');
-  el.textContent=msg;el.classList.add('show');
-  clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('show'),3000);
-}
-document.querySelectorAll('.sw').forEach(sw=>{
-  sw.addEventListener('click',function(){this.classList.toggle('on');this.classList.toggle('off');});
-});
+function toast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),3500); }
+
+document.querySelectorAll('.sw').forEach(sw=>sw.addEventListener('click',function(){this.classList.toggle('on');this.classList.toggle('off');}));
 </script>
-<!-- MODAL BIBLIOTECA DE TREINOS -->
-<div class="moverlay" id="m-library">
-  <div class="modal">
-    <div class="mhdr"><div class="mtitle">Biblioteca de treinos</div><button class="mclose" onclick="closeModal('m-library')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button></div>
-    <div class="mbody">
-      <div class="msec">Treinos disponíveis</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--n50);border-radius:9px;cursor:pointer" onclick="toast('Treino A aplicado ao paciente!')">
-          <div style="width:36px;height:36px;border-radius:10px;background:var(--purl);display:flex;align-items:center;justify-content:center"><svg style="width:16px;height:16px;stroke:var(--pur);fill:none;stroke-width:2;stroke-linecap:round" viewBox="0 0 18 18"><path d="M3 10h3l2-6 4 12 2-6h3"/></svg></div>
-          <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--n800)">Treino A — Força Casa</div><div style="font-size:11px;color:var(--n400)">30 min · Sem equipamento · Iniciante</div></div>
-          <div style="font-size:11px;font-weight:600;color:var(--md)">Aplicar</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--n50);border-radius:9px;cursor:pointer" onclick="toast('Treino B aplicado ao paciente!')">
-          <div style="width:36px;height:36px;border-radius:10px;background:var(--ml);display:flex;align-items:center;justify-content:center"><svg style="width:16px;height:16px;stroke:var(--md);fill:none;stroke-width:2;stroke-linecap:round" viewBox="0 0 18 18"><path d="M3 10h3l2-6 4 12 2-6h3"/></svg></div>
-          <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--n800)">Treino B — Caminhada Z2</div><div style="font-size:11px;color:var(--n400)">45 min · Ao ar livre · Moderado</div></div>
-          <div style="font-size:11px;font-weight:600;color:var(--md)">Aplicar</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--n50);border-radius:9px;cursor:pointer" onclick="toast('Treino C aplicado ao paciente!')">
-          <div style="width:36px;height:36px;border-radius:10px;background:var(--oral);display:flex;align-items:center;justify-content:center"><svg style="width:16px;height:16px;stroke:var(--ora);fill:none;stroke-width:2;stroke-linecap:round" viewBox="0 0 18 18"><path d="M3 10h3l2-6 4 12 2-6h3"/></svg></div>
-          <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--n800)">Treino C — HIIT 20min</div><div style="font-size:11px;color:var(--n400)">20 min · Casa · Avançado</div></div>
-          <div style="font-size:11px;font-weight:600;color:var(--md)">Aplicar</div>
-        </div>
-      </div>
-      <div class="msec" style="margin-top:4px">Criar novo treino</div>
-      <div class="mf"><label>Nome do treino</label><input placeholder="Ex: Treino D — Mobilidade"></div>
-      <div class="mrow">
-        <div class="mf"><label>Duração</label><input placeholder="Ex: 30 min"></div>
-        <div class="mf"><label>Nível</label><select><option>Iniciante</option><option>Moderado</option><option>Avançado</option></select></div>
-      </div>
-      <div class="mf"><label>Exercícios</label><textarea placeholder="Descreva os exercícios, séries e repetições..."></textarea></div>
-    </div>
-    <div class="mfooter"><button class="mbtn ghost" onclick="closeModal('m-library')">Fechar</button><button class="mbtn pri" onclick="toast('Treino criado!');closeModal('m-library')">Criar treino</button></div>
-  </div>
-</div>
-
-<!-- MODAL AGENDA -->
-<div class="moverlay" id="m-agenda">
-  <div class="modal">
-    <div class="mhdr"><div class="mtitle">Agenda</div><button class="mclose" onclick="closeModal('m-agenda')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button></div>
-    <div class="mbody">
-      <div class="msec">Próximos agendamentos</div>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--ml);border-radius:9px;border-left:3px solid var(--mint)">
-          <div style="flex:1"><div style="font-size:12px;font-weight:700;color:var(--n800)">Ana Beatriz Silva</div><div style="font-size:11px;color:var(--n500)">Consulta nutricional · Amanhã 10h00</div></div>
-          <button onclick="toast('Lembrete enviado!')" style="padding:4px 10px;border-radius:6px;background:var(--mint);color:white;font-size:10px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif">Lembrete</button>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--n50);border-radius:9px">
-          <div style="flex:1"><div style="font-size:12px;font-weight:700;color:var(--n800)">Marcos Ferreira</div><div style="font-size:11px;color:var(--n500)">Avaliação física · Seg 14h30</div></div>
-          <button onclick="toast('Lembrete enviado!')" style="padding:4px 10px;border-radius:6px;background:var(--n100);color:var(--n600);font-size:10px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif">Lembrete</button>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--n50);border-radius:9px">
-          <div style="flex:1"><div style="font-size:12px;font-weight:700;color:var(--n800)">Carla Mendonça</div><div style="font-size:11px;color:var(--n500)">Sessão psicológica · Ter 09h00</div></div>
-          <button onclick="toast('Lembrete enviado!')" style="padding:4px 10px;border-radius:6px;background:var(--n100);color:var(--n600);font-size:10px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif">Lembrete</button>
-        </div>
-      </div>
-      <div class="msec" style="margin-top:4px">Novo agendamento</div>
-      <div class="mf"><label>Paciente</label><select><option>Ana Beatriz Silva</option><option>Marcos Ferreira</option><option>Carla Mendonça</option><option>Roberto Santos</option><option>Fernanda Lima</option></select></div>
-      <div class="mrow">
-        <div class="mf"><label>Data</label><input type="date"></div>
-        <div class="mf"><label>Horário</label><input type="time" value="10:00"></div>
-      </div>
-      <div class="mf"><label>Tipo</label><select><option>Consulta nutricional</option><option>Avaliação física</option><option>Sessão psicológica</option><option>Consulta médica</option><option>Zoom em grupo</option></select></div>
-    </div>
-    <div class="mfooter"><button class="mbtn ghost" onclick="closeModal('m-agenda')">Fechar</button><button class="mbtn pri" onclick="toast('Agendamento criado e lembrete enviado!');closeModal('m-agenda')">Agendar e notificar</button></div>
-  </div>
-</div>
-
-<!-- MODAL TEMPLATES WHATSAPP -->
-<div class="moverlay" id="m-templates">
-  <div class="modal" style="max-width:500px">
-    <div class="mhdr"><div class="mtitle">Templates de mensagem</div><button class="mclose" onclick="closeModal('m-templates')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button></div>
-    <div class="mbody">
-      <div class="msec">Templates ativos</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="background:var(--n50);border-radius:9px;padding:10px 12px">
-          <div style="font-size:11px;font-weight:700;color:var(--n700);margin-bottom:5px">Boas-vindas ao programa</div>
-          <div style="font-size:11px;color:var(--n500);line-height:1.5;font-style:italic">"Olá [nome]! Seja bem-vinda ao Raízes 360. Seu programa de transformação começa hoje. Qualquer dúvida, estou aqui!"</div>
-          <button onclick="toast('Template copiado!')" style="margin-top:7px;padding:3px 10px;border-radius:6px;background:var(--ml);color:var(--md);font-size:10px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif">Usar agora</button>
-        </div>
-        <div style="background:var(--n50);border-radius:9px;padding:10px 12px">
-          <div style="font-size:11px;font-weight:700;color:var(--n700);margin-bottom:5px">Lembrete de foto do prato</div>
-          <div style="font-size:11px;color:var(--n500);line-height:1.5;font-style:italic">"Oi [nome]! Não esqueça de fotografar seu [refeição] hoje e me enviar por aqui. Estou acompanhando!"</div>
-          <button onclick="toast('Template copiado!')" style="margin-top:7px;padding:3px 10px;border-radius:6px;background:var(--ml);color:var(--md);font-size:10px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif">Usar agora</button>
-        </div>
-        <div style="background:var(--n50);border-radius:9px;padding:10px 12px">
-          <div style="font-size:11px;font-weight:700;color:var(--n700);margin-bottom:5px">Parabéns por conquista</div>
-          <div style="font-size:11px;color:var(--n500);line-height:1.5;font-style:italic">"[nome], parabéns! Você acabou de desbloquear: [recompensa]. Você merece! Continue assim!"</div>
-          <button onclick="toast('Template copiado!')" style="margin-top:7px;padding:3px 10px;border-radius:6px;background:var(--ml);color:var(--md);font-size:10px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif">Usar agora</button>
-        </div>
-      </div>
-      <div class="msec" style="margin-top:4px">Novo template</div>
-      <div class="mf"><label>Nome do template</label><input placeholder="Ex: Motivação semanal"></div>
-      <div class="mf"><label>Mensagem (use [nome] para personalizar)</label><textarea placeholder="Digite a mensagem..."></textarea></div>
-    </div>
-    <div class="mfooter"><button class="mbtn ghost" onclick="closeModal('m-templates')">Fechar</button><button class="mbtn pri" onclick="toast('Template criado!');closeModal('m-templates')">Salvar template</button></div>
-  </div>
-</div>
-
-<!-- MODAL METAS E GATILHOS -->
-<div class="moverlay" id="m-metas">
-  <div class="modal">
-    <div class="mhdr"><div class="mtitle">Metas e gatilhos de pontos</div><button class="mclose" onclick="closeModal('m-metas')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button></div>
-    <div class="mbody">
-      <div class="msec">Tabela de níveis</div>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:linear-gradient(135deg,rgba(205,127,50,.08),rgba(139,69,19,.04));border-radius:9px;border-left:3px solid #cd7f32">
-          <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#cd7f32,#8b4513);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0">B</div>
-          <div style="flex:1"><div style="font-size:12px;font-weight:700;color:var(--n800)">Bronze</div></div>
-          <input style="width:80px;background:var(--n50);border:1px solid var(--n200);border-radius:6px;padding:4px 8px;font-size:12px;font-family:'Inter',sans-serif;text-align:center;outline:none" value="0 pts">
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--n50);border-radius:9px">
-          <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#9e9e9e,#616161);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0">P</div>
-          <div style="flex:1"><div style="font-size:12px;font-weight:700;color:var(--n800)">Prata</div></div>
-          <input style="width:80px;background:var(--n50);border:1px solid var(--n200);border-radius:6px;padding:4px 8px;font-size:12px;font-family:'Inter',sans-serif;text-align:center;outline:none" value="2.000 pts">
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--n50);border-radius:9px">
-          <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#d4a017,#b8860b);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0">O</div>
-          <div style="flex:1"><div style="font-size:12px;font-weight:700;color:var(--n800)">Ouro</div></div>
-          <input style="width:80px;background:var(--n50);border:1px solid var(--n200);border-radius:6px;padding:4px 8px;font-size:12px;font-family:'Inter',sans-serif;text-align:center;outline:none" value="6.000 pts">
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--n50);border-radius:9px">
-          <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#a78bfa,#6d28d9);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0">D</div>
-          <div style="flex:1"><div style="font-size:12px;font-weight:700;color:var(--n800)">Diamante</div></div>
-          <input style="width:80px;background:var(--n50);border:1px solid var(--n200);border-radius:6px;padding:4px 8px;font-size:12px;font-family:'Inter',sans-serif;text-align:center;outline:none" value="15.000 pts">
-        </div>
-      </div>
-      <div class="msec" style="margin-top:4px">Pontos por tarefa</div>
-      <div class="mrow">
-        <div class="mf"><label>Tarefa simples</label><input value="10 pts"></div>
-        <div class="mf"><label>Refeição fotografada</label><input value="12 pts"></div>
-      </div>
-      <div class="mrow">
-        <div class="mf"><label>Exercício físico</label><input value="20 pts"></div>
-        <div class="mf"><label>Hábito de sono</label><input value="18 pts"></div>
-      </div>
-    </div>
-    <div class="mfooter"><button class="mbtn ghost" onclick="closeModal('m-metas')">Fechar</button><button class="mbtn pri" onclick="toast('Metas e gatilhos salvos!');closeModal('m-metas')">Salvar configuração</button></div>
-  </div>
-</div>
-
 </body>
 </html>
