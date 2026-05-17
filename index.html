@@ -307,6 +307,66 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
 .orient-txt{font-size:12px;color:var(--n600);line-height:1.55}
 /* Arquivados tab */
 .arch-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:var(--oral);color:var(--ora);flex-shrink:0}
+
+/* ══ GESTÃO DE EQUIPE ══ */
+.team-row{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--n100)}
+.team-row:last-child{border-bottom:none}
+.team-ava{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0}
+.team-info{flex:1;min-width:0}
+.team-name{font-size:13px;font-weight:600;color:var(--n800)}
+.team-role{font-size:11px;color:var(--n400);margin-top:1px}
+.team-actions{display:flex;gap:6px;align-items:center}
+.role-sel{background:var(--n50);border:1px solid var(--n200);border-radius:7px;padding:5px 9px;font-size:11px;font-weight:600;color:var(--n600);cursor:pointer;font-family:Inter,sans-serif;outline:none}
+.role-sel:focus{border-color:var(--mint)}
+/* ══ TACO SEARCH ══ */
+.taco-wrap{position:relative}
+.taco-res{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--wh);border:1px solid var(--n200);border-radius:10px;box-shadow:var(--shm);z-index:50;max-height:220px;overflow-y:auto;display:none}
+.taco-res.open{display:block}
+.taco-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;cursor:pointer;border-bottom:1px solid var(--n50);font-size:12px;transition:background .1s}
+.taco-item:last-child{border-bottom:none}
+.taco-item:hover{background:var(--ml)}
+.taco-item-name{font-weight:600;color:var(--n800)}
+.taco-item-cat{font-size:10px;color:var(--n400);margin-top:1px}
+.taco-item-kcal{font-size:11px;font-weight:700;color:var(--md);flex-shrink:0}
+/* ══ MACRO BAR ══ */
+.macro-row{display:flex;gap:8px;margin-top:8px}
+.macro-c{flex:1;background:var(--n50);border-radius:9px;padding:9px 11px;text-align:center}
+.macro-val{font-size:16px;font-weight:800;color:var(--n800)}
+.macro-lbl{font-size:9px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+/* ══ EMAIL STATUS ══ */
+.email-sent{background:var(--ml);border:1px solid rgba(45,204,180,.2);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--md);font-weight:500;display:none;align-items:center;gap:8px;margin-top:8px}
+.email-sent.show{display:flex}
+.email-sent svg{width:15px;height:15px;stroke:var(--md);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+
+/* ══ TACO CALCULATOR ══ */
+.taco-search{display:flex;gap:8px;padding:12px 16px;border-bottom:1px solid var(--n100)}
+.taco-input{flex:1;background:var(--n50);border:1.5px solid var(--n100);border-radius:var(--rp);padding:8px 13px;font-size:13px;font-family:'Inter',sans-serif;color:var(--n700);outline:none;transition:border .15s}
+.taco-input:focus{border-color:var(--mint)}
+.taco-results{max-height:200px;overflow-y:auto;border-bottom:1px solid var(--n100)}
+.taco-item{display:flex;align-items:center;gap:10px;padding:9px 16px;cursor:pointer;transition:background .1s;border-bottom:1px solid var(--n50)}
+.taco-item:hover{background:var(--ml)}
+.taco-item:last-child{border-bottom:none}
+.taco-nm{font-size:12px;font-weight:600;color:var(--n800);flex:1}
+.taco-kcal{font-size:11px;font-weight:700;color:var(--md)}
+.taco-grupo{font-size:10px;color:var(--n400)}
+.taco-selected{padding:12px 16px;display:flex;flex-direction:column;gap:7px}
+.taco-sel-row{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--n50);border-radius:9px}
+.taco-sel-nm{font-size:12px;font-weight:600;color:var(--n800);flex:1}
+.taco-sel-qty{width:64px;background:var(--wh);border:1.5px solid var(--n200);border-radius:7px;padding:4px 8px;font-size:12px;font-family:'Inter',sans-serif;text-align:center;outline:none}
+.taco-sel-qty:focus{border-color:var(--mint)}
+.taco-sel-kcal{font-size:11px;font-weight:700;color:var(--md);width:52px;text-align:right}
+.taco-sel-del{color:var(--n300);cursor:pointer;font-size:13px;padding:0 3px;transition:color .1s}
+.taco-sel-del:hover{color:var(--red)}
+.taco-total{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--ml);border-top:1px solid rgba(45,204,180,.15)}
+.taco-macro{text-align:center}
+.taco-macro-val{font-size:16px;font-weight:800;color:var(--md)}
+.taco-macro-lbl{font-size:9px;font-weight:600;color:var(--md);opacity:.7;text-transform:uppercase;letter-spacing:.05em}
+
+/* ══ TEAM MANAGEMENT ══ */
+.team-member-row{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--n100)}
+.team-member-row:last-child{border-bottom:none}
+.team-ava{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0}
+.team-role-badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp)}
 </style>
 </head>
 <body>
@@ -396,6 +456,22 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
         <svg viewBox="0 0 14 14"><rect x="1" y="4" width="12" height="9" rx="1"/><path d="M1 4l1-2h10l1 2"/><line x1="5" y1="7" x2="9" y2="7"/></svg>
         Arquivados
         <span id="archived-count" style="font-size:9px;font-weight:700;padding:1px 6px;border-radius:var(--rp);background:var(--oral);color:var(--ora);display:none">0</span>
+      </button>
+      <button class="rtab" id="tab-team" onclick="setTab('team',this)">
+        <svg viewBox="0 0 14 14"><circle cx="5" cy="5" r="2.5"/><path d="M1 13v-1a4 4 0 0 1 8 0v1"/><circle cx="11" cy="5" r="2"/><path d="M10 13v-.5a3 3 0 0 1 3 0v.5"/></svg>
+        Equipe
+      </button>
+      <button class="rtab" id="tab-taco" onclick="setTab('taco',this)">
+        <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6"/><path d="M4 7h6M7 4v6"/></svg>
+        Tabela TACO
+      </button>
+      <button class="rtab" id="tab-team" onclick="setTab('team',this)">
+        <svg viewBox="0 0 14 14"><circle cx="5" cy="4" r="2.5"/><path d="M1 12v-.8a4 4 0 0 1 8 0V12"/><path d="M10 5a2 2 0 0 1 0 4"/><path d="M13 12v-.5a3.5 3.5 0 0 0-2.5-3.4"/></svg>
+        Equipe
+      </button>
+      <button class="rtab" id="tab-taco" onclick="setTab('taco',this)">
+        <svg viewBox="0 0 14 14"><path d="M2 10c2-4 8-4 10 0"/><path d="M7 3v3"/><circle cx="7" cy="2" r="1"/></svg>
+        TACO
       </button>
     </div>
 
@@ -691,17 +767,234 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
             <div style="font-size:12px;color:var(--n400)">Pacientes com acesso pausado. Reative a qualquer momento.</div>
           </div>
         </div>
-
         <div class="panel">
-          <div class="ph">
-            <div><div class="ph-t">Lista de arquivados</div><div class="ph-s">Clique em "Reativar" para restaurar o acesso</div></div>
-            <div id="archived-total" style="font-size:12px;font-weight:600;color:var(--n400)">0 pacientes</div>
-          </div>
+          <div class="ph"><div><div class="ph-t">Lista de arquivados</div><div class="ph-s">Clique em "Reativar" para restaurar o acesso</div></div><div id="archived-total" style="font-size:12px;font-weight:600;color:var(--n400)">0 pacientes</div></div>
           <div class="pb" id="archived-list">
             <div id="empty-archived" style="padding:32px 16px;text-align:center">
               <svg style="width:36px;height:36px;stroke:var(--n300);fill:none;stroke-width:1.5;stroke-linecap:round;display:block;margin:0 auto 10px" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="15" rx="2"/><path d="M3 6l2-3h14l2 3"/><line x1="9" y1="12" x2="15" y2="12"/></svg>
               <div style="font-size:13px;font-weight:600;color:var(--n400);margin-bottom:4px">Nenhum paciente arquivado</div>
               <div style="font-size:12px;color:var(--n300)">Pacientes pausados aparecerão aqui</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════ GESTÃO DE EQUIPE ════ -->
+      <div class="view" id="v-team">
+        <div class="stats c4">
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Membros ativos</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/><path d="M13 7a3 3 0 0 1 0 6"/><path d="M17 17v-1a5 5 0 0 0-3-4.6"/></svg></div></div><div class="sc-val" id="team-count">1</div><div class="sc-sub">Na sua equipe</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Convites pendentes</div><div class="sc-ico" style="background:var(--oral)"><svg style="stroke:var(--ora)" viewBox="0 0 18 18"><path d="M3 4h12v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"/><polyline points="3,4 9,10 15,4"/></svg></div></div><div class="sc-val" style="color:var(--ora)" id="invite-count">0</div><div class="sc-sub">Aguardando aceite</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Nutricionistas</div></div><div class="sc-val" id="team-nutri">1</div><div class="sc-sub">Na equipe</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Outros profissionais</div></div><div class="sc-val" id="team-others">0</div><div class="sc-sub">Ed. Físico · Psico · Médico</div></div>
+        </div>
+        <div class="g2">
+          <!-- Lista de membros -->
+          <div class="panel">
+            <div class="ph"><div><div class="ph-t">Membros da equipe</div><div class="ph-s">Gerencie funções e acessos</div></div><button class="savebtn" onclick="openModal('m-invite')">+ Convidar</button></div>
+            <div class="pb" id="team-list">
+              <!-- Admin / Nutricionista gestor -->
+              <div class="team-row">
+                <div class="team-ava" style="background:linear-gradient(135deg,#2dccb4,#1aab95)">JC</div>
+                <div class="team-info">
+                  <div class="team-name">Juan Carlos <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:var(--ml);color:var(--md);margin-left:5px">Você</span></div>
+                  <div class="team-role">Nutricionista · Administrador</div>
+                </div>
+                <div class="team-actions">
+                  <div style="font-size:9px;font-weight:700;padding:3px 9px;border-radius:var(--rp);background:var(--ml);color:var(--md)">Admin</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Convites enviados -->
+          <div class="panel">
+            <div class="ph"><div><div class="ph-t">Convites enviados</div><div class="ph-s">Aguardando aceite dos profissionais</div></div></div>
+            <div class="pb" id="invite-list">
+              <div style="padding:28px 16px;text-align:center;color:var(--n400)">
+                <svg style="width:28px;height:28px;stroke:var(--n300);fill:none;stroke-width:1.5;stroke-linecap:round;display:block;margin:0 auto 8px" viewBox="0 0 24 24"><path d="M3 4h18v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4z"/><polyline points="3,4 12,13 21,4"/></svg>
+                <div style="font-size:12px">Nenhum convite enviado ainda.<br>Convide profissionais para sua equipe.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Base de pacientes compartilhada -->
+        <div class="panel">
+          <div class="ph"><div><div class="ph-t">Base de pacientes compartilhada</div><div class="ph-s">Todos os profissionais da equipe têm acesso à mesma lista</div></div><button class="savebtn" onclick="openNewPatient()">+ Novo paciente</button></div>
+          <div style="padding:12px 16px;background:var(--ml);border-bottom:1px solid rgba(45,204,180,.15);font-size:12px;color:var(--md)">
+            <svg style="width:13px;height:13px;stroke:var(--md);fill:none;stroke-width:2;stroke-linecap:round;vertical-align:-2px;margin-right:5px" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><line x1="8" y1="5" x2="8" y2="8"/><line x1="8" y1="11" x2="8.01" y2="11"/></svg>
+            Qualquer profissional que cadastrar um paciente, ele aparece automaticamente para toda a equipe.
+          </div>
+          <div class="pb" style="max-height:250px" id="shared-plist">
+            <div style="padding:24px 16px;text-align:center;color:var(--n400)">
+              <div style="font-size:12px">Nenhum paciente cadastrado ainda.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════ CALCULADORA TACO ════ -->
+      <div class="view" id="v-taco">
+        <div class="stats c4">
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Total de kcal</div></div><div class="sc-val" id="taco-total-kcal" style="color:var(--ora)">0</div><div class="sc-sub">kcal calculadas</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Proteína</div></div><div class="sc-val" id="taco-prot" style="color:var(--blu)">0g</div><div class="sc-sub">Total</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Carboidratos</div></div><div class="sc-val" id="taco-carb" style="color:var(--yel)">0g</div><div class="sc-sub">Total</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Gorduras</div></div><div class="sc-val" id="taco-fat" style="color:var(--red)">0g</div><div class="sc-sub">Total</div></div>
+        </div>
+        <div class="g2">
+          <!-- Busca e seleção de alimentos -->
+          <div class="panel">
+            <div class="ph"><div><div class="ph-t">Buscar alimento (Tabela TACO)</div><div class="ph-s">Digite o nome e selecione</div></div><button class="savebtn" onclick="clearTacoMenu()">Limpar</button></div>
+            <div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px">
+              <div class="taco-wrap">
+                <input class="finput" id="taco-search" placeholder="Ex: frango, arroz, brócolis..." oninput="searchTACO(this.value)">
+                <div class="taco-res" id="taco-results"></div>
+              </div>
+              <div style="display:flex;gap:7px">
+                <div style="flex:1">
+                  <div class="flabel">Alimento selecionado</div>
+                  <input class="finput" id="taco-selected-name" placeholder="Selecione da busca" readonly style="background:var(--n100)">
+                  <input type="hidden" id="taco-selected-id">
+                  <input type="hidden" id="taco-selected-kcal100">
+                </div>
+                <div style="width:90px">
+                  <div class="flabel">Quantidade (g)</div>
+                  <input class="finput" id="taco-qty" type="number" value="100" min="1" max="2000" oninput="updateTacoPreview()">
+                </div>
+              </div>
+              <!-- Preview kcal -->
+              <div id="taco-preview" style="background:var(--n50);border-radius:9px;padding:10px 12px;display:none">
+                <div style="font-size:11px;color:var(--n500);margin-bottom:5px">Prévia para a quantidade selecionada:</div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap">
+                  <div><span style="font-size:14px;font-weight:800;color:var(--ora)" id="prev-kcal">0</span> <span style="font-size:10px;color:var(--n400)">kcal</span></div>
+                  <div><span style="font-size:13px;font-weight:700;color:var(--blu)" id="prev-prot">0g</span> <span style="font-size:10px;color:var(--n400)">prot</span></div>
+                  <div><span style="font-size:13px;font-weight:700;color:var(--yel)" id="prev-carb">0g</span> <span style="font-size:10px;color:var(--n400)">carb</span></div>
+                  <div><span style="font-size:13px;font-weight:700;color:var(--red)" id="prev-fat">0g</span> <span style="font-size:10px;color:var(--n400)">gord</span></div>
+                </div>
+              </div>
+              <button class="savebtn full" onclick="addTacoItem()">+ Adicionar ao cardápio</button>
+            </div>
+          </div>
+
+          <!-- Lista de itens do cardápio com macros -->
+          <div class="panel">
+            <div class="ph"><div><div class="ph-t">Cardápio com cálculo automático</div><div class="ph-s">Macros calculados via Tabela TACO</div></div><button class="savebtn" onclick="saveTacoMenu()">Salvar cardápio</button></div>
+            <div class="pb" id="taco-menu-list">
+              <div id="taco-empty" style="padding:24px 16px;text-align:center;color:var(--n400)">
+                <svg style="width:28px;height:28px;stroke:var(--n300);fill:none;stroke-width:1.5;stroke-linecap:round;display:block;margin:0 auto 8px" viewBox="0 0 24 24"><path d="M3 2h18l-2 14H5L3 2z"/><path d="M3 2L1 2"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+                <div style="font-size:12px">Busque alimentos e adicione ao cardápio</div>
+              </div>
+            </div>
+            <!-- Totais de macros -->
+            <div style="padding:12px 14px;border-top:1px solid var(--n100);background:var(--n50)">
+              <div class="macro-row">
+                <div class="macro-c"><div class="macro-val" id="total-kcal">0</div><div class="macro-lbl">kcal</div></div>
+                <div class="macro-c"><div class="macro-val" id="total-prot" style="color:var(--blu)">0g</div><div class="macro-lbl">Proteína</div></div>
+                <div class="macro-c"><div class="macro-val" id="total-carb" style="color:var(--yel)">0g</div><div class="macro-lbl">Carb</div></div>
+                <div class="macro-c"><div class="macro-val" id="total-fat" style="color:var(--red)">0g</div><div class="macro-lbl">Gordura</div></div>
+                <div class="macro-c"><div class="macro-val" id="total-fib" style="color:var(--md)">0g</div><div class="macro-lbl">Fibra</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ════ EQUIPE ════ -->
+      <div class="view" id="v-team" style="display:none">
+        <div class="stats c4">
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Membros ativos</div><div class="sc-ico" style="background:var(--purl)"><svg style="stroke:var(--pur)" viewBox="0 0 18 18" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><path d="M1 16v-1a5 5 0 0 1 10 0v1"/><circle cx="14" cy="7" r="2.5"/><path d="M12 16v-.5a4 4 0 0 1 5 0v.5"/></svg></div></div><div class="sc-val" id="team-count">0</div><div class="sc-sub">Profissionais</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Convites pendentes</div><div class="sc-ico" style="background:var(--oral)"><svg style="stroke:var(--ora)" viewBox="0 0 18 18" fill="none" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="4" width="14" height="11" rx="2"/><polyline points="2,4 9,10 16,4"/></svg></div></div><div class="sc-val" id="invite-count" style="color:var(--ora)">0</div><div class="sc-sub">Aguardando</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes compartilhados</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/></svg></div></div><div class="sc-val" id="shared-count">0</div><div class="sc-sub">Para toda a equipe</div></div>
+          <div class="sc"><div class="sc-top"><div class="sc-lbl">Minha função</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M9 2l1.8 5.5H17l-4.8 3.5 1.8 5.5L9 13.1l-5 3.4 1.8-5.5L1 7.5h6.2z"/></svg></div></div><div class="sc-val" style="font-size:14px;color:var(--md)">Admin</div><div class="sc-sub">Gestor da equipe</div></div>
+        </div>
+        <div class="g2">
+          <!-- Lista de membros -->
+          <div class="panel">
+            <div class="ph">
+              <div><div class="ph-t">Membros da equipe</div><div class="ph-s">Clique para gerenciar</div></div>
+              <button class="savebtn" onclick="openModal('m-add-member')">+ Adicionar</button>
+            </div>
+            <div class="pb" id="team-list">
+              <div style="padding:24px;text-align:center;color:var(--n400)">
+                <svg style="width:28px;height:28px;stroke:var(--n300);fill:none;stroke-width:1.5;stroke-linecap:round;display:block;margin:0 auto 8px" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg>
+                <div style="font-size:12px">Nenhum profissional adicionado ainda</div>
+                <div style="font-size:11px;color:var(--n300);margin-top:3px">Clique em "+ Adicionar" para convidar</div>
+              </div>
+            </div>
+          </div>
+          <!-- Configurações da equipe -->
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div class="panel">
+              <div class="ph"><div class="ph-t">Base de pacientes compartilhada</div></div>
+              <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px">
+                <div style="background:var(--ml);border-radius:10px;padding:12px 14px">
+                  <div style="font-size:12px;font-weight:700;color:var(--md);margin-bottom:5px">Como funciona</div>
+                  <div style="font-size:12px;color:var(--n600);line-height:1.55">Qualquer paciente cadastrado por você ou por um membro da equipe aparece automaticamente para todos os profissionais. Cada um acessa os dados da sua área de atuação.</div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--n50);border-radius:9px">
+                  <div><div style="font-size:12px;font-weight:600;color:var(--n800)">Compartilhamento automático</div><div style="font-size:10px;color:var(--n400)">Novos pacientes visíveis para toda equipe</div></div>
+                  <div class="sw on" onclick="this.classList.toggle('on');this.classList.toggle('off');toast('Configuração salva!')"><div class="sw-th"></div></div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--n50);border-radius:9px">
+                  <div><div style="font-size:12px;font-weight:600;color:var(--n800)">Notificar equipe ao cadastrar</div><div style="font-size:10px;color:var(--n400)">Enviar aviso no chat ao adicionar paciente</div></div>
+                  <div class="sw on" onclick="this.classList.toggle('on');this.classList.toggle('off');toast('Configuração salva!')"><div class="sw-th"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="ph"><div class="ph-t">Funções e permissões</div></div>
+              <div class="pb">
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--n100)"><div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--n800)">Nutricionista (Admin)</div><div style="font-size:10px;color:var(--n400)">Acesso completo + gestão de equipe</div></div><span style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);background:var(--ml);color:var(--md)">Total</span></div>
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--n100)"><div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--n800)">Educador Físico</div><div style="font-size:10px;color:var(--n400)">Hábitos, treinos, pacientes · Sem cardápios</div></div><span style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);background:var(--purl);color:var(--pur)">Parcial</span></div>
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--n100)"><div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--n800)">Psicólogo(a)</div><div style="font-size:10px;color:var(--n400)">Notas, scores, sessões · Sem exames</div></div><span style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);background:var(--purl);color:var(--pur)">Parcial</span></div>
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 16px"><div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--n800)">Médico(a)</div><div style="font-size:10px;color:var(--n400)">Exames, riscos, notas clínicas</div></div><span style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);background:var(--purl);color:var(--pur)">Parcial</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════ CALCULADORA TACO ════ -->
+      <div class="view" id="v-taco" style="display:none">
+        <div class="g2">
+          <div class="panel">
+            <div class="ph"><div><div class="ph-t">Calculadora TACO</div><div class="ph-s">Tabela Brasileira de Composição de Alimentos</div></div><button class="savebtn" onclick="clearTaco()">Limpar</button></div>
+            <!-- Busca -->
+            <div class="taco-search">
+              <input class="taco-input" id="taco-q" placeholder="Buscar alimento (ex: arroz, frango, banana...)" oninput="searchTaco(this.value)">
+            </div>
+            <!-- Resultados da busca -->
+            <div class="taco-results" id="taco-results" style="display:none"></div>
+            <!-- Alimentos selecionados -->
+            <div class="taco-selected" id="taco-selected">
+              <div id="taco-empty" style="padding:20px;text-align:center;color:var(--n400);font-size:12px">Busque e adicione alimentos para calcular</div>
+            </div>
+            <!-- Totais -->
+            <div class="taco-total" id="taco-total" style="display:none">
+              <div class="taco-macro"><div class="taco-macro-val" id="t-kcal">0</div><div class="taco-macro-lbl">kcal</div></div>
+              <div class="taco-macro"><div class="taco-macro-val" id="t-prot">0g</div><div class="taco-macro-lbl">Proteína</div></div>
+              <div class="taco-macro"><div class="taco-macro-val" id="t-carb">0g</div><div class="taco-macro-lbl">Carboidrato</div></div>
+              <div class="taco-macro"><div class="taco-macro-val" id="t-lip">0g</div><div class="taco-macro-lbl">Gordura</div></div>
+              <div class="taco-macro"><div class="taco-macro-val" id="t-fib">0g</div><div class="taco-macro-lbl">Fibra</div></div>
+            </div>
+            <div style="padding:10px 16px;border-top:1px solid var(--n100);display:flex;gap:8px">
+              <button class="savebtn full" onclick="applyTacoToMenu()">Aplicar ao cardápio do paciente</button>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="ph"><div class="ph-t">Referência nutricional TACO</div></div>
+            <div class="pb">
+              <div class="ex-sec">Grupos alimentares disponíveis</div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px">
+                ${['Cereais','Leguminosas','Carnes','Ovos','Peixes','Vegetais','Frutas','Laticínios','Óleos','Panificados','Massas','Tubérculos'].map(g=>`<div onclick="searchTaco('${g.toLowerCase()}')" style="font-size:11px;font-weight:600;padding:5px 11px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);transition:all .1s" onmouseover="this.style.background='var(--ml)';this.style.color='var(--md)'" onmouseout="this.style.background='var(--n50)';this.style.color='var(--n600)'">${g}</div>`).join('')}
+              </div>
+              <div class="ex-sec" style="margin-top:4px">Valores de referência diários</div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Energia</div></div><div style="font-size:11px;font-weight:600;color:var(--n600)">2.000 kcal</div></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Proteína</div></div><div style="font-size:11px;font-weight:600;color:var(--n600)">50g</div></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Carboidrato</div></div><div style="font-size:11px;font-weight:600;color:var(--n600)">300g</div></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Gordura total</div></div><div style="font-size:11px;font-weight:600;color:var(--n600)">65g</div></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Fibra alimentar</div></div><div style="font-size:11px;font-weight:600;color:var(--n600)">25g</div></div>
+              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Sódio</div></div><div style="font-size:11px;font-weight:600;color:var(--n600)">2.400mg</div></div>
             </div>
           </div>
         </div>
@@ -805,7 +1098,41 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
   </div>
 </div>
 
-<!-- MODAL: NOVO PROFISSIONAL -->
+<!-- MODAL: CONVIDAR PROFISSIONAL -->
+<div class="mov" id="m-invite">
+  <div class="modal">
+    <div class="mhdr">
+      <div><div class="mtitle">Convidar profissional</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px">O profissional receberá um e-mail com o link de acesso</div></div>
+      <button class="mclose" onclick="closeModal('m-invite')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button>
+    </div>
+    <div class="mbody">
+      <div class="msec">Dados do profissional</div>
+      <div class="mf"><label>Nome completo</label><input id="inv-name" placeholder="Carlos Silva"></div>
+      <div class="mf"><label>E-mail profissional</label><input id="inv-email" type="email" placeholder="carlos@email.com"></div>
+      <div class="mf">
+        <label>Função na equipe</label>
+        <select id="inv-role">
+          <option value="educador_fisico">Educador Físico</option>
+          <option value="psico">Psicólogo(a)</option>
+          <option value="medico">Médico(a) Parceiro(a)</option>
+          <option value="nutri">Nutricionista</option>
+        </select>
+      </div>
+      <div class="mf">
+        <label>Senha inicial de acesso</label>
+        <div style="display:flex;gap:6px">
+          <input id="inv-pass" style="flex:1;background:var(--n50);border:1.5px solid var(--n100);border-radius:8px;padding:8px 11px;font-size:12px;font-family:Inter,sans-serif;color:var(--n700);outline:none" placeholder="Gere automaticamente">
+          <button onclick="genProfPw()" style="padding:7px 11px;border-radius:8px;background:var(--n50);border:1.5px solid var(--n200);font-size:11px;font-weight:600;color:var(--n600);cursor:pointer;font-family:Inter,sans-serif;flex-shrink:0">Gerar</button>
+        </div>
+        <div style="font-size:10px;color:var(--n400);margin-top:2px">⚠️ Anote e repasse ao profissional junto com o e-mail.</div>
+      </div>
+    </div>
+    <div class="mfooter">
+      <button class="mbtn ghost" onclick="closeModal('m-invite')">Cancelar</button>
+      <button class="mbtn pri" onclick="inviteProfessional()">Cadastrar e enviar acesso</button>
+    </div>
+  </div>
+</div>
 <div class="mov" id="m-professional">
   <div class="modal">
     <div class="mhdr"><div><div class="mtitle">Cadastrar profissional</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px">Anote as credenciais para repassar ao profissional</div></div><button class="mclose" onclick="closeModal('m-professional')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button></div>
@@ -1025,8 +1352,306 @@ function doLogout(){
 document.getElementById('lp').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
 document.getElementById('le').addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('lp').focus(); });
 
+// ════════════════════════════════════════════════════════════════════
+// FUNCIONALIDADE 1 — E-MAIL DE CREDENCIAIS (simulado no front-end)
+// Em produção: a API raizes360-server-v2.js envia via Resend
+// ════════════════════════════════════════════════════════════════════
+function simulateCredentialEmail(name, email, pass, phase) {
+  // Simulação local — em produção a API faz o envio real
+  console.log(`📧 E-mail enviado para ${email}:`, { name, pass, phase });
+  toast(`📧 E-mail de acesso enviado para ${email}!`);
+  // Salva log localmente
+  const logs = JSON.parse(localStorage.getItem('r360_email_logs') || '[]');
+  logs.push({ name, email, sentAt: new Date().toISOString(), status: 'sent' });
+  localStorage.setItem('r360_email_logs', JSON.stringify(logs));
+}
+
+// ════════════════════════════════════════════════════════════════════
+// FUNCIONALIDADE 3 — GESTÃO DE EQUIPE / MODERADORES
+// ════════════════════════════════════════════════════════════════════
+let TEAM = JSON.parse(localStorage.getItem('r360_team') || '[]');
+
+function saveTeam() { localStorage.setItem('r360_team', JSON.stringify(TEAM)); }
+
+function inviteProfessional() {
+  const name  = document.getElementById('inv-name')?.value.trim();
+  const email = document.getElementById('inv-email')?.value.trim();
+  const role  = document.getElementById('inv-role')?.value;
+  const pass  = document.getElementById('inv-pass')?.value.trim();
+  if (!name || !email || !pass) { toast('Preencha nome, e-mail e senha.'); return; }
+
+  const labels = { educador_fisico:'Educador Físico', psico:'Psicólogo(a)', medico:'Médico(a) Parceiro(a)', nutri:'Nutricionista' };
+  const colors = { educador_fisico:'linear-gradient(135deg,#7b5ea7,#5a3e8a)', psico:'linear-gradient(135deg,#e8453c,#b52820)', medico:'linear-gradient(135deg,#2dccb4,#0e7a68)', nutri:'linear-gradient(135deg,#2dccb4,#1aab95)' };
+  const init   = name.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+
+  const member = { name, email, pass, role, label: labels[role], color: colors[role]||'linear-gradient(135deg,#2dccb4,#1aab95)', init, status:'active', addedAt: new Date().toISOString() };
+  TEAM.push(member);
+
+  // Também adiciona como usuário do sistema (localStorage)
+  PROFESSIONALS.push({ ...member, view: role === 'educador_fisico' ? 'edfi' : role, navRole: role === 'educador_fisico' ? 'edfi' : role, addLbl: labels[role] });
+  save(); saveTeam();
+
+  // Renderiza na lista
+  addMemberToList(member);
+  updateTeamStats();
+
+  // Simula envio de e-mail de convite
+  simulateCredentialEmail(name, email, pass, labels[role]);
+  toast(`✅ ${name} adicionado à equipe! Login: ${email} · Senha: ${pass}`);
+
+  closeModal('m-invite');
+  ['inv-name','inv-email','inv-pass'].forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
+}
+
+function addMemberToList(member) {
+  const list = document.getElementById('team-list');
+  const el   = document.createElement('div'); el.className = 'team-row';
+  el.id = 'member-' + member.email.replace(/[@.]/g,'_');
+  el.innerHTML = `
+    <div class="team-ava" style="background:${member.color}">${member.init}</div>
+    <div class="team-info">
+      <div class="team-name">${member.name}</div>
+      <div class="team-role">${member.label} · ${member.email}</div>
+    </div>
+    <div class="team-actions">
+      <select class="role-sel" onchange="changeMemberRole('${member.email}',this.value)">
+        <option value="educador_fisico" ${member.role==='educador_fisico'?'selected':''}>Ed. Físico</option>
+        <option value="psico"           ${member.role==='psico'?'selected':''}>Psicólogo(a)</option>
+        <option value="medico"          ${member.role==='medico'?'selected':''}>Médico(a)</option>
+        <option value="nutri"           ${member.role==='nutri'?'selected':''}>Nutricionista</option>
+      </select>
+      <button onclick="removeMember('${member.email}')" style="padding:4px 9px;border-radius:6px;background:var(--redl);border:none;color:var(--red);font-size:10px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif">Remover</button>
+    </div>`;
+  list.appendChild(el);
+}
+
+function changeMemberRole(email, newRole) {
+  const labels = { educador_fisico:'Educador Físico', psico:'Psicólogo(a)', medico:'Médico(a)', nutri:'Nutricionista' };
+  const m = TEAM.find(t => t.email === email);
+  if (m) { m.role = newRole; m.label = labels[newRole]; saveTeam(); }
+  const p = PROFESSIONALS.find(p => p.email === email);
+  if (p) { p.role = labels[newRole]; p.view = newRole; saveTeam(); save(); }
+  toast(`Função de ${email} alterada para ${labels[newRole]}.`);
+}
+
+function removeMember(email) {
+  if (!confirm('Remover este profissional da equipe?')) return;
+  TEAM = TEAM.filter(t => t.email !== email);
+  PROFESSIONALS = PROFESSIONALS.filter(p => p.email !== email);
+  saveTeam(); save();
+  const el = document.getElementById('member-' + email.replace(/[@.]/g,'_'));
+  if (el) el.remove();
+  updateTeamStats();
+  toast('Profissional removido da equipe.');
+}
+
+function updateTeamStats() {
+  const total = TEAM.length + 1; // +1 = admin
+  document.getElementById('team-count').textContent  = total;
+  document.getElementById('team-nutri').textContent  = TEAM.filter(t=>t.role==='nutri').length + 1;
+  document.getElementById('team-others').textContent = TEAM.filter(t=>t.role!=='nutri').length;
+}
+
+function loadTeam() {
+  TEAM = JSON.parse(localStorage.getItem('r360_team') || '[]');
+  TEAM.forEach(m => addMemberToList(m));
+  updateTeamStats();
+}
+
+// ════════════════════════════════════════════════════════════════════
+// FUNCIONALIDADE 4 — BASE DE PACIENTES COMPARTILHADA
+// Todo paciente cadastrado aparece para toda a equipe
+// ════════════════════════════════════════════════════════════════════
+function syncSharedPatients() {
+  const shared = document.getElementById('shared-plist');
+  if (!shared) return;
+  shared.innerHTML = '';
+  if (!PATIENTS.length) {
+    shared.innerHTML = '<div style="padding:24px 16px;text-align:center;color:var(--n400);font-size:12px">Nenhum paciente cadastrado ainda.</div>';
+    return;
+  }
+  PATIENTS.filter(p => !p.paused).forEach((p, i) => {
+    const init  = p.name.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+    const cols  = ['#e5632a','#7b5ea7','#2563eb','#e0a800','#d63384','#2dccb4'];
+    const c     = cols[i % cols.length];
+    const el    = document.createElement('div'); el.className = 'team-row';
+    el.innerHTML = `<div class="team-ava" style="background:linear-gradient(135deg,${c},${c}cc)">${init}</div>
+      <div class="team-info"><div class="team-name">${p.name}</div><div class="team-role">${p.phase||'Mês 1 · Fase Raízes'} · ${p.email}</div></div>
+      <div class="team-actions">
+        <div class="pr-b ok">Ativo</div>
+        <button onclick="openPatientProfile(${i})" style="padding:4px 9px;border-radius:6px;background:var(--n50);border:1px solid var(--n200);font-size:10px;font-weight:600;color:var(--n600);cursor:pointer;font-family:Inter,sans-serif">Perfil</button>
+      </div>`;
+    shared.appendChild(el);
+  });
+}
+
+// ════════════════════════════════════════════════════════════════════
+// FUNCIONALIDADE 5 — TABELA TACO (Cálculo de calorias)
+// Dataset TACO local + busca em tempo real
+// ════════════════════════════════════════════════════════════════════
+const TACO_DB = [
+  {id:1,name:'Arroz integral cozido',cat:'Cereais',kcal:124,prot:2.6,carb:25.8,fat:1.0,fib:2.7,sod:1},
+  {id:2,name:'Arroz branco cozido',cat:'Cereais',kcal:128,prot:2.5,carb:28.1,fat:0.2,fib:1.6,sod:1},
+  {id:3,name:'Pão integral',cat:'Cereais',kcal:253,prot:9.4,carb:44.3,fat:4.2,fib:6.9,sod:492},
+  {id:4,name:'Pão francês',cat:'Cereais',kcal:300,prot:8.0,carb:58.6,fat:3.1,fib:2.3,sod:536},
+  {id:5,name:'Aveia em flocos',cat:'Cereais',kcal:394,prot:13.9,carb:66.6,fat:8.5,fib:9.1,sod:4},
+  {id:6,name:'Macarrão cozido',cat:'Cereais',kcal:110,prot:3.5,carb:22.7,fat:0.4,fib:1.8,sod:132},
+  {id:7,name:'Frango grelhado peito',cat:'Carnes',kcal:163,prot:31.5,carb:0,fat:3.2,fib:0,sod:74},
+  {id:8,name:'Carne bovina patinho grelhado',cat:'Carnes',kcal:219,prot:30.3,carb:0,fat:10.2,fib:0,sod:72},
+  {id:9,name:'Ovo de galinha cozido',cat:'Carnes',kcal:146,prot:13.3,carb:0.6,fat:9.5,fib:0,sod:146},
+  {id:10,name:'Atum em conserva',cat:'Carnes',kcal:131,prot:28.3,carb:0,fat:1.9,fib:0,sod:445},
+  {id:11,name:'Salmão grelhado',cat:'Carnes',kcal:182,prot:24.8,carb:0,fat:8.7,fib:0,sod:59},
+  {id:12,name:'Sardinha em conserva',cat:'Carnes',kcal:208,prot:23.0,carb:0,fat:12.4,fib:0,sod:396},
+  {id:13,name:'Leite desnatado',cat:'Laticínios',kcal:35,prot:3.5,carb:5.0,fat:0.1,fib:0,sod:52},
+  {id:14,name:'Queijo minas frescal',cat:'Laticínios',kcal:264,prot:17.4,carb:3.2,fat:20.2,fib:0,sod:559},
+  {id:15,name:'Iogurte natural desnatado',cat:'Laticínios',kcal:51,prot:4.1,carb:6.4,fat:0.4,fib:0,sod:67},
+  {id:16,name:'Queijo cottage',cat:'Laticínios',kcal:98,prot:11.1,carb:3.4,fat:4.5,fib:0,sod:405},
+  {id:17,name:'Feijão carioca cozido',cat:'Leguminosas',kcal:76,prot:4.8,carb:13.6,fat:0.5,fib:8.5,sod:2},
+  {id:18,name:'Feijão preto cozido',cat:'Leguminosas',kcal:77,prot:4.5,carb:14.0,fat:0.5,fib:8.4,sod:1},
+  {id:19,name:'Lentilha cozida',cat:'Leguminosas',kcal:93,prot:7.8,carb:16.0,fat:0.5,fib:7.9,sod:2},
+  {id:20,name:'Grão-de-bico cozido',cat:'Leguminosas',kcal:120,prot:6.2,carb:21.0,fat:2.1,fib:5.2,sod:5},
+  {id:21,name:'Brócolis cozido',cat:'Hortaliças',kcal:35,prot:2.3,carb:6.6,fat:0.4,fib:3.4,sod:25},
+  {id:22,name:'Espinafre cozido',cat:'Hortaliças',kcal:30,prot:2.9,carb:4.2,fat:0.4,fib:2.1,sod:85},
+  {id:23,name:'Cenoura crua',cat:'Hortaliças',kcal:34,prot:0.9,carb:7.7,fat:0.2,fib:3.2,sod:76},
+  {id:24,name:'Tomate cru',cat:'Hortaliças',kcal:15,prot:0.9,carb:3.1,fat:0.2,fib:1.2,sod:8},
+  {id:25,name:'Batata-doce cozida',cat:'Hortaliças',kcal:77,prot:1.4,carb:18.0,fat:0.1,fib:2.5,sod:43},
+  {id:26,name:'Couve cozida',cat:'Hortaliças',kcal:18,prot:1.5,carb:2.5,fat:0.3,fib:1.7,sod:6},
+  {id:27,name:'Abobrinha cozida',cat:'Hortaliças',kcal:19,prot:1.2,carb:3.4,fat:0.2,fib:1.2,sod:3},
+  {id:28,name:'Beterraba cozida',cat:'Hortaliças',kcal:39,prot:1.5,carb:8.8,fat:0.1,fib:2.0,sod:65},
+  {id:29,name:'Banana prata',cat:'Frutas',kcal:98,prot:1.3,carb:26.0,fat:0.1,fib:1.9,sod:2},
+  {id:30,name:'Maçã com casca',cat:'Frutas',kcal:56,prot:0.3,carb:15.2,fat:0.1,fib:1.3,sod:1},
+  {id:31,name:'Laranja pera',cat:'Frutas',kcal:37,prot:0.9,carb:8.9,fat:0.1,fib:0.8,sod:1},
+  {id:32,name:'Mamão papaia',cat:'Frutas',kcal:40,prot:0.5,carb:10.4,fat:0.1,fib:1.8,sod:3},
+  {id:33,name:'Morango',cat:'Frutas',kcal:30,prot:0.8,carb:6.7,fat:0.3,fib:1.8,sod:1},
+  {id:34,name:'Abacate',cat:'Frutas',kcal:96,prot:1.2,carb:6.0,fat:8.4,fib:6.3,sod:4},
+  {id:35,name:'Manga tommy',cat:'Frutas',kcal:67,prot:0.5,carb:17.4,fat:0.3,fib:1.7,sod:3},
+  {id:36,name:'Açaí polpa',cat:'Frutas',kcal:247,prot:3.5,carb:6.7,fat:17.1,fib:2.6,sod:28},
+  {id:37,name:'Azeite de oliva extravirgem',cat:'Óleos',kcal:884,prot:0,carb:0,fat:100,fib:0,sod:2},
+  {id:38,name:'Óleo de coco',cat:'Óleos',kcal:892,prot:0,carb:0,fat:100,fib:0,sod:0},
+  {id:39,name:'Pasta de amendoim integral',cat:'Óleos',kcal:598,prot:28.0,carb:18.0,fat:48.0,fib:8.0,sod:8},
+  {id:40,name:'Castanha do Pará',cat:'Oleaginosas',kcal:656,prot:14.3,carb:15.1,fat:67.1,fib:7.9,sod:3},
+  {id:41,name:'Amêndoa',cat:'Oleaginosas',kcal:579,prot:21.2,carb:19.7,fat:49.4,fib:12.5,sod:1},
+  {id:42,name:'Semente de chia',cat:'Oleaginosas',kcal:490,prot:16.5,carb:42.1,fat:30.7,fib:34.4,sod:16},
+  {id:43,name:'Semente de linhaça',cat:'Oleaginosas',kcal:534,prot:18.3,carb:28.9,fat:42.2,fib:27.3,sod:30},
+  {id:44,name:'Chocolate amargo 70%',cat:'Doces',kcal:546,prot:9.9,carb:53.0,fat:40.1,fib:10.9,sod:10},
+  {id:45,name:'Mel',cat:'Doces',kcal:309,prot:0.4,carb:84.2,fat:0,fib:0,sod:7},
+  {id:46,name:'Tapioca',cat:'Cereais',kcal:344,prot:0.2,carb:85.3,fat:0.1,fib:0.2,sod:2},
+  {id:47,name:'Granola',cat:'Cereais',kcal:408,prot:9.4,carb:63.9,fat:14.0,fib:6.8,sod:95},
+  {id:48,name:'Whey protein isolado',cat:'Laticínios',kcal:377,prot:90.0,carb:4.0,fat:1.0,fib:0,sod:150},
+  {id:49,name:'Soja cozida',cat:'Leguminosas',kcal:141,prot:12.9,carb:9.3,fat:6.4,fib:5.8,sod:1},
+  {id:50,name:'Edamame cozido',cat:'Leguminosas',kcal:122,prot:11.9,carb:8.9,fat:5.2,fib:5.2,sod:63},
+];
+
+let tacoMenu = []; // itens do cardápio atual
+
+function searchTACO(q) {
+  const res = document.getElementById('taco-results');
+  if (!q || q.length < 2) { res.classList.remove('open'); return; }
+  const hits = TACO_DB.filter(f => f.name.toLowerCase().includes(q.toLowerCase())).slice(0, 12);
+  if (!hits.length) { res.innerHTML = '<div class="taco-item"><div class="taco-item-name">Nenhum resultado</div></div>'; res.classList.add('open'); return; }
+  res.innerHTML = hits.map(f => `
+    <div class="taco-item" onclick="selectTACOFood(${f.id})">
+      <div><div class="taco-item-name">${f.name}</div><div class="taco-item-cat">${f.cat} · por 100g</div></div>
+      <div class="taco-item-kcal">${f.kcal} kcal</div>
+    </div>`).join('');
+  res.classList.add('open');
+}
+
+function selectTACOFood(id) {
+  const food = TACO_DB.find(f => f.id === id);
+  if (!food) return;
+  document.getElementById('taco-selected-name').value  = food.name;
+  document.getElementById('taco-selected-id').value    = food.id;
+  document.getElementById('taco-selected-kcal100').value = JSON.stringify(food);
+  document.getElementById('taco-results').classList.remove('open');
+  document.getElementById('taco-search').value = '';
+  updateTacoPreview();
+}
+
+function updateTacoPreview() {
+  const raw  = document.getElementById('taco-selected-kcal100')?.value;
+  const qty  = parseFloat(document.getElementById('taco-qty')?.value) || 100;
+  if (!raw) return;
+  const food = JSON.parse(raw);
+  const r    = qty / 100;
+  const prev = document.getElementById('taco-preview');
+  if (prev) {
+    prev.style.display = 'block';
+    document.getElementById('prev-kcal').textContent = (food.kcal * r).toFixed(1);
+    document.getElementById('prev-prot').textContent = (food.prot * r).toFixed(1) + 'g';
+    document.getElementById('prev-carb').textContent = (food.carb * r).toFixed(1) + 'g';
+    document.getElementById('prev-fat').textContent  = (food.fat  * r).toFixed(1) + 'g';
+  }
+}
+
+function addTacoItem() {
+  const raw  = document.getElementById('taco-selected-kcal100')?.value;
+  const qty  = parseFloat(document.getElementById('taco-qty')?.value) || 100;
+  if (!raw) { toast('Selecione um alimento primeiro.'); return; }
+  const food = JSON.parse(raw);
+  const r    = qty / 100;
+  const item = { food_id:food.id, name:food.name, qty, kcal:+(food.kcal*r).toFixed(1), prot:+(food.prot*r).toFixed(1), carb:+(food.carb*r).toFixed(1), fat:+(food.fat*r).toFixed(1), fib:+(food.fib*r).toFixed(1) };
+  tacoMenu.push(item);
+  renderTacoMenu();
+  document.getElementById('taco-selected-name').value = '';
+  document.getElementById('taco-selected-id').value   = '';
+  document.getElementById('taco-selected-kcal100').value = '';
+  document.getElementById('taco-preview').style.display = 'none';
+  document.getElementById('taco-qty').value = '100';
+}
+
+function renderTacoMenu() {
+  const list   = document.getElementById('taco-menu-list');
+  const empty  = document.getElementById('taco-empty');
+  if (!tacoMenu.length) { if(empty) empty.style.display='block'; updateTacoTotals(); return; }
+  if (empty) empty.style.display = 'none';
+  list.innerHTML = tacoMenu.map((item, i) => `
+    <div class="fi" style="padding:9px 14px">
+      <div class="fi-bar" style="background:var(--mint)"></div>
+      <div class="fi-nm">${item.name}</div>
+      <div style="font-size:11px;color:var(--n400);white-space:nowrap;margin-right:6px">${item.qty}g</div>
+      <div style="display:flex;gap:6px;font-size:10px;font-weight:700;align-items:center;flex-shrink:0">
+        <span style="color:var(--ora)">${item.kcal}kcal</span>
+        <span style="color:var(--blu)">${item.prot}g P</span>
+        <span style="color:var(--yel)">${item.carb}g C</span>
+        <span style="color:var(--red)">${item.fat}g G</span>
+      </div>
+      <div class="fi-del" onclick="removeTacoItem(${i})">✕</div>
+    </div>`).join('');
+  updateTacoTotals();
+}
+
+function removeTacoItem(i) { tacoMenu.splice(i,1); renderTacoMenu(); }
+function clearTacoMenu()   { tacoMenu = []; renderTacoMenu(); }
+
+function updateTacoTotals() {
+  const totals = tacoMenu.reduce((acc,it)=>({kcal:acc.kcal+it.kcal, prot:acc.prot+it.prot, carb:acc.carb+it.carb, fat:acc.fat+it.fat, fib:acc.fib+it.fib}), {kcal:0,prot:0,carb:0,fat:0,fib:0});
+  ['kcal','prot','carb','fat','fib'].forEach(k => {
+    const el = document.getElementById('total-'+k);
+    if (el) el.textContent = totals[k].toFixed(1) + (k==='kcal'?'':' g');
+  });
+  // Atualiza stats cards
+  ['taco-total-kcal','taco-prot','taco-carb','taco-fat'].forEach((id,i) => {
+    const el  = document.getElementById(id);
+    const val = [totals.kcal, totals.prot, totals.carb, totals.fat][i];
+    if (el) el.textContent = val.toFixed(1) + (i===0?'':' g');
+  });
+}
+
+function saveTacoMenu() {
+  if (!tacoMenu.length) { toast('Adicione alimentos antes de salvar.'); return; }
+  const total = tacoMenu.reduce((s,i)=>s+i.kcal,0);
+  toast(`✅ Cardápio salvo! Total: ${total.toFixed(0)} kcal`);
+}
+
+// Fechar busca TACO ao clicar fora
+document.addEventListener('click', e => {
+  const wrap = document.querySelector('.taco-wrap');
+  if (wrap && !wrap.contains(e.target)) document.getElementById('taco-results')?.classList.remove('open');
+});
+
 // ════════════════════════════════════════════
-// PACIENTES
+// PATCH: createPatient agora chama e-mail
 // ════════════════════════════════════════════
 function openNewPatient(){
   document.getElementById('np-st').value = new Date().toISOString().split('T')[0];
@@ -1056,8 +1681,9 @@ function createPatient(){
     PATIENTS.push(pat); save();
     closeModal('m-patient');
     addToPlist(nm,pat,true);
+    syncSharedPatients();
     ['np-nm','np-em','np-ph','np-ob'].forEach(id=>{ const el=document.getElementById(id); if(el)el.value=''; });
-    toast('✅ '+nm.split(' ')[0]+' cadastrado! Login: '+em+' · Senha: '+pw);
+    simulateCredentialEmail(nm, em, pw, ph);
   },800);
 }
 
@@ -1084,7 +1710,7 @@ function selPat(el,nm){
 }
 
 // ════════════════════════════════════════════
-// PROFISSIONAIS
+// PACIENTES
 // ════════════════════════════════════════════
 function openNewProfessional(){ genProfPw(); openModal('m-professional'); }
 
@@ -1329,5 +1955,314 @@ function toast(msg){ const el=document.getElementById('toast'); el.textContent=m
 
 document.querySelectorAll('.sw').forEach(sw=>sw.addEventListener('click',function(){this.classList.toggle('on');this.classList.toggle('off');}));
 </script>
+<!-- MODAL: ADICIONAR PROFISSIONAL À EQUIPE -->
+<div class="mov" id="m-add-member">
+  <div class="modal">
+    <div class="mhdr">
+      <div><div class="mtitle">Adicionar profissional</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px">As credenciais serão enviadas por e-mail automaticamente</div></div>
+      <button class="mclose" onclick="closeModal('m-add-member')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button>
+    </div>
+    <div class="mbody">
+      <div class="msec">Dados do profissional</div>
+      <div class="mrow">
+        <div class="mf"><label>Nome completo</label><input id="tm-nm" placeholder="Carlos Silva"></div>
+        <div class="mf"><label>Função na equipe</label>
+          <select id="tm-role">
+            <option value="educador_fisico">Educador(a) Físico(a)</option>
+            <option value="psicologo">Psicólogo(a)</option>
+            <option value="medico">Médico(a) Parceiro(a)</option>
+            <option value="nutri">Nutricionista</option>
+          </select>
+        </div>
+      </div>
+      <div class="mf"><label>Telefone / WhatsApp</label><input id="tm-ph" placeholder="(11) 99999-9999"></div>
+      <div class="msec">Acesso ao painel</div>
+      <div class="mf"><label>E-mail profissional</label><input id="tm-em" type="email" placeholder="profissional@email.com"></div>
+      <div class="mf">
+        <label>Senha de acesso</label>
+        <div style="display:flex;gap:6px">
+          <input id="tm-pw" style="flex:1;background:var(--n50);border:1.5px solid var(--n100);border-radius:8px;padding:8px 11px;font-size:12px;font-family:Inter,sans-serif;color:var(--n700);outline:none" placeholder="Gere automaticamente">
+          <button onclick="genTeamPw()" style="padding:7px 11px;border-radius:8px;background:var(--n50);border:1.5px solid var(--n200);font-size:11px;font-weight:600;color:var(--n600);cursor:pointer;font-family:Inter,sans-serif;flex-shrink:0">Gerar</button>
+        </div>
+        <div style="font-size:10px;color:var(--n400);margin-top:3px">⚠️ Anote a senha. Será enviada também por e-mail.</div>
+      </div>
+      <div style="background:var(--ml);border-radius:10px;padding:11px 13px;font-size:12px;color:var(--md)">
+        ✅ Ao adicionar, este profissional terá acesso imediato a todos os pacientes da equipe conforme sua função.
+      </div>
+    </div>
+    <div class="mfooter">
+      <button class="mbtn ghost" onclick="closeModal('m-add-member')">Cancelar</button>
+      <button class="mbtn pri" onclick="addTeamMember()">Adicionar e enviar credenciais</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════
+// MÓDULO 3: GESTÃO DE EQUIPE
+// ════════════════════════════════════════════
+let TEAM_MEMBERS = JSON.parse(localStorage.getItem('r360_team') || '[]');
+
+function saveTeam(){ localStorage.setItem('r360_team', JSON.stringify(TEAM_MEMBERS)); }
+
+function genTeamPw(){
+  const c='ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789@#!';
+  let p='ABCDEFGHJKMNPQRSTUVWXYZ'[Math.floor(Math.random()*23)];
+  p+='23456789'[Math.floor(Math.random()*8)];p+='@#!'[Math.floor(Math.random()*3)];
+  for(let i=0;i<5;i++) p+=c[Math.floor(Math.random()*c.length)];
+  document.getElementById('tm-pw').value=p.split('').sort(()=>Math.random()-.5).join('');
+}
+
+function addTeamMember(){
+  const nm   = document.getElementById('tm-nm').value.trim();
+  const em   = document.getElementById('tm-em').value.trim();
+  const pw   = document.getElementById('tm-pw').value.trim();
+  const role = document.getElementById('tm-role').value;
+  if(!nm||!em||!pw){ toast('Preencha todos os campos.'); return; }
+
+  const labels={educador_fisico:'Educador Físico',psicologo:'Psicólogo(a)',medico:'Médico(a)',nutri:'Nutricionista'};
+  const colors={educador_fisico:'linear-gradient(135deg,#7b5ea7,#5a3e8a)',psicologo:'linear-gradient(135deg,#e8453c,#b52820)',medico:'linear-gradient(135deg,#2dccb4,#0e7a68)',nutri:'linear-gradient(135deg,#2dccb4,#1aab95)'};
+
+  const btn = document.querySelector('#m-add-member .mbtn.pri');
+  btn.textContent='Adicionando...'; btn.disabled=true;
+
+  setTimeout(()=>{
+    btn.textContent='Adicionar e enviar credenciais'; btn.disabled=false;
+
+    const member = {
+      id: Date.now(),
+      name: nm, email: em, pass: pw, role,
+      label: labels[role]||role,
+      color: colors[role]||'linear-gradient(135deg,#2dccb4,#1aab95)',
+      init:  nm.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase(),
+      addedAt: new Date().toISOString(),
+    };
+    TEAM_MEMBERS.push(member);
+    saveTeam();
+
+    // Adiciona este profissional à lista de usuários para que possa logar
+    const allProfs = JSON.parse(localStorage.getItem('r360_professionals')||'[]');
+    allProfs.push({
+      email:em, pass:pw, name:nm, role:labels[role], init:member.init,
+      color:member.color, view:role==='nutri'?'nutri':role==='psicologo'?'psico':role==='medico'?'medico':'edfi',
+      navRole:role==='nutri'?'nutri':role==='psicologo'?'psico':role==='medico'?'medico':'edfi',
+      addLbl:'Ver pacientes'
+    });
+    localStorage.setItem('r360_professionals', JSON.stringify(allProfs));
+
+    closeModal('m-add-member');
+    renderTeamList();
+    updateTeamCount();
+    ['tm-nm','tm-em','tm-ph'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+    toast('✅ '+nm+' adicionado! Login: '+em+' · Senha: '+pw);
+  }, 800);
+}
+
+function renderTeamList(){
+  const list = document.getElementById('team-list');
+  if(!list) return;
+  if(!TEAM_MEMBERS.length){
+    list.innerHTML=`<div style="padding:24px;text-align:center;color:var(--n400)">
+      <svg style="width:28px;height:28px;stroke:var(--n300);fill:none;stroke-width:1.5;stroke-linecap:round;display:block;margin:0 auto 8px" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg>
+      <div style="font-size:12px">Nenhum profissional adicionado ainda</div>
+    </div>`;
+    return;
+  }
+  list.innerHTML = TEAM_MEMBERS.map((m,i)=>`
+    <div class="team-member-row">
+      <div class="team-ava" style="background:${m.color}">${m.init}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:2px">${m.name}</div>
+        <div style="font-size:11px;color:var(--n400)">${m.email}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:7px">
+        <span class="team-role-badge" style="background:var(--purl);color:var(--pur)">${m.label}</span>
+        <button onclick="removeTeamMember(${i})" style="padding:4px 9px;border-radius:6px;background:var(--redl);color:var(--red);border:none;font-size:10px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif">Remover</button>
+      </div>
+    </div>`).join('');
+}
+
+function removeTeamMember(idx){
+  if(!confirm('Remover '+TEAM_MEMBERS[idx].name+' da equipe?')) return;
+  const removed = TEAM_MEMBERS.splice(idx,1)[0];
+  saveTeam();
+  // Remove do localStorage de profissionais
+  const profs = JSON.parse(localStorage.getItem('r360_professionals')||'[]').filter(p=>p.email!==removed.email);
+  localStorage.setItem('r360_professionals',JSON.stringify(profs));
+  renderTeamList();
+  updateTeamCount();
+  toast(removed.name+' removido da equipe.');
+}
+
+function updateTeamCount(){
+  const el = document.getElementById('team-count');
+  if(el) el.textContent = TEAM_MEMBERS.length;
+  const sc = document.getElementById('shared-count');
+  if(sc) sc.textContent = PATIENTS.length;
+}
+
+// ════════════════════════════════════════════
+// MÓDULO 5: CALCULADORA TACO
+// ════════════════════════════════════════════
+
+// Dados TACO locais (30 alimentos mais usados)
+const TACO_DB = [
+  {id:1,nome:'Arroz branco, cozido',grupo:'Cereais',kcal:128,prot:2.5,lip:0.2,carb:28.1,fib:1.6,sodio:1},
+  {id:2,nome:'Arroz integral, cozido',grupo:'Cereais',kcal:124,prot:2.6,lip:1.0,carb:25.8,fib:2.7,sodio:1},
+  {id:3,nome:'Feijão preto, cozido',grupo:'Leguminosas',kcal:77,prot:4.5,lip:0.5,carb:14.0,fib:8.4,sodio:2},
+  {id:4,nome:'Feijão carioca, cozido',grupo:'Leguminosas',kcal:76,prot:4.8,lip:0.5,carb:13.6,fib:7.8,sodio:2},
+  {id:5,nome:'Frango peito, grelhado',grupo:'Carnes',kcal:159,prot:32.0,lip:3.2,carb:0,fib:0,sodio:63},
+  {id:6,nome:'Carne bovina, patinho cozido',grupo:'Carnes',kcal:219,prot:32.8,lip:9.9,carb:0,fib:0,sodio:68},
+  {id:7,nome:'Ovo de galinha, cozido',grupo:'Ovos',kcal:146,prot:13.3,lip:9.5,carb:0.6,fib:0,sodio:134},
+  {id:8,nome:'Brócolis, cozido',grupo:'Vegetais',kcal:26,prot:3.0,lip:0.4,carb:3.0,fib:3.1,sodio:16},
+  {id:9,nome:'Espinafre, cozido',grupo:'Vegetais',kcal:26,prot:3.6,lip:0.5,carb:2.6,fib:2.7,sodio:126},
+  {id:10,nome:'Cenoura, crua',grupo:'Vegetais',kcal:34,prot:0.9,lip:0.2,carb:7.7,fib:3.2,sodio:56},
+  {id:11,nome:'Tomate, cru',grupo:'Vegetais',kcal:15,prot:0.9,lip:0.2,carb:2.9,fib:1.2,sodio:5},
+  {id:12,nome:'Alface, crua',grupo:'Vegetais',kcal:11,prot:1.3,lip:0.2,carb:1.4,fib:1.7,sodio:9},
+  {id:13,nome:'Banana prata',grupo:'Frutas',kcal:98,prot:1.3,lip:0.1,carb:26.0,fib:1.9,sodio:1},
+  {id:14,nome:'Maçã com casca',grupo:'Frutas',kcal:56,prot:0.3,lip:0.4,carb:15.2,fib:2.0,sodio:1},
+  {id:15,nome:'Laranja, pera',grupo:'Frutas',kcal:37,prot:0.9,lip:0.1,carb:8.9,fib:0.8,sodio:1},
+  {id:16,nome:'Mamão, papaia',grupo:'Frutas',kcal:40,prot:0.5,lip:0.1,carb:10.4,fib:1.8,sodio:3},
+  {id:17,nome:'Leite de vaca, integral',grupo:'Laticínios',kcal:61,prot:3.2,lip:3.2,carb:4.6,fib:0,sodio:47},
+  {id:18,nome:'Iogurte natural, integral',grupo:'Laticínios',kcal:66,prot:4.1,lip:3.2,carb:6.0,fib:0,sodio:62},
+  {id:19,nome:'Queijo minas frescal',grupo:'Laticínios',kcal:264,prot:17.4,lip:20.2,carb:3.2,fib:0,sodio:420},
+  {id:20,nome:'Azeite de oliva',grupo:'Óleos',kcal:884,prot:0,lip:100,carb:0,fib:0,sodio:2},
+  {id:21,nome:'Pão francês',grupo:'Panificados',kcal:300,prot:8.0,lip:3.1,carb:58.6,fib:2.3,sodio:622},
+  {id:22,nome:'Pão integral',grupo:'Panificados',kcal:253,prot:8.2,lip:3.1,carb:49.0,fib:6.9,sodio:449},
+  {id:23,nome:'Batata inglesa, cozida',grupo:'Tubérculos',kcal:52,prot:1.2,lip:0.1,carb:12.6,fib:1.3,sodio:2},
+  {id:24,nome:'Batata-doce, cozida',grupo:'Tubérculos',kcal:77,prot:0.6,lip:0.1,carb:18.4,fib:2.2,sodio:27},
+  {id:25,nome:'Macarrão, cozido',grupo:'Massas',kcal:149,prot:4.8,lip:0.9,carb:30.9,fib:2.0,sodio:1},
+  {id:26,nome:'Aveia em flocos',grupo:'Cereais',kcal:394,prot:13.9,lip:8.5,carb:66.6,fib:9.1,sodio:4},
+  {id:27,nome:'Salmão, grelhado',grupo:'Peixes',kcal:208,prot:28.0,lip:10.0,carb:0,fib:0,sodio:59},
+  {id:28,nome:'Atum em água, escorrido',grupo:'Peixes',kcal:108,prot:23.6,lip:1.2,carb:0,fib:0,sodio:330},
+  {id:29,nome:'Amendoim, cru',grupo:'Oleaginosas',kcal:567,prot:25.8,lip:49.2,carb:16.1,fib:8.5,sodio:18},
+  {id:30,nome:'Castanha do Pará',grupo:'Oleaginosas',kcal:643,prot:14.3,lip:63.5,carb:15.1,fib:7.5,sodio:3},
+];
+
+let tacoSelected = []; // [{taco, quantidade}]
+let tacoTimeout;
+
+function searchTaco(q){
+  clearTimeout(tacoTimeout);
+  tacoTimeout = setTimeout(()=>{
+    const r = document.getElementById('taco-results');
+    if(!q || q.length < 2){ r.style.display='none'; return; }
+    const matches = TACO_DB.filter(a =>
+      a.nome.toLowerCase().includes(q.toLowerCase()) ||
+      a.grupo.toLowerCase().includes(q.toLowerCase())
+    ).slice(0,8);
+    if(!matches.length){ r.style.display='none'; return; }
+    r.style.display='block';
+    r.innerHTML = matches.map(a=>`
+      <div class="taco-item" onclick="addTacoItem(${a.id})">
+        <div style="flex:1;min-width:0">
+          <div class="taco-nm">${a.nome}</div>
+          <div class="taco-grupo">${a.grupo}</div>
+        </div>
+        <div class="taco-kcal">${a.kcal} kcal/100g</div>
+      </div>`).join('');
+  }, 200);
+}
+
+function addTacoItem(tacoId){
+  const food = TACO_DB.find(a=>a.id===tacoId);
+  if(!food) return;
+  // Não duplica
+  if(tacoSelected.find(s=>s.taco.id===tacoId)){
+    toast(food.nome+' já foi adicionado.');
+    document.getElementById('taco-results').style.display='none';
+    document.getElementById('taco-q').value='';
+    return;
+  }
+  tacoSelected.push({taco:food, quantidade:100});
+  document.getElementById('taco-results').style.display='none';
+  document.getElementById('taco-q').value='';
+  renderTacoSelected();
+}
+
+function renderTacoSelected(){
+  const container = document.getElementById('taco-selected');
+  const empty = document.getElementById('taco-empty');
+  const total = document.getElementById('taco-total');
+  if(!tacoSelected.length){
+    container.innerHTML='<div id="taco-empty" style="padding:20px;text-align:center;color:var(--n400);font-size:12px">Busque e adicione alimentos para calcular</div>';
+    total.style.display='none';
+    return;
+  }
+  container.innerHTML = tacoSelected.map((s,i)=>{
+    const r = s.quantidade/100;
+    const kc = (s.taco.kcal*r).toFixed(1);
+    return `<div class="taco-sel-row">
+      <div class="taco-sel-nm">${s.taco.nome}</div>
+      <input class="taco-sel-qty" value="${s.quantidade}" onchange="updateTacoQty(${i},this.value)" title="Quantidade em gramas">g
+      <div class="taco-sel-kcal">${kc} kcal</div>
+      <div class="taco-sel-del" onclick="removeTacoItem(${i})">✕</div>
+    </div>`;
+  }).join('');
+  // Calcula totais
+  const totals = tacoSelected.reduce((acc,s)=>{
+    const r=s.quantidade/100;
+    return {
+      kcal: acc.kcal+(s.taco.kcal*r),
+      prot: acc.prot+(s.taco.prot*r),
+      carb: acc.carb+(s.taco.carb*r),
+      lip:  acc.lip +(s.taco.lip*r),
+      fib:  acc.fib +(s.taco.fib*r),
+    };
+  },{kcal:0,prot:0,carb:0,lip:0,fib:0});
+  document.getElementById('t-kcal').textContent = totals.kcal.toFixed(0);
+  document.getElementById('t-prot').textContent = totals.prot.toFixed(1)+'g';
+  document.getElementById('t-carb').textContent = totals.carb.toFixed(1)+'g';
+  document.getElementById('t-lip').textContent  = totals.lip.toFixed(1)+'g';
+  document.getElementById('t-fib').textContent  = totals.fib.toFixed(1)+'g';
+  total.style.display='flex';
+}
+
+function updateTacoQty(idx, val){
+  tacoSelected[idx].quantidade = parseFloat(val)||100;
+  renderTacoSelected();
+}
+
+function removeTacoItem(idx){
+  tacoSelected.splice(idx,1);
+  renderTacoSelected();
+}
+
+function clearTaco(){
+  tacoSelected=[];
+  renderTacoSelected();
+  document.getElementById('taco-q').value='';
+  document.getElementById('taco-results').style.display='none';
+}
+
+function applyTacoToMenu(){
+  if(!tacoSelected.length){ toast('Adicione alimentos primeiro.'); return; }
+  // Adiciona os alimentos ao cardápio do paciente selecionado
+  const menuBody = document.getElementById('menu-body');
+  if(!menuBody){ toast('Selecione um paciente primeiro.'); return; }
+  const foot = menuBody.querySelector('.meal-ft');
+  tacoSelected.forEach(s=>{
+    const qty = s.quantidade+'g';
+    const kc  = (s.taco.kcal*s.quantidade/100).toFixed(0)+' kcal';
+    const cols=['#2dccb4','#f0924a','#7b5ea7','#2563eb','#e0a800'];
+    const c=cols[Math.floor(Math.random()*cols.length)];
+    const el=document.createElement('div'); el.className='fi';
+    el.innerHTML=`<div class="fi-bar" style="background:${c}"></div><div class="fi-nm">${s.taco.nome}</div><div class="fi-qty"><input value="${qty}"></div><div class="fi-kc">${kc}</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div>`;
+    if(foot) foot.parentElement.insertBefore(el,foot);
+  });
+  setTab('nutri',document.getElementById('tab-nutri'));
+  toast('✅ '+tacoSelected.length+' alimento(s) adicionado(s) ao cardápio!');
+  clearTaco();
+}
+
+// Inicializa equipe ao carregar
+function initTeam(){
+  TEAM_MEMBERS = JSON.parse(localStorage.getItem('r360_team')||'[]');
+  renderTeamList();
+  updateTeamCount();
+}
+document.addEventListener('DOMContentLoaded', initTeam);
+</script>
+
 </body>
 </html>
