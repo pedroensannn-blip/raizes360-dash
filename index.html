@@ -288,6 +288,25 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
 /* ══ TOAST ══ */
 #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--n700);color:white;padding:10px 18px;border-radius:10px;font-size:12px;font-weight:600;z-index:9999;opacity:0;transition:all .28s;pointer-events:none;white-space:nowrap;box-shadow:var(--shm)}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ══ GESTÃO DE PACIENTES ══ */
+.patient-actions{display:flex;gap:6px;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--n100);background:var(--n50)}
+.pa-btn{padding:7px 13px;border-radius:var(--rp);font-size:11px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:5px;transition:opacity .15s}
+.pa-btn:hover{opacity:.88}
+.pa-btn svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.pa-btn.pause{background:var(--oral);color:var(--ora)}
+.pa-btn.del{background:var(--redl);color:var(--red)}
+.pa-btn.reactivate{background:var(--ml);color:var(--md)}
+.pa-btn.limit{background:var(--blul);color:var(--blu)}
+/* Status badge na lista */
+.pr-b.paused{background:#f5f5f5;color:var(--n400)}
+/* Orientações */
+.orient-card{background:linear-gradient(135deg,var(--ml),#d0f5ef);border:1px solid rgba(45,204,180,.2);border-radius:var(--r);padding:14px 16px;margin-bottom:10px}
+.orient-title{font-size:12px;font-weight:700;color:var(--md);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.orient-title svg{width:13px;height:13px;stroke:var(--md);fill:none;stroke-width:2;stroke-linecap:round}
+.orient-txt{font-size:12px;color:var(--n600);line-height:1.55}
+/* Arquivados tab */
+.arch-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp);background:var(--oral);color:var(--ora);flex-shrink:0}
 </style>
 </head>
 <body>
@@ -372,6 +391,11 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       <button class="rtab" id="tab-rewards" onclick="setTab('rewards',this)">
         <svg viewBox="0 0 14 14"><path d="M7 1l1.5 4H13l-3.5 2.5 1.3 4L7 9 3.2 11.5l1.3-4L1 5h4.5z"/></svg>
         Recompensas
+      </button>
+      <button class="rtab" id="tab-archived" onclick="setTab('archived',this)">
+        <svg viewBox="0 0 14 14"><rect x="1" y="4" width="12" height="9" rx="1"/><path d="M1 4l1-2h10l1 2"/><line x1="5" y1="7" x2="9" y2="7"/></svg>
+        Arquivados
+        <span id="archived-count" style="font-size:9px;font-weight:700;padding:1px 6px;border-radius:var(--rp);background:var(--oral);color:var(--ora);display:none">0</span>
       </button>
     </div>
 
@@ -656,9 +680,111 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
         </div>
       </div>
 
+      <!-- ════ PACIENTES ARQUIVADOS ════ -->
+      <div class="view" id="v-archived">
+        <div style="background:var(--wh);border-radius:var(--r);border:1px solid var(--n100);box-shadow:var(--sh);padding:16px 20px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:12px;background:var(--oral);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg style="width:20px;height:20px;stroke:var(--ora);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><rect x="2" y="5" width="16" height="13" rx="2"/><path d="M2 5l2-3h12l2 3"/><line x1="7" y1="10" x2="13" y2="10"/></svg>
+          </div>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:var(--n800)">Pacientes Arquivados</div>
+            <div style="font-size:12px;color:var(--n400)">Pacientes com acesso pausado. Reative a qualquer momento.</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph">
+            <div><div class="ph-t">Lista de arquivados</div><div class="ph-s">Clique em "Reativar" para restaurar o acesso</div></div>
+            <div id="archived-total" style="font-size:12px;font-weight:600;color:var(--n400)">0 pacientes</div>
+          </div>
+          <div class="pb" id="archived-list">
+            <div id="empty-archived" style="padding:32px 16px;text-align:center">
+              <svg style="width:36px;height:36px;stroke:var(--n300);fill:none;stroke-width:1.5;stroke-linecap:round;display:block;margin:0 auto 10px" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="15" rx="2"/><path d="M3 6l2-3h14l2 3"/><line x1="9" y1="12" x2="15" y2="12"/></svg>
+              <div style="font-size:13px;font-weight:600;color:var(--n400);margin-bottom:4px">Nenhum paciente arquivado</div>
+              <div style="font-size:12px;color:var(--n300)">Pacientes pausados aparecerão aqui</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /content -->
   </div><!-- /main -->
 </div><!-- /dash -->
+
+<!-- MODAL: PERFIL DO PACIENTE + GESTÃO DE ACESSO -->
+<div class="mov" id="m-patient-profile">
+  <div class="modal" style="max-width:520px">
+    <div class="mhdr" id="mpp-hdr">
+      <div>
+        <div class="mtitle" id="mpp-name">Perfil do Paciente</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px" id="mpp-phase">Fase Raízes · Mês 1</div>
+      </div>
+      <button class="mclose" onclick="closeModal('m-patient-profile')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button>
+    </div>
+    <div class="mbody">
+
+      <!-- Orientações do profissional -->
+      <div class="msec">Orientações e metas personalizadas</div>
+      <div style="font-size:11px;color:var(--n500);margin-bottom:6px">Estas informações serão exibidas diretamente no app do paciente.</div>
+      <div class="mf">
+        <label>Orientações gerais</label>
+        <textarea id="pp-orient" style="min-height:80px" placeholder="Ex: Priorize proteína no café da manhã. Evite carboidratos simples à noite. Beba 2L de água por dia..."></textarea>
+      </div>
+      <div class="mf">
+        <label>Meta principal do mês</label>
+        <input id="pp-goal" placeholder="Ex: Perder 2kg e caminhar 5x por semana">
+      </div>
+      <div class="mrow">
+        <div class="mf">
+          <label>Próxima consulta</label>
+          <input id="pp-next" type="date">
+        </div>
+        <div class="mf">
+          <label>Fase atual</label>
+          <select id="pp-phase-sel">
+            <option>Fase Raízes · Mês 1</option>
+            <option>Fase Crescimento · Mês 3</option>
+            <option>Fase Consolidação · Mês 7</option>
+            <option>Fase Expansão · Mês 10</option>
+          </select>
+        </div>
+      </div>
+      <button class="mbtn pri" style="flex:unset;width:100%" onclick="saveOrientations()">
+        Salvar e enviar para o app do paciente
+      </button>
+
+      <!-- Gestão de acesso -->
+      <div class="msec" style="margin-top:4px">Gestão de acesso</div>
+      <div class="mrow">
+        <div class="mf">
+          <label>Tempo limite de acesso</label>
+          <input id="pp-limit" type="date" title="Após esta data o acesso será revogado automaticamente">
+          <div style="font-size:10px;color:var(--n400);margin-top:3px">Deixe em branco para acesso ilimitado</div>
+        </div>
+        <div class="mf">
+          <label>Status atual</label>
+          <div id="pp-status-badge" style="margin-top:6px;padding:8px 12px;border-radius:9px;background:var(--ml);color:var(--md);font-size:12px;font-weight:700;text-align:center">🟢 Ativo</div>
+        </div>
+      </div>
+
+      <!-- Ações de acesso -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="pa-btn limit" onclick="setAccessLimit()">
+          <svg viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="10" rx="2"/><line x1="5" y1="7" x2="9" y2="7"/></svg>
+          Definir tempo limite
+        </button>
+        <button class="pa-btn pause" id="mpp-pause-btn" onclick="togglePausePatient()">
+          <svg viewBox="0 0 14 14"><rect x="2" y="1" width="3" height="12" rx="1"/><rect x="9" y="1" width="3" height="12" rx="1"/></svg>
+          Pausar acesso
+        </button>
+        <button class="pa-btn del" onclick="deletePatient()">
+          <svg viewBox="0 0 14 14"><polyline points="1,3 13,3"/><path d="M5 3V2h4v1M3 3l1 10h6l1-10"/></svg>
+          Excluir paciente
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- MODAL: NOVO PACIENTE -->
 <div class="mov" id="m-patient">
@@ -941,16 +1067,20 @@ function addToPlist(nm, data, isNew=false){
   const init = nm.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
   const cols = ['#e5632a','#7b5ea7','#2563eb','#e0a800','#d63384','#2dccb4'];
   const c = cols[Math.floor(Math.random()*cols.length)];
+  const idx = PATIENTS.findIndex(p=>p.name===nm);
   const el = document.createElement('div'); el.className='pr';
-  el.onclick = function(){ selPat(this,nm); };
-  el.innerHTML = `<div class="pr-ava" style="background:linear-gradient(135deg,${c},${c}cc)">${init}</div><div style="flex:1;min-width:0"><div class="pr-nm">${nm}</div><div class="pr-mt">${data?.phase||'Mês 1 · Fase Raízes'}</div></div><div class="pr-b ${isNew?'n':'ok'}">${isNew?'Novo':'Ativo'}</div>`;
+  el.innerHTML = `<div class="pr-ava" style="background:linear-gradient(135deg,${c},${c}cc)">${init}</div>`+
+    `<div style="flex:1;min-width:0" onclick="selPat(this.closest('.pr'),'${nm}')"><div class="pr-nm">${nm}</div><div class="pr-mt">${(data&&data.phase)||'Mês 1 · Fase Raízes'}</div></div>`+
+    `<div style="display:flex;gap:5px;align-items:center"><div class="pr-b ${isNew?'n':'ok'}">${isNew?'Novo':'Ativo'}</div>`+
+    `<button onclick="openPatientProfile(${idx})" style="padding:4px 9px;border-radius:6px;background:var(--n50);border:1px solid var(--n200);font-size:10px;font-weight:600;color:var(--n600);cursor:pointer;font-family:Inter,sans-serif;white-space:nowrap;flex-shrink:0">Perfil</button></div>`;
   document.getElementById('plist').prepend(el);
 }
 
 function selPat(el,nm){
   document.querySelectorAll('.pr').forEach(p=>p.classList.remove('sel'));
   el.classList.add('sel');
-  ['menu-title'].forEach(id=>{ const e=document.getElementById(id); if(e)e.textContent='Cardápio · '+nm; });
+  const mn = document.getElementById('menu-title');
+  if(mn) mn.textContent = 'Cardápio · '+nm;
 }
 
 // ════════════════════════════════════════════
@@ -983,7 +1113,161 @@ function createProfessional(){
 }
 
 // ════════════════════════════════════════════
-// CARDÁPIO
+// FUNCIONALIDADE 1: GESTÃO DE ACESSO
+// ════════════════════════════════════════════
+let currentPatientIndex = null; // índice do paciente sendo editado
+
+function openPatientProfile(idx){
+  currentPatientIndex = idx;
+  const p = PATIENTS[idx];
+  if(!p) return;
+  document.getElementById('mpp-name').textContent = p.name;
+  document.getElementById('mpp-phase').textContent = p.phase || 'Fase Raízes · Mês 1';
+  document.getElementById('pp-orient').value  = p.orientations || '';
+  document.getElementById('pp-goal').value    = p.goal || '';
+  document.getElementById('pp-next').value    = p.nextVisit || '';
+  document.getElementById('pp-limit').value   = p.accessLimit || '';
+  // Fase
+  const phSel = document.getElementById('pp-phase-sel');
+  if(p.phase) phSel.value = p.phase;
+  // Status badge + botão pause
+  const badge = document.getElementById('pp-status-badge');
+  const pauseBtn = document.getElementById('mpp-pause-btn');
+  if(p.paused){
+    badge.textContent = '🔴 Pausado';
+    badge.style.background = 'var(--redl)'; badge.style.color = 'var(--red)';
+    pauseBtn.innerHTML = '<svg viewBox="0 0 14 14"><polygon points="2,1 12,7 2,13"/></svg> Reativar acesso';
+    pauseBtn.classList.remove('pause'); pauseBtn.classList.add('reactivate');
+  } else {
+    badge.textContent = '🟢 Ativo';
+    badge.style.background = 'var(--ml)'; badge.style.color = 'var(--md)';
+    pauseBtn.innerHTML = '<svg viewBox="0 0 14 14"><rect x="2" y="1" width="3" height="12" rx="1"/><rect x="9" y="1" width="3" height="12" rx="1"/></svg> Pausar acesso';
+    pauseBtn.classList.remove('reactivate'); pauseBtn.classList.add('pause');
+  }
+  openModal('m-patient-profile');
+}
+
+function saveOrientations(){
+  if(currentPatientIndex === null) return;
+  const p = PATIENTS[currentPatientIndex];
+  p.orientations = document.getElementById('pp-orient').value.trim();
+  p.goal         = document.getElementById('pp-goal').value.trim();
+  p.nextVisit    = document.getElementById('pp-next').value;
+  p.phase        = document.getElementById('pp-phase-sel').value;
+  save();
+  toast('✅ Orientações salvas e enviadas para o app de ' + p.name.split(' ')[0] + '!');
+}
+
+function setAccessLimit(){
+  if(currentPatientIndex === null) return;
+  const limit = document.getElementById('pp-limit').value;
+  if(!limit){ toast('Selecione uma data limite primeiro.'); return; }
+  PATIENTS[currentPatientIndex].accessLimit = limit;
+  save();
+  toast('⏰ Acesso de ' + PATIENTS[currentPatientIndex].name.split(' ')[0] + ' expira em ' + new Date(limit+'T12:00').toLocaleDateString('pt-BR'));
+}
+
+function togglePausePatient(){
+  if(currentPatientIndex === null) return;
+  const p = PATIENTS[currentPatientIndex];
+  p.paused = !p.paused;
+  save();
+  if(p.paused){
+    // Remove da lista ativa e manda para arquivados
+    removeFromActiveList(p.name);
+    addToArchivedList(currentPatientIndex, p);
+    updateArchivedCount();
+    toast('⏸️ ' + p.name.split(' ')[0] + ' pausado e movido para Arquivados');
+  } else {
+    // Remove dos arquivados e volta para lista ativa
+    removeFromArchivedList(p.name);
+    addToPlist(p.name, p, false);
+    updateArchivedCount();
+    toast('▶️ ' + p.name.split(' ')[0] + ' reativado com sucesso!');
+  }
+  closeModal('m-patient-profile');
+}
+
+function deletePatient(){
+  if(currentPatientIndex === null) return;
+  const p = PATIENTS[currentPatientIndex];
+  if(!confirm('Tem certeza que deseja excluir ' + p.name + '? Esta ação é permanente e não pode ser desfeita.')) return;
+  PATIENTS.splice(currentPatientIndex, 1);
+  save();
+  removeFromActiveList(p.name);
+  removeFromArchivedList(p.name);
+  updateArchivedCount();
+  closeModal('m-patient-profile');
+  toast('🗑️ ' + p.name + ' excluído permanentemente.');
+}
+
+function removeFromActiveList(name){
+  document.querySelectorAll('#plist .pr').forEach(el=>{
+    if(el.querySelector('.pr-nm')?.textContent === name) el.remove();
+  });
+}
+
+// ════════════════════════════════════════════
+// FUNCIONALIDADE 2: PACIENTES ARQUIVADOS
+// ════════════════════════════════════════════
+function addToArchivedList(idx, p){
+  const empty = document.getElementById('empty-archived');
+  if(empty) empty.remove();
+  const init = p.name.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  const cols = ['#e5632a','#7b5ea7','#2563eb','#e0a800','#d63384','#2dccb4'];
+  const c = cols[Math.floor(Math.random()*cols.length)];
+  const el = document.createElement('div');
+  el.className = 'pr'; el.id = 'arch-'+p.name.replace(/\s/g,'_');
+  el.style.opacity = '.65';
+  el.innerHTML = `
+    <div class="pr-ava" style="background:linear-gradient(135deg,${c},${c}cc)">${init}</div>
+    <div style="flex:1;min-width:0">
+      <div class="pr-nm">${p.name}</div>
+      <div class="pr-mt">${p.phase||'Fase Raízes'} · Pausado em ${new Date().toLocaleDateString('pt-BR')}</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center">
+      <div class="pr-b paused">Pausado</div>
+      <button class="pa-btn reactivate" style="padding:5px 10px;font-size:10px" onclick="reactivateFromArchive(${PATIENTS.indexOf(p)},this)">
+        <svg viewBox="0 0 14 14"><polygon points="2,1 12,7 2,13"/></svg>
+        Reativar
+      </button>
+    </div>`;
+  document.getElementById('archived-list').appendChild(el);
+}
+
+function removeFromArchivedList(name){
+  const el = document.getElementById('arch-'+name.replace(/\s/g,'_'));
+  if(el) el.remove();
+  if(!document.querySelector('#archived-list .pr')){
+    const empty = document.createElement('div');
+    empty.id = 'empty-archived';
+    empty.style.cssText = 'padding:32px 16px;text-align:center';
+    empty.innerHTML = '<div style="font-size:13px;font-weight:600;color:var(--n400)">Nenhum paciente arquivado</div>';
+    document.getElementById('archived-list').appendChild(empty);
+  }
+}
+
+function reactivateFromArchive(idx, btn){
+  if(idx < 0 || idx >= PATIENTS.length) return;
+  const p = PATIENTS[idx];
+  p.paused = false;
+  save();
+  removeFromArchivedList(p.name);
+  addToPlist(p.name, p, false);
+  updateArchivedCount();
+  toast('▶️ ' + p.name.split(' ')[0] + ' reativado com sucesso!');
+}
+
+function updateArchivedCount(){
+  const paused = PATIENTS.filter(p=>p.paused).length;
+  const badge = document.getElementById('archived-count');
+  const total = document.getElementById('archived-total');
+  if(badge){ badge.textContent = paused; badge.style.display = paused > 0 ? 'inline' : 'none'; }
+  if(total){ total.textContent = paused + ' paciente' + (paused!==1?'s':''); }
+}
+
+// ════════════════════════════════════════════
+// PATCH: selPat abre perfil + mostra botão
 // ════════════════════════════════════════════
 function addFood(btn){
   const foot = btn.closest('.meal-ft');
