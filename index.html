@@ -950,18 +950,17 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       <div class="view" id="v-taco" style="display:none">
         <div class="g2">
           <div class="panel">
-            <div class="ph"><div><div class="ph-t">Calculadora TACO</div><div class="ph-s">Tabela Brasileira de Composição de Alimentos</div></div><button class="savebtn" onclick="clearTaco()">Limpar</button></div>
-            <!-- Busca -->
+            <div class="ph">
+              <div><div class="ph-t">Calculadora TACO</div><div class="ph-s">Tabela Brasileira de Composição de Alimentos</div></div>
+              <button class="savebtn" onclick="saveTacoMenu()">Salvar cardápio</button>
+            </div>
             <div class="taco-search">
               <input class="taco-input" id="taco-q" placeholder="Buscar alimento (ex: arroz, frango, banana...)" oninput="searchTaco(this.value)">
             </div>
-            <!-- Resultados da busca -->
             <div class="taco-results" id="taco-results" style="display:none"></div>
-            <!-- Alimentos selecionados -->
             <div class="taco-selected" id="taco-selected">
               <div id="taco-empty" style="padding:20px;text-align:center;color:var(--n400);font-size:12px">Busque e adicione alimentos para calcular</div>
             </div>
-            <!-- Totais -->
             <div class="taco-total" id="taco-total" style="display:none">
               <div class="taco-macro"><div class="taco-macro-val" id="t-kcal">0</div><div class="taco-macro-lbl">kcal</div></div>
               <div class="taco-macro"><div class="taco-macro-val" id="t-prot">0g</div><div class="taco-macro-lbl">Proteína</div></div>
@@ -970,24 +969,31 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
               <div class="taco-macro"><div class="taco-macro-val" id="t-fib">0g</div><div class="taco-macro-lbl">Fibra</div></div>
             </div>
             <div style="padding:10px 16px;border-top:1px solid var(--n100);display:flex;gap:8px">
-              <button class="savebtn full" onclick="applyTacoToMenu()">Aplicar ao cardápio do paciente</button>
+              <button class="savebtn full" onclick="saveTacoMenu()">Salvar na biblioteca</button>
+              <button style="padding:8px 14px;border-radius:var(--rp);background:var(--n50);border:1px solid var(--n200);font-size:12px;font-weight:600;color:var(--n600);cursor:pointer;font-family:Inter,sans-serif" onclick="clearTaco()">Limpar</button>
             </div>
           </div>
           <div class="panel">
-            <div class="ph"><div class="ph-t">Referência nutricional TACO</div></div>
-            <div class="pb">
-              <div class="ex-sec">Grupos alimentares disponíveis</div>
-              <div style="display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px">
-                ${['Cereais','Leguminosas','Carnes','Ovos','Peixes','Vegetais','Frutas','Laticínios','Óleos','Panificados','Massas','Tubérculos'].map(g=>`<div onclick="searchTaco('${g.toLowerCase()}')" style="font-size:11px;font-weight:600;padding:5px 11px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);transition:all .1s" onmouseover="this.style.background='var(--ml)';this.style.color='var(--md)'" onmouseout="this.style.background='var(--n50)';this.style.color='var(--n600)'">${g}</div>`).join('')}
-              </div>
-              <div class="ex-sec" style="margin-top:4px">Valores de referência diários</div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Energia</div></div><div style="font-size:11px;font-weight:600;color:var(--n600)">2.000 kcal</div></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Proteína</div></div><div style="font-size:11px;font-weight:600;color:var(--n600)">50g</div></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Carboidrato</div></div><div style="font-size:11px;font-weight:600;color:var(--n600)">300g</div></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Gordura total</div></div><div style="font-size:11px;font-weight:600;color:var(--n600)">65g</div></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Fibra alimentar</div></div><div style="font-size:11px;font-weight:600;color:var(--n600)">25g</div></div>
-              <div class="ex-row"><div style="flex:1"><div class="ex-nm">Sódio</div></div><div style="font-size:11px;font-weight:600;color:var(--n600)">2.400mg</div></div>
+            <div class="ph"><div><div class="ph-t">Biblioteca de cardápios</div><div class="ph-s">Clique em "Aplicar" para enviar a um paciente</div></div><div id="menu-count" style="font-size:11px;font-weight:600;color:var(--n400)">0 salvos</div></div>
+            <div class="pb" id="menu-library-list">
+              <div style="padding:24px;text-align:center;color:var(--n400);font-size:12px">Nenhum cardápio salvo ainda.<br>Monte um cardápio e clique em "Salvar na biblioteca".</div>
             </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="ph-t">Grupos alimentares — clique para buscar</div></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px">
+            <button onclick="searchTaco('Cereais')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Cereais</button>
+            <button onclick="searchTaco('Carnes')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Carnes</button>
+            <button onclick="searchTaco('Peixes')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Peixes</button>
+            <button onclick="searchTaco('Leguminosas')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Leguminosas</button>
+            <button onclick="searchTaco('Hortaliças')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Hortaliças</button>
+            <button onclick="searchTaco('Frutas')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Frutas</button>
+            <button onclick="searchTaco('Laticínios')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Laticínios</button>
+            <button onclick="searchTaco('Óleos')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Óleos</button>
+            <button onclick="searchTaco('Oleaginosas')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Oleaginosas</button>
+            <button onclick="searchTaco('Ovos')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Ovos</button>
+            <button onclick="searchTaco('Doces')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Doces</button>
           </div>
         </div>
       </div>
@@ -995,6 +1001,33 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
     </div><!-- /content -->
   </div><!-- /main -->
 </div><!-- /dash -->
+
+<!-- MODAL: SALVAR CARDAPIO -->
+<div class="mov" id="m-save-menu">
+  <div class="modal" style="max-width:420px">
+    <div class="mhdr"><div><div class="mtitle">Salvar cardápio na biblioteca</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px">Aplique a qualquer paciente depois</div></div><button class="mclose" onclick="closeModal('m-save-menu')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button></div>
+    <div class="mbody">
+      <div class="mf"><label>Nome do cardápio</label><input id="sm-name" placeholder="Ex: Cardápio Hipocalórico 1.500 kcal"></div>
+      <div class="mf"><label>Referência / objetivo</label><select id="sm-ref"><option>Geral</option><option>Emagrecimento</option><option>Ganho de massa</option><option>Manutenção</option><option>Pré-diabetes</option><option>Hipertensão</option><option>Vegetariano</option><option>Low carb</option></select></div>
+      <div style="background:var(--n50);border-radius:10px;padding:12px 14px"><div style="font-size:10px;font-weight:600;color:var(--n400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Totais do cardápio</div><div id="sm-preview" style="font-size:13px;color:var(--n700)">—</div></div>
+    </div>
+    <div class="mfooter"><button class="mbtn ghost" onclick="closeModal('m-save-menu')">Cancelar</button><button class="mbtn pri" onclick="confirmSaveMenu()">Salvar na biblioteca</button></div>
+  </div>
+</div>
+
+<!-- MODAL: APLICAR CARDAPIO AO PACIENTE -->
+<div class="mov" id="m-apply-menu">
+  <div class="modal" style="max-width:420px">
+    <div class="mhdr"><div><div class="mtitle">Aplicar cardápio ao paciente</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px">Os alimentos serão adicionados ao cardápio</div></div><button class="mclose" onclick="closeModal('m-apply-menu')"><svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg></button></div>
+    <div class="mbody">
+      <input type="hidden" id="apply-menu-idx">
+      <div class="mf"><label>Selecionar paciente</label><select id="apply-menu-patient"><option value="">Selecione o paciente...</option></select></div>
+      <div class="mf"><label>Adicionar em qual refeição</label><select id="apply-menu-meal"><option value="cafe">Cafe da manha</option><option value="almoco">Almoco</option><option value="jantar">Jantar</option></select></div>
+      <div style="background:var(--ml);border-radius:10px;padding:11px 13px;font-size:12px;color:var(--md)">Os alimentos serao inseridos na refeicao escolhida. Voce podera ajustar as quantidades.</div>
+    </div>
+    <div class="mfooter"><button class="mbtn ghost" onclick="closeModal('m-apply-menu')">Cancelar</button><button class="mbtn pri" onclick="confirmApplyMenu()">Aplicar ao paciente</button></div>
+  </div>
+</div>
 
 <!-- MODAL: PERFIL DO PACIENTE + GESTÃO DE ACESSO -->
 <div class="mov" id="m-patient-profile">
@@ -1630,11 +1663,150 @@ function updateTacoTotals() {
   });
 }
 
+// ════════════════════════════════════════════
+// BIBLIOTECA DE CARDÁPIOS TACO
+// ════════════════════════════════════════════
+let MENUS_SALVOS = JSON.parse(localStorage.getItem('r360_menus') || '[]');
+function saveMenus(){ localStorage.setItem('r360_menus', JSON.stringify(MENUS_SALVOS)); }
+
 function saveTacoMenu() {
   if (!tacoMenu.length) { toast('Adicione alimentos antes de salvar.'); return; }
-  const total = tacoMenu.reduce((s,i)=>s+i.kcal,0);
-  toast(`✅ Cardápio salvo! Total: ${total.toFixed(0)} kcal`);
+  // Pede nome do cardápio
+  openModal('m-save-menu');
+  // Preenche preview de totais no modal
+  const totals = tacoMenu.reduce((acc,it)=>({kcal:+(acc.kcal+it.kcal).toFixed(1),prot:+(acc.prot+it.prot).toFixed(1),carb:+(acc.carb+it.carb).toFixed(1),fat:+(acc.fat+it.fat).toFixed(1),fib:+(acc.fib+it.fib).toFixed(1)}),{kcal:0,prot:0,carb:0,fat:0,fib:0});
+  const el = document.getElementById('sm-preview');
+  if(el) el.innerHTML = `<span style="color:var(--ora);font-weight:700">${totals.kcal} kcal</span> &nbsp;|&nbsp; ${totals.prot}g prot &nbsp;|&nbsp; ${totals.carb}g carb &nbsp;|&nbsp; ${totals.fat}g gord &nbsp;|&nbsp; ${totals.fib}g fib`;
 }
+
+function confirmSaveMenu() {
+  const nm = document.getElementById('sm-name').value.trim();
+  const ref = document.getElementById('sm-ref').value;
+  if(!nm){ toast('Dê um nome ao cardápio.'); return; }
+  const totals = tacoMenu.reduce((acc,it)=>({kcal:+(acc.kcal+it.kcal).toFixed(1),prot:+(acc.prot+it.prot).toFixed(1),carb:+(acc.carb+it.carb).toFixed(1),fat:+(acc.fat+it.fat).toFixed(1),fib:+(acc.fib+it.fib).toFixed(1)}),{kcal:0,prot:0,carb:0,fat:0,fib:0});
+  const menu = {
+    id: Date.now(),
+    name: nm,
+    ref: ref || 'Geral',
+    items: JSON.parse(JSON.stringify(tacoMenu)),
+    totals,
+    createdAt: new Date().toISOString(),
+  };
+  MENUS_SALVOS.unshift(menu);
+  saveMenus();
+  closeModal('m-save-menu');
+  document.getElementById('sm-name').value = '';
+  renderMenuLibrary();
+  toast('✅ Cardápio "' + nm + '" salvo na biblioteca!');
+}
+
+function renderMenuLibrary() {
+  const list = document.getElementById('menu-library-list');
+  if(!list) return;
+  if(!MENUS_SALVOS.length){
+    list.innerHTML = '<div style="padding:24px;text-align:center;color:var(--n400);font-size:12px">Nenhum cardápio salvo ainda.<br>Crie na aba Tabela TACO.</div>';
+    return;
+  }
+  list.innerHTML = MENUS_SALVOS.map((m,i) => `
+    <div style="padding:12px 16px;border-bottom:1px solid var(--n100);display:flex;align-items:center;gap:10px">
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:700;color:var(--n800);margin-bottom:3px">${m.name}</div>
+        <div style="font-size:10px;color:var(--n400);margin-bottom:4px">${m.ref} · ${m.items.length} alimentos · ${new Date(m.createdAt).toLocaleDateString('pt-BR')}</div>
+        <div style="display:flex;gap:8px;font-size:10px;font-weight:700">
+          <span style="color:var(--ora)">${m.totals.kcal} kcal</span>
+          <span style="color:var(--blu)">${m.totals.prot}g prot</span>
+          <span style="color:var(--yel)">${m.totals.carb}g carb</span>
+          <span style="color:var(--red)">${m.totals.fat}g gord</span>
+          <span style="color:var(--md)">${m.totals.fib}g fib</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0">
+        <button onclick="applyMenuToPatient(${i})" class="savebtn" style="font-size:10px;padding:5px 10px">Aplicar ao paciente</button>
+        <button onclick="loadMenuToTaco(${i})" style="padding:4px 10px;border-radius:var(--rp);background:var(--n50);border:1px solid var(--n200);font-size:10px;font-weight:600;color:var(--n600);cursor:pointer;font-family:Inter,sans-serif">Editar</button>
+        <button onclick="deleteMenu(${i})" style="padding:4px 10px;border-radius:var(--rp);background:var(--redl);border:none;font-size:10px;font-weight:600;color:var(--red);cursor:pointer;font-family:Inter,sans-serif">Excluir</button>
+      </div>
+    </div>`).join('');
+}
+
+function applyMenuToPatient(menuIdx) {
+  const m = MENUS_SALVOS[menuIdx];
+  if(!m) return;
+  // Abre modal de seleção de paciente
+  const sel = document.getElementById('apply-menu-patient');
+  if(sel){
+    sel.innerHTML = '<option value="">Selecione o paciente...</option>' +
+      PATIENTS.map((p,i)=>`<option value="${i}">${p.name}</option>`).join('');
+  }
+  document.getElementById('apply-menu-idx').value = menuIdx;
+  openModal('m-apply-menu');
+}
+
+function confirmApplyMenu() {
+  const menuIdx = parseInt(document.getElementById('apply-menu-idx').value);
+  const patIdx  = parseInt(document.getElementById('apply-menu-patient').value);
+  const meal    = document.getElementById('apply-menu-meal').value;
+  if(isNaN(patIdx)){ toast('Selecione um paciente.'); return; }
+  const m = MENUS_SALVOS[menuIdx];
+  const p = PATIENTS[patIdx];
+  if(!m||!p){ toast('Erro: cardápio ou paciente inválido.'); return; }
+
+  // Seleciona o paciente na lista
+  document.querySelectorAll('#plist .pr').forEach(el=>{
+    if(el.querySelector('.pr-nm')?.textContent===p.name) el.click();
+  });
+
+  // Adiciona os alimentos ao cardápio (painel nutri)
+  const menuBody = document.getElementById('menu-body');
+  if(menuBody){
+    // Encontra o meal-foot correto
+    const feet = menuBody.querySelectorAll('.meal-ft');
+    const mealMap = {cafe:0, almoco:1, jantar:2};
+    const foot = feet[mealMap[meal]||0] || feet[0];
+    if(foot){
+      m.items.forEach(item=>{
+        const cols=['#2dccb4','#f0924a','#7b5ea7','#2563eb','#e0a800'];
+        const c=cols[Math.floor(Math.random()*cols.length)];
+        const el=document.createElement('div'); el.className='fi';
+        el.innerHTML=`<div class="fi-bar" style="background:${c}"></div>
+          <div class="fi-nm">${item.name}</div>
+          <div class="fi-qty"><input value="${item.qty}g"></div>
+          <div class="fi-kc" style="font-size:10px;color:var(--ora);font-weight:700">${item.kcal}kcal</div>
+          <div class="fi-del" onclick="this.closest('.fi').remove()">✕</div>`;
+        foot.parentElement.insertBefore(el, foot);
+      });
+    }
+  }
+
+  // Salva vínculo paciente ↔ cardápio
+  p.appliedMenus = p.appliedMenus || [];
+  p.appliedMenus.push({menuId: m.id, menuName: m.name, meal, appliedAt: new Date().toISOString()});
+  save();
+
+  closeModal('m-apply-menu');
+  setTab('nutri', document.getElementById('tab-nutri'));
+  toast(`✅ Cardápio "${m.name}" aplicado para ${p.name} — ${meal==='cafe'?'Café da manhã':meal==='almoco'?'Almoço':'Jantar'}!`);
+}
+
+function loadMenuToTaco(menuIdx) {
+  const m = MENUS_SALVOS[menuIdx];
+  if(!m) return;
+  tacoMenu = JSON.parse(JSON.stringify(m.items));
+  renderTacoMenu();
+  setTab('taco', document.getElementById('tab-taco'));
+  toast('Cardápio "' + m.name + '" carregado para edição.');
+}
+
+function deleteMenu(menuIdx) {
+  const m = MENUS_SALVOS[menuIdx];
+  if(!confirm('Excluir o cardápio "' + m.name + '"?')) return;
+  MENUS_SALVOS.splice(menuIdx, 1);
+  saveMenus();
+  renderMenuLibrary();
+  toast('Cardápio excluído.');
+}
+
+// Inicializa biblioteca ao carregar
+document.addEventListener('DOMContentLoaded', ()=>{ renderMenuLibrary(); });
 
 // Fechar busca TACO ao clicar fora
 document.addEventListener('click', e => {
