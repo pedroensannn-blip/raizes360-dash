@@ -922,7 +922,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
             <button onclick="searchTaco('Carnes')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Carnes</button>
             <button onclick="searchTaco('Peixes')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Peixes</button>
             <button onclick="searchTaco('Leguminosas')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Leguminosas</button>
-            <button onclick="searchTaco('Hortaliças')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Hortaliças</button>
+            <button onclick="searchTaco('Hortali')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Hortaliças</button>
             <button onclick="searchTaco('Frutas')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Frutas</button>
             <button onclick="searchTaco('Laticínios')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Laticínios</button>
             <button onclick="searchTaco('Óleos')" style="font-size:11px;font-weight:600;padding:5px 12px;border-radius:var(--rp);background:var(--n50);color:var(--n600);cursor:pointer;border:1px solid var(--n200);font-family:Inter,sans-serif">Óleos</button>
@@ -1970,21 +1970,26 @@ function searchTaco(q){
   tacoTimeout = setTimeout(()=>{
     const r = document.getElementById('taco-results');
     if(!q || q.length < 2){ r.style.display='none'; return; }
-    const matches = TACO_DB.filter(a =>
-      a.nome.toLowerCase().includes(q.toLowerCase()) ||
-      a.grupo.toLowerCase().includes(q.toLowerCase())
-    ).slice(0,8);
+    const matches = TACO_DB.filter(a => {
+      const nm  = (a.nome||a.name||'').toLowerCase();
+      const cat = (a.grupo||a.cat||'').toLowerCase();
+      const qL  = q.toLowerCase();
+      return nm.includes(qL) || cat.includes(qL);
+    }).slice(0,10);
     if(!matches.length){ r.style.display='none'; return; }
     r.style.display='block';
-    r.innerHTML = matches.map(a=>`
-      <div class="taco-item" onclick="addTacoItem(${a.id})">
+    r.innerHTML = matches.map(a=>{
+      const nm  = a.nome||a.name||'';
+      const cat = a.grupo||a.cat||'';
+      return `<div class="taco-item" onclick="addTacoItem(${a.id})">
         <div style="flex:1;min-width:0">
-          <div class="taco-nm">${a.nome}</div>
-          <div class="taco-grupo">${a.grupo}</div>
+          <div class="taco-nm">${nm}</div>
+          <div class="taco-grupo">${cat} · por 100g</div>
         </div>
-        <div class="taco-kcal">${a.kcal} kcal/100g</div>
-      </div>`).join('');
-  }, 200);
+        <div class="taco-kcal">${a.kcal} kcal</div>
+      </div>`;
+    }).join('');
+  }, 150);
 }
 
 function addTacoItem(tacoId){
