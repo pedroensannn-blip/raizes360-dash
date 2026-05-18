@@ -369,6 +369,24 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
 .team-member-row:last-child{border-bottom:none}
 .team-ava{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0}
 .team-role-badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp)}
+
+/* ══ GESTÃO DE HÁBITOS ══ */
+.pilar-tab{display:flex;align-items:center;gap:7px;padding:9px 14px;border-radius:10px;cursor:pointer;border:none;background:none;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--n500);transition:all .15s;white-space:nowrap;width:100%;text-align:left}
+.pilar-tab:hover{background:var(--n50);color:var(--n700)}
+.pilar-tab.on{color:white;font-weight:700}
+.pilar-ico{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.hab-row{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--n100);transition:background .1s}
+.hab-row:last-child{border-bottom:none}
+.hab-row:hover{background:var(--n50)}
+.hab-tipo{font-size:9px;font-weight:700;padding:2px 7px;border-radius:var(--rp)}
+.hab-tipo.default{background:var(--ml);color:var(--md)}
+.hab-tipo.custom{background:var(--purl);color:var(--pur)}
+.hab-pts{font-size:10px;font-weight:700;color:var(--yel);white-space:nowrap}
+.hab-sw{width:34px;height:20px;border-radius:var(--rp);position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+.hab-sw.on{background:var(--mint)}.hab-sw.off{background:var(--n200)}
+.hab-sw-th{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:white;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s}
+.hab-sw.on .hab-sw-th{transform:translateX(14px)}
+.nutri-only-badge{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,var(--mint),var(--md));color:white;font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);letter-spacing:.04em}
 </style>
 </head>
 <body>
@@ -466,6 +484,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       <button class="rtab" id="tab-taco" onclick="setTab('taco',this)">
         <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6"/><path d="M4 7h6M7 4v6"/></svg>
         Tabela TACO
+      </button>
+      <button class="rtab" id="tab-habitos" onclick="setTab('habitos',this)" style="display:none">
+        <svg viewBox="0 0 14 14"><path d="M2 7l3 3 7-6"/></svg>
+        Hábitos MEV
       </button>
     </div>
 
@@ -978,6 +1000,109 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
 
       </div>
 
+
+      <!-- ════ GESTÃO DE HÁBITOS (nutricionista only) ════ -->
+      <div class="view" id="v-habitos" style="display:none">
+
+        <!-- Header com badge de acesso restrito -->
+        <div style="background:linear-gradient(135deg,#1d3461,var(--pur));border-radius:var(--r);padding:18px 22px;display:flex;align-items:center;gap:14px">
+          <div style="width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🌱</div>
+          <div style="flex:1">
+            <div style="font-size:16px;font-weight:800;color:white;margin-bottom:3px">Gerenciamento de Hábitos MEV</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.6)">Edite e adicione hábitos para cada pilar do programa</div>
+          </div>
+          <span class="nutri-only-badge">
+            <svg style="width:10px;height:10px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round" viewBox="0 0 12 12"><rect x="2" y="5" width="8" height="6" rx="1"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5"/></svg>
+            NUTRICIONISTA
+          </span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:200px 1fr;gap:14px">
+
+          <!-- Coluna: seletor de pilar -->
+          <div class="panel" style="height:fit-content">
+            <div class="ph"><div class="ph-t">6 Pilares MEV</div></div>
+            <div style="padding:8px">
+              <button class="pilar-tab on" id="ptab-nutricao"  onclick="selecionarPilar('nutricao',this)"  style="background:linear-gradient(135deg,#e5632a,#c94e1a)"><div class="pilar-ico" style="background:rgba(255,255,255,.2)">🥗</div>Nutrição</button>
+              <button class="pilar-tab"    id="ptab-atividade" onclick="selecionarPilar('atividade',this)"  style=""><div class="pilar-ico">🏃</div>Atividade Física</button>
+              <button class="pilar-tab"    id="ptab-sono"      onclick="selecionarPilar('sono',this)"      style=""><div class="pilar-ico">😴</div>Sono</button>
+              <button class="pilar-tab"    id="ptab-mente"     onclick="selecionarPilar('mente',this)"     style=""><div class="pilar-ico">🧘</div>Mente</button>
+              <button class="pilar-tab"    id="ptab-social"    onclick="selecionarPilar('social',this)"    style=""><div class="pilar-ico">❤️</div>Conexões</button>
+              <button class="pilar-tab"    id="ptab-vicios"    onclick="selecionarPilar('vicios',this)"    style=""><div class="pilar-ico">🚭</div>Vícios</button>
+            </div>
+          </div>
+
+          <!-- Coluna: lista de hábitos + formulário -->
+          <div style="display:flex;flex-direction:column;gap:12px">
+
+            <!-- Lista de hábitos do pilar selecionado -->
+            <div class="panel">
+              <div class="ph">
+                <div>
+                  <div class="ph-t" id="hab-pilar-title">Hábitos · Nutrição</div>
+                  <div class="ph-s" id="hab-pilar-sub">Clique no toggle para ativar/desativar no app</div>
+                </div>
+                <div style="display:flex;gap:6px">
+                  <button class="savebtn" onclick="abrirNovoHabito()" style="font-size:11px;padding:6px 12px">+ Novo hábito</button>
+                </div>
+              </div>
+              <div class="pb" id="hab-lista" style="max-height:380px">
+                <div style="padding:24px;text-align:center;color:var(--n400);font-size:12px">Carregando...</div>
+              </div>
+            </div>
+
+            <!-- Formulário: novo hábito -->
+            <div class="panel" id="hab-form-panel" style="display:none">
+              <div class="ph">
+                <div><div class="ph-t" id="hab-form-title">Novo hábito</div><div class="ph-s" id="hab-form-pilar-label">Pilar: Nutrição</div></div>
+                <button onclick="fecharFormHabito()" style="background:none;border:none;color:var(--n400);cursor:pointer;font-size:18px;padding:0 4px">✕</button>
+              </div>
+              <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+                <div class="mrow">
+                  <div class="mf">
+                    <label>Ícone (emoji)</label>
+                    <input id="hab-icone" class="finput" value="✅" maxlength="4" style="font-size:20px;text-align:center;width:64px">
+                  </div>
+                  <div class="mf" style="flex:1">
+                    <label>Título do hábito *</label>
+                    <input id="hab-titulo" class="finput" placeholder="Ex: Beber chá verde pela manhã" maxlength="80">
+                  </div>
+                </div>
+                <div class="mf">
+                  <label>Descrição (opcional)</label>
+                  <input id="hab-descricao" class="finput" placeholder="Detalhes do hábito para o paciente...">
+                </div>
+                <div class="mrow">
+                  <div class="mf">
+                    <label>Pontos ao concluir</label>
+                    <input id="hab-pontos" class="finput" type="number" value="10" min="1" max="100">
+                  </div>
+                  <div class="mf">
+                    <label>Pilar</label>
+                    <select id="hab-pilar-sel" class="fsel">
+                      <option value="nutricao">🥗 Nutrição</option>
+                      <option value="atividade">🏃 Atividade Física</option>
+                      <option value="sono">😴 Sono</option>
+                      <option value="mente">🧘 Mente</option>
+                      <option value="social">❤️ Conexões Sociais</option>
+                      <option value="vicios">🚭 Vícios</option>
+                    </select>
+                  </div>
+                </div>
+                <div style="background:var(--ml);border-radius:10px;padding:10px 13px;font-size:12px;color:var(--md)">
+                  ✅ O hábito será adicionado imediatamente ao checklist de todos os pacientes ativos.
+                </div>
+                <div style="display:flex;gap:8px">
+                  <button class="savebtn" style="flex:1;padding:11px" onclick="salvarHabito()" id="hab-save-btn">Criar hábito e publicar no app</button>
+                  <button onclick="fecharFormHabito()" style="padding:10px 18px;border-radius:var(--rp);background:var(--n50);border:1px solid var(--n200);font-size:12px;font-weight:600;color:var(--n600);cursor:pointer;font-family:Inter,sans-serif">Cancelar</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </div><!-- /content -->
   </div><!-- /main -->
 </div><!-- /dash -->
@@ -1210,6 +1335,7 @@ const NAVS = {
     {ic:'M3 4h14v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4zM7 9h6M7 12h4',   lb:'Cardápios', vi:'nutri'},
     {ic:'M2 3h16v11H2z',                                                  lb:'Fotos dos pratos', vi:'whats', bd:'0'},
     {ic:'M4 4h16v12H4zM4 9l5 3 7-5',                                     lb:'Mensagens',   fn:'openChat', bd:'0', bdg:true},
+    {ic:'M3 9l3 3 8-8',lb:'Hábitos MEV',vi:'habitos'},
     {sec:'Recompensas'},
     {ic:'M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z',             lb:'Recompensas', vi:'rewards'},
     {sec:'WhatsApp'},
@@ -1293,7 +1419,7 @@ function setTab(role, btn){
   document.querySelectorAll('.rtab').forEach(r=>r.classList.remove('on'));
   if(btn) btn.classList.add('on');
   // 4. Atualiza título
-  const titles = {nutri:'Dashboard · Nutricionista',edfi:'Ed. Físico',psico:'Psicólogo(a)',medico:'Médico(a)',whats:'WhatsApp · Integrações',rewards:'Recompensas'};
+  const titles = {nutri:'Dashboard · Nutricionista',edfi:'Ed. Físico',psico:'Psicólogo(a)',medico:'Médico(a)',whats:'WhatsApp · Integrações',rewards:'Recompensas',archived:'Pacientes Arquivados',team:'Gestão de Equipe',taco:'Tabela TACO',habitos:'Hábitos MEV · Configuração'};
   document.getElementById('tbtitle').textContent = titles[role] || 'Dashboard';
   // 5. Reconstrói sidebar se for profissional
   if(NAVS[role]) buildNav(role);
@@ -1338,6 +1464,8 @@ function doLogin(){
     document.querySelectorAll('.rtab').forEach(r=>r.classList.remove('on'));
     const initTab = document.getElementById('tab-'+startRole);
     if(initTab) initTab.classList.add('on');
+    // RBAC: mostra/oculta aba Hábitos MEV (só nutricionista)
+    aplicarRBACHabitos();
     // Restaura pacientes salvos
     PATIENTS.forEach(p=>addToPlist(p.name,p,false));
   },700);
@@ -1853,7 +1981,245 @@ function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 let tt;
 function toast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),3500); }
 
-document.querySelectorAll('.sw').forEach(sw=>sw.addEventListener('click',function(){this.classList.toggle('on');this.classList.toggle('off');}));
+// ════════════════════════════════════════════════════════════════════
+//  GESTÃO DE HÁBITOS MEV — RBAC: nutricionista only
+// ════════════════════════════════════════════════════════════════════
+
+// Dataset local de hábitos (sincronizado com back-end em produção)
+const HABITOS_DEFAULT = {
+  nutricao: [
+    {id:'n1',pilar:'nutricao',titulo:'Café da manhã completo',descricao:'Proteína + fibra + gordura boa',icone:'🥗',pontos:12,tipo:'default',ativo:true},
+    {id:'n2',pilar:'nutricao',titulo:'Almoço conforme cardápio',descricao:'Seguir o cardápio prescrito',icone:'🍽️',pontos:15,tipo:'default',ativo:true},
+    {id:'n3',pilar:'nutricao',titulo:'2L de água',descricao:'Manter hidratação ao longo do dia',icone:'💧',pontos:10,tipo:'default',ativo:true},
+    {id:'n4',pilar:'nutricao',titulo:'Sem ultraprocessados',descricao:'Evitar alimentos ultraprocessados',icone:'🚫',pontos:15,tipo:'default',ativo:true},
+    {id:'n5',pilar:'nutricao',titulo:'Jantar leve até 20h',descricao:'Jantar até 20h e de forma leve',icone:'🌙',pontos:10,tipo:'default',ativo:true},
+  ],
+  atividade: [
+    {id:'a1',pilar:'atividade',titulo:'Caminhada zona 2',descricao:'30 min de caminhada em ritmo moderado',icone:'🚶',pontos:20,tipo:'default',ativo:true},
+    {id:'a2',pilar:'atividade',titulo:'Treino de força',descricao:'Treino de força conforme prescrição',icone:'💪',pontos:25,tipo:'default',ativo:true},
+    {id:'a3',pilar:'atividade',titulo:'Alongamento matinal',descricao:'10 min de alongamento ao acordar',icone:'🧘',pontos:10,tipo:'default',ativo:true},
+    {id:'a4',pilar:'atividade',titulo:'10.000 passos',descricao:'Atingir 10.000 passos no dia',icone:'👟',pontos:18,tipo:'default',ativo:true},
+  ],
+  sono: [
+    {id:'s1',pilar:'sono',titulo:'Dormir às 22h30',descricao:'Iniciar o sono até 22h30',icone:'😴',pontos:15,tipo:'default',ativo:true},
+    {id:'s2',pilar:'sono',titulo:'8h de sono',descricao:'Dormir ao menos 8 horas',icone:'🛌',pontos:15,tipo:'default',ativo:true},
+    {id:'s3',pilar:'sono',titulo:'Blue light off 21h30',descricao:'Parar telas às 21h30',icone:'📵',pontos:12,tipo:'default',ativo:true},
+    {id:'s4',pilar:'sono',titulo:'Quarto escuro e fresco',descricao:'Ambiente ideal para dormir',icone:'🌡️',pontos:8,tipo:'default',ativo:true},
+  ],
+  mente: [
+    {id:'m1',pilar:'mente',titulo:'Meditação 10 min',descricao:'10 minutos de meditação ou respiração',icone:'🧘',pontos:15,tipo:'default',ativo:true},
+    {id:'m2',pilar:'mente',titulo:'Diário de gratidão',descricao:'Anotar 3 gratidões do dia',icone:'📔',pontos:10,tipo:'default',ativo:true},
+    {id:'m3',pilar:'mente',titulo:'Sem notícias negativas',descricao:'Evitar consumo de notícias negativas',icone:'📰',pontos:8,tipo:'default',ativo:true},
+    {id:'m4',pilar:'mente',titulo:'Leitura 20 min',descricao:'Ler um livro por 20 minutos',icone:'📚',pontos:10,tipo:'default',ativo:true},
+  ],
+  social: [
+    {id:'so1',pilar:'social',titulo:'Conexão com alguém amado',descricao:'Conversar com pessoa querida',icone:'❤️',pontos:12,tipo:'default',ativo:true},
+    {id:'so2',pilar:'social',titulo:'Desconectar do trabalho',descricao:'Não checar trabalho após 19h',icone:'📴',pontos:10,tipo:'default',ativo:true},
+    {id:'so3',pilar:'social',titulo:'Atividade em grupo',descricao:'Praticar atividade com outras pessoas',icone:'👥',pontos:15,tipo:'default',ativo:true},
+  ],
+  vicios: [
+    {id:'v1',pilar:'vicios',titulo:'0 álcool',descricao:'Dia sem consumo de álcool',icone:'🍷',pontos:20,tipo:'default',ativo:true},
+    {id:'v2',pilar:'vicios',titulo:'0 tabaco',descricao:'Dia sem cigarros ou derivados',icone:'🚬',pontos:25,tipo:'default',ativo:true},
+    {id:'v3',pilar:'vicios',titulo:'Limite de redes sociais',descricao:'Máximo 1h de redes sociais',icone:'📱',pontos:15,tipo:'default',ativo:true},
+    {id:'v4',pilar:'vicios',titulo:'0 açúcar refinado',descricao:'Dia sem açúcar refinado',icone:'🍭',pontos:15,tipo:'default',ativo:true},
+  ],
+};
+
+// Carrega hábitos customizados do localStorage
+let HABITOS_CUSTOM = JSON.parse(localStorage.getItem('r360_habitos_custom') || '[]');
+function salvarHabitosLS(){ localStorage.setItem('r360_habitos_custom', JSON.stringify(HABITOS_CUSTOM)); }
+
+function getTodosHabitos(pilar){
+  const defaults = HABITOS_DEFAULT[pilar] || [];
+  const custom   = HABITOS_CUSTOM.filter(h=>h.pilar===pilar);
+  return [...defaults, ...custom];
+}
+
+// Pilar atual selecionado
+let pilarAtual = 'nutricao';
+const PILAR_CONFIG = {
+  nutricao:  {label:'Nutrição',       cor:'#e5632a', bg:'#fff0eb', emoji:'🥗'},
+  atividade: {label:'Atividade Física',cor:'#7b5ea7', bg:'#f0ebf8', emoji:'🏃'},
+  sono:      {label:'Sono',           cor:'#2563eb', bg:'#eff6ff', emoji:'😴'},
+  mente:     {label:'Mente',          cor:'#e8453c', bg:'#fff0ef', emoji:'🧘'},
+  social:    {label:'Conexões Sociais',cor:'#e0a800', bg:'#fef9e7', emoji:'❤️'},
+  vicios:    {label:'Vícios',         cor:'#d63384', bg:'#fdf0f7', emoji:'🚭'},
+};
+
+function selecionarPilar(pilar, btn){
+  pilarAtual = pilar;
+  // Atualiza tabs laterais
+  document.querySelectorAll('.pilar-tab').forEach(t=>{
+    t.classList.remove('on');
+    t.style.background='';
+    t.style.color='';
+  });
+  const cfg = PILAR_CONFIG[pilar];
+  if(btn){
+    btn.classList.add('on');
+    btn.style.background=`linear-gradient(135deg,${cfg.cor},${cfg.cor}cc)`;
+    btn.style.color='white';
+  }
+  // Atualiza título
+  const title=document.getElementById('hab-pilar-title');
+  if(title) title.textContent=`Hábitos · ${cfg.emoji} ${cfg.label}`;
+  // Atualiza select do formulário
+  const sel=document.getElementById('hab-pilar-sel');
+  if(sel) sel.value=pilar;
+  const flabel=document.getElementById('hab-form-pilar-label');
+  if(flabel) flabel.textContent=`Pilar: ${cfg.emoji} ${cfg.label}`;
+  renderHabitos();
+}
+
+function renderHabitos(){
+  const list = document.getElementById('hab-lista');
+  if(!list) return;
+  const habitos = getTodosHabitos(pilarAtual);
+  const cfg = PILAR_CONFIG[pilarAtual];
+
+  if(!habitos.length){
+    list.innerHTML='<div style="padding:24px;text-align:center;color:var(--n400);font-size:12px">Nenhum hábito cadastrado neste pilar.</div>';
+    return;
+  }
+
+  list.innerHTML = habitos.map((h,i)=>`
+    <div class="hab-row">
+      <div style="font-size:20px;width:30px;text-align:center;flex-shrink:0">${h.icone}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:600;color:var(--n800);margin-bottom:2px">${h.titulo}</div>
+        ${h.descricao?`<div style="font-size:11px;color:var(--n400)">${h.descricao}</div>`:''}
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <span class="hab-pts">+${h.pontos}pts</span>
+        <span class="hab-tipo ${h.tipo}">${h.tipo==='default'?'Padrão':'Custom'}</span>
+        <div class="hab-sw ${h.ativo?'on':'off'}" onclick="toggleHabito('${h.id}','${h.tipo}',${i})">
+          <div class="hab-sw-th"></div>
+        </div>
+        ${h.tipo==='custom'?`<button onclick="excluirHabito('${h.id}')" style="background:none;border:none;color:var(--n300);cursor:pointer;font-size:14px;padding:0 2px;transition:color .1s" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--n300)'">✕</button>`:''}
+      </div>
+    </div>`).join('');
+}
+
+function toggleHabito(id, tipo, idx){
+  const sw = event.currentTarget;
+  const isOn = sw.classList.contains('on');
+  sw.classList.toggle('on', !isOn);
+  sw.classList.toggle('off', isOn);
+
+  if(tipo==='default'){
+    // Para hábitos padrão, salva override no localStorage
+    let overrides = JSON.parse(localStorage.getItem('r360_habitos_overrides')||'{}');
+    overrides[id] = !isOn;
+    localStorage.setItem('r360_habitos_overrides', JSON.stringify(overrides));
+    // Atualiza estado local
+    const h = HABITOS_DEFAULT[pilarAtual]?.find(h=>h.id===id);
+    if(h) h.ativo = !isOn;
+  } else {
+    const h = HABITOS_CUSTOM.find(h=>h.id===id);
+    if(h){ h.ativo = !isOn; salvarHabitosLS(); }
+  }
+  toast((isOn?'⏸️ Hábito desativado':'✅ Hábito ativado')+' no app dos pacientes!');
+}
+
+function excluirHabito(id){
+  const h = HABITOS_CUSTOM.find(h=>h.id===id);
+  if(!h) return;
+  if(!confirm(`Excluir o hábito "${h.titulo}"?`)) return;
+  HABITOS_CUSTOM = HABITOS_CUSTOM.filter(h=>h.id!==id);
+  salvarHabitosLS();
+  renderHabitos();
+  toast('Hábito excluído.');
+}
+
+function abrirNovoHabito(){
+  const panel = document.getElementById('hab-form-panel');
+  if(panel){ panel.style.display='block'; panel.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+  document.getElementById('hab-icone').value='✅';
+  document.getElementById('hab-titulo').value='';
+  document.getElementById('hab-descricao').value='';
+  document.getElementById('hab-pontos').value='10';
+  document.getElementById('hab-pilar-sel').value=pilarAtual;
+  document.getElementById('hab-titulo').focus();
+}
+
+function fecharFormHabito(){
+  const panel=document.getElementById('hab-form-panel');
+  if(panel) panel.style.display='none';
+}
+
+function salvarHabito(){
+  const titulo  = document.getElementById('hab-titulo').value.trim();
+  const descricao=document.getElementById('hab-descricao').value.trim();
+  const icone   = document.getElementById('hab-icone').value.trim() || '✅';
+  const pontos  = parseInt(document.getElementById('hab-pontos').value)||10;
+  const pilar   = document.getElementById('hab-pilar-sel').value;
+
+  if(!titulo){ toast('Digite o título do hábito.'); document.getElementById('hab-titulo').focus(); return; }
+  if(titulo.length > 80){ toast('Título muito longo (máx 80 caracteres).'); return; }
+
+  const btn = document.getElementById('hab-save-btn');
+  btn.textContent='Publicando...'; btn.disabled=true;
+
+  setTimeout(()=>{
+    btn.textContent='Criar hábito e publicar no app'; btn.disabled=false;
+
+    const novoHabito = {
+      id:       'c_'+Date.now(),
+      pilar,
+      titulo,
+      descricao: descricao||null,
+      icone,
+      pontos,
+      tipo:     'custom',
+      ativo:    true,
+      criadoEm: new Date().toISOString(),
+    };
+
+    HABITOS_CUSTOM.push(novoHabito);
+    salvarHabitosLS();
+
+    // Se mudou de pilar, navega para ele
+    if(pilar !== pilarAtual){
+      const tabBtn = document.getElementById('ptab-'+pilar);
+      selecionarPilar(pilar, tabBtn);
+    } else {
+      renderHabitos();
+    }
+
+    fecharFormHabito();
+    toast(`✅ Hábito "${titulo}" criado e publicado no app de todos os pacientes!`);
+  }, 600);
+}
+
+// RBAC: mostra/oculta aba de hábitos baseado na função
+function aplicarRBACHabitos(){
+  const tabHabitos = document.getElementById('tab-habitos');
+  const isNutri = me?.isAdmin || me?.email === 'juan@raizes360.com' ||
+                  (me?.role && (me.role.toLowerCase().includes('nutri') || me.role.toLowerCase().includes('admin')));
+  if(tabHabitos) tabHabitos.style.display = isNutri ? 'flex' : 'none';
+}
+
+// Exporta hábitos para o app (localStorage compartilhado)
+function exportarHabitosParaApp(){
+  const todos = {};
+  Object.keys(HABITOS_DEFAULT).forEach(pilar=>{
+    const overrides = JSON.parse(localStorage.getItem('r360_habitos_overrides')||'{}');
+    const defaults = HABITOS_DEFAULT[pilar].map(h=>({...h, ativo: overrides[h.id]!==undefined?overrides[h.id]:h.ativo}));
+    const custom   = HABITOS_CUSTOM.filter(h=>h.pilar===pilar&&h.ativo);
+    todos[pilar] = [...defaults.filter(h=>h.ativo), ...custom];
+  });
+  localStorage.setItem('r360_habitos_app', JSON.stringify(todos));
+}
+
+// Inicializa a view de hábitos ao entrar nela
+document.addEventListener('DOMContentLoaded', ()=>{
+  selecionarPilar('nutricao', document.getElementById('ptab-nutricao'));
+  aplicarRBACHabitos();
+});
+
+// Exporta para o app sempre que hábitos mudam
+const _origSalvarHabitosLS = salvarHabitosLS;
+function salvarHabitosLS(){ _origSalvarHabitosLS(); exportarHabitosParaApp(); }
 </script>
 <!-- MODAL: ADICIONAR PROFISSIONAL À EQUIPE -->
 <div class="mov" id="m-add-member">
