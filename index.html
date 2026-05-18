@@ -99,7 +99,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
 /* ══ CONTENT ══ */
 .content{flex:1;overflow-y:auto;padding:18px 20px;scrollbar-width:thin;scrollbar-color:var(--n200) transparent}
 .view{display:none;flex-direction:column;gap:14px}
-.view.on{display:flex}
+.view.on{display:flex;flex-direction:column;gap:14px}
+.view.on.block-view{display:block}
 
 /* ══ STATS ══ */
 .stats{display:grid;gap:10px;margin-bottom:0}
@@ -577,7 +578,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       </div>
 
       <!-- ════ ED. FÍSICO ════ -->
-      <div class="view" id="v-edfi">
+      <div class="view" id="v-edfi" style="display:none">
         <div class="stats c4">
           <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes ativos</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/></svg></div></div><div class="sc-val">0</div><div class="sc-sub">Acompanhamento ativo</div></div>
           <div class="sc"><div class="sc-top"><div class="sc-lbl">Aderência atividade</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><polyline points="2,13 6,8 10,11 14,5 17,8"/></svg></div></div><div class="sc-val" style="color:var(--md)">—</div><div class="sc-sub">Sem dados ainda</div></div>
@@ -609,7 +610,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       </div>
 
       <!-- ════ PSICÓLOGO ════ -->
-      <div class="view" id="v-psico">
+      <div class="view" id="v-psico" style="display:none">
         <div class="stats c4">
           <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes acompanhados</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/></svg></div></div><div class="sc-val">0</div><div class="sc-sub">Suporte ativo</div></div>
           <div class="sc"><div class="sc-top"><div class="sc-lbl">Sessões este mês</div><div class="sc-ico" style="background:var(--blul)"><svg style="stroke:var(--blu)" viewBox="0 0 18 18"><rect x="2" y="3" width="14" height="13" rx="2"/><line x1="2" y1="8" x2="16" y2="8"/></svg></div></div><div class="sc-val">0</div><div class="sc-sub">Sem sessões ainda</div></div>
@@ -642,7 +643,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       </div>
 
       <!-- ════ MÉDICO ════ -->
-      <div class="view" id="v-medico">
+      <div class="view" id="v-medico" style="display:none">
         <div class="alert-box"><svg viewBox="0 0 20 20"><path d="M10 2L2 18h16L10 2z"/><line x1="10" y1="10" x2="10" y2="13"/></svg>Nenhum exame cadastrado ainda. Cadastre pacientes e insira os primeiros exames.</div>
         <div class="stats c4">
           <div class="sc"><div class="sc-top"><div class="sc-lbl">Pacientes monitorados</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/></svg></div></div><div class="sc-val">0</div><div class="sc-sub">Com exames</div></div>
@@ -686,7 +687,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       </div>
 
       <!-- ════ WHATSAPP ════ -->
-      <div class="view" id="v-whats">
+      <div class="view" id="v-whats" style="display:none">
         <div class="stats c4">
           <div class="sc"><div class="sc-top"><div class="sc-lbl">Msgs enviadas hoje</div><div class="sc-ico" style="background:#e8fdf4"><svg style="stroke:#25d366;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 18 18"><path d="M9 1C4.6 1 1 4.6 1 9c0 1.4.4 2.8 1 3.9L1 17l4.1-1.1C6.2 16.6 7.6 17 9 17c4.4 0 8-3.6 8-8S13.4 1 9 1z"/></svg></div></div><div class="sc-val" style="color:#25d366">0</div><div class="sc-sub up">Nenhuma ainda</div></div>
           <div class="sc"><div class="sc-top"><div class="sc-lbl">Fotos recebidas</div><div class="sc-ico" style="background:var(--oral)"><svg style="stroke:var(--ora);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 18 18"><rect x="2" y="4" width="14" height="12" rx="2"/><circle cx="9" cy="10" r="2.5"/></svg></div></div><div class="sc-val" style="color:var(--ora)">0</div><div class="sc-sub">Aguardando envios</div></div>
@@ -735,7 +736,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       </div>
 
       <!-- ════ RECOMPENSAS ════ -->
-      <div class="view" id="v-rewards">
+      <div class="view" id="v-rewards" style="display:none">
         <div class="stats c4">
           <div class="sc"><div class="sc-top"><div class="sc-lbl">Recompensas ativas</div><div class="sc-ico" style="background:var(--yell)"><svg style="stroke:var(--yel);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 18 18"><path d="M9 2l1.8 5.5H17l-4.8 3.5 1.8 5.5L9 13.1l-5 3.4 1.8-5.5L1 7.5h6.2z"/></svg></div></div><div class="sc-val" style="color:var(--yel)">5</div><div class="sc-sub">Tipos configurados</div></div>
           <div class="sc"><div class="sc-top"><div class="sc-lbl">Elegíveis agora</div><div class="sc-ico" style="background:var(--oral)"><svg style="stroke:var(--ora);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/></svg></div></div><div class="sc-val" style="color:var(--ora)">0</div><div class="sc-sub">Nenhum ainda</div></div>
@@ -773,7 +774,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       </div>
 
       <!-- ════ PACIENTES ARQUIVADOS ════ -->
-      <div class="view" id="v-archived">
+      <div class="view" id="v-archived" style="display:none">
         <div style="background:var(--wh);border-radius:var(--r);border:1px solid var(--n100);box-shadow:var(--sh);padding:16px 20px;display:flex;align-items:center;gap:12px">
           <div style="width:40px;height:40px;border-radius:12px;background:var(--oral);display:flex;align-items:center;justify-content:center;flex-shrink:0">
             <svg style="width:20px;height:20px;stroke:var(--ora);fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 20 20"><rect x="2" y="5" width="16" height="13" rx="2"/><path d="M2 5l2-3h12l2 3"/><line x1="7" y1="10" x2="13" y2="10"/></svg>
@@ -796,7 +797,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       </div>
 
       <!-- ════ GESTÃO DE EQUIPE ════ -->
-      <div class="view" id="v-team">
+      <div class="view" id="v-team" style="display:none">
         <div class="stats c4">
           <div class="sc"><div class="sc-top"><div class="sc-lbl">Membros ativos</div><div class="sc-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 18 18"><circle cx="7" cy="6" r="3.5"/><path d="M1 17v-1.5a5.5 5.5 0 0 1 11 0V17"/><path d="M13 7a3 3 0 0 1 0 6"/><path d="M17 17v-1a5 5 0 0 0-3-4.6"/></svg></div></div><div class="sc-val" id="team-count">1</div><div class="sc-sub">Na sua equipe</div></div>
           <div class="sc"><div class="sc-top"><div class="sc-lbl">Convites pendentes</div><div class="sc-ico" style="background:var(--oral)"><svg style="stroke:var(--ora)" viewBox="0 0 18 18"><path d="M3 4h12v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"/><polyline points="3,4 9,10 15,4"/></svg></div></div><div class="sc-val" style="color:var(--ora)" id="invite-count">0</div><div class="sc-sub">Aguardando aceite</div></div>
@@ -906,7 +907,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
         </div>
       </div>
 
-      <div class="view" id="v-taco">
+      <div class="view" id="v-taco" style="display:none">
 
         <div class="g2">
 
@@ -1002,7 +1003,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
 
 
       <!-- ════ GESTÃO DE HÁBITOS (nutricionista only) ════ -->
-      <div class="view" id="v-habitos" style="display:none">
+      <div class="view" id="v-habitos" style="display:none;flex-direction:column;gap:14px">
 
         <!-- Header com badge de acesso restrito -->
         <div style="background:linear-gradient(135deg,#1d3461,var(--pur));border-radius:var(--r);padding:18px 22px;display:flex;align-items:center;gap:14px">
@@ -1411,10 +1412,17 @@ function buildNav(role){
 // ════════════════════════════════════════════
 function setTab(role, btn){
   // 1. Esconde todas as views
-  document.querySelectorAll('.view').forEach(v=>{ v.classList.remove('on'); });
+  document.querySelectorAll('.view').forEach(v=>{
+    v.classList.remove('on');
+    v.style.display = 'none';
+  });
   // 2. Mostra apenas a view do role
   const target = document.getElementById('v-'+role);
-  if(target) target.classList.add('on');
+  if(target){
+    target.classList.add('on');
+    // habitos usa grid, outros usam flex
+    target.style.display = (role==='habitos') ? 'block' : 'flex';
+  }
   // 3. Atualiza abas
   document.querySelectorAll('.rtab').forEach(r=>r.classList.remove('on'));
   if(btn) btn.classList.add('on');
@@ -1424,10 +1432,17 @@ function setTab(role, btn){
   // 5. Reconstrói sidebar se for profissional
   if(NAVS[role]) buildNav(role);
   // 6. Atualiza botão de ação
-  const labels = {nutri:'Novo paciente',edfi:'Novo treino',psico:'Nova sessão',medico:'Nova nota',whats:'Nova notificação',rewards:'Nova recompensa'};
+  const labels = {nutri:'Novo paciente',edfi:'Novo treino',psico:'Nova sessão',medico:'Nova nota',whats:'Nova notificação',rewards:'Nova recompensa',habitos:'Novo hábito',taco:'Salvar cardápio'};
   document.getElementById('tbadd-lbl').textContent = labels[role]||'Novo';
-  const actions = {rewards:()=>openModal('m-reward'), whats:()=>toast('Use as configurações abaixo'), nutri:openNewPatient, edfi:()=>openModal('m-agenda'), psico:()=>openModal('m-agenda'), medico:()=>toast('Insira exames nos campos')};
+  const actions = {rewards:()=>openModal('m-reward'), whats:()=>toast('Use as configurações abaixo'), nutri:openNewPatient, edfi:()=>openModal('m-agenda'), psico:()=>openModal('m-agenda'), medico:()=>toast('Insira exames nos campos'), habitos:abrirNovoHabito, taco:tacoSalvar};
   document.getElementById('tbadd').onclick = actions[role]||openNewPatient;
+  // 7. Inicializa views específicas
+  if(role==='habitos'){
+    const activeBtn = document.getElementById('ptab-'+pilarAtual) || document.getElementById('ptab-nutricao');
+    selecionarPilar(pilarAtual||'nutricao', activeBtn);
+  }
+  if(role==='taco') tacoRenderBiblioteca();
+  if(role==='team') renderTeamList();
 }
 
 // ════════════════════════════════════════════
