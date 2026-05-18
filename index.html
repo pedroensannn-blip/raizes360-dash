@@ -825,70 +825,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
       </div>
 
       <!-- ════ CALCULADORA TACO ════ -->
-      <div class="view" id="v-taco">
-        <div class="stats c4">
-          <div class="sc"><div class="sc-top"><div class="sc-lbl">Total de kcal</div></div><div class="sc-val" id="taco-total-kcal" style="color:var(--ora)">0</div><div class="sc-sub">kcal calculadas</div></div>
-          <div class="sc"><div class="sc-top"><div class="sc-lbl">Proteína</div></div><div class="sc-val" id="taco-prot" style="color:var(--blu)">0g</div><div class="sc-sub">Total</div></div>
-          <div class="sc"><div class="sc-top"><div class="sc-lbl">Carboidratos</div></div><div class="sc-val" id="taco-carb" style="color:var(--yel)">0g</div><div class="sc-sub">Total</div></div>
-          <div class="sc"><div class="sc-top"><div class="sc-lbl">Gorduras</div></div><div class="sc-val" id="taco-fat" style="color:var(--red)">0g</div><div class="sc-sub">Total</div></div>
-        </div>
-        <div class="g2">
-          <!-- Busca e seleção de alimentos -->
-          <div class="panel">
-            <div class="ph"><div><div class="ph-t">Buscar alimento (Tabela TACO)</div><div class="ph-s">Digite o nome e selecione</div></div><button class="savebtn" onclick="clearTacoMenu()">Limpar</button></div>
-            <div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px">
-              <div class="taco-wrap">
-                <input class="finput" id="taco-search" placeholder="Ex: frango, arroz, brócolis..." oninput="searchTACO(this.value)">
-                <div class="taco-res" id="taco-results"></div>
-              </div>
-              <div style="display:flex;gap:7px">
-                <div style="flex:1">
-                  <div class="flabel">Alimento selecionado</div>
-                  <input class="finput" id="taco-selected-name" placeholder="Selecione da busca" readonly style="background:var(--n100)">
-                  <input type="hidden" id="taco-selected-id">
-                  <input type="hidden" id="taco-selected-kcal100">
-                </div>
-                <div style="width:90px">
-                  <div class="flabel">Quantidade (g)</div>
-                  <input class="finput" id="taco-qty" type="number" value="100" min="1" max="2000" oninput="updateTacoPreview()">
-                </div>
-              </div>
-              <!-- Preview kcal -->
-              <div id="taco-preview" style="background:var(--n50);border-radius:9px;padding:10px 12px;display:none">
-                <div style="font-size:11px;color:var(--n500);margin-bottom:5px">Prévia para a quantidade selecionada:</div>
-                <div style="display:flex;gap:10px;flex-wrap:wrap">
-                  <div><span style="font-size:14px;font-weight:800;color:var(--ora)" id="prev-kcal">0</span> <span style="font-size:10px;color:var(--n400)">kcal</span></div>
-                  <div><span style="font-size:13px;font-weight:700;color:var(--blu)" id="prev-prot">0g</span> <span style="font-size:10px;color:var(--n400)">prot</span></div>
-                  <div><span style="font-size:13px;font-weight:700;color:var(--yel)" id="prev-carb">0g</span> <span style="font-size:10px;color:var(--n400)">carb</span></div>
-                  <div><span style="font-size:13px;font-weight:700;color:var(--red)" id="prev-fat">0g</span> <span style="font-size:10px;color:var(--n400)">gord</span></div>
-                </div>
-              </div>
-              <button class="savebtn full" onclick="addTacoItem()">+ Adicionar ao cardápio</button>
-            </div>
-          </div>
-
-          <!-- Lista de itens do cardápio com macros -->
-          <div class="panel">
-            <div class="ph"><div><div class="ph-t">Cardápio com cálculo automático</div><div class="ph-s">Macros calculados via Tabela TACO</div></div><button class="savebtn" onclick="saveTacoMenu()">Salvar cardápio</button></div>
-            <div class="pb" id="taco-menu-list">
-              <div id="taco-empty" style="padding:24px 16px;text-align:center;color:var(--n400)">
-                <svg style="width:28px;height:28px;stroke:var(--n300);fill:none;stroke-width:1.5;stroke-linecap:round;display:block;margin:0 auto 8px" viewBox="0 0 24 24"><path d="M3 2h18l-2 14H5L3 2z"/><path d="M3 2L1 2"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
-                <div style="font-size:12px">Busque alimentos e adicione ao cardápio</div>
-              </div>
-            </div>
-            <!-- Totais de macros -->
-            <div style="padding:12px 14px;border-top:1px solid var(--n100);background:var(--n50)">
-              <div class="macro-row">
-                <div class="macro-c"><div class="macro-val" id="total-kcal">0</div><div class="macro-lbl">kcal</div></div>
-                <div class="macro-c"><div class="macro-val" id="total-prot" style="color:var(--blu)">0g</div><div class="macro-lbl">Proteína</div></div>
-                <div class="macro-c"><div class="macro-val" id="total-carb" style="color:var(--yel)">0g</div><div class="macro-lbl">Carb</div></div>
-                <div class="macro-c"><div class="macro-val" id="total-fat" style="color:var(--red)">0g</div><div class="macro-lbl">Gordura</div></div>
-                <div class="macro-c"><div class="macro-val" id="total-fib" style="color:var(--md)">0g</div><div class="macro-lbl">Fibra</div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
 
       <!-- ════ EQUIPE ════ -->
@@ -946,8 +882,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
         </div>
       </div>
 
-      <!-- ════ CALCULADORA TACO ════ -->
-      <div class="view" id="v-taco" style="display:none">
+      <div class="view" id="v-taco">
         <div class="g2">
           <div class="panel">
             <div class="ph">
@@ -1569,250 +1504,6 @@ const TACO_DB = [
 
 let tacoMenu = []; // itens do cardápio atual
 
-function searchTACO(q) {
-  const res = document.getElementById('taco-results');
-  if (!q || q.length < 2) { res.classList.remove('open'); return; }
-  const hits = TACO_DB.filter(f => f.name.toLowerCase().includes(q.toLowerCase())).slice(0, 12);
-  if (!hits.length) { res.innerHTML = '<div class="taco-item"><div class="taco-item-name">Nenhum resultado</div></div>'; res.classList.add('open'); return; }
-  res.innerHTML = hits.map(f => `
-    <div class="taco-item" onclick="selectTACOFood(${f.id})">
-      <div><div class="taco-item-name">${f.name}</div><div class="taco-item-cat">${f.cat} · por 100g</div></div>
-      <div class="taco-item-kcal">${f.kcal} kcal</div>
-    </div>`).join('');
-  res.classList.add('open');
-}
-
-function selectTACOFood(id) {
-  const food = TACO_DB.find(f => f.id === id);
-  if (!food) return;
-  document.getElementById('taco-selected-name').value  = food.name;
-  document.getElementById('taco-selected-id').value    = food.id;
-  document.getElementById('taco-selected-kcal100').value = JSON.stringify(food);
-  document.getElementById('taco-results').classList.remove('open');
-  document.getElementById('taco-search').value = '';
-  updateTacoPreview();
-}
-
-function updateTacoPreview() {
-  const raw  = document.getElementById('taco-selected-kcal100')?.value;
-  const qty  = parseFloat(document.getElementById('taco-qty')?.value) || 100;
-  if (!raw) return;
-  const food = JSON.parse(raw);
-  const r    = qty / 100;
-  const prev = document.getElementById('taco-preview');
-  if (prev) {
-    prev.style.display = 'block';
-    document.getElementById('prev-kcal').textContent = (food.kcal * r).toFixed(1);
-    document.getElementById('prev-prot').textContent = (food.prot * r).toFixed(1) + 'g';
-    document.getElementById('prev-carb').textContent = (food.carb * r).toFixed(1) + 'g';
-    document.getElementById('prev-fat').textContent  = (food.fat  * r).toFixed(1) + 'g';
-  }
-}
-
-function addTacoItem() {
-  const raw  = document.getElementById('taco-selected-kcal100')?.value;
-  const qty  = parseFloat(document.getElementById('taco-qty')?.value) || 100;
-  if (!raw) { toast('Selecione um alimento primeiro.'); return; }
-  const food = JSON.parse(raw);
-  const r    = qty / 100;
-  const item = { food_id:food.id, name:food.name, qty, kcal:+(food.kcal*r).toFixed(1), prot:+(food.prot*r).toFixed(1), carb:+(food.carb*r).toFixed(1), fat:+(food.fat*r).toFixed(1), fib:+(food.fib*r).toFixed(1) };
-  tacoMenu.push(item);
-  renderTacoMenu();
-  document.getElementById('taco-selected-name').value = '';
-  document.getElementById('taco-selected-id').value   = '';
-  document.getElementById('taco-selected-kcal100').value = '';
-  document.getElementById('taco-preview').style.display = 'none';
-  document.getElementById('taco-qty').value = '100';
-}
-
-function renderTacoMenu() {
-  const list   = document.getElementById('taco-menu-list');
-  const empty  = document.getElementById('taco-empty');
-  if (!tacoMenu.length) { if(empty) empty.style.display='block'; updateTacoTotals(); return; }
-  if (empty) empty.style.display = 'none';
-  list.innerHTML = tacoMenu.map((item, i) => `
-    <div class="fi" style="padding:9px 14px">
-      <div class="fi-bar" style="background:var(--mint)"></div>
-      <div class="fi-nm">${item.name}</div>
-      <div style="font-size:11px;color:var(--n400);white-space:nowrap;margin-right:6px">${item.qty}g</div>
-      <div style="display:flex;gap:6px;font-size:10px;font-weight:700;align-items:center;flex-shrink:0">
-        <span style="color:var(--ora)">${item.kcal}kcal</span>
-        <span style="color:var(--blu)">${item.prot}g P</span>
-        <span style="color:var(--yel)">${item.carb}g C</span>
-        <span style="color:var(--red)">${item.fat}g G</span>
-      </div>
-      <div class="fi-del" onclick="removeTacoItem(${i})">✕</div>
-    </div>`).join('');
-  updateTacoTotals();
-}
-
-function removeTacoItem(i) { tacoMenu.splice(i,1); renderTacoMenu(); }
-function clearTacoMenu()   { tacoMenu = []; renderTacoMenu(); }
-
-function updateTacoTotals() {
-  const totals = tacoMenu.reduce((acc,it)=>({kcal:acc.kcal+it.kcal, prot:acc.prot+it.prot, carb:acc.carb+it.carb, fat:acc.fat+it.fat, fib:acc.fib+it.fib}), {kcal:0,prot:0,carb:0,fat:0,fib:0});
-  ['kcal','prot','carb','fat','fib'].forEach(k => {
-    const el = document.getElementById('total-'+k);
-    if (el) el.textContent = totals[k].toFixed(1) + (k==='kcal'?'':' g');
-  });
-  // Atualiza stats cards
-  ['taco-total-kcal','taco-prot','taco-carb','taco-fat'].forEach((id,i) => {
-    const el  = document.getElementById(id);
-    const val = [totals.kcal, totals.prot, totals.carb, totals.fat][i];
-    if (el) el.textContent = val.toFixed(1) + (i===0?'':' g');
-  });
-}
-
-// ════════════════════════════════════════════
-// BIBLIOTECA DE CARDÁPIOS TACO
-// ════════════════════════════════════════════
-let MENUS_SALVOS = JSON.parse(localStorage.getItem('r360_menus') || '[]');
-function saveMenus(){ localStorage.setItem('r360_menus', JSON.stringify(MENUS_SALVOS)); }
-
-function saveTacoMenu() {
-  if (!tacoMenu.length) { toast('Adicione alimentos antes de salvar.'); return; }
-  // Pede nome do cardápio
-  openModal('m-save-menu');
-  // Preenche preview de totais no modal
-  const totals = tacoMenu.reduce((acc,it)=>({kcal:+(acc.kcal+it.kcal).toFixed(1),prot:+(acc.prot+it.prot).toFixed(1),carb:+(acc.carb+it.carb).toFixed(1),fat:+(acc.fat+it.fat).toFixed(1),fib:+(acc.fib+it.fib).toFixed(1)}),{kcal:0,prot:0,carb:0,fat:0,fib:0});
-  const el = document.getElementById('sm-preview');
-  if(el) el.innerHTML = `<span style="color:var(--ora);font-weight:700">${totals.kcal} kcal</span> &nbsp;|&nbsp; ${totals.prot}g prot &nbsp;|&nbsp; ${totals.carb}g carb &nbsp;|&nbsp; ${totals.fat}g gord &nbsp;|&nbsp; ${totals.fib}g fib`;
-}
-
-function confirmSaveMenu() {
-  const nm = document.getElementById('sm-name').value.trim();
-  const ref = document.getElementById('sm-ref').value;
-  if(!nm){ toast('Dê um nome ao cardápio.'); return; }
-  const totals = tacoMenu.reduce((acc,it)=>({kcal:+(acc.kcal+it.kcal).toFixed(1),prot:+(acc.prot+it.prot).toFixed(1),carb:+(acc.carb+it.carb).toFixed(1),fat:+(acc.fat+it.fat).toFixed(1),fib:+(acc.fib+it.fib).toFixed(1)}),{kcal:0,prot:0,carb:0,fat:0,fib:0});
-  const menu = {
-    id: Date.now(),
-    name: nm,
-    ref: ref || 'Geral',
-    items: JSON.parse(JSON.stringify(tacoMenu)),
-    totals,
-    createdAt: new Date().toISOString(),
-  };
-  MENUS_SALVOS.unshift(menu);
-  saveMenus();
-  closeModal('m-save-menu');
-  document.getElementById('sm-name').value = '';
-  renderMenuLibrary();
-  toast('✅ Cardápio "' + nm + '" salvo na biblioteca!');
-}
-
-function renderMenuLibrary() {
-  const list = document.getElementById('menu-library-list');
-  if(!list) return;
-  if(!MENUS_SALVOS.length){
-    list.innerHTML = '<div style="padding:24px;text-align:center;color:var(--n400);font-size:12px">Nenhum cardápio salvo ainda.<br>Crie na aba Tabela TACO.</div>';
-    return;
-  }
-  list.innerHTML = MENUS_SALVOS.map((m,i) => `
-    <div style="padding:12px 16px;border-bottom:1px solid var(--n100);display:flex;align-items:center;gap:10px">
-      <div style="flex:1;min-width:0">
-        <div style="font-size:13px;font-weight:700;color:var(--n800);margin-bottom:3px">${m.name}</div>
-        <div style="font-size:10px;color:var(--n400);margin-bottom:4px">${m.ref} · ${m.items.length} alimentos · ${new Date(m.createdAt).toLocaleDateString('pt-BR')}</div>
-        <div style="display:flex;gap:8px;font-size:10px;font-weight:700">
-          <span style="color:var(--ora)">${m.totals.kcal} kcal</span>
-          <span style="color:var(--blu)">${m.totals.prot}g prot</span>
-          <span style="color:var(--yel)">${m.totals.carb}g carb</span>
-          <span style="color:var(--red)">${m.totals.fat}g gord</span>
-          <span style="color:var(--md)">${m.totals.fib}g fib</span>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0">
-        <button onclick="applyMenuToPatient(${i})" class="savebtn" style="font-size:10px;padding:5px 10px">Aplicar ao paciente</button>
-        <button onclick="loadMenuToTaco(${i})" style="padding:4px 10px;border-radius:var(--rp);background:var(--n50);border:1px solid var(--n200);font-size:10px;font-weight:600;color:var(--n600);cursor:pointer;font-family:Inter,sans-serif">Editar</button>
-        <button onclick="deleteMenu(${i})" style="padding:4px 10px;border-radius:var(--rp);background:var(--redl);border:none;font-size:10px;font-weight:600;color:var(--red);cursor:pointer;font-family:Inter,sans-serif">Excluir</button>
-      </div>
-    </div>`).join('');
-}
-
-function applyMenuToPatient(menuIdx) {
-  const m = MENUS_SALVOS[menuIdx];
-  if(!m) return;
-  // Abre modal de seleção de paciente
-  const sel = document.getElementById('apply-menu-patient');
-  if(sel){
-    sel.innerHTML = '<option value="">Selecione o paciente...</option>' +
-      PATIENTS.map((p,i)=>`<option value="${i}">${p.name}</option>`).join('');
-  }
-  document.getElementById('apply-menu-idx').value = menuIdx;
-  openModal('m-apply-menu');
-}
-
-function confirmApplyMenu() {
-  const menuIdx = parseInt(document.getElementById('apply-menu-idx').value);
-  const patIdx  = parseInt(document.getElementById('apply-menu-patient').value);
-  const meal    = document.getElementById('apply-menu-meal').value;
-  if(isNaN(patIdx)){ toast('Selecione um paciente.'); return; }
-  const m = MENUS_SALVOS[menuIdx];
-  const p = PATIENTS[patIdx];
-  if(!m||!p){ toast('Erro: cardápio ou paciente inválido.'); return; }
-
-  // Seleciona o paciente na lista
-  document.querySelectorAll('#plist .pr').forEach(el=>{
-    if(el.querySelector('.pr-nm')?.textContent===p.name) el.click();
-  });
-
-  // Adiciona os alimentos ao cardápio (painel nutri)
-  const menuBody = document.getElementById('menu-body');
-  if(menuBody){
-    // Encontra o meal-foot correto
-    const feet = menuBody.querySelectorAll('.meal-ft');
-    const mealMap = {cafe:0, almoco:1, jantar:2};
-    const foot = feet[mealMap[meal]||0] || feet[0];
-    if(foot){
-      m.items.forEach(item=>{
-        const cols=['#2dccb4','#f0924a','#7b5ea7','#2563eb','#e0a800'];
-        const c=cols[Math.floor(Math.random()*cols.length)];
-        const el=document.createElement('div'); el.className='fi';
-        el.innerHTML=`<div class="fi-bar" style="background:${c}"></div>
-          <div class="fi-nm">${item.name}</div>
-          <div class="fi-qty"><input value="${item.qty}g"></div>
-          <div class="fi-kc" style="font-size:10px;color:var(--ora);font-weight:700">${item.kcal}kcal</div>
-          <div class="fi-del" onclick="this.closest('.fi').remove()">✕</div>`;
-        foot.parentElement.insertBefore(el, foot);
-      });
-    }
-  }
-
-  // Salva vínculo paciente ↔ cardápio
-  p.appliedMenus = p.appliedMenus || [];
-  p.appliedMenus.push({menuId: m.id, menuName: m.name, meal, appliedAt: new Date().toISOString()});
-  save();
-
-  closeModal('m-apply-menu');
-  setTab('nutri', document.getElementById('tab-nutri'));
-  toast(`✅ Cardápio "${m.name}" aplicado para ${p.name} — ${meal==='cafe'?'Café da manhã':meal==='almoco'?'Almoço':'Jantar'}!`);
-}
-
-function loadMenuToTaco(menuIdx) {
-  const m = MENUS_SALVOS[menuIdx];
-  if(!m) return;
-  tacoMenu = JSON.parse(JSON.stringify(m.items));
-  renderTacoMenu();
-  setTab('taco', document.getElementById('tab-taco'));
-  toast('Cardápio "' + m.name + '" carregado para edição.');
-}
-
-function deleteMenu(menuIdx) {
-  const m = MENUS_SALVOS[menuIdx];
-  if(!confirm('Excluir o cardápio "' + m.name + '"?')) return;
-  MENUS_SALVOS.splice(menuIdx, 1);
-  saveMenus();
-  renderMenuLibrary();
-  toast('Cardápio excluído.');
-}
-
-// Inicializa biblioteca ao carregar
-document.addEventListener('DOMContentLoaded', ()=>{ renderMenuLibrary(); });
-
-// Fechar busca TACO ao clicar fora
-document.addEventListener('click', e => {
-  const wrap = document.querySelector('.taco-wrap');
-  if (wrap && !wrap.contains(e.target)) document.getElementById('taco-results')?.classList.remove('open');
-});
 
 // ════════════════════════════════════════════
 // PATCH: createPatient agora chama e-mail
@@ -2299,9 +1990,9 @@ function searchTaco(q){
 function addTacoItem(tacoId){
   const food = TACO_DB.find(a=>a.id===tacoId);
   if(!food) return;
-  // Não duplica
+  // Evita duplicata
   if(tacoSelected.find(s=>s.taco.id===tacoId)){
-    toast(food.nome+' já foi adicionado.');
+    toast((food.nome||food.name)+' já foi adicionado.');
     document.getElementById('taco-results').style.display='none';
     document.getElementById('taco-q').value='';
     return;
@@ -2310,44 +2001,72 @@ function addTacoItem(tacoId){
   document.getElementById('taco-results').style.display='none';
   document.getElementById('taco-q').value='';
   renderTacoSelected();
+  toast('✅ '+(food.nome||food.name)+' adicionado!');
 }
 
 function renderTacoSelected(){
   const container = document.getElementById('taco-selected');
-  const empty = document.getElementById('taco-empty');
-  const total = document.getElementById('taco-total');
+  const totalBar  = document.getElementById('taco-total');
   if(!tacoSelected.length){
     container.innerHTML='<div id="taco-empty" style="padding:20px;text-align:center;color:var(--n400);font-size:12px">Busque e adicione alimentos para calcular</div>';
-    total.style.display='none';
+    if(totalBar) totalBar.style.display='none';
     return;
   }
   container.innerHTML = tacoSelected.map((s,i)=>{
-    const r = s.quantidade/100;
-    const kc = (s.taco.kcal*r).toFixed(1);
-    return `<div class="taco-sel-row">
-      <div class="taco-sel-nm">${s.taco.nome}</div>
-      <input class="taco-sel-qty" value="${s.quantidade}" onchange="updateTacoQty(${i},this.value)" title="Quantidade em gramas">g
-      <div class="taco-sel-kcal">${kc} kcal</div>
-      <div class="taco-sel-del" onclick="removeTacoItem(${i})">✕</div>
+    const f  = s.taco;
+    const r  = s.quantidade/100;
+    const nm = f.nome||f.name||'Alimento';
+    const kc = (f.kcal*r).toFixed(1);
+    const pr = (f.prot*r).toFixed(1);
+    const cb = ((f.carb||f.carboidratos_g||0)*r).toFixed(1);
+    const ft = ((f.fat||f.lip||f.lipidios_g||0)*r).toFixed(1);
+    const fb = ((f.fib||f.fibra_g||0)*r).toFixed(1);
+    return `<div style="display:flex;align-items:center;gap:7px;padding:8px 14px;border-bottom:1px solid var(--n50)">
+      <div style="flex:1;font-size:12px;font-weight:600;color:var(--n800);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${nm}</div>
+      <input style="width:54px;background:var(--n50);border:1.5px solid var(--n200);border-radius:7px;padding:4px 6px;font-size:11px;font-family:Inter,sans-serif;text-align:center;outline:none" value="${s.quantidade}" onchange="updateTacoQty(${i},this.value)" title="gramas">g
+      <span style="font-size:10px;font-weight:700;color:var(--ora);white-space:nowrap">${kc}</span>
+      <span style="font-size:9px;color:var(--n400)">kcal</span>
+      <span style="font-size:10px;font-weight:700;color:var(--blu);white-space:nowrap">${pr}g</span>
+      <span style="font-size:9px;color:var(--n400)">P</span>
+      <span style="font-size:10px;font-weight:700;color:var(--yel);white-space:nowrap">${cb}g</span>
+      <span style="font-size:9px;color:var(--n400)">C</span>
+      <span style="font-size:10px;font-weight:700;color:var(--red);white-space:nowrap">${ft}g</span>
+      <span style="font-size:9px;color:var(--n400)">G</span>
+      <div style="color:var(--n300);cursor:pointer;font-size:14px;padding:0 3px;flex-shrink:0;transition:color .1s" onclick="removeTacoItem(${i})" onmouseover="this.style.color='#e8453c'" onmouseout="this.style.color='var(--n300)'">✕</div>
     </div>`;
   }).join('');
   // Calcula totais
   const totals = tacoSelected.reduce((acc,s)=>{
-    const r=s.quantidade/100;
+    const f=s.taco; const r=s.quantidade/100;
     return {
-      kcal: acc.kcal+(s.taco.kcal*r),
-      prot: acc.prot+(s.taco.prot*r),
-      carb: acc.carb+(s.taco.carb*r),
-      lip:  acc.lip +(s.taco.lip*r),
-      fib:  acc.fib +(s.taco.fib*r),
+      kcal: acc.kcal + (f.kcal*r),
+      prot: acc.prot + (f.prot*r),
+      carb: acc.carb + ((f.carb||f.carboidratos_g||0)*r),
+      lip:  acc.lip  + ((f.fat||f.lip||f.lipidios_g||0)*r),
+      fib:  acc.fib  + ((f.fib||f.fibra_g||0)*r),
     };
   },{kcal:0,prot:0,carb:0,lip:0,fib:0});
-  document.getElementById('t-kcal').textContent = totals.kcal.toFixed(0);
-  document.getElementById('t-prot').textContent = totals.prot.toFixed(1)+'g';
-  document.getElementById('t-carb').textContent = totals.carb.toFixed(1)+'g';
-  document.getElementById('t-lip').textContent  = totals.lip.toFixed(1)+'g';
-  document.getElementById('t-fib').textContent  = totals.fib.toFixed(1)+'g';
-  total.style.display='flex';
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  set('t-kcal', totals.kcal.toFixed(0));
+  set('t-prot', totals.prot.toFixed(1)+'g');
+  set('t-carb', totals.carb.toFixed(1)+'g');
+  set('t-lip',  totals.lip.toFixed(1)+'g');
+  set('t-fib',  totals.fib.toFixed(1)+'g');
+  if(totalBar) totalBar.style.display='flex';
+  // Sincroniza com tacoMenu para salvar/aplicar
+  tacoMenu = tacoSelected.map(s=>({
+    food_id: s.taco.id,
+    name:    s.taco.nome||s.taco.name||'',
+    qty:     s.quantidade,
+    kcal:    +((s.taco.kcal*s.quantidade/100).toFixed(1)),
+    prot:    +((s.taco.prot*s.quantidade/100).toFixed(1)),
+    carb:    +(((s.taco.carb||s.taco.carboidratos_g||0)*s.quantidade/100).toFixed(1)),
+    fat:     +(((s.taco.fat||s.taco.lip||s.taco.lipidios_g||0)*s.quantidade/100).toFixed(1)),
+    fib:     +(((s.taco.fib||s.taco.fibra_g||0)*s.quantidade/100).toFixed(1)),
+  }));
+  // Atualiza contador da biblioteca
+  const mc=document.getElementById('menu-count');
+  if(mc) mc.textContent=MENUS_SALVOS.length+' salvos';
 }
 
 function updateTacoQty(idx, val){
