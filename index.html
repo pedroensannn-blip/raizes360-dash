@@ -465,14 +465,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
         <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6"/><path d="M4 7h6M7 4v6"/></svg>
         Tabela TACO
       </button>
-      <button class="rtab" id="tab-team" onclick="setTab('team',this)">
-        <svg viewBox="0 0 14 14"><circle cx="5" cy="4" r="2.5"/><path d="M1 12v-.8a4 4 0 0 1 8 0V12"/><path d="M10 5a2 2 0 0 1 0 4"/><path d="M13 12v-.5a3.5 3.5 0 0 0-2.5-3.4"/></svg>
-        Equipe
-      </button>
-      <button class="rtab" id="tab-taco" onclick="setTab('taco',this)">
-        <svg viewBox="0 0 14 14"><path d="M2 10c2-4 8-4 10 0"/><path d="M7 3v3"/><circle cx="7" cy="2" r="1"/></svg>
-        TACO
-      </button>
     </div>
 
     <!-- CONTENT -->
@@ -2106,38 +2098,6 @@ function updateTeamCount(){
 // ════════════════════════════════════════════
 
 // Dados TACO locais (30 alimentos mais usados)
-const TACO_DB = [
-  {id:1,nome:'Arroz branco, cozido',grupo:'Cereais',kcal:128,prot:2.5,lip:0.2,carb:28.1,fib:1.6,sodio:1},
-  {id:2,nome:'Arroz integral, cozido',grupo:'Cereais',kcal:124,prot:2.6,lip:1.0,carb:25.8,fib:2.7,sodio:1},
-  {id:3,nome:'Feijão preto, cozido',grupo:'Leguminosas',kcal:77,prot:4.5,lip:0.5,carb:14.0,fib:8.4,sodio:2},
-  {id:4,nome:'Feijão carioca, cozido',grupo:'Leguminosas',kcal:76,prot:4.8,lip:0.5,carb:13.6,fib:7.8,sodio:2},
-  {id:5,nome:'Frango peito, grelhado',grupo:'Carnes',kcal:159,prot:32.0,lip:3.2,carb:0,fib:0,sodio:63},
-  {id:6,nome:'Carne bovina, patinho cozido',grupo:'Carnes',kcal:219,prot:32.8,lip:9.9,carb:0,fib:0,sodio:68},
-  {id:7,nome:'Ovo de galinha, cozido',grupo:'Ovos',kcal:146,prot:13.3,lip:9.5,carb:0.6,fib:0,sodio:134},
-  {id:8,nome:'Brócolis, cozido',grupo:'Vegetais',kcal:26,prot:3.0,lip:0.4,carb:3.0,fib:3.1,sodio:16},
-  {id:9,nome:'Espinafre, cozido',grupo:'Vegetais',kcal:26,prot:3.6,lip:0.5,carb:2.6,fib:2.7,sodio:126},
-  {id:10,nome:'Cenoura, crua',grupo:'Vegetais',kcal:34,prot:0.9,lip:0.2,carb:7.7,fib:3.2,sodio:56},
-  {id:11,nome:'Tomate, cru',grupo:'Vegetais',kcal:15,prot:0.9,lip:0.2,carb:2.9,fib:1.2,sodio:5},
-  {id:12,nome:'Alface, crua',grupo:'Vegetais',kcal:11,prot:1.3,lip:0.2,carb:1.4,fib:1.7,sodio:9},
-  {id:13,nome:'Banana prata',grupo:'Frutas',kcal:98,prot:1.3,lip:0.1,carb:26.0,fib:1.9,sodio:1},
-  {id:14,nome:'Maçã com casca',grupo:'Frutas',kcal:56,prot:0.3,lip:0.4,carb:15.2,fib:2.0,sodio:1},
-  {id:15,nome:'Laranja, pera',grupo:'Frutas',kcal:37,prot:0.9,lip:0.1,carb:8.9,fib:0.8,sodio:1},
-  {id:16,nome:'Mamão, papaia',grupo:'Frutas',kcal:40,prot:0.5,lip:0.1,carb:10.4,fib:1.8,sodio:3},
-  {id:17,nome:'Leite de vaca, integral',grupo:'Laticínios',kcal:61,prot:3.2,lip:3.2,carb:4.6,fib:0,sodio:47},
-  {id:18,nome:'Iogurte natural, integral',grupo:'Laticínios',kcal:66,prot:4.1,lip:3.2,carb:6.0,fib:0,sodio:62},
-  {id:19,nome:'Queijo minas frescal',grupo:'Laticínios',kcal:264,prot:17.4,lip:20.2,carb:3.2,fib:0,sodio:420},
-  {id:20,nome:'Azeite de oliva',grupo:'Óleos',kcal:884,prot:0,lip:100,carb:0,fib:0,sodio:2},
-  {id:21,nome:'Pão francês',grupo:'Panificados',kcal:300,prot:8.0,lip:3.1,carb:58.6,fib:2.3,sodio:622},
-  {id:22,nome:'Pão integral',grupo:'Panificados',kcal:253,prot:8.2,lip:3.1,carb:49.0,fib:6.9,sodio:449},
-  {id:23,nome:'Batata inglesa, cozida',grupo:'Tubérculos',kcal:52,prot:1.2,lip:0.1,carb:12.6,fib:1.3,sodio:2},
-  {id:24,nome:'Batata-doce, cozida',grupo:'Tubérculos',kcal:77,prot:0.6,lip:0.1,carb:18.4,fib:2.2,sodio:27},
-  {id:25,nome:'Macarrão, cozido',grupo:'Massas',kcal:149,prot:4.8,lip:0.9,carb:30.9,fib:2.0,sodio:1},
-  {id:26,nome:'Aveia em flocos',grupo:'Cereais',kcal:394,prot:13.9,lip:8.5,carb:66.6,fib:9.1,sodio:4},
-  {id:27,nome:'Salmão, grelhado',grupo:'Peixes',kcal:208,prot:28.0,lip:10.0,carb:0,fib:0,sodio:59},
-  {id:28,nome:'Atum em água, escorrido',grupo:'Peixes',kcal:108,prot:23.6,lip:1.2,carb:0,fib:0,sodio:330},
-  {id:29,nome:'Amendoim, cru',grupo:'Oleaginosas',kcal:567,prot:25.8,lip:49.2,carb:16.1,fib:8.5,sodio:18},
-  {id:30,nome:'Castanha do Pará',grupo:'Oleaginosas',kcal:643,prot:14.3,lip:63.5,carb:15.1,fib:7.5,sodio:3},
-];
 
 let tacoSelected = []; // [{taco, quantidade}]
 let tacoTimeout;
