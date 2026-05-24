@@ -389,16 +389,11 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
 .hab-sw.on .hab-sw-th{transform:translateX(14px)}
 .nutri-only-badge{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,var(--mint),var(--md));color:white;font-size:9px;font-weight:700;padding:2px 8px;border-radius:var(--rp);letter-spacing:.04em}
 
-/* ══ SUBSTITUIÇÕES DO NUTRICIONISTA ══ */
-.sub-nutri-btn{padding:3px 9px;border-radius:var(--rp);background:var(--purl);color:var(--pur);border:none;font-size:9px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;white-space:nowrap;flex-shrink:0}
-.sub-nutri-btn:hover{background:var(--pur);color:white}
-.sub-nutri-row{display:flex;align-items:center;gap:6px;padding:4px 16px 6px 38px;border-bottom:1px solid var(--n50);background:var(--purl)}
-.sub-nutri-label{font-size:9px;font-weight:700;color:var(--pur);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
-.sub-nutri-input{flex:1;background:white;border:1.5px solid rgba(123,94,167,.3);border-radius:6px;padding:4px 8px;font-size:11px;font-family:'Inter',sans-serif;color:var(--n700);outline:none}
-.sub-nutri-input:focus{border-color:var(--pur)}
-.sub-nutri-save{padding:4px 10px;border-radius:var(--rp);background:var(--pur);color:white;border:none;font-size:10px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap}
-.sub-nutri-saved{font-size:10px;color:var(--pur);font-weight:600;flex:1;font-style:italic}
-.sub-nutri-edit{background:none;border:none;color:var(--pur);font-size:10px;cursor:pointer;font-family:'Inter',sans-serif;text-decoration:underline;padding:0}
+
+/* ══ SUBSTITUIÇÕES NO CARDÁPIO ══ */
+.fi-nm-com-sub{color:var(--pur)!important;font-weight:700!important}
+.fi-nm-com-sub::after{content:" 🔄";font-size:10px;opacity:.7}
+.fi-sub-badge{display:inline-block;font-size:9px;font-weight:700;padding:1px 6px;border-radius:var(--rp);background:var(--purl);color:var(--pur);margin-left:6px;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -532,17 +527,17 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
             <div class="ph"><div><div class="ph-t" id="menu-title">Cardápio · selecione um paciente</div><div class="ph-s">Meta: 1.500 kcal · hoje</div></div><button class="savebtn" onclick="toast('Cardápio salvo!')">Salvar</button></div>
             <div class="pb">
               <div class="meal-hd"><div class="meal-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M5 8h6M8 5v6"/></svg></div><div class="meal-nm">Café da manhã</div><div class="meal-tm">7h00</div><div class="meal-kc">~410 kcal</div></div>
-              <div class="fi" id="fi-Omelete_de_ovos"><div class="fi-bar" style="background:var(--mint)"></div><div class="fi-nm">Omelete de ovos</div><div class="fi-qty"><input value="3 un."></div><div class="fi-kc">210 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div><button class="sub-nutri-btn" onclick="abrirSubNutri(this)">+ Sub</button></div>
-              <div class="fi" id="fi-Pão_integral"><div class="fi-bar" style="background:var(--md)"></div><div class="fi-nm">Pão integral</div><div class="fi-qty"><input value="2 fatias"></div><div class="fi-kc">140 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div><button class="sub-nutri-btn" onclick="abrirSubNutri(this)">+ Sub</button></div>
-              <div class="fi" id="fi-Frutas_vermelhas"><div class="fi-bar" style="background:var(--ml)"></div><div class="fi-nm">Frutas vermelhas</div><div class="fi-qty"><input value="1 xíc."></div><div class="fi-kc">60 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div><button class="sub-nutri-btn" onclick="abrirSubNutri(this)">+ Sub</button></div>
+              <div class="fi" id="fi-Omelete_de_ovos"><div class="fi-bar" style="background:var(--mint)"></div><div class="fi-nm" onclick="abrirModalSub(this)" style="cursor:pointer;text-decoration:underline dotted var(--n300)" title="Clique para definir substituição">Omelete de ovos</div><div class="fi-qty"><input value="3 un."></div><div class="fi-kc">210 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
+              <div class="fi" id="fi-Pão_integral"><div class="fi-bar" style="background:var(--md)"></div><div class="fi-nm" onclick="abrirModalSub(this)" style="cursor:pointer;text-decoration:underline dotted var(--n300)" title="Clique para definir substituição">Pão integral</div><div class="fi-qty"><input value="2 fatias"></div><div class="fi-kc">140 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
+              <div class="fi" id="fi-Frutas_vermelhas"><div class="fi-bar" style="background:var(--ml)"></div><div class="fi-nm" onclick="abrirModalSub(this)" style="cursor:pointer;text-decoration:underline dotted var(--n300)" title="Clique para definir substituição">Frutas vermelhas</div><div class="fi-qty"><input value="1 xíc."></div><div class="fi-kc">60 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
               <div class="meal-ft"><button class="addbtn f" onclick="addFood(this)">+ Alimento</button><button class="addbtn s" onclick="toast('Substituição adicionada!')">+ Substituição</button></div>
               <div class="meal-hd"><div class="meal-ico" style="background:var(--oral)"><svg style="stroke:var(--ora)" viewBox="0 0 16 16"><path d="M3 2v12M13 2v4a4 4 0 0 1-4 4H3"/></svg></div><div class="meal-nm">Almoço</div><div class="meal-tm">12h00</div><div class="meal-kc">~415 kcal</div></div>
-              <div class="fi" id="fi-Frango_grelhado"><div class="fi-bar" style="background:var(--ora)"></div><div class="fi-nm">Frango grelhado</div><div class="fi-qty"><input value="150g"></div><div class="fi-kc">165 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div><button class="sub-nutri-btn" onclick="abrirSubNutri(this)">+ Sub</button></div>
-              <div class="fi" id="fi-Arroz_integral"><div class="fi-bar" style="background:var(--ora)"></div><div class="fi-nm">Arroz integral</div><div class="fi-qty"><input value="4 col."></div><div class="fi-kc">140 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div><button class="sub-nutri-btn" onclick="abrirSubNutri(this)">+ Sub</button></div>
-              <div class="fi" id="fi-Salada_de_folhas"><div class="fi-bar" style="background:var(--mint)"></div><div class="fi-nm">Salada de folhas</div><div class="fi-qty"><input value="2 xíc."></div><div class="fi-kc">20 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div><button class="sub-nutri-btn" onclick="abrirSubNutri(this)">+ Sub</button></div>
+              <div class="fi" id="fi-Frango_grelhado"><div class="fi-bar" style="background:var(--ora)"></div><div class="fi-nm" onclick="abrirModalSub(this)" style="cursor:pointer;text-decoration:underline dotted var(--n300)" title="Clique para definir substituição">Frango grelhado</div><div class="fi-qty"><input value="150g"></div><div class="fi-kc">165 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
+              <div class="fi" id="fi-Arroz_integral"><div class="fi-bar" style="background:var(--ora)"></div><div class="fi-nm" onclick="abrirModalSub(this)" style="cursor:pointer;text-decoration:underline dotted var(--n300)" title="Clique para definir substituição">Arroz integral</div><div class="fi-qty"><input value="4 col."></div><div class="fi-kc">140 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
+              <div class="fi" id="fi-Salada_de_folhas"><div class="fi-bar" style="background:var(--mint)"></div><div class="fi-nm" onclick="abrirModalSub(this)" style="cursor:pointer;text-decoration:underline dotted var(--n300)" title="Clique para definir substituição">Salada de folhas</div><div class="fi-qty"><input value="2 xíc."></div><div class="fi-kc">20 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
               <div class="meal-ft"><button class="addbtn f" onclick="addFood(this)">+ Alimento</button><button class="addbtn s" onclick="toast('Substituição adicionada!')">+ Substituição</button></div>
               <div class="meal-hd"><div class="meal-ico" style="background:var(--blul)"><svg style="stroke:var(--blu)" viewBox="0 0 16 16"><path d="M3 2v12M13 2v4a4 4 0 0 1-4 4H3"/></svg></div><div class="meal-nm">Jantar</div><div class="meal-tm">19h30</div><div class="meal-kc">~250 kcal</div></div>
-              <div class="fi" id="fi-Sopa_de_legumes"><div class="fi-bar" style="background:var(--pur)"></div><div class="fi-nm">Sopa de legumes</div><div class="fi-qty"><input value="300ml"></div><div class="fi-kc">180 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div><button class="sub-nutri-btn" onclick="abrirSubNutri(this)">+ Sub</button></div>
+              <div class="fi" id="fi-Sopa_de_legumes"><div class="fi-bar" style="background:var(--pur)"></div><div class="fi-nm" onclick="abrirModalSub(this)" style="cursor:pointer;text-decoration:underline dotted var(--n300)" title="Clique para definir substituição">Sopa de legumes</div><div class="fi-qty"><input value="300ml"></div><div class="fi-kc">180 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
               <div class="meal-ft"><button class="addbtn f" onclick="addFood(this)">+ Alimento</button><button class="addbtn s" onclick="toast('Substituição adicionada!')">+ Substituição</button></div>
             </div>
           </div>
@@ -2538,7 +2533,7 @@ function addFood(btn){
   const cols=['#2dccb4','#f0924a','#7b5ea7','#2563eb','#e0a800'];
   const c=cols[Math.floor(Math.random()*cols.length)];
   const el=document.createElement('div'); el.className='fi';
-  el.innerHTML=`<div class="fi-bar" style="background:${c}"></div><input style="flex:1;background:var(--n50);border:1px solid var(--n100);border-radius:6px;padding:4px 8px;font-size:12px;font-family:Inter,sans-serif;color:var(--n700);outline:none;min-width:0" placeholder="Nome do alimento"><div class="fi-qty"><input value="100g"></div><div class="fi-kc">—</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div><button class='sub-nutri-btn' onclick='abrirSubNutri(this)'>+ Sub</button>`;
+  el.innerHTML=`<div class="fi-bar" style="background:${c}"></div><input style="flex:1;background:var(--n50);border:1px solid var(--n100);border-radius:6px;padding:4px 8px;font-size:12px;font-family:Inter,sans-serif;color:var(--n700);outline:none;min-width:0" placeholder="Nome do alimento"><div class="fi-qty"><input value="100g"></div><div class="fi-kc">—</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div>`;
   foot.parentElement.insertBefore(el,foot);
   el.querySelector('input').focus();
 }
@@ -3186,7 +3181,7 @@ function confirmApplyMenu(){
         const cols=['#2dccb4','#f0924a','#7b5ea7','#2563eb','#e0a800'];
         const col=cols[Math.floor(Math.random()*cols.length)];
         const el=document.createElement('div'); el.className='fi';
-        el.innerHTML=`<div class="fi-bar" style="background:${col}"></div><div class="fi-nm">${it.name}</div><div class="fi-qty"><input value="${it.gramas}g"></div><div class="fi-kc" style="color:var(--ora);font-weight:700;font-size:10px">${it.kcal}kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div>`;
+        el.innerHTML=`<div class="fi-bar" style="background:${col}"></div><div class="fi-nm" onclick="abrirModalSub(this)" style="cursor:pointer;text-decoration:underline dotted var(--n300)" title="Clique para definir substituição">${it.name}</div><div class="fi-qty"><input value="${it.gramas}g"></div><div class="fi-kc" style="color:var(--ora);font-weight:700;font-size:10px">${it.kcal}kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div>`;
         foot.parentElement.insertBefore(el,foot);
       });
     }
@@ -3414,7 +3409,7 @@ function applyTacoToMenu(){
     const cols=['#2dccb4','#f0924a','#7b5ea7','#2563eb','#e0a800'];
     const c=cols[Math.floor(Math.random()*cols.length)];
     const el=document.createElement('div'); el.className='fi';
-    el.innerHTML=`<div class="fi-bar" style="background:${c}"></div><div class="fi-nm">${s.taco.nome}</div><div class="fi-qty"><input value="${qty}"></div><div class="fi-kc">${kc}</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div>`;
+    el.innerHTML=`<div class="fi-bar" style="background:${c}"></div><div class="fi-nm" onclick="abrirModalSub(this)" style="cursor:pointer;text-decoration:underline dotted var(--n300)" title="Clique para definir substituição">${s.taco.nome}</div><div class="fi-qty"><input value="${qty}"></div><div class="fi-kc">${kc}</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div>`;
     if(foot) foot.parentElement.insertBefore(el,foot);
   });
   setTab('nutri',document.getElementById('tab-nutri'));
@@ -3431,86 +3426,184 @@ function initTeam(){
 document.addEventListener('DOMContentLoaded', initTeam);
 
 // ════════════════════════════════════════════
-// SUBSTITUIÇÕES — nutricionista define, aparece no app
+// SUBSTITUIÇÕES — nutricionista define no modal
 // ════════════════════════════════════════════
-
 var SUBS_NUTRI = {};
-try { SUBS_NUTRI = JSON.parse(localStorage.getItem('r360_substituicoes') || '{}'); } catch(e) {}
+try { SUBS_NUTRI = JSON.parse(localStorage.getItem('r360_substituicoes') || '{}'); } catch(e) { SUBS_NUTRI = {}; }
 
 function salvarSubsLS() {
-  localStorage.setItem('r360_substituicoes', JSON.stringify(SUBS_NUTRI));
+  try { localStorage.setItem('r360_substituicoes', JSON.stringify(SUBS_NUTRI)); } catch(e) {}
 }
 
-function abrirSubNutri(btn) {
-  // Remove painel anterior
-  document.querySelectorAll('.sub-nutri-row').forEach(function(r) { r.remove(); });
+var _subNomeAtual = '';
 
-  var fi = btn.closest ? btn.closest('.fi') : null;
-  if (!fi) { alert('Erro: elemento não encontrado.'); return; }
+function abrirModalSub(el) {
+  var nome = el ? el.textContent.trim() : '';
+  if (!nome) return;
+  _subNomeAtual = nome;
 
-  var nmEl = fi.querySelector('.fi-nm');
-  var nome = nmEl ? nmEl.textContent.trim() : '';
-  if (!nome) { alert('Erro: nome do alimento não encontrado.'); return; }
+  // Atualiza header do modal
+  var h = document.getElementById('sub-alimento-nome-header');
+  if (h) h.textContent = nome;
 
+  // Preenche campos com dados já salvos
   var salvo = SUBS_NUTRI[nome] || {};
-  var row = document.createElement('div');
-  row.className = 'sub-nutri-row';
-  row.setAttribute('data-nome', nome);
+  var opts  = salvo.opcoes || [{nome:'',qty:''},{nome:'',qty:''},{nome:'',qty:''}];
+  while (opts.length < 3) opts.push({nome:'',qty:''});
 
-  if (salvo.sub) {
-    row.innerHTML = '<span class="sub-nutri-label">🔄 Sub:</span>'
-      + '<span class="sub-nutri-saved">' + salvo.sub + (salvo.qty ? ' · ' + salvo.qty : '') + '</span>'
-      + '<button class="sub-nutri-edit" onclick="editarSubNutri(this)">Editar</button>'
-      + '<button class="sub-nutri-edit" style="color:var(--red)" onclick="removerSubNutri(this)">✕ Remover</button>';
-  } else {
-    row.innerHTML = '<span class="sub-nutri-label">🔄</span>'
-      + '<input class="sub-nutri-input" id="sub-inp-nome" placeholder="Substituto (ex: Tapioca)">'
-      + '<input class="sub-nutri-input" id="sub-inp-qty" placeholder="Qtd" style="width:72px">'
-      + '<button class="sub-nutri-save" onclick="salvarSubNutri(this)">Salvar</button>';
+  var campos = [
+    ['sub-opt1-nome','sub-opt1-qty'],
+    ['sub-opt2-nome','sub-opt2-qty'],
+    ['sub-opt3-nome','sub-opt3-qty'],
+  ];
+  campos.forEach(function(par, i) {
+    var elNome = document.getElementById(par[0]);
+    var elQty  = document.getElementById(par[1]);
+    if (elNome) elNome.value = opts[i] ? (opts[i].nome || '') : '';
+    if (elQty)  elQty.value  = opts[i] ? (opts[i].qty  || '') : '';
+  });
+  var obs = document.getElementById('sub-obs');
+  if (obs) obs.value = salvo.obs || '';
+
+  openModal('m-sub-alimento');
+  var inp = document.getElementById('sub-opt1-nome');
+  if (inp) setTimeout(function(){ inp.focus(); }, 200);
+}
+
+function salvarSubAlimento() {
+  if (!_subNomeAtual) return;
+
+  var opcoes = [
+    { nome: (document.getElementById('sub-opt1-nome')||{}).value || '',
+      qty:  (document.getElementById('sub-opt1-qty') ||{}).value || '' },
+    { nome: (document.getElementById('sub-opt2-nome')||{}).value || '',
+      qty:  (document.getElementById('sub-opt2-qty') ||{}).value || '' },
+    { nome: (document.getElementById('sub-opt3-nome')||{}).value || '',
+      qty:  (document.getElementById('sub-opt3-qty') ||{}).value || '' },
+  ].map(function(o){ return { nome: o.nome.trim(), qty: o.qty.trim() }; })
+   .filter(function(o){ return o.nome.length > 0; });
+
+  if (!opcoes.length) {
+    toast('Digite ao menos uma opção de substituição.');
+    return;
   }
 
-  fi.parentNode.insertBefore(row, fi.nextSibling);
-  var inp = document.getElementById('sub-inp-nome');
-  if (inp) inp.focus();
-}
-
-function editarSubNutri(btn) {
-  var row  = btn.closest('.sub-nutri-row');
-  var nome = row.getAttribute('data-nome');
-  var salvo = SUBS_NUTRI[nome] || {};
-  row.innerHTML = '<span class="sub-nutri-label">🔄</span>'
-    + '<input class="sub-nutri-input" id="sub-inp-nome" value="' + (salvo.sub||'') + '" placeholder="Substituto">'
-    + '<input class="sub-nutri-input" id="sub-inp-qty" value="' + (salvo.qty||'') + '" placeholder="Qtd" style="width:72px">'
-    + '<button class="sub-nutri-save" onclick="salvarSubNutri(this)">Salvar</button>';
-  document.getElementById('sub-inp-nome').focus();
-}
-
-function salvarSubNutri(btn) {
-  var row     = btn.closest('.sub-nutri-row');
-  var nome    = row.getAttribute('data-nome');
-  var subNome = (document.getElementById('sub-inp-nome')||{}).value || '';
-  var subQty  = (document.getElementById('sub-inp-qty') ||{}).value || '';
-  subNome = subNome.trim();
-  subQty  = subQty.trim();
-  if (!subNome) { toast('Digite o nome do substituto.'); return; }
-  SUBS_NUTRI[nome] = { sub: subNome, qty: subQty };
+  var obs = ((document.getElementById('sub-obs')||{}).value || '').trim();
+  SUBS_NUTRI[_subNomeAtual] = { opcoes: opcoes, obs: obs };
   salvarSubsLS();
-  row.innerHTML = '<span class="sub-nutri-label">🔄 Sub:</span>'
-    + '<span class="sub-nutri-saved">' + subNome + (subQty ? ' · ' + subQty : '') + '</span>'
-    + '<button class="sub-nutri-edit" onclick="editarSubNutri(this)">Editar</button>'
-    + '<button class="sub-nutri-edit" style="color:var(--red)" onclick="removerSubNutri(this)">✕ Remover</button>';
-  toast('✅ Substituição de "' + nome + '" salva!');
+  atualizarIndicadorSub(_subNomeAtual);
+  closeModal('m-sub-alimento');
+  toast('✅ ' + opcoes.length + ' substituição(ões) salva(s) para "' + _subNomeAtual + '"!');
 }
 
-function removerSubNutri(btn) {
-  var row  = btn.closest('.sub-nutri-row');
-  var nome = row.getAttribute('data-nome');
-  delete SUBS_NUTRI[nome];
+function removerSubAlimento() {
+  if (!_subNomeAtual) return;
+  delete SUBS_NUTRI[_subNomeAtual];
   salvarSubsLS();
-  row.remove();
-  toast('Substituição removida.');
+  atualizarIndicadorSub(_subNomeAtual);
+  closeModal('m-sub-alimento');
+  toast('Substituições de "' + _subNomeAtual + '" removidas.');
 }
+
+function atualizarIndicadorSub(nome) {
+  // Marca visualmente os alimentos que têm substituição definida
+  document.querySelectorAll('.fi-nm').forEach(function(el) {
+    if (el.textContent.replace(' 🔄','').trim() === nome) {
+      var temSub = !!SUBS_NUTRI[nome];
+      if (temSub) {
+        el.classList.add('fi-nm-com-sub');
+        if (!el.querySelector('.fi-sub-badge')) {
+          var badge = document.createElement('span');
+          badge.className = 'fi-sub-badge';
+          badge.textContent = '🔄 ' + SUBS_NUTRI[nome].opcoes.length + ' sub';
+          el.appendChild(badge);
+        }
+      } else {
+        el.classList.remove('fi-nm-com-sub');
+        var badge = el.querySelector('.fi-sub-badge');
+        if (badge) badge.remove();
+      }
+    }
+  });
+}
+
+// Inicializa indicadores ao carregar
+document.addEventListener('DOMContentLoaded', function() {
+  Object.keys(SUBS_NUTRI).forEach(function(nome) {
+    atualizarIndicadorSub(nome);
+  });
+});
 </script>
 
+
+<!-- MODAL: SUBSTITUIÇÕES DO ALIMENTO -->
+<div class="mov" id="m-sub-alimento">
+  <div class="modal" style="max-width:460px">
+    <div class="mhdr" style="background:linear-gradient(135deg,#5a3e8a,#7b5ea7)">
+      <div>
+        <div class="mtitle">Definir substituições</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6);margin-top:2px" id="sub-alimento-nome-header">Alimento</div>
+      </div>
+      <button class="mclose" onclick="closeModal('m-sub-alimento')">
+        <svg viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
+      </button>
+    </div>
+    <div class="mbody" style="gap:10px">
+      <div style="font-size:12px;color:var(--n600);background:var(--purl);border-radius:10px;padding:10px 13px">
+        Adicione até 3 opções de substituição. O paciente verá essas opções no app ao tocar no alimento.
+      </div>
+
+      <!-- Opção 1 -->
+      <div class="msec">Opção 1</div>
+      <div class="mrow">
+        <div class="mf" style="flex:2">
+          <label>Alimento substituto</label>
+          <input id="sub-opt1-nome" class="finput" placeholder="Ex: Tapioca">
+        </div>
+        <div class="mf">
+          <label>Quantidade</label>
+          <input id="sub-opt1-qty" class="finput" placeholder="Ex: 2 un.">
+        </div>
+      </div>
+
+      <!-- Opção 2 -->
+      <div class="msec">Opção 2 <span style="color:var(--n400);font-weight:400">(opcional)</span></div>
+      <div class="mrow">
+        <div class="mf" style="flex:2">
+          <label>Alimento substituto</label>
+          <input id="sub-opt2-nome" class="finput" placeholder="Ex: Aveia">
+        </div>
+        <div class="mf">
+          <label>Quantidade</label>
+          <input id="sub-opt2-qty" class="finput" placeholder="Ex: 4 col.">
+        </div>
+      </div>
+
+      <!-- Opção 3 -->
+      <div class="msec">Opção 3 <span style="color:var(--n400);font-weight:400">(opcional)</span></div>
+      <div class="mrow">
+        <div class="mf" style="flex:2">
+          <label>Alimento substituto</label>
+          <input id="sub-opt3-nome" class="finput" placeholder="Ex: Batata-doce">
+        </div>
+        <div class="mf">
+          <label>Quantidade</label>
+          <input id="sub-opt3-qty" class="finput" placeholder="Ex: 1 un.">
+        </div>
+      </div>
+
+      <!-- Observação -->
+      <div class="mf">
+        <label>Observação para o paciente <span style="color:var(--n400);font-weight:400">(opcional)</span></label>
+        <input id="sub-obs" class="finput" placeholder="Ex: Use quando não tiver pão em casa">
+      </div>
+    </div>
+    <div class="mfooter" style="gap:8px">
+      <button class="mbtn ghost" onclick="removerSubAlimento()">Remover</button>
+      <button class="mbtn ghost" onclick="closeModal('m-sub-alimento')">Cancelar</button>
+      <button class="mbtn pri" onclick="salvarSubAlimento()">Salvar substituições</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
