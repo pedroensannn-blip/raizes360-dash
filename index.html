@@ -525,7 +525,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--n700);min-h
           <!-- Cardápio -->
           <div class="panel">
             <div class="ph"><div><div class="ph-t" id="menu-title">Cardápio · selecione um paciente</div><div class="ph-s">Meta: 1.500 kcal · hoje</div></div><button class="savebtn" onclick="toast('Cardápio salvo!')">Salvar</button></div>
-            <div class="pb">
+            <div class="pb" id="menu-body">
               <div class="meal-hd"><div class="meal-ico" style="background:var(--ml)"><svg style="stroke:var(--md)" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M5 8h6M8 5v6"/></svg></div><div class="meal-nm">Café da manhã</div><div class="meal-tm">7h00</div><div class="meal-kc">~410 kcal</div></div>
               <div class="fi" id="fi-Omelete_de_ovos"><div class="fi-bar" style="background:var(--mint)"></div><div class="fi-nm" onclick="abrirModalSub(this)" style="cursor:pointer;text-decoration:underline dotted var(--n300)" title="Clique para definir substituição">Omelete de ovos</div><div class="fi-qty"><input value="3 un."></div><div class="fi-kc">210 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
               <div class="fi" id="fi-Pão_integral"><div class="fi-bar" style="background:var(--md)"></div><div class="fi-nm" onclick="abrirModalSub(this)" style="cursor:pointer;text-decoration:underline dotted var(--n300)" title="Clique para definir substituição">Pão integral</div><div class="fi-qty"><input value="2 fatias"></div><div class="fi-kc">140 kcal</div><div class="fi-del" onclick="this.closest('.fi').remove()">✕</div></div>
