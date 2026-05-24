@@ -3431,92 +3431,84 @@ function initTeam(){
 document.addEventListener('DOMContentLoaded', initTeam);
 
 // ════════════════════════════════════════════
-// SUBSTITUIÇÕES DEFINIDAS PELO NUTRICIONISTA
-// Salvas no localStorage → lidas pelo app do paciente
+// SUBSTITUIÇÕES — nutricionista define, aparece no app
 // ════════════════════════════════════════════
-let SUBS_NUTRI = JSON.parse(localStorage.getItem('r360_substituicoes') || '{}');
 
-function salvarSubsLS(){
+var SUBS_NUTRI = {};
+try { SUBS_NUTRI = JSON.parse(localStorage.getItem('r360_substituicoes') || '{}'); } catch(e) {}
+
+function salvarSubsLS() {
   localStorage.setItem('r360_substituicoes', JSON.stringify(SUBS_NUTRI));
 }
 
 function abrirSubNutri(btn) {
-  // Fecha qualquer painel aberto
-  document.querySelectorAll('.sub-nutri-row').forEach(function(r){ r.remove(); });
+  // Remove painel anterior
+  document.querySelectorAll('.sub-nutri-row').forEach(function(r) { r.remove(); });
 
-  var fi = btn.closest('.fi');
-  if (!fi) return;
+  var fi = btn.closest ? btn.closest('.fi') : null;
+  if (!fi) { alert('Erro: elemento não encontrado.'); return; }
 
   var nmEl = fi.querySelector('.fi-nm');
   var nome = nmEl ? nmEl.textContent.trim() : '';
-  if (!nome) return;
+  if (!nome) { alert('Erro: nome do alimento não encontrado.'); return; }
 
   var salvo = SUBS_NUTRI[nome] || {};
-  var row   = document.createElement('div');
+  var row = document.createElement('div');
   row.className = 'sub-nutri-row';
-  row.setAttribute('data-para', nome);
+  row.setAttribute('data-nome', nome);
 
   if (salvo.sub) {
-    row.innerHTML =
-      '<span class="sub-nutri-label">🔄 Sub definida:</span>' +
-      '<span class="sub-nutri-saved">' + salvo.sub + (salvo.qty ? ' · ' + salvo.qty : '') + '</span>' +
-      '<button class="sub-nutri-edit" onclick="editarSubNutri(this,\'' + nome.replace(/'/g,"\\'") + '\')">Editar</button>' +
-      '<button class="sub-nutri-edit" style="color:var(--red)" onclick="removerSubNutri(\'' + nome.replace(/'/g,"\\'") + '\')">✕</button>';
+    row.innerHTML = '<span class="sub-nutri-label">🔄 Sub:</span>'
+      + '<span class="sub-nutri-saved">' + salvo.sub + (salvo.qty ? ' · ' + salvo.qty : '') + '</span>'
+      + '<button class="sub-nutri-edit" onclick="editarSubNutri(this)">Editar</button>'
+      + '<button class="sub-nutri-edit" style="color:var(--red)" onclick="removerSubNutri(this)">✕ Remover</button>';
   } else {
-    row.innerHTML =
-      '<span class="sub-nutri-label">🔄 Substituição:</span>' +
-      '<input class="sub-nutri-input" id="sub-inp-nome" placeholder="Substituto (ex: Tapioca)" style="flex:1;min-width:80px;max-width:160px">' +
-      '<input class="sub-nutri-input" id="sub-inp-qty" placeholder="Qtd" style="width:70px;flex-shrink:0">' +
-      '<button class="sub-nutri-save" onclick="salvarSubNutri(\'' + nome.replace(/'/g,"\\'") + '\')">Salvar</button>';
+    row.innerHTML = '<span class="sub-nutri-label">🔄</span>'
+      + '<input class="sub-nutri-input" id="sub-inp-nome" placeholder="Substituto (ex: Tapioca)">'
+      + '<input class="sub-nutri-input" id="sub-inp-qty" placeholder="Qtd" style="width:72px">'
+      + '<button class="sub-nutri-save" onclick="salvarSubNutri(this)">Salvar</button>';
   }
 
-  // Insere logo após o fi dentro do mesmo container
   fi.parentNode.insertBefore(row, fi.nextSibling);
-
-  var inp = document.getElementById('sub-inp-nome');
-  if (inp) { inp.focus(); }
-}
-
-function editarSubNutri(btn, nome) {
-  var salvo = SUBS_NUTRI[nome] || {};
-  var row   = btn.closest('.sub-nutri-row');
-  row.innerHTML =
-    '<span class="sub-nutri-label">🔄 Substituição:</span>' +
-    '<input class="sub-nutri-input" id="sub-inp-nome" value="' + (salvo.sub||'') + '" placeholder="Substituto" style="flex:1;min-width:80px;max-width:160px">' +
-    '<input class="sub-nutri-input" id="sub-inp-qty" value="' + (salvo.qty||'') + '" placeholder="Qtd" style="width:70px;flex-shrink:0">' +
-    '<button class="sub-nutri-save" onclick="salvarSubNutri(\'' + nome.replace(/'/g,"\\'") + '\')">Salvar</button>';
   var inp = document.getElementById('sub-inp-nome');
   if (inp) inp.focus();
 }
 
-function salvarSubNutri(nome) {
-  var subNome = (document.getElementById('sub-inp-nome') || {}).value;
-  var subQty  = (document.getElementById('sub-inp-qty')  || {}).value;
-  subNome = subNome ? subNome.trim() : '';
-  subQty  = subQty  ? subQty.trim()  : '';
-  if (!subNome) { toast('Digite o nome do substituto.'); return; }
+function editarSubNutri(btn) {
+  var row  = btn.closest('.sub-nutri-row');
+  var nome = row.getAttribute('data-nome');
+  var salvo = SUBS_NUTRI[nome] || {};
+  row.innerHTML = '<span class="sub-nutri-label">🔄</span>'
+    + '<input class="sub-nutri-input" id="sub-inp-nome" value="' + (salvo.sub||'') + '" placeholder="Substituto">'
+    + '<input class="sub-nutri-input" id="sub-inp-qty" value="' + (salvo.qty||'') + '" placeholder="Qtd" style="width:72px">'
+    + '<button class="sub-nutri-save" onclick="salvarSubNutri(this)">Salvar</button>';
+  document.getElementById('sub-inp-nome').focus();
+}
 
+function salvarSubNutri(btn) {
+  var row     = btn.closest('.sub-nutri-row');
+  var nome    = row.getAttribute('data-nome');
+  var subNome = (document.getElementById('sub-inp-nome')||{}).value || '';
+  var subQty  = (document.getElementById('sub-inp-qty') ||{}).value || '';
+  subNome = subNome.trim();
+  subQty  = subQty.trim();
+  if (!subNome) { toast('Digite o nome do substituto.'); return; }
   SUBS_NUTRI[nome] = { sub: subNome, qty: subQty };
   salvarSubsLS();
-
-  // Atualiza o painel
-  var row = document.querySelector('.sub-nutri-row[data-para="' + nome + '"]')
-         || document.querySelector('.sub-nutri-row');
-  if (row) {
-    row.innerHTML =
-      '<span class="sub-nutri-label">🔄 Sub definida:</span>' +
-      '<span class="sub-nutri-saved">' + subNome + (subQty ? ' · ' + subQty : '') + '</span>' +
-      '<button class="sub-nutri-edit" onclick="editarSubNutri(this,\'' + nome.replace(/'/g,"\\'") + '\')">Editar</button>' +
-      '<button class="sub-nutri-edit" style="color:var(--red)" onclick="removerSubNutri(\'' + nome.replace(/'/g,"\\'") + '\')">✕</button>';
-  }
+  row.innerHTML = '<span class="sub-nutri-label">🔄 Sub:</span>'
+    + '<span class="sub-nutri-saved">' + subNome + (subQty ? ' · ' + subQty : '') + '</span>'
+    + '<button class="sub-nutri-edit" onclick="editarSubNutri(this)">Editar</button>'
+    + '<button class="sub-nutri-edit" style="color:var(--red)" onclick="removerSubNutri(this)">✕ Remover</button>';
   toast('✅ Substituição de "' + nome + '" salva!');
 }
 
-function removerSubNutri(nome) {
+function removerSubNutri(btn) {
+  var row  = btn.closest('.sub-nutri-row');
+  var nome = row.getAttribute('data-nome');
   delete SUBS_NUTRI[nome];
   salvarSubsLS();
-  document.querySelector('.sub-nutri-row')?.remove();
-  toast('Substituição de "'+nome+'" removida.');
+  row.remove();
+  toast('Substituição removida.');
 }
 </script>
 
